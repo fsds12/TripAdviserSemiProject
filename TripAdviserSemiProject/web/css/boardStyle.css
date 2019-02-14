@@ -1,0 +1,193 @@
+@charset "UTF-8";
+
+/* 임지안 */
+body{margin: 0;}
+section.notice-section{
+	height: 650px; 
+	width: 100%;	
+}
+section.notice-section div.caption{	
+	text-align: center; 
+	font-weight: bold; 
+	color: slategrey;
+	margin-left: auto;
+	margin-top: 15px;
+	font-size: 25px;
+}
+section.notice-section div.caption>img{
+		height: 150px;
+		border: 1px solid grey;
+}
+/* 공지사항 게시판 css */
+section#notice-section table.notice-tbl{
+	border-spacing: 0; 
+	text-align: center; 
+	margin: auto; 
+	height: 400px; width: 80%;
+	border-bottom: 1px solid lightgrey;
+}
+	
+section#notice-section table.notice-tbl tr.title th{	
+	line-height: 250%; 
+	text-align: center;
+	border-top: 1px solid lightgrey;
+}
+
+section#notice-section input[type="button"].write-btn{
+	width: 50px; 
+	height: 30px; 
+	border: 1px solid gainsboro; 
+	background-color: white;	
+	float: right;
+	border-radius: 10%;
+	cursor: pointer;
+}
+
+section#notice-section input[type="button"].write-btn:hover{
+	background-color: whitesmoke;
+}
+	
+section#notice-section table.notice-tbl tr.title th,td{
+	border-bottom: 1px solid lightgrey;
+}
+
+section#notice-section table.notice-tbl tbody tr:hover{
+	background-color: whitesmoke;
+}
+
+section#notice-section div#search-container{
+	margin-top: 5px; 
+	width: 100%; height: 35px; 
+	text-align: center;
+}
+
+section#notice-section div#search-container>input[type="button"]{
+    width: 50px; height: 28px; 
+    border: 1px solid gainsboro; 
+    background-color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+section#notice-section div#search-container>input[type="button"]:hover{
+	background-color: whitesmoke;
+}
+section#notice-section div#search-container search#search-category{
+	height: 30px; 
+	border: 1px solid gainsboro;
+}
+section#notice-section div#search-container input[type="search"]{
+    border: 0.05em solid gainsboro;
+    width: 250px; height: 28px;
+    border-radius: 0.3em;
+}
+
+section#notice-section div#paging-container{text-align: center;}
+
+
+
+/* 글쓰기*/
+section#noticeWrite-section table.write-tbl{
+	width: 70%; height: 400px;
+	margin-top: 20px;
+	border-spacing: 0;	
+}
+section#noticeWrite-section table.write-tbl>th, td{
+	border: none;
+}
+section#noticeWrite-section table.write-tbl th{
+	width: 20%;
+}        
+section#noticeWrite-section table input[type="text"]{
+	width: 90%; height: 30px;
+    border: 0.08em solid lightgray;
+    border-radius: 0.5em;
+    margin-left: auto;
+}
+section#noticeWrite-section table textarea{
+    width: 90%; height: 200px;
+    border: 0.08em solid lightgray;
+    border-radius: 0.5em;}
+    
+section#noticeWrite-section div#btn-container{
+	width: 100%; 
+	height: 30px; 
+	text-align: center;
+	margin-top: 20px;
+}
+section#noticeWrite-section div#btn-container input[type="button"]{
+    width: 50px; height: 30px; 
+    border: 1px solid gainsboro; 
+    background-color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+section#noticeWrite-section div#btn-container input[type="button"]:hover{    
+    background-color: whitesmoke;    
+}
+
+
+
+section#noticeView-section table.noticeView-tbl{	
+	width: 80%; height: 450px;
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+section#noticeView-section table.noticeView-tbl td{
+	border-top: 1px solid lightgrey;	
+	border-bottom: 1px solid lightgrey;	
+}
+section#noticeView-section td#btn-td{
+	border: none;
+}       
+section#noticeView-section td#btn-td input[type="button"]{            
+	border: 1px solid gainsboro;
+    background-color: white;
+    width: 50px; height: 30px;
+    cursor: pointer;
+    margin: auto;
+    float: right;
+    border-radius: 10%;                  
+}
+section#noticeView-section td#btn-td input[type="button"]:hover{
+    background-color: whitesmoke;
+}
+
+section#noticeView-section td#writer-td, td#date-td{
+	font-size: 13px;
+	color: grey;
+}
+
+section#noticeView-section{
+	height: 1000px; 
+	width: 100%; 
+}
+section#noticeView-section div#comment-container{	
+	width:90%; height: 500px;	
+	text-align: center; 
+	display: none;
+	margin: auto;
+	background-color: gainsboro;
+}
+section#noticeView-section div#comment-container textarea{
+	margin-top: 10px;
+	margin-left: auto;
+	width: 80%; height: 100px;
+	border: 0.05em solid lightgrey;
+	border-radius: 0.5em;	
+}
+section#noticeView-section div#comment-container input[type="button"]{
+	width: 50px; height: 30px; 
+	border: 1px solid gainsboro; 
+	background-color: white;	
+	border-radius: 10%;
+	cursor: pointer;	
+}
+section#noticeView-section div#comment-container div#comment-box{
+	
+	width: 90%; height: 100px;	
+	text-align: center;
+	margin: auto;
+	
+}
