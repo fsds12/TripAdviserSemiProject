@@ -87,7 +87,7 @@ section#notice-section div#paging-container{text-align: center;}
 
 /* 글쓰기*/
 section#noticeWrite-section table.write-tbl{
-	width: 70%; height: 400px;
+	width: 70%; height: 300px;
 	margin-top: 20px;
 	border-spacing: 0;	
 }
