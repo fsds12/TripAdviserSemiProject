@@ -62,36 +62,28 @@
 	
    <div class="inputImage">
 	
-		<div class="inputArea">
-			<label for="trvRepresentPic">이미지1</label> 
-			<input type="file" id="trImage" name="trvRepresentPic" />
-		</div>
-		<div class="inputArea">
-			<label for="trvPic">이미지2</label> 
-			<input type="file" id="trImage" name="trvPic" />
-		</div>
-		<div class="inputArea">
-			<label for="trvPic">이미지3</label> 
-			<input type="file" id="trImage" name="trvPic" />
-		</div>
-		<div class="inputArea">
-			<label for="trvPic">이미지4</label> 
-			<input type="file" id="trImage" name="trvPic" />
-		</div>
-		
-<div>
-		<h3>로컬에 있는 이미지를 바로 브라우저에 표시</h3>
-<img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+					<div id="trvImg1">
+						<img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+						<input type="file" id="getfile" accept="image/*">
+					</div>
 
-<input type="file" id="getfile" accept="image/*">
-</div>
 
-<div>
-		<h3>로컬에 있는 이미지를 바로 브라우저에 표시</h3>
-<img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+					<div id="trvImg2">
+						<img id="preview2" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+						<input type="file" id="getfile2" accept="image/*">
+					</div>
+					
+					
+					<div id="trvImg3">
+						<img id="preview3" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+						<input type="file" id="getfile3" accept="image/*">
+					</div>
+					
+					<div id="trvImg4">
+						<img id="preview4" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+						<input type="file" id="getfile4" accept="image/*">
+					</div>
 
-<input type="file" id="getfile" accept="image/*">		
-</div>		                
 	</div>
 	
 	
@@ -127,32 +119,71 @@ file.onchange = function () {
     reader.onload = function  () {
         //로컬 이미지를 보여주기
         document.querySelector('#preview').src = reader.result;
-        
-        //썸네일 이미지 생성
-        var tempImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
-        tempImage.src = reader.result; //data-uri를 이미지 객체에 주입
-        tempImage.onload = function() {
-            //리사이즈를 위해 캔버스 객체 생성
-            var canvas = document.createElement('canvas');
-            var canvasContext = canvas.getContext("2d");
-            
-            //캔버스 크기 설정
-            canvas.width = 100; //가로 100px
-            canvas.height = 100; //세로 100px
-            
-            //이미지를 캔버스에 그리기
-            canvasContext.drawImage(this, 0, 0, 100, 100);
-            //캔버스에 그린 이미지를 다시 data-uri 형태로 변환
-            var dataURI = canvas.toDataURL("image/jpeg");
-            
-            //썸네일 이미지 보여주기
-            document.querySelector('#thumbnail').src = dataURI;
-            
-            //썸네일 이미지를 다운로드할 수 있도록 링크 설정
-            document.querySelector('#download').href = dataURI;
-        };
+
     }; 
 }; 
+
+
+
+var file2 = document.querySelector('#getfile2');
+
+file2.onchange = function () { 
+    var fileList2 = file2.files ;
+    
+    // 읽기
+    var reader2 = new FileReader();
+    reader2.readAsDataURL(fileList2 [0]);
+
+    //로드 한 후
+    reader2.onload = function  () {
+        //로컬 이미지를 보여주기
+        document.querySelector('#preview2').src = reader2.result;
+        
+
+    }; 
+}; 
+
+
+var file3 = document.querySelector('#getfile3');
+
+file3.onchange = function () { 
+    var fileList3 = file3.files ;
+    
+    // 읽기
+    var reader3 = new FileReader();
+    reader3.readAsDataURL(fileList3 [0]);
+
+    //로드 한 후
+    reader3.onload = function  () {
+        //로컬 이미지를 보여주기
+        document.querySelector('#preview3').src = reader3.result;
+        
+
+    }; 
+}; 
+
+
+
+var file4 = document.querySelector('#getfile4');
+
+file4.onchange = function () { 
+    var fileList4 = file4.files ;
+    
+    // 읽기
+    var reader4 = new FileReader();
+    reader4.readAsDataURL(fileList4 [0]);
+
+    //로드 한 후
+    reader4.onload = function  () {
+        //로컬 이미지를 보여주기
+        document.querySelector('#preview4').src = reader4.result;
+        
+
+    }; 
+}; 
+
+
+
 
 </script>
 

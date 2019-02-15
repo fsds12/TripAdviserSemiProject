@@ -62,31 +62,28 @@
 	
    <div class="inputImage">
 	
-		<div class="inputArea">
-			<label for="trvRepresentPic">이미지1</label> 
-			<input type="file" id="trImage" name="trvRepresentPic" />
-		</div>
-		<div class="inputArea">
-			<label for="trvPic">이미지2</label> 
-			<input type="file" id="trImage" name="trvPic" />
-		</div>
-		<div class="inputArea">
-			<label for="trvPic">이미지3</label> 
-			<input type="file" id="trImage" name="trvPic" />
-		</div>
-		<div class="inputArea">
-			<label for="trvPic">이미지4</label> 
-			<input type="file" id="trImage" name="trvPic" />
-		</div>
-		
-<div>
-		<h3>로컬에 있는 이미지를 바로 브라우저에 표시</h3>
-<img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+					<div id="trvImg1">
+						<img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+						<input type="file" id="getfile" accept="image/*">
+					</div>
 
-<input type="file" id="getfile" accept="image/*">
-</div>
-		
-		                
+
+					<div id="trvImg2">
+						<img id="preview2" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+						<input type="file" id="getfile2" accept="image/*">
+					</div>
+					
+					
+					<div id="trvImg3">
+						<img id="preview3" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+						<input type="file" id="getfile3" accept="image/*">
+					</div>
+					
+					<div id="trvImg4">
+						<img id="preview4" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
+						<input type="file" id="getfile4" accept="image/*">
+					</div>
+
 	</div>
 	
 	
@@ -105,6 +102,91 @@
   </div>
  </article>
 </section>
+
+
+<script>
+
+var file = document.querySelector('#getfile');
+
+file.onchange = function () { 
+    var fileList = file.files ;
+    
+    // 읽기
+    var reader = new FileReader();
+    reader.readAsDataURL(fileList [0]);
+
+    //로드 한 후
+    reader.onload = function  () {
+        //로컬 이미지를 보여주기
+        document.querySelector('#preview').src = reader.result;
+
+    }; 
+}; 
+
+
+
+var file2 = document.querySelector('#getfile2');
+
+file2.onchange = function () { 
+    var fileList2 = file2.files ;
+    
+    // 읽기
+    var reader2 = new FileReader();
+    reader2.readAsDataURL(fileList2 [0]);
+
+    //로드 한 후
+    reader2.onload = function  () {
+        //로컬 이미지를 보여주기
+        document.querySelector('#preview2').src = reader2.result;
+        
+
+    }; 
+}; 
+
+
+var file3 = document.querySelector('#getfile3');
+
+file3.onchange = function () { 
+    var fileList3 = file3.files ;
+    
+    // 읽기
+    var reader3 = new FileReader();
+    reader3.readAsDataURL(fileList3 [0]);
+
+    //로드 한 후
+    reader3.onload = function  () {
+        //로컬 이미지를 보여주기
+        document.querySelector('#preview3').src = reader3.result;
+        
+
+    }; 
+}; 
+
+
+
+var file4 = document.querySelector('#getfile4');
+
+file4.onchange = function () { 
+    var fileList4 = file4.files ;
+    
+    // 읽기
+    var reader4 = new FileReader();
+    reader4.readAsDataURL(fileList4 [0]);
+
+    //로드 한 후
+    reader4.onload = function  () {
+        //로컬 이미지를 보여주기
+        document.querySelector('#preview4').src = reader4.result;
+        
+
+    }; 
+}; 
+
+
+
+
+</script>
+
 
 
 <%@ include file="/views/common/footer.jsp" %>

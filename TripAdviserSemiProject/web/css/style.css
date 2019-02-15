@@ -238,8 +238,7 @@ nav#trvList ul.pagination {
 	color: white;
 	text-decoration: none;
 	margin-left:360px;
-	/* position: relative;
-	left: 350px; */
+	
 }
 
 
@@ -309,7 +308,7 @@ section#trvWrite form .inputBtn {
 
 section#trvWrite form .inputBtn #register_Btn{
 		position: relative;
-		left:140px;
+		left:140px; 
 		margin: 50px 5px 40px 0px;
 	}
 section#trvWrite form .inputBtn	#cancle_Btn{
@@ -346,8 +345,6 @@ section#trvUpdate form .inputBtn {
 	 	margin:0px 0px 0px 5px;
 	}
 
-
-
 	
 section#trvUpdate form .inputBtn #update_Btn{
 		position: relative;
@@ -359,14 +356,7 @@ section#trvUpdate form .inputBtn #cancle_Btn{
 		left:150px;
 		margin: 50px 5px 40px 0px;
 	}
-/* section form .inputBtn	.btn-search{
-	width: 100px;
-	height: 37px;
-	margin-left: 10px;
-	background-color: #ED786A;
-	border-radius: 5px;
-	color: white;
-} */	
+	
 	
 section#trvUpdate{
 	margin-top:10px;
@@ -376,40 +366,27 @@ section#trvWrite{
 	margin-top:10px;
 }
 
-/* section form div.container div#btn #btn-update{
-	position: relative;
-	display: inline-block;
-	width: 80px;
-	height: 37px;
-	background-color: #ED786A;
-	border-radius: 5px;
-	color: white;
-	
+section#trvWrite form div.inputImage{
+	 display: flex;
+	 
 }
 
-section form div.container div#btn #btn-delete{
-	position: relative;
-	display: inline-block;
-	width: 80px;
-	height: 37px;
-	background-color: #ED786A;
-	border-radius: 5px;
-	color: white;
-} */
+section#trvUpdate form div.inputImage{
+	 display: flex;
+}
 
 
 section#trvWrite form div.inputImage img {
     margin: 1em 0;
-    display: block;
+    display: inline-block;
     background: rgb(240, 240, 240);
     border: 1px solid rgb(0,0,0);
 }
 
 
-
 section#trvUpdate form div.inputImage img {
     margin: 1em 0;
-    display: block;
+    display: inline-block;
     background: rgb(240, 240, 240);
     border: 1px solid rgb(0,0,0);
 }
