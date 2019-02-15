@@ -8,7 +8,7 @@
 <script src="<%=request.getContextPath() %>/js/scripts.js"></script>
 
 
-<section id="sec">
+<section id="trvUpdate">
  <article id="trArt">
   <div class="container">
 	<form action="" method="post">
@@ -79,21 +79,17 @@
 			<input type="file" id="trImage" name="trvPic" />
 		</div>
 		
-		<div>
+<div>
 		<h3>로컬에 있는 이미지를 바로 브라우저에 표시</h3>
 <img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-<a id="download" download="thumbnail.jpg" target="_blank">
-    <img id="thumbnail" src="" width="100" alt="썸네일영역 (클릭하면 다운로드 가능)">
-</a>
+
 <input type="file" id="getfile" accept="image/*">
 </div>
 
 <div>
 		<h3>로컬에 있는 이미지를 바로 브라우저에 표시</h3>
 <img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-<a id="download" download="thumbnail.jpg" target="_blank">
-    <img id="thumbnail" src="" width="100" alt="썸네일영역 (클릭하면 다운로드 가능)">
-</a>
+
 <input type="file" id="getfile" accept="image/*">		
 </div>		                
 	</div>

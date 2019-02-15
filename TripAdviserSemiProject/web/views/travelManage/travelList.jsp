@@ -5,7 +5,7 @@
 
 
 
-<section id="features">
+<section id="trvList">
 	<form action="" method="post">
 		<div class="container">
 
@@ -69,7 +69,7 @@
 			
 
 			
-			<nav aria-label="Page navigation example" style="text-align: center;">
+			<nav id="trvList" aria-label="Page navigation example" style="text-align: center;">
 				<ul class="pagination">
 					<li class="page-item"><a class="page-link" href="#"
 						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
