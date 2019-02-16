@@ -380,7 +380,7 @@ section#trvWrite form div.inputImage img {
     margin: 1em 0;
     display: inline-block;
     background: rgb(240, 240, 240);
-    border: 1px solid rgb(0,0,0);
+    
 }
 
 
@@ -388,7 +388,7 @@ section#trvUpdate form div.inputImage img {
     margin: 1em 0;
     display: inline-block;
     background: rgb(240, 240, 240);
-    border: 1px solid rgb(0,0,0);
+    
 }
 
 

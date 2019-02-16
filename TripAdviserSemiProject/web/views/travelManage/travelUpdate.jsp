@@ -47,7 +47,7 @@
 		<input type="text" id="trvCity" name="trvCity" />
 	 </div>
 	  <div class="inputArea">
-		<label for="trvAddress">여행지 나머지주소</label> 
+		<label for="trvAddress">나머지 주소</label> 
 		<input type="text" id="trvAddress" name="trvAddress" />
 	 </div>
 	 
@@ -60,28 +60,28 @@
 	 </div>
    </div>
 	
-   <div class="inputImage">
+      <div class="inputImage">
 	
-					<div id="trvImg1">
-						<img id="preview" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-						<input type="file" id="getfile" accept="image/*">
+					<div id="trvImg1" style="width:250px">
+						<img id="preview" src="" width="200" alt="">
+						<input type="file" id="getfile" style="width:200px" accept="image/*">
 					</div>
 
 
-					<div id="trvImg2">
-						<img id="preview2" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-						<input type="file" id="getfile2" accept="image/*">
+					<div id="trvImg2" style="width:250px">
+						<img id="preview2" src="" width="200" alt="">
+						<input type="file" id="getfile2" style="width:200px" accept="image/*">
 					</div>
 					
 					
-					<div id="trvImg3">
-						<img id="preview3" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-						<input type="file" id="getfile3" accept="image/*">
+					<div id="trvImg3" style="width:250px">
+						<img id="preview3" src="" width="200" alt="">
+						<input type="file" id="getfile3" style="width:200px" accept="image/*">
 					</div>
 					
-					<div id="trvImg4">
-						<img id="preview4" src="" width="300" alt="로컬에 있는 이미지가 보여지는 영역">
-						<input type="file" id="getfile4" accept="image/*">
+					<div id="trvImg4" style="width:250px">
+						<img id="preview4" src="" width="200" alt="">
+						<input type="file" id="getfile4" style="width:200px" accept="image/*">
 					</div>
 
 	</div>
