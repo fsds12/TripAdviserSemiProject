@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import tripAdviser.travel.product.model.vo.TravelProduct;
+
 import static common.JDBCTemplate.close;
 
 public class TravelAdminDao {
@@ -14,7 +17,7 @@ public class TravelAdminDao {
 	
 	public TravelAdminDao() {
 		try {
-			String fileName=TravelAdminDao.class.getResource("admin-query.properties").getPath();
+			String fileName=TravelAdminDao.class.getResource("/sql/common/admin-query.properties").getPath();
 			prop.load(new FileReader(fileName));
 		}
 		catch(Exception e)
@@ -48,6 +51,28 @@ public class TravelAdminDao {
 		}
 		
 		return cnt;
+	}
+
+	public TravelProduct selectAdminList(Connection conn, int trvNo, int cPage, int numPerPage) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		TravelProduct tp=null;
+		String sql=prop.getProperty("selectAdminList");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, trvNo);
+			rs=pstmt.executeQuery();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return tp;
 	}
 
 }

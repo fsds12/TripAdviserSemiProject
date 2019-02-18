@@ -7,7 +7,7 @@ import tripAdviser.member.model.vo.Comment;
 
 public class TravelProduct {
 	private int trvNo;
-	private String trvTitle;
+	private String trvTitle;    			//여행제목
 	private double avgStarRate;	//여행상품 평점
 	private String trvRepresentPic;	//여행상품URL
 	private String trvProvince;
@@ -16,11 +16,11 @@ public class TravelProduct {
 	private Date trvDateStart;
 	private Date trvDateEnd;
 	private String trvReview;
-	private String trvLargeCtg;	//카테고리 대분류
-	private String trvSmallCtg;	//카테고리 소분류
+	private String trvLargeCtg;				//카테고리 대분류
+	private String trvSmallCtg;				//카테고리 소분류
 	private String trvGps;
-	private Date trvDate;
-	private String memberId;
+	private Date trvDate;       			//작성일자
+	private String memberId;    			//작성자
 	private int hits;
 	private List<Comment> CommentLists;	//해당 여행정보 코멘트들의 값
 	private List<String> AlbumUrls;		//사진앨범 url 값들 저장
