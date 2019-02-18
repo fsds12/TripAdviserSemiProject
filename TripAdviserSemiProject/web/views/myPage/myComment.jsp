@@ -21,15 +21,7 @@ section#myComment-container {
 				</tr>
 			</thead>
 			<tbody>
-			<%for(int i=0; i<4; i++) {%>
-				<tr>
-					<td>테스트공원ㅁ</td>
-					<td>2019.02.11</td>
-					<td>★★★★★</td>
-					<td>테스트코멘트테스트코멘트테스트코멘트테스트코멘트테스트코멘트</td>
-					<td></td>
-				</tr>
-			<%} %>
+			<%for(int i=0; i<5; i++) {%>
 				<tr>
 					<td>테스트공원테스트공원</td>
 					<td>2019.02.11</td>
@@ -41,6 +33,8 @@ section#myComment-container {
 					</span>
 					</td>
 				</tr>
+			<%} %>
+				
 			</tbody>
 			<tfoot>
 				<tr>

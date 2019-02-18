@@ -234,12 +234,12 @@ div#paging-container ul li {
 } */
 
 /* 이정복 */
-nav ul.pagination {
-	color: white;
-	text-decoration: none;
-	margin-left:360px;
-	/* position: relative;
-	left: 350px; */
+nav#trvList ul.pagination {
+   color: white;
+   text-decoration: none;
+   margin-left:360px;
+   /* position: relative;
+   left: 350px; */
 }
 
 

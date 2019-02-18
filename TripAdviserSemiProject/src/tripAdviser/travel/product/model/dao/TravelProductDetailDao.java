@@ -22,7 +22,7 @@ public class TravelProductDetailDao {
 	private Properties prop = new Properties();
 	
 	{
-		String filePath = "";
+		String filePath = TravelProductDetailDao.class.getResource("/sql/travel/travelProduct.properties").getPath();
 		try {
 			prop.load(new FileReader(filePath));
 		}
@@ -31,7 +31,7 @@ public class TravelProductDetailDao {
 		}
 	}
 	
-	public TravelProduct selectTrvProduct(Connection conn, int trvNo) {
+	public TravelProduct selectTrvProduct(Connection conn, int trvNo, int cPage, int numPerPage) {
 		TravelProduct tp = null;
 		sql = prop.getProperty("selectTrvProduct");
 		try {
@@ -66,6 +66,8 @@ public class TravelProductDetailDao {
 				sql = prop.getProperty("selectComment");
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, trvNo);
+				pstmt.setInt(2, (cPage-1) * numPerPage + 1);
+				pstmt.setInt(3, cPage * numPerPage);
 				rs = pstmt.executeQuery();
 				List<Comment> commentList = new ArrayList<Comment>();
 				
@@ -97,6 +99,18 @@ public class TravelProductDetailDao {
 				}
 				
 				tp.setAlbumUrls(albumList);
+				
+				close(rs);
+				close(pstmt);
+				
+				sql = prop.getProperty("selectAvgStarRate");
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, trvNo);
+				rs = pstmt.executeQuery();
+				
+				if(rs.next()) {
+					tp.setAvgStarRate(rs.getDouble("avg"));
+				}
 			}
 		}
 		catch(SQLException e) {
@@ -108,6 +122,27 @@ public class TravelProductDetailDao {
 		}
 		
 		return tp;
+	}
+	
+	public int selectCommentListCount(Connection conn, int trvNo) {
+		int count = 0;
+		sql = prop.getProperty("selectCommentListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, trvNo);
+			
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				count = rs.getInt("cnt");
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return count;
 	}
 
 }

@@ -14,9 +14,9 @@ public class TravelProductDetailService {
 	private TravelProductDetailDao dao = new TravelProductDetailDao();
 	private Connection conn = null;
 	
-	public TravelProduct selectTrvProduct(int trvNo) {
+	public TravelProduct selectTrvProduct(int trvNo, int cPage, int numPerPage) {
 		conn = getConnection();
-		TravelProduct tp = dao.selectTrvProduct(conn, trvNo);
+		TravelProduct tp = dao.selectTrvProduct(conn, trvNo, cPage, numPerPage);
 		
 		close(conn);
 		return tp;
@@ -29,5 +29,14 @@ public class TravelProductDetailService {
 		
 		close(conn);
 		return comments;
+	}
+	
+	public int selectCommentListCount(int trvNo) {
+		conn = getConnection();
+		int count = dao.selectCommentListCount(conn, trvNo);
+		
+		close(conn);
+		
+		return count;
 	}
 }
