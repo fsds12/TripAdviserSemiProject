@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <%@ include file="/views/common/header.jsp" %>     
 <%-- <%@ include file="/views/notice/nav.jsp" %> --%>    
@@ -9,7 +10,7 @@
          	<tr>
             	<th>작성자</th>
             	<td>                
-               		<input type="text" name="userId" value=" admin" readonly/>
+               		<input type="text" name="userId" value="admin" readonly/>
             	</td>
             </tr>
             <tr>
@@ -32,11 +33,11 @@
 </section>
 <script>
 	function fn_submit(){
-		alert("등록?");
+		alert("등록하시겠습니까?");
 		location.href="<%=request.getContextPath()%>/notice/insertNotice";
 	}
 	function fn_cancle(){
-		alert("취소?");
+		alert("취소하시겠습니까?");
 		location.href="<%=request.getContextPath()%>/notice/noticeList";
 	}
 </script>    

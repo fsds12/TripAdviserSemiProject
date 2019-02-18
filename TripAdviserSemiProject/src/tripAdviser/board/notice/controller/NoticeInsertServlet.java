@@ -29,7 +29,7 @@ public class NoticeInsertServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		
 		String userId=request.getParameter("userId");
 		String title=request.getParameter("title");
@@ -47,10 +47,10 @@ public class NoticeInsertServlet extends HttpServlet {
 		String view="/views/common/msg.jsp";
 		
 		if(result>0) {
-			msg="µî·Ï ¼º°ø";
+			msg="ë“±ë¡ ì„±ê³µ";
 			loc="/notice/noticeView";
 		}else {
-			msg="µî·Ï ½ÇÆÐ";
+			msg="ë“±ë¡ ì‹¤íŒ¨";
 			loc="/";
 		}
 		

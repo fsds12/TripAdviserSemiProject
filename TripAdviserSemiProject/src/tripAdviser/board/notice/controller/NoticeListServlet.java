@@ -32,10 +32,57 @@ public class NoticeListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<Board> list=new NoticeService().selectNoticeList();
+		//페이징 처리
+		int cPage;
+		try {
+			cPage=Integer.parseInt(request.getParameter("cPage"));
+		}catch (Exception e) {
+			cPage=1;
+		}
+		
+		int numPerPage;
+		try {
+			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
+		}catch (Exception e) {
+			numPerPage=10;
+		}
+		
+		int totalContent=new NoticeService().selectNoticeCount();
+		int totalPage=(int)Math.ceil((double)totalContent/numPerPage);	
+		
+		List<Board> list=new NoticeService().selectNoticeList(cPage, numPerPage);
+		
+		String pageBar="";
+		int pageBarSize=5;
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		
+		if(pageNo==1) {
+			pageBar+="<li class='page-item'><a class='page-link'> << </a></li>";
+		}else {
+			pageBar+="<li class='page-item'><a class='page-link' href='" + request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"'><<</a></li>";
+		}
+		
+		while(!(pageNo>pageEnd || pageNo>totalPage)) {
+			if(cPage==pageNo) {
+				pageBar+="<li class='page-item'><a class='page-link'>"+pageNo+"</a></li>";
+			}else {
+				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeList?cPage="+pageNo+"'>"+ pageNo + "</a></li>";
+			}
+			pageNo++;
+		}
+		
+		if(pageNo>totalPage) {
+			pageBar+="<li class='page-item'><a class='page-link'> >> </a></li>";
+		}else {
+			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"'>>></a></li>";
+		}
 		
 		System.out.println(list);
 		
+		request.setAttribute("cPage", cPage);
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("list", list);		
 		request.getRequestDispatcher("/views/notice/noticeBoard.jsp").forward(request, response);
 	}

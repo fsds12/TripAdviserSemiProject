@@ -14,9 +14,9 @@ import tripAdviser.board.notice.model.dao.NoticeDao;
 public class NoticeService {
 	private NoticeDao dao=new NoticeDao();
 	
-	public List<Board> selectNoticeList(){
+	public List<Board> selectNoticeList(int cPage, int numPerPage){
 		Connection conn=getConnection();
-		List<Board> list=dao.selectNoticeList(conn);
+		List<Board> list=dao.selectNoticeList(conn, cPage, numPerPage);
 		close(conn);
 		return list;
 	}
@@ -29,6 +29,14 @@ public class NoticeService {
 		}else{
 			rollback();
 		}
+		close(conn);
+		return result;
+	}
+	
+	public int selectNoticeCount() {
+		
+		Connection conn=getConnection();
+		int result=dao.selectNoticeCount(conn);
 		close(conn);
 		return result;
 	}

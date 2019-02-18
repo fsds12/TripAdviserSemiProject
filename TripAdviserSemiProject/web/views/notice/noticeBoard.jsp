@@ -2,6 +2,9 @@
 <%@ page import="java.util.*,tripAdviser.board.model.vo.Board" %>
 <%
 	List<Board> list=(List)request.getAttribute("list");
+	int cPage=(int)request.getAttribute("cPage");
+	int numPerPage=(int)request.getAttribute("numPerPage");
+	String pageBar=(String)request.getAttribute("pageBar");
 %>
 <%@ include file="/views/common/header.jsp" %>
 
@@ -30,7 +33,7 @@
             <tr>
                 <td><%=b.getBoardNo()%></td>
                 <td><%=b.getMemberId() %></td>
-                <td><a href="<%=request.getContextPath()%>/notice/noticeView"><%=b.getTitle()%></a></td>
+                <td><a href="<%=request.getContextPath()%>/notice/noticeView"><%=b.getTitle()%></a></td> 
                 <td><%=b.getBoardDate() %></td>
                 <td><%=b.getHits() %></td>
             </tr>
@@ -47,13 +50,7 @@
         </div>        
          <div id="paging-container"> 
             <ul class="pagination pagination-sm justify-content-center">
-    			<li class="page-item"><a class="page-link" href="#"><<</a></li>
-    			<li class="page-item"><a class="page-link" href="#">1</a></li>
-    			<li class="page-item"><a class="page-link" href="#">2</a></li>
-    			<li class="page-item"><a class="page-link" href="#">3</a></li>
-    			<li class="page-item"><a class="page-link" href="#">4</a></li>
-    			<li class="page-item"><a class="page-link" href="#">5</a></li>
-    			<li class="page-item"><a class="page-link" href="#">>></a></li>
+    			<%=pageBar %>
   			</ul>             
    		</div>
 </section>
