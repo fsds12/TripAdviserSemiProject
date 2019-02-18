@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, tripAdviser.board.model.vo.NoticeBoard" %>
+<%@ page import="java.util.*,tripAdviser.board.model.vo.Board" %>
 <%
-	List<NoticeBoard> list=(List)request.getAttribute("list");
+	List<Board> list=(List)request.getAttribute("list");
 %>
 <%@ include file="/views/common/header.jsp" %>
 
@@ -25,79 +25,16 @@
                 <th>조회수</th>
             </tr>
             </thead>
-            <%-- <%for(NoticeBoard n : list){ %> --%>
-            <tbody>            
+            <tbody>
+            <%for(Board b : list){ %>                        
             <tr>
-                <td>1</td>
-                <td>홍길동</td>
-                <td><a href="<%=request.getContextPath()%>/notice/noticeView">공지사항</a></td>
-                <td>19/01/22</td>
-                <td>1</td>
+                <td><%=b.getBoardNo()%></td>
+                <td><%=b.getMemberId() %></td>
+                <td><a href="<%=request.getContextPath()%>/notice/noticeView"><%=b.getTitle()%></a></td>
+                <td><%=b.getBoardDate() %></td>
+                <td><%=b.getHits() %></td>
             </tr>
-            <%-- <%} %> --%>
-            <tr>
-                <td>2</td>
-                <td>아무개</td>
-                <td>공지사항</td>
-                <td>19/01/23</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>이순신</td>
-                <td>공지사항</td>
-                <td>19/01/24</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/25</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/26</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/26</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/26</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/26</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/26</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/26</td>
-                <td>1</td>
-            </tr>
+            <%} %>            
             </tbody>                   
         </table>
         <div id="search-container">

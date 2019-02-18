@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tripAdviser.board.model.vo.NoticeBoard;
+import tripAdviser.board.model.vo.Board;
 import tripAdviser.board.notice.model.service.NoticeService;
 
 /**
@@ -32,7 +32,7 @@ public class NoticeListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		List<NoticeBoard> list=new NoticeService().selectNoticeList();
+		List<Board> list=new NoticeService().selectNoticeList();
 		
 		System.out.println(list);
 		

@@ -1,5 +1,7 @@
 package tripAdviser.board.notice.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import static common.JDBCTemplate.close;
-import tripAdviser.board.model.vo.NoticeBoard;
+import tripAdviser.board.model.vo.Board;
+
 
 public class NoticeDao {
 	
@@ -24,25 +26,25 @@ public class NoticeDao {
 		}
 	}
 	
-	public List<NoticeBoard> selectNoticeList(Connection conn){
+	public List<Board> selectNoticeList(Connection conn){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=prop.getProperty("selectNoticeList");
-		List<NoticeBoard> list=new ArrayList();
+		List<Board> list=new ArrayList();
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
-				NoticeBoard n=new NoticeBoard();
-				n.setBoardNo(rs.getInt("board_no"));
-				n.setMemberId(rs.getString("member_id"));
-				n.setTitle(rs.getString("title"));
-				n.setContent(rs.getString("content"));
-				n.setHits(rs.getInt("hits"));
-				n.setBoardDate(rs.getDate("board_date"));
+				Board b=new Board();
+				b.setBoardNo(rs.getInt("board_no"));
+				b.setMemberId(rs.getString("member_id"));
+				b.setTitle(rs.getString("title"));
+				b.setContent(rs.getString("content"));
+				b.setHits(rs.getInt("hits"));
+				b.setBoardDate(rs.getDate("board_date"));
 				
-				list.add(n);
+				list.add(b);
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -52,5 +54,25 @@ public class NoticeDao {
 		}
 		
 		return list;
+	}
+	
+	public int insertNotice(Connection conn, Board b) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertNotice");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getMemberId());
+			pstmt.setString(2, b.getTitle());
+			pstmt.setString(3, b.getContent());
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }
