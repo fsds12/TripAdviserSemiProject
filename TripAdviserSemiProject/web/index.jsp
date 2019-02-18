@@ -12,7 +12,7 @@
 				slides: [{
 					src: 'images/introPoster.png',
 					video: {
-						src: ['images/IntroVideo_long1.mp4', 'images/IntroVideo_long.webm',
+						src: ['images/IntroVideo_long.mp4', 'images/IntroVideo_long.webm',
 							'images/IntroVideo_long.ogv'],
 						loop: true,
 						mute: true

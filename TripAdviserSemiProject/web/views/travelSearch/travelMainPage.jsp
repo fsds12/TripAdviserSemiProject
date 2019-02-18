@@ -9,216 +9,262 @@
 List<TravelProduct> tplist = new ArrayList(); 
 TravelProduct tp=new TravelProduct();
 tplist = new travelSearchService().travelSearchAll();
-
-//tp=tplist.get(1);
-System.out.println("성공?"+tp);
+tp=tplist.get(0);
+System.out.println("1성공?"+tp);
 
 %>
-    <form id="#form">
-    
-    </form>
+<style>
+	#starRateScore{
+		display: inline-block;
+		font-size: 25px;
+	}
+</style>
 
-$(#form).summit()
 
 <div class="box-padding-big light-bg">
-		<div class="container">
-			<h4 class="category-title">전체 최고 별점 Best things in our website</h4>
-			<p class="category-sub">별점순 최고 랭킹 op 3 The most popular products
-				selected by our guests.</p>
-			<div class="card-group">
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Sun island resort</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="false">1</i>
-							<i class="fa fa-star" aria-hidden="true">2</i>
-							<i class="fa fa-star" hidden="true">3</i>
-							<i class="fa fa-star" hidden="false">4</i>
-							<i class="fa fa-star" >5</i> 5 Stars
-						</p>
-					</div>
-				</div>
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Holiday island resort</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
-				</div>
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Veligandu island</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i>
-							<i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
+	<div class="container">
+		<h4 class="category-title">전체 최고 별점 Best things in our website</h4>
+		<p class="category-sub">별점순 최고 랭킹 op 3 The most popular products
+			selected by our guests.</p>
+		<div class="card-group">
+			<div class="card">
+				<div style="background: #333; height: 300px;"><img src="<%=tp.getTrvRepresentPic()%>"/></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+								int starRate=0;
+								if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+									else{starRate=(int)tp.getAvgStarRate();}
+								for (int i=0;i<starRate;++i){
+									%>
+						<i class="fa fa-star"></i>
+						<% } %>
+						<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
 				</div>
 			</div>
-		</div>
-	</div>
-	<BR>
-	<div class="box-padding-big white-bg">
-		<div class="container">
-			<h4 class="category-title">최고 숙박 업소 top 3 Best accomodations</h4>
-			<p class="category-sub">별점순 랭킹 top 3 The most popular accomodations selected by our guests.</p>
-			<div class="card-group">
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Sun island resort</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
-				</div>
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Holiday island resort</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
-				</div>
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Veligandu island</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
 
-	</div>
-	<BR>
-	<div class="box-padding-big light-bg">
-		<div class="container">
-			<h4 class="category-title">최고 즐길거리 top 3 Best things to play</h4>
-			<p class="category-sub">최고 즐길거리 top 3 The most popular play place
-				selected by our guests.</p>
-			<div class="card-group">
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Sun island resort</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
 				</div>
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Holiday island resort</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
-				</div>
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Veligandu island</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
+				</p>
+			</div>
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title" display="inline-block"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text" display="inline-block">Address
+						<%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text" display="inline-block">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<BR>
-	<div class="box-padding-big white-bg">
-		<div class="container">
-			<h4 class="category-title">전체 최고 먹을거리 top 3 Best things to eat</h4>
-			<p class="category-sub">먹을거리 top 3 The most popular enjoying
-				foods selected by our guests.</p>
-			<div class="card-group">
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Sun island resort</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
+</div>
+<BR>
+<div class="box-padding-big white-bg">
+	<div class="container">
+		<h4 class="category-title">최고 숙박 업소 top 3 Best accomodations</h4>
+		<p class="category-sub">별점순 랭킹 top 3 The most popular accomodations selected by our guests.</p>
+		<div class="card-group">
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
 				</div>
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Holiday island resort</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
+			</div>
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
 				</div>
-				<div class="card">
-					<div style="background: #333; height: 300px;"></div>
-					<div class="card-block">
-						<h5 class="card-title">Veligandu island</h5>
-						<p class="card-text">A dreamers paradise. Wake up to the cool
-							breeze of Indian ocean.</p>
-						<p class="card-text">
-							<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i
-								class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star"
-								aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i> 5 Stars
-						</p>
-					</div>
+			</div>
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+						<% } %>
+						<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
 				</div>
 			</div>
 		</div>
+	</div>
 
+</div>
+<BR>
+<div class="box-padding-big light-bg">
+	<div class="container">
+		<h4 class="category-title">최고 즐길거리 top 3 Best things to play</h4>
+		<p class="category-sub">최고 즐길거리 top 3 The most popular play place
+			selected by our guests.</p>
+		<div class="card-group">
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
+				</div>
+			</div>
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
+				</div>
+			</div>
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
+</div>
+<BR>
+<div class="box-padding-big white-bg">
+	<div class="container">
+		<h4 class="category-title">전체 최고 먹을거리 top 3 Best things to eat</h4>
+		<p class="category-sub">먹을거리 top 3 The most popular enjoying
+			foods selected by our guests.</p>
+		<div class="card-group">
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+									else{starRate=(int)tp.getAvgStarRate();}
+								for (int i=0;i<starRate;++i){
+									%>
+									<i class="fa fa-star"></i>
+									<% } %>
+									<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
+				</div>
+			</div>
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
+				</div>
+			</div>
+			<div class="card">
+				<div style="background: #333; height: 300px;"></div>
+				<div class="card-block">
+					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
+					<p class="card-text">Address <%=tp.getTrvProvince()+tp.getTrvCity()+tp.getTrvAddress() %>.</p>
+					<p class="card-text">
+						<%
+						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+							for (int i=0;i<starRate;++i){
+								%>
+								<i class="fa fa-star"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
