@@ -57,16 +57,16 @@ public class TravelProductDetailViewServlet extends HttpServlet {
 			pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&laquo;</a></li>";
 		}
 		else {
-			pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + trvNo + "&cPage=" + (pageNo - pageBarSize) + "'>&laquo;</a></li>";
+			pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + trvNo + "&cPage=" + (pageNo - pageBarSize) + "#travel-comment-container" + "'>&laquo;</a></li>";
 		}
 		
 		//페이지바 숫자채우기
 		while(pageNo <= totalCommentPageCnt && pageNo <= pageEnd) {
 			if(cPage == pageNo) {
-				pageBar = pageBar + "<li class='page-item active'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + trvNo + "&cPage=" + pageNo + "'>" + pageNo + "</a></li>";
+				pageBar = pageBar + "<li class='page-item active'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + trvNo + "&cPage=" + pageNo + "#travel-comment-container" + "'>" + pageNo + "</a></li>";
 			}
 			else {
-				pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + trvNo + "&cPage=" + pageNo + "'>" + pageNo + "</a></li>";
+				pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + trvNo + "&cPage=" + pageNo + "#travel-comment-container" + "'>" + pageNo + "</a></li>";
 			}
 			pageNo++;
 		}
@@ -77,7 +77,7 @@ public class TravelProductDetailViewServlet extends HttpServlet {
 			pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&raquo;</a></li></ul>";
 		}
 		else {
-			pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + trvNo + "&cPage=" + (pageStart + pageBarSize)  + "'>&raquo;</a></li></ul>";
+			pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + trvNo + "&cPage=" + (pageStart + pageBarSize) + "#travel-comment-container"  + "'>&raquo;</a></li></ul>";
 		}
 		
 		TravelProduct tp = new TravelProductDetailService().selectTrvProduct(trvNo, cPage, numPerPage);

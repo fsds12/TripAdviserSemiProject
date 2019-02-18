@@ -6,6 +6,7 @@
 <%
 	String id = "admin";	//세션에서 로그인한 사용자의 객체를 불러와서 초기화할예정 임시로 스트링객체선언
 	Member m = (Member)session.getAttribute("loginMember");
+	boolean logined = m != null? true:false;
 	TravelProduct tp = (TravelProduct)request.getAttribute("travelProduct");
 	String pageBar = (String)request.getAttribute("pageBar");
 %>
@@ -13,9 +14,14 @@
 <script>
     function fn_comment_confirm() {
         var comment = $('textarea[name=comment]').val();
+        var logined = <%=logined %>;
         
         if(comment.trim().length == 0) {
-            alert("코멘트 내용을 입력해주세요.");
+            $('#comment-message').html("<div class='alert alert-warning alert-dismissible fade show' style='display: block; width: 700px;'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>경고!</strong> <span>코멘트 내용을 입력해주세요!</span></div>");
+            return false;
+        }
+        else if(logined == false) {
+            $('#comment-message').html("<div class='alert alert-warning alert-dismissible fade show' style='display: block; width: 700px;'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>경고!</strong> <span>로그인후 코멘트작성이 가능합니다!</span></div>");
             return false;
         }
         else {
@@ -133,7 +139,6 @@ article#travel-description-space div#travel-content-container {display: block; m
     		</div>
     	</div>
     	<div id="travel-content-container" style="height: 250px;">
-    		본문(여행상품세부묘사)<br>
     		<%=tp.getTrvReview() %>
     	</div>
     </article>
@@ -164,9 +169,15 @@ article#travel-description-space div#travel-content-container {display: block; m
 					<div style="display: block;">&nbsp;</div>
 					<div style="display:inline-block;"><input type="submit" class="btn btn-light" value="코멘트작성" /></div>
 				</div>
-				<!-- <div style="display: block; width: 100%;">
-					<span>로그인후 코멘트 작성이 가능합니다!</span>
-				</div> -->
+			</div>
+			<!-- <div style="display: block; width: 100%;">
+				<span>로그인후 코멘트 작성이 가능합니다!</span>
+			</div> -->
+			<!-- <div id="comment-warning" class="alert alert-warning alert-dismissible fade show" style="display: none; width: 700px;">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<strong>경고!</strong> <span>로그인후 코멘트 작성이 가능합니다!</span>
+			</div> -->
+			<div id="comment-message">
 			</div>
 		</form>
 		<hr />
@@ -208,13 +219,6 @@ article#travel-description-space div#travel-content-container {display: block; m
 		<%} %>
 		<nav id="pageBar">
 			<ul class="pagination justify-content-center">
-				<!-- <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-				<li class="page-item active"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">4</a></li>
-				<li class="page-item"><a class="page-link" href="#">5</a></li>
-				<li class="page-item"><a class="page-link" href="#">&raquo;</a></li> -->
 				<%=pageBar %>
 			</ul> 
 		</nav>

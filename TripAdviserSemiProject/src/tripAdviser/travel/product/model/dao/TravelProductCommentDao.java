@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -14,7 +13,6 @@ import tripAdviser.member.model.vo.Comment;
 
 public class TravelProductCommentDao {
 	private PreparedStatement pstmt;
-	private ResultSet rs;
 	private String sql = "";
 	private Properties prop = new Properties();
 	

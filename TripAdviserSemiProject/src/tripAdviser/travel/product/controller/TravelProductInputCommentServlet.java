@@ -48,21 +48,19 @@ public class TravelProductInputCommentServlet extends HttpServlet {
 		int result = new TravelProductCommentService().insertComment(c);
 		
 		String view = "/views/common/msg.jsp";
-		String loc = "";
+		String loc = "/travel/travelProductDetail?trvNo=" + commentRefTrvNo + "#travel-comment-container";
 		String msg = "";
 		
 		if(result > 0) {
 			msg = "코멘트등록성공!";
-			loc = "";
 		}
 		else {
 			msg = "코멘트등록실패!";
-			loc = "";
 		}
 		request.setAttribute("loc", loc);
 		request.setAttribute("msg", msg);
 		
-		request.getRequestDispatcher("").forward(request, response);
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**
