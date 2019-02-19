@@ -84,6 +84,7 @@
                             </ul>
               
                     <ul class="nav navbar-nav navbar-right">
+                    	<li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="상품조회" onclick="location.href='<%=request.getContextPath()%>/travel/TravelAdminListView'"></li>
                         <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Sign up"></li>
                         <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Log In"></li>
 

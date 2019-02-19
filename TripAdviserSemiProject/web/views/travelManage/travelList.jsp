@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="tripAdviser.travel.product.model.vo.TravelProduct, tripAdviser.member.model.vo.Member, java.util.*" %>
+
 <%@ include file="/views/common/header.jsp"%>
 
 <%
 	
-/* String id = "admin";	//세션에서 로그인한 사용자의 객체를 불러와서 초기화할예정 임시로 스트링객체선언
-Member m = (Member)session.getAttribute("loginMember");
-boolean logined = m != null? true:false; */
 List<TravelProduct> list=(List)request.getAttribute("list");
-/* TravelProduct tp = (TravelProduct)request.getAttribute("travelProduct"); */ 
 String pageBar=(String)request.getAttribute("pageBar");
-/* int cPage=(int)request.getAttribute("cPage");
-int numPerPage=(int)request.getAttribute("numPerPage");
- */
+
 %>
 
+
+
+
 <section id="trvList">
-	<form action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">
-		<input type="hidden" name="trvNo" value=""/>
+	<form name="AdminListFrm" id="AdminListFrm" action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">
+		<!-- <input type="hidden" name="trvNo" value=""/> -->
 		<div class="container">
 
 			
@@ -37,44 +35,19 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 						</tr>
 					</thead>
 					<tbody>
-						<%if(!list.isEmpty()) { 
+						<%
 							for(TravelProduct tp : list)
 							{
 						%>
 						 
 						<tr>
 							<td><%=tp.getTrvTitle() %></td>
-							
+							<td><%=tp.getTrvSmallCtg() %></td>
+							<td><%=tp.getTrvDate() %></td>
+							<td><%=tp.getMemberId() %></td>
 						</tr>
-						<%  }
-						}%>
-						<!-- <tr>
-							
-							<td></td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
+						<%  } %>
 						
-						
-						</tr>
-
-						<tr>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							
-							
-						</tr>
-
-						<tr>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-				
-						
-						</tr> -->
 						
 					</tbody>
 					<tfoot>

@@ -11,9 +11,9 @@ import static common.JDBCTemplate.close;
 
 public class TravelAdminService {
 
-	public int selectAdminListCount(int trvNo) {
+	public int selectAdminListCount() {
 		Connection conn=getConnection();
-		int cnt=new TravelAdminDao().selectAdminListCount(conn,trvNo);
+		int cnt=new TravelAdminDao().selectAdminListCount(conn);
 		close(conn);
 		return cnt;
 	}

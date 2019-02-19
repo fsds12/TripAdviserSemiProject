@@ -31,7 +31,7 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int trvNo=Integer.parseInt(request.getParameter("trvNo"));
+		/*int trvNo=Integer.parseInt(request.getParameter("trvNo"));*/
 		
 		
 		//페이징처리로직
@@ -45,7 +45,7 @@ public class TravelAdminListViewServlet extends HttpServlet {
 		}
 		int numPerPage=5;
 		
-		int totalAdminListCnt = new TravelAdminService().selectAdminListCount(trvNo);   //관리자전체리스트
+		int totalAdminListCnt = new TravelAdminService().selectAdminListCount();   //관리자전체리스트
 		int totalAdminPageCnt = (int)Math.ceil((double)totalAdminListCnt / numPerPage); //관리자 총페이지
 		
 		List<TravelProduct> list=new TravelAdminService().selectAdminList(cPage,numPerPage);
@@ -62,12 +62,12 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&laquo;</a></li>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?trvNo=" + trvNo + "&cPage=" + (pageNo - pageBarSize) + "'>&laquo;</a></li>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage=" + (pageNo - pageBarSize) + "'>&laquo;</a></li>";
 	      }
 	      
 	      //페이지바 숫자채우기
 	      while(pageNo <= totalAdminPageCnt && pageNo <= pageEnd) {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?trvNo=" + trvNo + "&cPage=" + pageNo + "'>" + pageNo + "</a></li>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
 	         pageNo++;
 	      }
 	      
@@ -77,10 +77,10 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&raquo;</a></li></ul>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?trvNo=" + trvNo + "&cPage=" + (pageStart + pageBarSize)  + "'>&raquo;</a></li></ul>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage=" + (pageStart + pageBarSize)  + "'>&raquo;</a></li></ul>";
 	      }
 		
-		/*TravelProduct tp=new TravelAdminService().selectAdminList(trvNo,cPage,numPerPage);*/
+		
 		
 /*		String view="";
 		String loc="";
@@ -100,10 +100,10 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	      /*request.setAttribute("loc", loc);
 		request.setAttribute("msg", msg);*/
 		
+	    System.out.println(list);
+	      
 		request.setAttribute("list", list);
 		request.setAttribute("pageBar", pageBar);
-		request.setAttribute("cPage", cPage);
-		request.setAttribute("numPerPage", numPerPage);
 		request.getRequestDispatcher("/views/travelManage/travelList.jsp").forward(request, response);
 		
 		

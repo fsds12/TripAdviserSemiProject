@@ -29,18 +29,17 @@ public class TravelAdminDao {
 
 	}
 
-	public int selectAdminListCount(Connection conn, int trvNo) {
+	public int selectAdminListCount(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int cnt=0;
 		String sql=prop.getProperty("selectAdminListCount");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, trvNo);
 			rs=pstmt.executeQuery();
 			if(rs.next())
 			{
-				cnt=rs.getInt(1);
+				cnt=rs.getInt("cnt");
 			}
 		}
 		catch(SQLException e)
@@ -65,7 +64,7 @@ public class TravelAdminDao {
 			pstmt.setInt(1, (cPage-1) * numPerPage + 1);
 			pstmt.setInt(2, cPage * numPerPage);
 			rs=pstmt.executeQuery();
-			if(rs.next())
+			while(rs.next())
 			{
 				TravelProduct tp=new TravelProduct();
 				
