@@ -1,6 +1,7 @@
 package tripAdviser.admin.model.service;
 
 import java.sql.Connection;
+import java.util.List;
 
 import tripAdviser.admin.model.dao.TravelAdminDao;
 import tripAdviser.travel.product.model.vo.TravelProduct;
@@ -17,11 +18,11 @@ public class TravelAdminService {
 		return cnt;
 	}
 
-	public TravelProduct selectAdminList(int trvNo, int cPage, int numPerPage) {
+	public List<TravelProduct> selectAdminList(int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		TravelProduct tp=new TravelAdminDao().selectAdminList(conn, trvNo, cPage, numPerPage);
+		List<TravelProduct> list=new TravelAdminDao().selectAdminList(conn,cPage, numPerPage);
 		close(conn);
-		return tp;
+		return list;
 	}
 
 }

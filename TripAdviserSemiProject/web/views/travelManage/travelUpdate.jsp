@@ -16,22 +16,22 @@
   <div class="inputData">
 	 <div class="inputArea">
 		<label for="trvTitle">여행제목</label> 
-		<input type="text" id="trvTitle" name="trvTitle" />
+		<input type="text" class="form-control" id="trvTitle" name="trvTitle" />
 	 </div>
 	 <div class="inputArea">
 		<label>카테고리</label> 
-		<select class="trvBigCtgCode">
+		<select class="custom-select" id="trvBigCtgCode">
 			<option value="대분류">대분류</option>
 			<option value="기타">기타</option>
 		</select> 
-		<select class="trvSmallCtgCode">
+		<select class="custom-select" id="trvSmallCtgCode">
 			<option value="소분류">소분류</option>
 			<option value="기타">기타</option>
 		</select> 
 	 </div>
 	 <div class="inputArea">
 		<label for="trvProvince">여행지 도</label> 
-		<select class="trvProvince">
+		<select class="custom-select" id="trvProvince">
 			<option value="경기도">경기도</option>
 			<option value="강원도">강원도</option>
 			<option value="충청북도">충청북도</option>
@@ -44,23 +44,23 @@
 	 </div>
 	 <div class="inputArea">
 		<label for="trvCity">여행지 시군구</label> 
-		<input type="text" id="trvCity" name="trvCity" />
+		<input type="text" class="form-control" id="trvCity" name="trvCity" />
 	 </div>
 	  <div class="inputArea">
 		<label for="trvAddress">나머지 주소</label> 
-		<input type="text" id="trvAddress" name="trvAddress" />
+		<input type="text" class="form-control" id="trvAddress" name="trvAddress" />
 	 </div>
 	 
 	 <div class="inputArea">
 		<label for="trvDateStart">기간시작</label> 
-		<input type="text" id="from" name="trvDateStart" readonly/>
+		<input type="text" class="form-control" id="from" name="trvDateStart" readonly/>
 		<label for="trvDateEnd">기간종료</label> 
-		<input type="text" id="to" name="trvDateEnd" readonly/>
+		<input type="text" class="form-control" id="to" name="trvDateEnd" readonly/>
 		
 	 </div>
    </div>
 	
-      <div class="inputImage">
+   <div class="inputImage">
 	
 					<div id="trvImg1" style="width:250px">
 						<img id="preview" src="" width="200" alt="">
@@ -89,7 +89,7 @@
 	
 	<div class="inputContent">
 		<label for="proContent">상품소개</label>
-		<textarea rows="5" cols="50" id="proContent" name="proContent"></textarea>
+		<textarea class="form-control" rows="5" cols="50" id="proContent" name="proContent"></textarea>
 	</div>
 
 

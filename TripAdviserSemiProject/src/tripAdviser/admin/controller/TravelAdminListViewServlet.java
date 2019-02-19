@@ -1,6 +1,8 @@
 package tripAdviser.admin.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,6 +48,7 @@ public class TravelAdminListViewServlet extends HttpServlet {
 		int totalAdminListCnt = new TravelAdminService().selectAdminListCount(trvNo);   //관리자전체리스트
 		int totalAdminPageCnt = (int)Math.ceil((double)totalAdminListCnt / numPerPage); //관리자 총페이지
 		
+		List<TravelProduct> list=new TravelAdminService().selectAdminList(cPage,numPerPage);
 		
 	      //페이지바 만들기
 	      String pageBar = "<ul class='pagination justify-content-center'>";
@@ -77,30 +80,33 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?trvNo=" + trvNo + "&cPage=" + (pageStart + pageBarSize)  + "'>&raquo;</a></li></ul>";
 	      }
 		
-		TravelProduct tp=new TravelAdminService().selectAdminList(trvNo,cPage,numPerPage);
+		/*TravelProduct tp=new TravelAdminService().selectAdminList(trvNo,cPage,numPerPage);*/
 		
-		String view="";
+/*		String view="";
 		String loc="";
 		String msg="";
 		
-		if(tp!=null)
+		if(list.size()>0)
 		{
 			view="/views/travelManage/travelList.jsp";
-			request.setAttribute("travelProduct", tp);
-			request.setAttribute("pageBar", pageBar);
+
 		}
 		else
 		{
 			view="/views/common/msg.jsp";
 			loc="/";
 			msg="잘못된 경로입니다.";
-		}
+		}*/
+	      /*request.setAttribute("loc", loc);
+		request.setAttribute("msg", msg);*/
 		
-		request.setAttribute("loc", loc);
-		request.setAttribute("msg", msg);
-		request.getRequestDispatcher(view).forward(request, response);
+		request.setAttribute("list", list);
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("cPage", cPage);
+		request.setAttribute("numPerPage", numPerPage);
+		request.getRequestDispatcher("/views/travelManage/travelList.jsp").forward(request, response);
 		
-		/*request.getRequestDispatcher("/views/travelManage/travelList.jsp").forward(request, response);*/
+		
 		
 	}
 
