@@ -5,8 +5,8 @@
 	int cPage=(int)request.getAttribute("cPage");
 	int numPerPage=(int)request.getAttribute("numPerPage");
 	String pageBar=(String)request.getAttribute("pageBar");
-	String type=(String)request.getAttribute("type");
-	String key=(String)request.getAttribute("key");
+	String searchType=(String)request.getAttribute("searchType");
+	String searchKey=(String)request.getAttribute("searchKey");
 %>
 <style>	
 	div#search-no{
@@ -18,18 +18,17 @@
 	}
 </style>
 <script>
-	$(function(){	
-		
+	$(function(){		
 		var searchTitle=$('#search-title');
 		var searchNo=$('#search-no');		
 		var searchType=$('#searchType');
 		
 		searchType.on('change', function(){
-			searchTitle.css("display", "none");
 			searchNo.css("display", "none");
+			searchTitle.css("display", "none");			
 			
-			/* $('[name=cPage]').val('1');
-			$('[name=numPerPage]').val('5'); */
+			$('[name=cPage]').val('1');
+			$('[name=numPerPage]').val('5');
 			$('#search-'+$(this).val()).css("display", "inline-block");
 		});
 		
@@ -63,7 +62,7 @@
             <tr>
                 <td><%=b.getBoardNo()%></td>
                 <td><%=b.getMemberId() %></td>
-                <td><a href="<%=request.getContextPath()%>/notice/noticeView"><%=b.getTitle()%></a></td> 
+                <td><a href="<%=request.getContextPath()%>/notice/noticeView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle()%></a></td> 
                 <td><%=b.getBoardDate() %></td>
                 <td><%=b.getHits() %></td>
             </tr>
@@ -72,16 +71,17 @@
         </table>
         
         <div id="search-container">
+        	<button id="search-btn" onclick="location.href='<%=request.getContextPath()%>/notice/noticeList'">목록</button>
             <select id="searchType">
-                <option value="title" <%="title".equals(type)?"selected":"" %>>제목</option>
-                <option value="boardNo" <%="boardNo".equals(type)?"selected":"" %>>글번호</option>                
+                <option value="title" <%="title".equals(searchType)?"selected":"" %>>제목</option>
+                <option value="boardNo" <%="boardNo".equals(searchType)?"selected":"" %>>글번호</option>                
             </select>            
             <div id="search-title">
             	<form action="<%=request.getContextPath()%>/notice/noticeFind">
             		<input type="hidden" name="searchType" value="title"/>            		
-            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
-            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>
-            		<input type="search" name="searchKey" value="<%="title".equals(type)?key:""%>"/>
+            		<input type="hidden" name="cPage" value='<%=cPage%>'/>
+            		<input type="hidden" name="numPerPage" value='<%=numPerPage%>'/>
+            		<input type="search" name="searchKey" value='<%="title".equals(searchType)?searchKey:""%>'/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>
@@ -90,7 +90,7 @@
             		<input type="hidden" name="searchType" value="boardNo"/>            		
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
             		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>
-            		<input type="search" name="searchKey" value="<%="boardNo".equals(type)?key:""%>"/>
+            		<input type="search" name="searchKey" value="<%="boardNo".equals(searchType)?searchKey:""%>"/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>                     

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+
 import tripAdviser.board.model.vo.Board;
 
 
@@ -177,5 +178,33 @@ public class NoticeDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public Board selectNoticeOne(Connection conn, int boardNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectNoticeOne");
+		Board b=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				b=new Board();
+				b.setBoardNo(rs.getInt("board_no"));
+				b.setMemberId(rs.getString("member_id"));
+				b.setTitle(rs.getString("title"));
+				b.setContent(rs.getString("content"));
+				b.setHits(rs.getInt("hits"));
+				b.setBoardDate(rs.getDate("board_date"));
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return b;
 	}
 }
