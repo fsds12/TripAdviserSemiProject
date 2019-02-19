@@ -99,4 +99,83 @@ public class NoticeDao {
 		
 		return result;
 	}
+	
+	public List<Board> selectSearchNotice(Connection conn, String type, String key){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectSearchNotice");
+		List<Board> list=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public int selectNoticeCount(Connection conn, String key, String type) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;	
+		int result=0;
+		String sql="";
+		
+		switch(type) {
+		case "title": sql=prop.getProperty("searchTitleCount"); break;
+		case "boardNo": sql=prop.getProperty("searchNoCount"); break;
+		}
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+key+"%");
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public List<Board> selectSearchNotice(Connection conn, int cPage, int numPerPage, String type, String key){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql="";
+		List<Board> list=new ArrayList();
+		switch(type) {
+		case "title": sql=prop.getProperty("selectTitleSearch"); break;
+		case "boardNo": sql=prop.getProperty("selectNoSearch"); break;
+		}
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Board b=new Board();
+				b.setBoardNo(rs.getInt("board_no"));
+				b.setMemberId(rs.getString("member_id"));
+				b.setTitle(rs.getString("title"));
+				b.setContent(rs.getString("content"));
+				b.setHits(rs.getInt("hits"));
+				b.setBoardDate(rs.getDate("board_date"));
+				
+				list.add(b);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 }

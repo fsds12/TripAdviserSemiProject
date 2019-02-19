@@ -40,4 +40,37 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+	
+	public List<Board> selectSearchNotice(String type, String key){
+		
+		Connection conn=getConnection();
+		List<Board> list=dao.selectSearchNotice(conn, type, key);
+		close(conn);
+		return list;
+	}
+	
+	public int selectNoticeCount(String type, String key) {
+		Connection conn=getConnection();
+		int result=dao.selectNoticeCount(conn, type, key);
+		close(conn);
+		return result;
+	}
+	
+	public List<Board> selectSearchNotice(int cPage, int numPerPage, String type, String key){
+		Connection conn=getConnection();
+		List<Board> list=dao.selectSearchNotice(conn, cPage, numPerPage, type, key);
+		close(conn);
+		return list;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -57,21 +57,21 @@ section#notice-section table.notice-tbl tbody tr:hover{
 
 section#notice-section div#search-container{
 	margin-top: 5px; 
-	width: 100%; height: 35px; 
-	text-align: center;
+	width: 100%; height: 40px; 
+	text-align: center;	
 }
 
-section#notice-section div#search-container>input[type="button"]{
+section#notice-section button#search-btn{
     width: 50px; height: 28px; 
     border: 1px solid gainsboro; 
     background-color: white;
     border-radius: 10%;
     cursor: pointer;
 }
-section#notice-section div#search-container>input[type="button"]:hover{
+section#notice-section button#search-btn:hover{
 	background-color: whitesmoke;
 }
-section#notice-section div#search-container search#search-category{
+section#notice-section div#search-container search#searchType{
 	height: 30px; 
 	border: 1px solid gainsboro;
 }
@@ -79,10 +79,10 @@ section#notice-section div#search-container input[type="search"]{
     border: 0.05em solid gainsboro;
     width: 250px; height: 28px;
     border-radius: 0.3em;
+    
 }
 
 section#notice-section div#paging-container{text-align: center;}
-
 
 
 /* 글쓰기*/

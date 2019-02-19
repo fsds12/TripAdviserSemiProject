@@ -5,7 +5,37 @@
 	int cPage=(int)request.getAttribute("cPage");
 	int numPerPage=(int)request.getAttribute("numPerPage");
 	String pageBar=(String)request.getAttribute("pageBar");
+	String type=(String)request.getAttribute("type");
+	String key=(String)request.getAttribute("key");
 %>
+<style>	
+	div#search-no{
+		display:none;
+	}
+	div#search-title{
+		margin-left: 10px;
+		display: inline-block;
+	}
+</style>
+<script>
+	$(function(){	
+		
+		var searchTitle=$('#search-title');
+		var searchNo=$('#search-no');		
+		var searchType=$('#searchType');
+		
+		searchType.on('change', function(){
+			searchTitle.css("display", "none");
+			searchNo.css("display", "none");
+			
+			/* $('[name=cPage]').val('1');
+			$('[name=numPerPage]').val('5'); */
+			$('#search-'+$(this).val()).css("display", "inline-block");
+		});
+		
+		$('#searchType').trigger("change");
+	});
+</script>
 <%@ include file="/views/common/header.jsp" %>
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
@@ -40,14 +70,33 @@
             <%} %>            
             </tbody>                   
         </table>
+        
         <div id="search-container">
-            <select id="search-category">
-                <option value="제목">제목</option>
-                <option value="글번호">글번호</option>                
+            <select id="searchType">
+                <option value="title" <%="title".equals(type)?"selected":"" %>>제목</option>
+                <option value="boardNo" <%="boardNo".equals(type)?"selected":"" %>>글번호</option>                
             </select>            
-            <input type="search" name="search" id="search-text"/>
-            <input type="button" value="검색" id="search-btn"/>           	               
-        </div>        
+            <div id="search-title">
+            	<form action="<%=request.getContextPath()%>/notice/noticeFind">
+            		<input type="hidden" name="searchType" value="title"/>            		
+            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>
+            		<input type="search" name="searchKey" value="<%="title".equals(type)?key:""%>"/>
+            		<button type="submit" id="search-btn">검색</button>
+            	</form>
+            </div>
+            <div id="search-no">
+            	<form action="<%=request.getContextPath()%>/notice/noticeFind">
+            		<input type="hidden" name="searchType" value="boardNo"/>            		
+            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>
+            		<input type="search" name="searchKey" value="<%="boardNo".equals(type)?key:""%>"/>
+            		<button type="submit" id="search-btn">검색</button>
+            	</form>
+            </div>                     
+                     	               
+        </div> 
+              
          <div id="paging-container"> 
             <ul class="pagination pagination-sm justify-content-center">
     			<%=pageBar %>
