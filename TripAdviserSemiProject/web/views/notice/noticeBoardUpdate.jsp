@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="tripAdviser.board.model.vo.Board"%>
+<%
+	Board b=(Board)request.getAttribute("Board");
+%>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <%@ include file="/views/common/header.jsp" %>
-<%-- <%@ include file="/views/notice/nav.jsp" %> --%>
 
 <section id="noticeWrite-section" class="notice-section">	
 	<div class="caption">글수정</div>
@@ -10,33 +11,21 @@
          	<tr>
             	<th>작성자</th>
             	<td>                
-               		<input type="text" name="userId" id="id" value=" admin" required/>
+               		<input type="text" name="userId" id="id" value="<%=b.getMemberId()%>" required/>
             	</td>
             </tr>
             <tr>
                 <th>제목</th>
                 <td>
-                 	<input type="text" name="title" id="title"/>
+                 	<input type="text" name="title" id="title" value="<%=b.getTitle()%>"/>
                 </td>
             </tr>             
             <tr>
                 <th>내용</th>
                 <td>
-                 	<textarea></textarea>
+                 	<textarea><%=b.getContent() %></textarea>
                 </td>
-            </tr>
-            <tr>
-                <th>파일업로드</th>
-                <td>
-                 	<input type="file" name="fileUpload"/>
-                </td>
-            </tr>
-            <tr>
-                <th>파일업로드2</th>
-                <td>
-                 	<input type="file" name="fileUpload"/>
-                </td>
-            </tr>         
+            </tr>                     
         </table>  
     <div id="btn-container">
         <input type="button" value="등록" onclick="fn_submit()"/>

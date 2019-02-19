@@ -4,6 +4,11 @@
 %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <%@ include file="/views/common/header.jsp" %>
+<style>
+	section#noticeView-section{
+		height: 650px;
+	}
+</style>
 
 <section id="noticeView-section" class="notice-section">
 	<div class="caption">
@@ -37,11 +42,11 @@
 	}	
 	function fn_update(){
 		alert("수정하시겠습니까?");
-		location.href="<%=request.getContextPath()%>/notice/updateNotice";
+		location.href="<%=request.getContextPath()%>/notice/updateNotice?boardNo=<%=b.getBoardNo()%>";
 	}
 	function fn_delete(){
 		alert("삭제하시겠습니까?");
-		location.href="<%=request.getContextPath()%>/notice/deleteNotice";
+		location.href="<%=request.getContextPath()%>/notice/deleteNotice?boardNo=<%=b.getBoardNo()%>";
 	}
 </script>
 

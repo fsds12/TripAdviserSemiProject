@@ -207,4 +207,22 @@ public class NoticeDao {
 		
 		return b;
 	}
+	
+	public int deleteNotice(Connection conn, int boardNo) {
+		String sql=prop.getProperty("deleteNotice");
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }
