@@ -1,7 +1,6 @@
 package tripAdviser.member.model.vo;
 
 import java.util.Date;
-import java.util.List;
 
 public class Member {
 	private String memberId;
@@ -15,13 +14,11 @@ public class Member {
 	private String addressDetail;
 	private String phone;
 	private Date enrollDate;
-	private List<Integer> trvScraps;
 	
 	public Member () {}
 
 	public Member(String memberId, String memberPw, int memberGrade, String email, String name, String memberPictureUrl,
-			int postalCode, String address, String addressDetail, String phone, Date enrollDate,
-			List<Integer> trvScraps) {
+			int postalCode, String address, String addressDetail, String phone, Date enrollDate) {
 		super();
 		this.memberId = memberId;
 		this.memberPw = memberPw;
@@ -34,7 +31,6 @@ public class Member {
 		this.addressDetail = addressDetail;
 		this.phone = phone;
 		this.enrollDate = enrollDate;
-		this.trvScraps = trvScraps;
 	}
 
 	public String getMemberId() {
@@ -125,12 +121,12 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 
-	public List<Integer> getTrvScraps() {
-		return trvScraps;
-	}
-
-	public void setTrvScraps(List<Integer> trvScraps) {
-		this.trvScraps = trvScraps;
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", memberPw=" + memberPw + ", memberGrade=" + memberGrade + ", email="
+				+ email + ", name=" + name + ", memberPictureUrl=" + memberPictureUrl + ", postalCode=" + postalCode
+				+ ", address=" + address + ", addressDetail=" + addressDetail + ", phone=" + phone + ", enrollDate="
+				+ enrollDate + "]";
 	}
 	
 	
