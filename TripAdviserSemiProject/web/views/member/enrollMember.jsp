@@ -233,8 +233,7 @@ section#wcw-enroll-container input[type="text"],section#wcw-enroll-container inp
                                         <!-- Button -->
                                         <div class="controls" id="enrollreset">
                                             <input type="submit" id="signup" value="회원가입" class="btn btn-success"/>
-                                            <input type="reset" id="reset" value="취소" class="btn btn-success"/>
-                
+                                            <input type="reset" id="reset" value="취소" class="btn btn-success"/>                
                                         </div>
                                     </div>
 
