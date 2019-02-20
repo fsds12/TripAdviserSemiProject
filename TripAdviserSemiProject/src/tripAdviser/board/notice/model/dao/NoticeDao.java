@@ -227,6 +227,24 @@ public class NoticeDao {
 		
 		return b;
 	}
+	
+	public int increHits(Connection conn, int boardNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("increHits");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 	public int updateNotice(Connection conn, Board b) {
 		String sql=prop.getProperty("updateNotice");
 		PreparedStatement pstmt=null;

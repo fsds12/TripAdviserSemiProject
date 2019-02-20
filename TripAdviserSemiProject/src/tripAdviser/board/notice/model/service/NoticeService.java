@@ -63,10 +63,21 @@ public class NoticeService {
 		close(conn);
 		return list;
 	}
-	
 	public Board selectNoticeOne(int boardNo) {
 		Connection conn=getConnection();
+		Board b=dao.selectNoticeOne(conn, boardNo);		
+		close(conn);
+		return b;
+	}
+	
+	public Board selectNoticeOne(int boardNo, boolean hasRead) {
+		Connection conn=getConnection();
 		Board b=dao.selectNoticeOne(conn, boardNo);
+		if(b!=null && !hasRead) {
+			int result=dao.increHits(conn, boardNo);
+			if(result>0)commit();
+			else rollback();
+		}
 		close(conn);
 		return b;
 	}
