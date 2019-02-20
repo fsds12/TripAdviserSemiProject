@@ -99,4 +99,57 @@ public class travelSearchDao {
 
 	}
 
+	public List<TravelProduct> travelSearchCt(Connection conn, int categoryNo) {
+		
+		List<TravelProduct> list = new ArrayList<TravelProduct>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql="";
+		switch(categoryNo)
+		{
+		case 1:sql=prop.getProperty("selectProductCT1");break;
+		case 2:sql=prop.getProperty("selectProductCT2");break;
+		case 3:sql=prop.getProperty("selectProductCT3");break;
+		default:sql=prop.getProperty("selectProductAll");break;
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			 
+			while (rs.next()) {
+				double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
+				TravelProduct tp=new TravelProduct();
+				tp.setTrvNo(rs.getInt("trv_No"));
+				tp.setTrvTitle(rs.getString("trv_Title"));
+				tp.setTrvRepresentPic(rs.getString("trv_Represent_Pic"));
+				tp.setTrvProvince(rs.getString("trv_Province"));
+				tp.setTrvCity(rs.getString("trv_city"));
+				tp.setTrvAddress(rs.getString("trv_address"));
+				tp.setTrvDateStart(rs.getDate("trv_date_start"));
+				tp.setTrvDateEnd(rs.getDate("trv_date_end"));
+				tp.setTrvReview(rs.getString("trv_review"));
+				tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
+				tp.setTrvGps(rs.getString("trv_gps"));
+				tp.setTrvDate(rs.getDate("trv_write_date"));
+				tp.setMemberId(rs.getString("member_id"));
+				tp.setAvgStarRate(aveStarRate);
+				list.add(tp);
+								
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+
+	}
+
+	
 }
