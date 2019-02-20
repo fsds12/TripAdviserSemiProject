@@ -11,10 +11,19 @@ import tripAdviser.board.model.vo.Board;
 public class qaService {
 	private qaDao dao=new qaDao();
 	
-	public List<Board> selectQaList(){
+	public List<Board> selectQaList(int cPage, int numPerPage){
 		Connection conn=getConnection();
-		List<Board> list=dao.selectQaList(conn);
+		List<Board> list=dao.selectQaList(conn, cPage, numPerPage);
 		close(conn);
 		return list;
 	}
+	
+	public int selectQaCount() {
+		
+		Connection conn=getConnection();
+		int result=dao.selectQaCount(conn);
+		close(conn);		
+		return result;
+	}	
+	
 }

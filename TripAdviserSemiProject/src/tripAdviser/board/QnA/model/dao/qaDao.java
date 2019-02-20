@@ -23,7 +23,7 @@ public class qaDao {
 		}
 	}
 	
-	public List<Board> selectQaList(Connection conn){
+	public List<Board> selectQaList(Connection conn, int cPage, int numPerPage){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=prop.getProperty("selectQaList");
@@ -31,6 +31,8 @@ public class qaDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Board b=new Board();
@@ -50,5 +52,28 @@ public class qaDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int selectQaCount(Connection conn) {
+		
+		ResultSet rs=null;
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("selectQaCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }
