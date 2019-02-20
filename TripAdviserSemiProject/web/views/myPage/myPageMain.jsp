@@ -38,7 +38,7 @@
   <label for="tab5">Add Trip</label>
     
   <input id="tab6" type="radio" name="tabs">
-  <label for="tab6">Edit Trips</label>
+  <label for="tab6">Trips List</label>
     
     
     
@@ -67,14 +67,12 @@
     </p>
   </section>
    <section id="content5">
-    <p>
-     555555555555555555
-    </p>
+<%@ include file="/views/travelManage/travelUpdate.jsp" %>
+
   </section>
      <section id="content6">
-    <p>
-     6666666666666666666
-    </p>
+<%@ include file="/views/travelManage/travelUpdate.jsp" %>
+
   </section>
 </main>
 

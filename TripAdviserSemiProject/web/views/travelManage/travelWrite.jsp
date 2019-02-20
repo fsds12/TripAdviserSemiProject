@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="/views/common/header.jsp" %>
+<%-- <%@ include file="/views/common/header.jsp" %> --%>
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jquery-ui.min.css">
 <script src="<%=request.getContextPath() %>/js/jquery-ui.min.js"></script>
 <script src="<%=request.getContextPath() %>/js/scripts.js"></script>
 
 
-<section id="sec">
+
  <article id="trArt">
   <div class="container">
 	<form action="" method="post">
@@ -95,7 +95,7 @@
 	</form>
   </div>
  </article>
-</section>
 
 
-<%@ include file="/views/common/footer.jsp" %>
+<%-- 
+<%@ include file="/views/common/footer.jsp" %> --%>
