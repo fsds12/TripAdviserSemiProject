@@ -36,6 +36,7 @@ public class TravelAdminDao {
 		String sql=prop.getProperty("selectAdminListCount");
 		try {
 			pstmt=conn.prepareStatement(sql);
+			
 			rs=pstmt.executeQuery();
 			if(rs.next())
 			{
@@ -100,6 +101,8 @@ public class TravelAdminDao {
 		
 		return list;
 	}
+
+	
 
 }
 

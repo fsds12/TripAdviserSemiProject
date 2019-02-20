@@ -13,16 +13,16 @@ import tripAdviser.admin.model.service.TravelAdminService;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
 /**
- * Servlet implementation class TravelAdminListViewServlet
+ * Servlet implementation class TravelAdminSearchServlet
  */
-@WebServlet("/travel/TravelAdminListView")
-public class TravelAdminListViewServlet extends HttpServlet {
+@WebServlet("/travel/travelAdminFind")
+public class TravelAdminSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TravelAdminListViewServlet() {
+    public TravelAdminSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +32,8 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String type=request.getParameter("searchType");
+		String key=request.getParameter("searchKeyword");
 		
 		//페이징처리로직
 		int cPage;
@@ -86,6 +88,8 @@ public class TravelAdminListViewServlet extends HttpServlet {
 		
 	    System.out.println(list);
 	    
+	    request.setAttribute("cPage", cPage);
+	    request.setAttribute("numPerPage", numPerPage);
 	    
 		request.setAttribute("list", list);
 		request.setAttribute("pageBar", pageBar);
@@ -93,6 +97,8 @@ public class TravelAdminListViewServlet extends HttpServlet {
 		
 		
 		
+		
+
 	}
 
 	/**

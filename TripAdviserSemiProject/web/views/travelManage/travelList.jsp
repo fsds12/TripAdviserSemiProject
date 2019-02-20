@@ -7,7 +7,11 @@
 <%
 	
 List<TravelProduct> list=(List)request.getAttribute("list");
+String searchType=(String)request.getAttribute("searchType");
+String searchKeyword=(String)request.getAttribute("searchKeyword");
 String pageBar=(String)request.getAttribute("pageBar");
+int cPage=(int)request.getAttribute("cPage");
+int numPerPage=(int)request.getAttribute("numPerPage");
 
 %>
 
@@ -16,7 +20,11 @@ String pageBar=(String)request.getAttribute("pageBar");
 
 <section id="trvList">
 	<form name="AdminListFrm" id="AdminListFrm" action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">
-		<!-- <input type="hidden" name="trvNo" value=""/> -->
+		<%-- <input type="hidden" name="searchType" value="memberId"/>
+		<input type="hidden" name="cPage" value="<%=cPage %>"/>
+		<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
+		<input type="hidden" name="searchKeyword" value='<%="memberId".equals(searchType)?searchKeyword:"" %>'/> --%>
+		
 		<div class="container">
 
 			
@@ -36,15 +44,20 @@ String pageBar=(String)request.getAttribute("pageBar");
 					</thead>
 					<tbody>
 						<%
-							for(TravelProduct tp : list)
+							for(TravelProduct t : list)
 							{
 						%>
 						 
 						<tr>
-							<td><%=tp.getTrvTitle() %></td>
-							<td><%=tp.getTrvSmallCtg() %></td>
-							<td><%=tp.getTrvDate() %></td>
-							<td><%=tp.getMemberId() %></td>
+							<td>
+								<a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=t.getTrvNo()%>">
+									<%=t.getTrvTitle() %>
+								</a>
+								
+							</td>
+							<td><%=t.getTrvSmallCtg() %></td>
+							<td><%=t.getTrvDate() %></td>
+							<td><%=t.getMemberId() %></td>
 						</tr>
 						<%  } %>
 						
@@ -66,22 +79,6 @@ String pageBar=(String)request.getAttribute("pageBar");
 			
 
 			
-			<!-- <nav id="trvList" aria-label="Page navigation example" style="text-align: center;">
-<				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							<span class="sr-only">Previous</span>
-					</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-							class="sr-only">Next</span>
-					</a></li>
-					
-				</ul> 
-			</nav> -->
 				<div>
 					<%=pageBar %>
 				</div>
@@ -89,15 +86,24 @@ String pageBar=(String)request.getAttribute("pageBar");
 
 				<div class="col-12">
 
-					<select id="category">
-						<option>항목</option>
-						<option>카테고리명</option>
-						<option>상품제목</option>
+					<select class="custom-select" id="category">
+						<option>카테고리별</option>
+						<option>휴식거리</option>
+						<option>즐길거리</option>
+						<option>먹을거리</option>
+						<option>읽을거리</option>
 					</select>
-
-					<input type="text" name="item" id="item" />
-					<button id="pro-search">검색</button>
-
+					
+				<form action="<%=request.getContextPath() %>/travel/TravelAdminFind">
+					<input type="hidden" name="searchType" value="memberId"/>
+					<input type="hidden" name="cPage" value="<%=cPage %>"/>
+					<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
+					<input type="text" id="item" class="form-control" name="searchKeyword" value='<%="memberId".equals(searchType)?searchKeyword:"" %>'
+					placeholder="카테고리를 입력하세요"/>
+					
+					<!-- <input type="text" class="form-control" name="item" id="item" /> -->
+					<button type="submit" id="pro-search">검색</button>
+				</form>
 				</div>
 			</div>
 		</div>

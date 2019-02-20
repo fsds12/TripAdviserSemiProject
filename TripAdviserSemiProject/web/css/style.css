@@ -251,6 +251,7 @@ section#trvList div.col-12 #item {
 	position: relative;
 	left: 280px;
 	border-radius: 0.2em;
+	width:200px;
 	height: 37px;
 	margin-bottom: 60px;
 }
@@ -275,8 +276,9 @@ section#trvList div.col-12 #pro-search {
 
 section#trvList div.col-12 #category{
 	position: relative;
-	left: 270px;
-	margin-bottom: 60px;
+	left: 280px;
+	margin-bottom: 10px;
+	width:110px;
 }
 
 section#trvWrite form .inputArea {
