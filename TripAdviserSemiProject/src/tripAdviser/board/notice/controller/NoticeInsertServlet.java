@@ -48,10 +48,10 @@ public class NoticeInsertServlet extends HttpServlet {
 		
 		if(result>0) {
 			msg="등록 성공";
-			loc="/notice/noticeView";
+			loc="/notice/noticeView?boardNo="+result;
 		}else {
 			msg="등록 실패";
-			loc="/";
+			loc="/notice/noticeWrite";
 		}
 		
 		request.setAttribute("msg", msg);

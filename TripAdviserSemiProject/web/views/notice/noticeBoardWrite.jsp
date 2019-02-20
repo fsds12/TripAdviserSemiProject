@@ -10,17 +10,18 @@
 </style>
 <section id="noticeWrite-section" class="notice-section">	
 	<div class="caption">글쓰기</div>
+	<form action="<%=request.getContextPath()%>/notice/insertNotice" method="post">
     <table align="center" class="write-tbl">
          	<tr>
             	<th>작성자</th>
             	<td>                
-               		<input type="text" name="userId" ID="userId" value="admin"/>
+               		<input type="text" name="userId" value="admin" readonly/>
             	</td>
             </tr>
             <tr>
                 <th>제목</th>
                 <td>
-                 	<input type="text" name="title" id="title"/>
+                 	<input type="text" name="title"/>
                  	<div class="alert alert-warning alert-dismissible" id="alert">제목을 입력해주세요</div>
                 </td>
             </tr>             
@@ -31,20 +32,19 @@
                  	<div class="alert alert-warning" id="alert">내용을 입력해주세요</div>
                 </td>
             </tr>                     
-        </table>  
+        </table>
+      
     <div id="btn-container">
-        <input type="button" value="등록" onclick="fn_submit()" data-toggle="modal" data-target="#myModal"/>
-        <input type="button" value="취소" onclick="fn_cancle()" data-toggle="modal" data-target="#myModal"/>
+        <input type="submit" value="등록"/>
+        <input type="button" value="취소" onclick="fn_cancle()"/>
     </div>
+    </form>
 </section>
 <script>
-	function fn_submit(){
-		var title=document.getElementById('#title');
-		var content=document.getElementById('#content');
-		
+	<%-- function fn_submit(){		
 		alert("등록하시겠습니까?");
 		location.href="<%=request.getContextPath()%>/notice/insertNotice";
-	}
+	} --%>
 	function fn_cancle(){
 		alert("취소하시겠습니까?");
 		location.href="<%=request.getContextPath()%>/notice/noticeList";

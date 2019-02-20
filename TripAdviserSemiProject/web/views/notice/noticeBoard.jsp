@@ -9,7 +9,7 @@
 	String searchKey=(String)request.getAttribute("searchKey");
 %>
 <style>	
-	div#search-no{
+	div#search-content{
 		display:none;
 	}
 	div#search-title{
@@ -20,15 +20,15 @@
 <script>
 	$(function(){		
 		var searchTitle=$('#search-title');
-		var searchNo=$('#search-no');		
+		var searchNo=$('#search-content');		
 		var searchType=$('#searchType');
 		
-		searchType.on('change', function(){
+		searchType.on("change", function(){
 			searchNo.css("display", "none");
 			searchTitle.css("display", "none");			
 			
 			$('[name=cPage]').val('1');
-			$('[name=numPerPage]').val('5');
+			$('[name=numPerPage]').val('10');
 			$('#search-'+$(this).val()).css("display", "inline-block");
 		});
 		
@@ -74,7 +74,7 @@
         	<button id="search-btn" onclick="location.href='<%=request.getContextPath()%>/notice/noticeList'">목록</button>
             <select id="searchType">
                 <option value="title" <%="title".equals(searchType)?"selected":"" %>>제목</option>
-                <option value="boardNo" <%="boardNo".equals(searchType)?"selected":"" %>>글번호</option>                
+                <option value="boardNo" <%="boardNo".equals(searchType)?"selected":"" %>>내용</option>                
             </select>            
             <div id="search-title">
             	<form action="<%=request.getContextPath()%>/notice/noticeFind">
@@ -85,12 +85,12 @@
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>
-            <div id="search-no">
+            <div id="search-content">
             	<form action="<%=request.getContextPath()%>/notice/noticeFind">
-            		<input type="hidden" name="searchType" value="boardNo"/>            		
+            		<input type="hidden" name="searchType" value="content"/>            		
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
             		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>
-            		<input type="search" name="searchKey" value="<%="boardNo".equals(searchType)?searchKey:""%>"/>
+            		<input type="search" name="searchKey" value='<%="content".equals(searchType)?searchKey:""%>'/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>                     

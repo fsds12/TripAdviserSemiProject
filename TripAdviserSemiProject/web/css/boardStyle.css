@@ -114,6 +114,17 @@ section#noticeWrite-section div#btn-container{
 	text-align: center;
 	margin-top: 20px;
 }
+section#noticeWrite-section input[type="submit"]{
+    width: 50px; height: 30px; 
+    border: 1px solid gainsboro; 
+    background-color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+section#noticeWrite-section input[type="submit"]:hover{    
+    background-color: whitesmoke;    
+}
+
 section#noticeWrite-section div#btn-container input[type="button"]{
     width: 50px; height: 30px; 
     border: 1px solid gainsboro; 
