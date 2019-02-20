@@ -26,6 +26,7 @@ public class NoticeService {
 		int result=dao.insertNotice(conn, b);
 		if(result>0) {
 			commit();
+			result=dao.selectSeq(conn);
 		}else{
 			rollback();
 		}
@@ -70,6 +71,18 @@ public class NoticeService {
 		return b;
 	}
 	
+	public int updateNotice(Board b) {
+		Connection conn=getConnection();
+		int result=dao.updateNotice(conn, b);
+		if(result>0) {
+			commit();
+			/*result=dao.selectSeq(conn);*/
+		}else {
+			rollback();
+		}
+		close(conn);
+		return result;
+	}
 	public int deleteNotice(int boardNo) {
 		Connection conn=getConnection();
 		int result=dao.deleteNotice(conn, boardNo);
@@ -78,6 +91,8 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+	
+	
 }
 
 

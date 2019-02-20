@@ -12,16 +12,16 @@ import tripAdviser.board.model.vo.Board;
 import tripAdviser.board.notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class NoticeInsertServlet
+ * Servlet implementation class NoticeUpdateEndServlet
  */
-@WebServlet("/notice/insertNotice")
-public class NoticeInsertServlet extends HttpServlet {
+@WebServlet("/notice/noticeUpdateEnd")
+public class NoticeUpdateEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeInsertServlet() {
+    public NoticeUpdateEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,29 +29,32 @@ public class NoticeInsertServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
 		String userId=request.getParameter("userId");
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
 		
-		Board b= new Board();
+		Board b=new Board();
+		
 		b.setMemberId(userId);
 		b.setTitle(title);
 		b.setContent(content);
+		b.setBoardNo(boardNo);
 		
-		int result = new NoticeService().insertNotice(b);
+		int result=new NoticeService().updateNotice(b);
 		
 		String msg="";
 		String loc="";
 		String view="/views/common/msg.jsp";
 		
 		if(result>0) {
-			msg="공지사항이 등록되었습니다.";
-			loc="/notice/noticeView?boardNo="+result;
+			msg="수정되었습니다.";
+			loc="/notice/noticeView?boardNo="+request.getParameter("boardNo");
 		}else {
-			msg="등록 실패";
-			loc="/notice/noticeWrite";
+			msg="수정 실패";
+			loc="/views/notice/noticeBoardUpdate.jsp";
 		}
 		
 		request.setAttribute("msg", msg);

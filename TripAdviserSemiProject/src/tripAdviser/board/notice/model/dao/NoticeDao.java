@@ -227,7 +227,26 @@ public class NoticeDao {
 		
 		return b;
 	}
-	
+	public int updateNotice(Connection conn, Board b) {
+		String sql=prop.getProperty("updateNotice");
+		PreparedStatement pstmt=null;
+		int result=0;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getMemberId());
+			pstmt.setString(2, b.getTitle());
+			pstmt.setString(3, b.getContent());
+			pstmt.setInt(4, b.getBoardNo());
+			result=pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	public int deleteNotice(Connection conn, int boardNo) {
 		String sql=prop.getProperty("deleteNotice");
 		PreparedStatement pstmt=null;
@@ -243,6 +262,26 @@ public class NoticeDao {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+	
+	public int selectSeq(Connection conn) {
+		String sql=prop.getProperty("selectSeq");
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
 		return result;
 	}
 }
