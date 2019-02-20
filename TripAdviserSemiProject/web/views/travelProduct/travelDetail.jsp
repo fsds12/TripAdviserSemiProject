@@ -65,6 +65,41 @@
             location.href = "<%=request.getContextPath() %>/travel/travelDelete?trvNo=<%=tp.getTrvNo() %>";
         }
     }
+    
+    $(function() {
+    	$("#input-comment-ajax").click(function() {
+    		var comment = $('textarea[name=comment]').val();
+            var logined = <%=logined %>;
+            
+            if(comment.trim().length == 0) {
+                $('#comment-message').html("<div class='alert alert-warning alert-dismissible fade show' style='display: block; width: 700px;'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>경고!</strong> <span>코멘트 내용을 입력해주세요!</span></div>");
+            }
+            else if(logined == false) {
+                $('#comment-message').html("<div class='alert alert-warning alert-dismissible fade show' style='display: block; width: 700px;'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>경고!</strong> <span>로그인후 코멘트작성이 가능합니다!</span></div>");
+            }
+            else {
+                var conf = confirm("코멘트 작성을 하시겠습니까?");
+                if(conf == true) {
+                	var formData = $('form[name=comment-frm]').serialize();
+        			$.ajax({
+        				url: "<%=request.getContextPath()%>/travel/travelCommentInsert",
+        				type: "post",
+        				data: formData,
+        				dataType: "html",
+        				success: function(data) {
+        					$("body").html(data);
+        				},
+        				error: function(request, status, error) {
+        					
+        				}
+        			});
+                }
+                else {
+                    return false;
+                }
+            }
+    	});
+    });
 
     function fn_comment_modify(commentNo, evaluation) {
         var selNo = commentNo;
@@ -73,6 +108,23 @@
 		$(".comment-modify-view:eq(" + selNo + ") [name=evaluation]:eq(" + (evaluation-1) + ")").prop("checked", true);
         $(".comment-modify-view").eq(selNo).css('display', 'flex');
     }
+    
+    function fn_comment_modify_ajax(selNo) {
+    	var formData = $('form[name=comment-modify-frm]').eq(selNo).serialize();
+		$.ajax({
+			url: "<%=request.getContextPath()%>/travel/travelCommentModify",
+			type: "post",
+			data: formData,
+			dataType: "html",
+			success: function(data) {
+				$("body").html(data);
+			},
+			error: function(request, status, error) {
+				
+			}
+		});
+    }
+    
     function fn_comment_modify_cancel(commentNo) {
         var selNo = commentNo;
         $(".comment-modify-view").eq(selNo).css('display', 'none');
@@ -87,6 +139,37 @@
         if(conf == true) {
             location.href = "<%=request.getContextPath() %>/travel/commentDelete?commentNo=" + commentNo + "&trvNo=" + trvNo + "&cPage=" + cPage;
         }
+    }
+    
+    function fn_comment_delete_ajax(commentNo, trvNo, cPage) {
+    	var conf = confirm("이 코멘트를 삭제하시겠습니까?");
+
+        if(conf == true) {
+        	$.ajax({
+    			url: "<%=request.getContextPath()%>/travel/commentDeleteAjax?commentNo=" + commentNo + "&trvNo=" + trvNo + "&cPage=" + cPage,
+    			type: "post",
+    			dataType: "html",
+    			success: function(data) {
+    				$("body").html(data);
+    				<%-- $.ajax({
+    					url: "<%=request.getContextPath()%>/travel/refreshTrvRate?trvNo=" + trvNo,
+    					type: "post",
+    					data: formData,
+    					dataType: "html",
+    					success: function(data) {
+    						$("#travel-evul-div").html(data);
+    					},
+    					error: function(request, status, error) {
+    						
+    					}
+    				}); --%>
+    			},
+    			error: function(request, status, error) {
+    				
+    			}
+    		});
+        }
+    	
     }
     
     function initialize() {
@@ -142,7 +225,6 @@ article#travel-description-space div#travel-content-container {display: block; m
     		</div>
     		<div id="travel-album-review-space">
     			<div id="travel-album-carausel-box" class="carousel slide" data-ride="carousel">
-    				<%-- <img src="<%=tp.getTrvRepresentPic() %>" width="100%" height="100%" /> --%>
     				 <!-- Indicators -->
 					<ul class="carousel-indicators">
 					  <li data-target="#travel-album-carausel-box" data-slide-to="0" class="active"></li>
@@ -196,7 +278,7 @@ article#travel-description-space div#travel-content-container {display: block; m
 
 <section style="padding-top: 20px; padding-bottom: 20px;">
     <article id='travel-comment-container' style="display: block; max-width: 880px; margin: auto; background-color: white">
-    	<form action="<%=request.getContextPath() %>/travel/inputComment" method="post" class="form-inline" onsubmit="return fn_comment_confirm()">
+    	<form action="<%=request.getContextPath() %>/travel/inputComment" method="post" name="comment-frm" class="form-inline" onsubmit="return fn_comment_confirm()">
 			평점 :&nbsp;<input type="radio" name="evaluation" id="star1" value="1" />
 			<label for="star1"><span class="starR on"></span></label>&nbsp;&nbsp;
 			<input type="radio" name="evaluation" id="star2"  value="2" />
@@ -217,7 +299,7 @@ article#travel-description-space div#travel-content-container {display: block; m
 				</div>
 				<div style="display: inline-block;">
 					<div style="display: block;">&nbsp;</div>
-					<div style="display:inline-block;"><input type="submit" class="btn btn-light" value="코멘트작성" /></div>
+					<div style="display:inline-block;"><input type="button" id="input-comment-ajax" class="btn btn-light" value="코멘트작성" /></div>
 				</div>
 			</div>
 			<div id="comment-message">
@@ -225,6 +307,7 @@ article#travel-description-space div#travel-content-container {display: block; m
 		</form>
 		<hr />
 		<!-- 세션아이디랑 코멘트작성자와 비교해서 맞거나 admin계정이면 hidden삭제 아니면 hidden속성추가해서 넣기  -->
+		<div id="comment-space">
 		<%if(tp.getCommentLists().size() > 0) {	//이 여행상품에 코멘트가있을시 값들을 로드한다.%>
 		<%for(int i=0; i<tp.getCommentLists().size(); i++) {%>
 			<div class="comment-container" style="min-height:110px;">
@@ -250,7 +333,7 @@ article#travel-description-space div#travel-content-container {display: block; m
 						</div>
 						<%if(id.equals("admin") || tp.getCommentLists().get(i).getMemberId().equals(id)) {%>
 						<div class="comment-btn" style="display:inline-block; width:17%; text-align: center;">
-							<button class='btn btn-primary' onclick="fn_comment_modify(<%=i %>, <%=tp.getCommentLists().get(i).getTrvEvaluation() %>)">수정</button> <button class='btn btn-light' onclick="fn_comment_delete(<%=tp.getCommentLists().get(i).getCommentNo() %>, <%=tp.getTrvNo() %>, <%=cPage %>)">삭제</button>
+							<button class='btn btn-primary' onclick="fn_comment_modify(<%=i %>, <%=tp.getCommentLists().get(i).getTrvEvaluation() %>)">수정</button> <button class='btn btn-light' onclick="fn_comment_delete_ajax(<%=tp.getCommentLists().get(i).getCommentNo() %>, <%=tp.getTrvNo() %>, <%=cPage %>)">삭제</button>
 						</div>
 						<%}else {%>
 							<div class="comment-btn" style="display:inline-block; width:17%; text-align: center;">
@@ -259,18 +342,18 @@ article#travel-description-space div#travel-content-container {display: block; m
 						<%} %>
 					</div>
 					<div class="comment-modify-view" style="display: none;">
-						<form action="<%=request.getContextPath() %>/travel/travelCommentModify" method="post" style="display: inline-block;">
+						<form name="comment-modify-frm" method="post" style="display: inline-block;">
 							<div style="display:block;">
-								평점 :&nbsp;<input type="radio" name="evaluation" id="star1" value="1" />
-								<label for="star1"><span class="starR on"></span></label>&nbsp;&nbsp;
-								<input type="radio" name="evaluation" id="star2"  value="2" />
-								<label for="star2"><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
-								<input type="radio" name="evaluation" id="star3" value="3" />
-								<label for="star3"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
-								<input type="radio" name="evaluation" id="star4" value="4" />
-								<label for="star4"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
-								<input type="radio" name="evaluation" id="star5" value="5"/> 
-								<label for="star5"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>
+								평점 :&nbsp;<input type="radio" name="evaluation" id="star<%=i %>1" value="1" />
+								<label for="star<%=i %>1"><span class="starR on"></span></label>&nbsp;&nbsp;
+								<input type="radio" name="evaluation" id="star<%=i %>2"  value="2" />
+								<label for="star<%=i %>2"><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
+								<input type="radio" name="evaluation" id="star<%=i %>3" value="3" />
+								<label for="star<%=i %>3"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
+								<input type="radio" name="evaluation" id="star<%=i %>4" value="4" />
+								<label for="star<%=i %>4"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
+								<input type="radio" name="evaluation" id="star<%=i %>5" value="5"/> 
+								<label for="star<%=i %>5"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>
 							</div>
 							<div style="display:flex;">
 								<div class="comment-modify" style="display:inline-block; width:80%;">
@@ -282,7 +365,7 @@ article#travel-description-space div#travel-content-container {display: block; m
 								</div>
 								<div class="comment-modify-btn" style="display:inline-block; width:20%; text-align: center;">
 									<div>&nbsp;</div>
-									<input type="submit" class="btn btn-primary btn-sm" value="코멘트수정" style="width:80px;" />
+									<input type="button" class="btn btn-primary btn-sm" style="width:85px;" value="코멘트수정" onclick="fn_comment_modify_ajax(<%=i %>)" />
 									<button class="btn btn-outline-danger btn-sm" style="width:48px;" onclick="return fn_comment_modify_cancel(<%=i %>);">취소</button>
 								</div>
 							</div>
@@ -297,46 +380,7 @@ article#travel-description-space div#travel-content-container {display: block; m
 			</ul> 
 		</nav>
 		<%} %>
-		
-		<%-- <div class="comment-container" style="min-height:110px;">
-				<div class='comment-profile'>
-					<img src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" alt="" width="74px" height="84px" style="margin: 1px" />
-					<div class="comment-writer"><span>test</span></div>
-				</div>
-				<div class="comment-date">
-					<span><sub>2019-02-18</sub></span>
-				</div>
-				<div class="comment-content-test" style="display: inline-block; width:743px;">
-					<div style="display: block; padding-bottom: 1rem;">
-						<%for(int j = 0; j < 3; j++) {%>
-							<span class="starR on"></span>
-						<%} %>
-						<%for(int j=0; j < 5-3; j++) {%>
-							<span class="starR"></span>
-						<%} %>
-					</div>
-					<div class="comment-content-view" style="display:flex; width:100%;">
-						<div class="comment" style="display:inline-block; width:83%; border: 0px solid black;">
-							코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트
-						</div>
-						<div class="comment-btn" style="display:inline-block; border: 0px solid black; width:17%; text-align: center;">
-							<button class='btn btn-primary' onclick="fn_comment_modify(5)">수정</button> <button class='btn btn-light' onclick="fn_comment_delete(5)">삭제</button>
-						</div>
-					</div>
-					<div class="comment-modify-view" style="display: none;">
-						<form action="/travel/travelModify" method="post" style="display: flex;">
-							<div class="comment-modify" style="display:inline-block; width:83%;">
-								<input type="hidden" name="commentNo" value="32" />
-								<input type="hidden" name="trvNo" value="1" />
-								<textarea name="comment" class="form-control" style="max-width: 657px; height: 100%; margin: 0;" cols="70" rows="2" maxlength="100">코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트</textarea>
-							</div>
-							<div class="comment-modify-btn" style="display:inline-block; width:17%; text-align: center;">
-								<input type="submit" class="btn btn-primary" value="코멘트수정" />
-							</div>
-						</form>
-					</div>
-				</div>
-			</div> --%>
+		</div>
     </article>
 </section>
 

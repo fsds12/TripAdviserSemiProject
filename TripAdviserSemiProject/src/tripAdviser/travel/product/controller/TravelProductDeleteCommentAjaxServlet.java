@@ -1,30 +1,28 @@
 package tripAdviser.travel.product.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tripAdviser.member.model.vo.Comment;
 import tripAdviser.member.model.vo.Member;
 import tripAdviser.travel.product.model.service.TravelProductCommentService;
 import tripAdviser.travel.product.model.service.TravelProductDetailService;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
 /**
- * Servlet implementation class TravelProductModifyCommentServlet
+ * Servlet implementation class TravelProductDeleteCommentAjaxServlet
  */
-@WebServlet("/travel/travelCommentModify")
-public class TravelProductModifyCommentServlet extends HttpServlet {
+@WebServlet("/travel/commentDeleteAjax")
+public class TravelProductDeleteCommentAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TravelProductModifyCommentServlet() {
+    public TravelProductDeleteCommentAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,19 +32,11 @@ public class TravelProductModifyCommentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
 		int commentRefTrvNo = Integer.parseInt(request.getParameter("trvNo"));
 		int cPage = Integer.parseInt(request.getParameter("cPage"));
-		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
-		int evaluation = Integer.parseInt(request.getParameter("evaluation"));
-		String comment = request.getParameter("comment");
 		
-		Comment c = new Comment();
-		c.setCommentNo(commentNo);
-		//c.setTrvNo(commentRefTrvNo);
-		c.setTrvEvaluation(evaluation);
-		c.setCommentContent(comment);
-		
-		int result = new TravelProductCommentService().modifyComment(c);
+		int result = new TravelProductCommentService().deleteComment(commentNo);
 		
 		//코멘트 현재페이지
 		try {

@@ -1,14 +1,15 @@
 package tripAdviser.travel.product.model.service;
 
+import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
+import java.util.List;
 
 import tripAdviser.member.model.vo.Comment;
 import tripAdviser.travel.product.model.dao.TravelProductCommentDao;
-
-import static common.JDBCTemplate.getConnection;
-import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.rollback;
 
 public class TravelProductCommentService {
 	private Connection conn;
@@ -57,5 +58,13 @@ public class TravelProductCommentService {
 		
 		close(conn);
 		return result;
+	}
+	
+	public List<Comment> selectComment(int commentRefTrvNo, int cPage, int numPerPage) {
+		conn = getConnection();
+		List<Comment> commentList = dao.selectComment(conn, commentRefTrvNo, cPage, numPerPage);
+		
+		close(conn);
+		return commentList;
 	}
 }

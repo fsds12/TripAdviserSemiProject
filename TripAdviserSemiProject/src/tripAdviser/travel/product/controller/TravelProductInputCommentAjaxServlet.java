@@ -15,16 +15,16 @@ import tripAdviser.travel.product.model.service.TravelProductDetailService;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
 /**
- * Servlet implementation class TravelProductModifyCommentServlet
+ * Servlet implementation class TravelProductInputCommentAjaxServlet
  */
-@WebServlet("/travel/travelCommentModify")
-public class TravelProductModifyCommentServlet extends HttpServlet {
+@WebServlet("/travel/travelCommentInsert")
+public class TravelProductInputCommentAjaxServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TravelProductModifyCommentServlet() {
+    public TravelProductInputCommentAjaxServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,21 +34,21 @@ public class TravelProductModifyCommentServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int commentRefTrvNo = Integer.parseInt(request.getParameter("trvNo"));
-		int cPage = Integer.parseInt(request.getParameter("cPage"));
-		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+		int commentRefTrvNo = Integer.parseInt(request.getParameter("commentRefTrvNo"));
 		int evaluation = Integer.parseInt(request.getParameter("evaluation"));
 		String comment = request.getParameter("comment");
+		String commentWriter = request.getParameter("commentWriter");
 		
 		Comment c = new Comment();
-		c.setCommentNo(commentNo);
-		//c.setTrvNo(commentRefTrvNo);
+		
+		c.setTrvNo(commentRefTrvNo);
 		c.setTrvEvaluation(evaluation);
 		c.setCommentContent(comment);
+		c.setMemberId(commentWriter);
 		
-		int result = new TravelProductCommentService().modifyComment(c);
+		int result = new TravelProductCommentService().insertComment(c);
 		
-		//코멘트 현재페이지
+		int cPage;	//코멘트 현재페이지
 		try {
 			cPage = Integer.parseInt(request.getParameter("cPage"));
 		}
@@ -94,6 +94,21 @@ public class TravelProductModifyCommentServlet extends HttpServlet {
 		else {
 			pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + commentRefTrvNo + "&cPage=" + (pageStart + pageBarSize) + "#travel-comment-container"  + "'>&raquo;</a></li></ul>";
 		}
+		
+		/*List<Comment> commentList = new TravelProductCommentService().selectComment(commentRefTrvNo, cPage, numPerPage);
+		
+		if(result > 0) {
+			System.out.println("코멘트등록성공!");
+			request.setAttribute("commentList", commentList);
+			request.setAttribute("pageBar", pageBar);
+			request.setAttribute("cPage", cPage);
+			request.setAttribute("trvNo", commentRefTrvNo);
+		}
+		else {
+			System.out.println("코멘트등록실패!");
+		}
+		
+		request.getRequestDispatcher("/views/travelProduct/travelComment.jsp").forward(request, response);*/
 		
 		TravelProduct tp = new TravelProductDetailService().selectTrvProduct(commentRefTrvNo, cPage, numPerPage);
 		
