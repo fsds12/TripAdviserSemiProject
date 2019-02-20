@@ -19,13 +19,9 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 
 
 <section id="trvList">
-	<form name="AdminListFrm" id="AdminListFrm" action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">
-		<%-- <input type="hidden" name="searchType" value="memberId"/>
-		<input type="hidden" name="cPage" value="<%=cPage %>"/>
-		<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
-		<input type="hidden" name="searchKeyword" value='<%="memberId".equals(searchType)?searchKeyword:"" %>'/> --%>
 		
 		<div class="container">
+	<%-- <form name="AdminListFrm" id="AdminListFrm" action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">  --%>
 
 			
 			<div id="con-bottom">
@@ -74,24 +70,22 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 					</tfoot>
 				</table>
 
-
 			</div>
+				<%=pageBar %>
 			
-
+		<!-- </form>  -->
 			
-				<div>
-					<%=pageBar %>
-				</div>
+				
 			<div class="row aln-center">
 
 				<div class="col-12">
 
 					<select class="custom-select" id="category">
-						<option>카테고리별</option>
-						<option>휴식거리</option>
+						<option value="memberId" <%="memberId".equals(searchType)?"selected":"" %>>카테고리별</option>
+						<!-- <option>휴식거리</option>
 						<option>즐길거리</option>
 						<option>먹을거리</option>
-						<option>읽을거리</option>
+						<option>읽을거리</option> -->
 					</select>
 					
 				<form action="<%=request.getContextPath() %>/travel/TravelAdminFind">
@@ -107,7 +101,7 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 				</div>
 			</div>
 		</div>
-	</form>
+	
 </section>
 
 <%@ include file="/views/common/footer.jsp"%>

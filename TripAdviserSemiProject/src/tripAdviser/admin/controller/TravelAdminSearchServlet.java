@@ -46,12 +46,14 @@ public class TravelAdminSearchServlet extends HttpServlet {
 		}
 		int numPerPage=5;
 		
+		int totalcontent=0;
+		List<TravelProduct> list=null;
 		
+		totalcontent=new TravelAdminService().selectAdminSearchCount(type, key);
+		list=new TravelAdminService().selectAdminSearch(type, key,cPage,numPerPage);
 		
-		int totalAdminListCnt = new TravelAdminService().selectAdminListCount();   //관리자전체리스트
-		int totalAdminPageCnt = (int)Math.ceil((double)totalAdminListCnt / numPerPage); //관리자 총페이지
+		int totalAdminPageCnt = (int)Math.ceil((double)totalcontent / numPerPage); //관리자 총페이지
 		
-		List<TravelProduct> list=new TravelAdminService().selectAdminList(cPage,numPerPage);
 		
 	      //페이지바 만들기
 	      String pageBar = "<ul class='pagination justify-content-center'>";
@@ -65,12 +67,12 @@ public class TravelAdminSearchServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&laquo;</a></li>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage=" + (pageNo - pageBarSize) + "'>&laquo;</a></li>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminFind?cPage=" + (pageNo - pageBarSize) + "&SearchType"+type+"&SearchKeyword="+key+"'>&laquo;</a></li>";
 	      }
 	      
 	      //페이지바 숫자채우기
 	      while(pageNo <= totalAdminPageCnt && pageNo <= pageEnd) {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage="+ pageNo + "&SearchType"+type+"&SearchKeyword="+key+"'>" + pageNo + "</a></li>";
 	         pageNo++;
 	      }
 	      
@@ -80,13 +82,18 @@ public class TravelAdminSearchServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&raquo;</a></li></ul>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage=" + (pageStart + pageBarSize)  + "'>&raquo;</a></li></ul>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage=" + (pageStart + pageBarSize)  + "&SearchType"+type+"&SearchKeyword="+key+"'>&raquo;</a></li></ul>";
 	      }
 		
 		
 		
 		
 	    System.out.println(list);
+	    System.out.println(type);
+	    System.out.println(key);
+	    
+	    request.setAttribute("searchType", type);
+	    request.setAttribute("searchKeyword", key);
 	    
 	    request.setAttribute("cPage", cPage);
 	    request.setAttribute("numPerPage", numPerPage);

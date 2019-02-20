@@ -24,6 +24,20 @@ public class TravelAdminService {
 		close(conn);
 		return list;
 	}
+	
+	public int selectAdminSearchCount(String type, String key) {
+		Connection conn=getConnection();
+		int cnt=new TravelAdminDao().selectAdminSearchCount(conn,type,key);
+		close(conn);
+		return cnt;
+	}
+
+	public List<TravelProduct> selectAdminSearch(String type, String key, int cPage, int numPerPage) {
+		Connection conn=getConnection();
+		List<TravelProduct> list=new TravelAdminDao().selectAdminSearch(conn,type,key,cPage, numPerPage);
+		close(conn);
+		return list;
+	}
 
 	
 

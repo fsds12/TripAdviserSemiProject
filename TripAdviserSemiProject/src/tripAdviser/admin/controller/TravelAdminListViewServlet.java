@@ -86,13 +86,12 @@ public class TravelAdminListViewServlet extends HttpServlet {
 		
 	    System.out.println(list);
 	    
-	    
+	    request.setAttribute("cPage", cPage);
+	    request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("list", list);
 		request.setAttribute("pageBar", pageBar);
 		request.getRequestDispatcher("/views/travelManage/travelList.jsp").forward(request, response);
-		
-		
-		
+
 	}
 
 	/**

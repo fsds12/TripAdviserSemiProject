@@ -102,6 +102,90 @@ public class TravelAdminDao {
 		return list;
 	}
 
+	public int selectAdminSearchCount(Connection conn, String type, String key) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int cnt=0;
+		String sql="";
+		if("memberId".equals(type))
+		{
+			sql=prop.getProperty("selectAdminSearchCount");
+		}
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+key+"%");
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				cnt=rs.getInt("cnt");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return cnt;
+		
+	}
+
+	public List<TravelProduct> selectAdminSearch(Connection conn, String type, String key, int cPage, int numPerPage) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<TravelProduct> list=new ArrayList();
+		String sql="";
+		if("memberId".equals(type))
+		{
+			sql=prop.getProperty("selectAdminSearch");
+		}
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setInt(2, (cPage-1) * numPerPage + 1);
+			pstmt.setInt(3, cPage * numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				TravelProduct tp=new TravelProduct();
+				
+				
+				
+				tp.setTrvNo(rs.getInt("trv_no"));
+				tp.setTrvTitle(rs.getString("trv_title"));
+				tp.setTrvRepresentPic(rs.getString("trv_represent_pic"));
+				tp.setTrvProvince(rs.getString("trv_province"));
+				tp.setTrvCity(rs.getString("trv_city"));
+				tp.setTrvAddress(rs.getString("trv_address"));
+				tp.setTrvDateStart(rs.getDate("trv_date_start"));
+				tp.setTrvDateEnd(rs.getDate("trv_date_end"));
+				tp.setTrvReview(rs.getString("trv_review"));
+				tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
+				/*tp.setTrvLargeCtg(trvLargeCtg);
+				tp.setTrvSmallCtg(trvSmallCtg);*/	//카테고리 테이블에서 조인하여 불러올것  
+				tp.setTrvGps(rs.getString("trv_gps"));
+				tp.setTrvDate(rs.getDate("trv_write_date"));
+				tp.setMemberId(rs.getString("member_id"));
+				tp.setHits(rs.getInt("trv_hits"));
+				list.add(tp);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+
 	
 
 }
