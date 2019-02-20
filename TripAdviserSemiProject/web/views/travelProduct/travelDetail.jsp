@@ -6,9 +6,18 @@
 <%
 	String id = "admin";	//세션에서 로그인한 사용자의 객체를 불러와서 초기화할예정 임시로 스트링객체선언
 	Member m = (Member)session.getAttribute("loginMember");
-	boolean logined = m != null? true:false;
+	boolean logined = m == null? true:false;
+	boolean isScraped = (boolean)request.getAttribute("isScraped");
 	TravelProduct tp = (TravelProduct)request.getAttribute("travelProduct");
 	String pageBar = (String)request.getAttribute("pageBar");
+	
+	int cPage;
+	try {
+		cPage = Integer.parseInt(request.getParameter("cPage"));
+	}
+	catch(NumberFormatException e) {
+		cPage = 1;
+	}
 %>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
@@ -27,7 +36,7 @@
         else {
             var conf = confirm("코멘트 작성을 하시겠습니까?");
             if(conf == true) {
-            return true;
+            	return true;
             }
             else {
                 return false;
@@ -45,27 +54,38 @@
 
     function fn_modify() {
         //상품수정서블릿으로 연결
-        location.href = "<%=request.getContextPath() %>/travel/travelModify?trvNo=1";
+        console.log();
+        //location.href = "<%=request.getContextPath() %>/travel/travelModify?trvNo=<%=tp.getTrvNo() %>";
     }
 
     function fn_delete() {
         var conf = confirm("이 여행상품을 삭제하시겠습니까?");
 
         if(conf == true) {
-            location.href = "<%=request.getContextPath() %>/travel/travelDelete?trvNo=1";
+            location.href = "<%=request.getContextPath() %>/travel/travelDelete?trvNo=<%=tp.getTrvNo() %>";
         }
     }
 
-    function fn_comment_modify(commentNo) {
-        var selNo = commentNo + 1;
-        console.log(selNo);
+    function fn_comment_modify(commentNo, evaluation) {
+        var selNo = commentNo;
+        $(".comment-content-view").eq(selNo).css('display', 'none');
+        $(".comment-evaluation").eq(selNo).css('display', 'none');
+		$(".comment-modify-view:eq(" + selNo + ") [name=evaluation]:eq(" + (evaluation-1) + ")").prop("checked", true);
+        $(".comment-modify-view").eq(selNo).css('display', 'flex');
+    }
+    function fn_comment_modify_cancel(commentNo) {
+        var selNo = commentNo;
+        $(".comment-modify-view").eq(selNo).css('display', 'none');
+        $(".comment-content-view").eq(selNo).css('display', 'flex');
+        $(".comment-evaluation").eq(selNo).css('display', 'block');
+        return false;
     }
 
-    function fn_comment_delete(commentNo) {
+    function fn_comment_delete(commentNo, trvNo, cPage) {
         var conf = confirm("이 코멘트를 삭제하시겠습니까?");
 
         if(conf == true) {
-            location.href = "<%=request.getContextPath() %>/travel/commentDelete?commentNo=" + commentNo;
+            location.href = "<%=request.getContextPath() %>/travel/commentDelete?commentNo=" + commentNo + "&trvNo=" + trvNo + "&cPage=" + cPage;
         }
     }
     
@@ -121,19 +141,49 @@ article#travel-description-space div#travel-content-container {display: block; m
     			</div>
     		</div>
     		<div id="travel-album-review-space">
-    			<div id="travel-album-carausel-box">
-    				<%-- <img src="<%=request.getContextPath() %>/images/test.png" width="100%" height="100%" /> --%>
-    				<img src="<%=tp.getTrvRepresentPic() %>" width="100%" height="100%" />
+    			<div id="travel-album-carausel-box" class="carousel slide" data-ride="carousel">
+    				<%-- <img src="<%=tp.getTrvRepresentPic() %>" width="100%" height="100%" /> --%>
+    				 <!-- Indicators -->
+					<ul class="carousel-indicators">
+					  <li data-target="#travel-album-carausel-box" data-slide-to="0" class="active"></li>
+					  <%for(int i=0; i<tp.getAlbumUrls().size(); i++) { %>
+						  <li data-target="#travel-album-carausel-box" data-slide-to="<%=(i+1) %>"></li>
+					  <%} %>
+					</ul>
+						
+					<!-- The slideshow -->
+					<div class="carousel-inner">
+					  <div class="carousel-item active">
+					    <img src="<%=tp.getTrvRepresentPic() %>" alt="Travel Represent Pic" width="100%" height="380px" />
+					  </div>
+					  <%for(int i=0; i<tp.getAlbumUrls().size(); i++) { %>
+						  <div class="carousel-item">
+						    <img src="<%=tp.getAlbumUrls().get(i) %>" alt="Travel Album Pic" width="100%" height="380px" />
+						  </div>
+					  <%} %>
+					</div>
+					
+					<!-- Left and right controls -->
+					<a class="carousel-control-prev" href="#travel-album-carausel-box" data-slide="prev">
+					  <span class="carousel-control-prev-icon"></span>
+					</a>
+					<a class="carousel-control-next" href="#travel-album-carausel-box" data-slide="next">
+					  <span class="carousel-control-next-icon"></span>
+					</a>
     			</div>
     			<div id="travel-review-box">
     				<div id="travel-evul-div">
-    					<i class="fas fa-star"><span class="starR on"></span><%=tp.getAvgStarRate() %></i>
+    					<span class="starR on"></span><span style="font-size: 24px;"><%=Math.floor(tp.getAvgStarRate()*10)/10 %>평점</span>
     				</div>
     				<div id="travel-map-div">
     					google map
     				</div>
     				<div id="travel-scrap-div">
+    				<%if(!isScraped) {%>
     					<button class="btn btn-primary" style="width: 100%;">스크랩하기</button>
+    				<%}else {%>
+    					<button class="btn btn-outline-danger" style="width: 100%;">스크랩제거</button>
+    				<%} %>
     				</div>
     			</div>
     		</div>
@@ -170,13 +220,6 @@ article#travel-description-space div#travel-content-container {display: block; m
 					<div style="display:inline-block;"><input type="submit" class="btn btn-light" value="코멘트작성" /></div>
 				</div>
 			</div>
-			<!-- <div style="display: block; width: 100%;">
-				<span>로그인후 코멘트 작성이 가능합니다!</span>
-			</div> -->
-			<!-- <div id="comment-warning" class="alert alert-warning alert-dismissible fade show" style="display: none; width: 700px;">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<strong>경고!</strong> <span>로그인후 코멘트 작성이 가능합니다!</span>
-			</div> -->
 			<div id="comment-message">
 			</div>
 		</form>
@@ -184,7 +227,7 @@ article#travel-description-space div#travel-content-container {display: block; m
 		<!-- 세션아이디랑 코멘트작성자와 비교해서 맞거나 admin계정이면 hidden삭제 아니면 hidden속성추가해서 넣기  -->
 		<%if(tp.getCommentLists().size() > 0) {	//이 여행상품에 코멘트가있을시 값들을 로드한다.%>
 		<%for(int i=0; i<tp.getCommentLists().size(); i++) {%>
-			<div class="comment-container">
+			<div class="comment-container" style="min-height:110px;">
 				<div class='comment-profile'>
 					<img src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" alt="" width="74px" height="84px" style="margin: 1px" />
 					<div class="comment-writer"><span><%=tp.getCommentLists().get(i).getMemberId() %></span></div>
@@ -192,28 +235,59 @@ article#travel-description-space div#travel-content-container {display: block; m
 				<div class="comment-date">
 					<span><sub><%=tp.getCommentLists().get(i).getCommentDate() %></sub></span>
 				</div>
-				<div class="comment-content">
-					<p>
+				<div class="comment-content-test" style="display: inline-block; width:743px;">
+					<div class="comment-evaluation" style="display: block; padding-bottom: 1rem;">
 						<%for(int j = 0; j < tp.getCommentLists().get(i).getTrvEvaluation(); j++) {%>
 							<span class="starR on"></span>
 						<%} %>
 						<%for(int j=0; j < 5-tp.getCommentLists().get(i).getTrvEvaluation(); j++) {%>
 							<span class="starR"></span>
 						<%} %>
-					</p>
-					<p><%=tp.getCommentLists().get(i).getCommentContent() %></p>
-				</div>
-				<div class="comment-btn-container">
-					<p>&nbsp;</p>
-					<%if(id.equals("admin") || tp.getCommentLists().get(i).getMemberId().equals(id)) {//로그인한사용자가 코멘트작성자 이거나 관리자일시 버튼생성%>
-					<div class="comment-btn">
-						<button class='btn btn-primary' onclick="fn_comment_modify(<%=i %>)">수정</button> <button class='btn btn-light' onclick="fn_comment_delete(<%=i %>)">삭제</button>
 					</div>
-					<%} else{ %>
-					<span class="comment-btn">
-						&nbsp;
-					</span>
-					<%} %>
+					<div class="comment-content-view" style="display:flex; width:100%;">
+						<div class="comment" style="display:inline-block; width:83%;">
+							<%=tp.getCommentLists().get(i).getCommentContent() %>
+						</div>
+						<%if(id.equals("admin") || tp.getCommentLists().get(i).getMemberId().equals(id)) {%>
+						<div class="comment-btn" style="display:inline-block; width:17%; text-align: center;">
+							<button class='btn btn-primary' onclick="fn_comment_modify(<%=i %>, <%=tp.getCommentLists().get(i).getTrvEvaluation() %>)">수정</button> <button class='btn btn-light' onclick="fn_comment_delete(<%=tp.getCommentLists().get(i).getCommentNo() %>, <%=tp.getTrvNo() %>, <%=cPage %>)">삭제</button>
+						</div>
+						<%}else {%>
+							<div class="comment-btn" style="display:inline-block; width:17%; text-align: center;">
+								<span>&nbsp;</span>
+							</div>
+						<%} %>
+					</div>
+					<div class="comment-modify-view" style="display: none;">
+						<form action="<%=request.getContextPath() %>/travel/travelCommentModify" method="post" style="display: inline-block;">
+							<div style="display:block;">
+								평점 :&nbsp;<input type="radio" name="evaluation" id="star1" value="1" />
+								<label for="star1"><span class="starR on"></span></label>&nbsp;&nbsp;
+								<input type="radio" name="evaluation" id="star2"  value="2" />
+								<label for="star2"><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
+								<input type="radio" name="evaluation" id="star3" value="3" />
+								<label for="star3"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
+								<input type="radio" name="evaluation" id="star4" value="4" />
+								<label for="star4"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>&nbsp;&nbsp;
+								<input type="radio" name="evaluation" id="star5" value="5"/> 
+								<label for="star5"><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span><span class="starR on"></span></label>
+							</div>
+							<div style="display:flex;">
+								<div class="comment-modify" style="display:inline-block; width:80%;">
+									<input type="hidden" name="commentNo" value="<%=tp.getCommentLists().get(i).getCommentNo() %>" />
+									<input type="hidden" name="trvNo" value="<%=tp.getTrvNo() %>" />
+									<input type="hidden" name="commentWriter" value="" />
+									<input type="hidden" name="cPage" value="<%=cPage %>" />
+									<textarea name="comment" class="form-control" style="max-width: 657px; height: 100%; margin: 0;" cols="70" rows="2" maxlength="100"><%=tp.getCommentLists().get(i).getCommentContent() %></textarea>
+								</div>
+								<div class="comment-modify-btn" style="display:inline-block; width:20%; text-align: center;">
+									<div>&nbsp;</div>
+									<input type="submit" class="btn btn-primary btn-sm" value="코멘트수정" style="width:80px;" />
+									<button class="btn btn-outline-danger btn-sm" style="width:48px;" onclick="return fn_comment_modify_cancel(<%=i %>);">취소</button>
+								</div>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		<%} %>
@@ -223,6 +297,46 @@ article#travel-description-space div#travel-content-container {display: block; m
 			</ul> 
 		</nav>
 		<%} %>
+		
+		<%-- <div class="comment-container" style="min-height:110px;">
+				<div class='comment-profile'>
+					<img src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" alt="" width="74px" height="84px" style="margin: 1px" />
+					<div class="comment-writer"><span>test</span></div>
+				</div>
+				<div class="comment-date">
+					<span><sub>2019-02-18</sub></span>
+				</div>
+				<div class="comment-content-test" style="display: inline-block; width:743px;">
+					<div style="display: block; padding-bottom: 1rem;">
+						<%for(int j = 0; j < 3; j++) {%>
+							<span class="starR on"></span>
+						<%} %>
+						<%for(int j=0; j < 5-3; j++) {%>
+							<span class="starR"></span>
+						<%} %>
+					</div>
+					<div class="comment-content-view" style="display:flex; width:100%;">
+						<div class="comment" style="display:inline-block; width:83%; border: 0px solid black;">
+							코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트
+						</div>
+						<div class="comment-btn" style="display:inline-block; border: 0px solid black; width:17%; text-align: center;">
+							<button class='btn btn-primary' onclick="fn_comment_modify(5)">수정</button> <button class='btn btn-light' onclick="fn_comment_delete(5)">삭제</button>
+						</div>
+					</div>
+					<div class="comment-modify-view" style="display: none;">
+						<form action="/travel/travelModify" method="post" style="display: flex;">
+							<div class="comment-modify" style="display:inline-block; width:83%;">
+								<input type="hidden" name="commentNo" value="32" />
+								<input type="hidden" name="trvNo" value="1" />
+								<textarea name="comment" class="form-control" style="max-width: 657px; height: 100%; margin: 0;" cols="70" rows="2" maxlength="100">코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트코멘트</textarea>
+							</div>
+							<div class="comment-modify-btn" style="display:inline-block; width:17%; text-align: center;">
+								<input type="submit" class="btn btn-primary" value="코멘트수정" />
+							</div>
+						</form>
+					</div>
+				</div>
+			</div> --%>
     </article>
 </section>
 

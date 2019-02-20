@@ -144,5 +144,34 @@ public class TravelProductDetailDao {
 		
 		return count;
 	}
+	
+	public boolean selectScrap(Connection conn, int trvNo, String memberId) {
+		boolean isScraped = false;
+		sql = prop.getProperty("selectScrap");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, trvNo);
+			pstmt.setString(2, memberId);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				isScraped = true;
+			}
+			else {
+				isScraped = false;
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return isScraped;
+	}
 
 }

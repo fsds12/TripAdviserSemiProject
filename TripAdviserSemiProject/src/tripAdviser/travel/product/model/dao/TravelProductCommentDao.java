@@ -15,6 +15,7 @@ public class TravelProductCommentDao {
 	private PreparedStatement pstmt;
 	private String sql = "";
 	private Properties prop = new Properties();
+	private int result = 0;
 	
 	{
 		String filePath = TravelProductDetailDao.class.getResource("/sql/travel/travelProduct.properties").getPath();
@@ -27,7 +28,7 @@ public class TravelProductCommentDao {
 	}
 	
 	public int insertComment(Connection conn, Comment c) {
-		int result = 0;
+		result = 0;
 		sql = prop.getProperty("insertComment");
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -35,6 +36,48 @@ public class TravelProductCommentDao {
 			pstmt.setString(2, c.getMemberId());
 			pstmt.setInt(3, c.getTrvEvaluation());
 			pstmt.setString(4, c.getCommentContent());
+			
+			result = pstmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int modifyComment(Connection conn, Comment c) {
+		result = 0;
+		sql = prop.getProperty("modifyComment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getCommentContent());
+			pstmt.setInt(2, c.getTrvEvaluation());
+			pstmt.setInt(3, c.getCommentNo());
+			
+			result = pstmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int deleteComment(Connection conn, int commentNo) {
+		result = 0;
+		sql = prop.getProperty("deleteComment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
 			
 			result = pstmt.executeUpdate();
 		}

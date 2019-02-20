@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tripAdviser.member.model.vo.Member;
 import tripAdviser.travel.product.model.service.TravelProductDetailService;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
@@ -82,6 +83,16 @@ public class TravelProductDetailViewServlet extends HttpServlet {
 		
 		TravelProduct tp = new TravelProductDetailService().selectTrvProduct(trvNo, cPage, numPerPage);
 		
+		boolean isScraped;
+		
+		if((Member)request.getSession().getAttribute("loginMember") != null) {
+			Member m = (Member)request.getSession().getAttribute("loginMember");
+			isScraped = new TravelProductDetailService().selectScrap(trvNo, m.getMemberId());
+		}
+		else {
+			isScraped = false;
+		}
+		
 		String view = "";
 		String loc = "";
 		String msg = "";
@@ -90,6 +101,7 @@ public class TravelProductDetailViewServlet extends HttpServlet {
 			view = "/views/travelProduct/travelDetail.jsp";
 			request.setAttribute("travelProduct", tp);
 			request.setAttribute("pageBar", pageBar);
+			request.setAttribute("isScraped", isScraped);
 		}
 		else {
 			view = "/views/common/msg.jsp";

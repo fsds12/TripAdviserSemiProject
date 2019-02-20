@@ -1,6 +1,7 @@
 package tripAdviser.member.model.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class Member {
 	private String memberId;
@@ -14,11 +15,13 @@ public class Member {
 	private String addressDetail;
 	private String phone;
 	private Date enrollDate;
+	private List<Integer> trvScraps;
 	
 	public Member () {}
 
 	public Member(String memberId, String memberPw, int memberGrade, String email, String name, String memberPictureUrl,
-			int postalCode, String address, String addressDetail, String phone, Date enrollDate) {
+			int postalCode, String address, String addressDetail, String phone, Date enrollDate,
+			List<Integer> trvScraps) {
 		super();
 		this.memberId = memberId;
 		this.memberPw = memberPw;
@@ -31,6 +34,7 @@ public class Member {
 		this.addressDetail = addressDetail;
 		this.phone = phone;
 		this.enrollDate = enrollDate;
+		this.trvScraps = trvScraps;
 	}
 
 	public String getMemberId() {
@@ -119,6 +123,14 @@ public class Member {
 
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
+	}
+
+	public List<Integer> getTrvScraps() {
+		return trvScraps;
+	}
+
+	public void setTrvScraps(List<Integer> trvScraps) {
+		this.trvScraps = trvScraps;
 	}
 	
 	

@@ -29,7 +29,7 @@ section#myComment-container {
 					<td>테스트코멘트테스트코멘트테스트코멘트테스트코멘트테스트코멘트</td>
 					<td>
 					<span class="comment-btn">
-						<button class='btn btn-primary' onclick="fn_comment_modify(5)">수정</button> <button class='btn btn-light' onclick="fn_comment_delete(5)">삭제</button>
+						<button class='btn btn-light' onclick="fn_comment_delete(5)">삭제</button>
 					</span>
 					</td>
 				</tr>

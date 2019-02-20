@@ -39,4 +39,12 @@ public class TravelProductDetailService {
 		
 		return count;
 	}
+	
+	public boolean selectScrap(int trvNo, String memberId) {
+		conn = getConnection();
+		boolean isScraped = dao.selectScrap(conn, trvNo, memberId);
+		
+		close(conn);
+		return isScraped;
+	}
 }

@@ -28,4 +28,34 @@ public class TravelProductCommentService {
 		close(conn);
 		return result;
 	}
+	
+	public int modifyComment(Comment c) {
+		conn = getConnection();
+		int result = dao.modifyComment(conn, c);
+		
+		if(result > 0) {
+			commit();
+		}
+		else {
+			rollback();
+		}
+		
+		close(conn);
+		return result;
+	}
+	
+	public int deleteComment(int commentNo) {
+		conn = getConnection();
+		int result = dao.deleteComment(conn, commentNo);
+		
+		if(result > 0) {
+			commit();
+		}
+		else {
+			rollback();
+		}
+		
+		close(conn);
+		return result;
+	}
 }
