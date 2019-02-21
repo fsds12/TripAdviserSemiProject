@@ -88,7 +88,7 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 						<option>읽을거리</option> -->
 					</select>
 					
-				<form action="<%=request.getContextPath() %>/travel/TravelAdminFind">
+				<form action="<%=request.getContextPath() %>/travel/travelAdminFind">
 					<input type="hidden" name="searchType" value="memberId"/>
 					<input type="hidden" name="cPage" value="<%=cPage %>"/>
 					<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
