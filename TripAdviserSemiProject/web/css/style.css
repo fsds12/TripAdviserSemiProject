@@ -276,6 +276,7 @@ section#trvList div.col-12 #pro-search {
 	color: white;
 	left: 403px;
 	bottom: 47px;
+	cursor:pointer;
 	/* margin-bottom: 60px; */
 }
 

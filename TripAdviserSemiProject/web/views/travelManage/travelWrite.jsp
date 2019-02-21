@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct" %>
+<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct,java.util.*" %>
 
 <%@ include file="/views/common/header.jsp" %>
 
@@ -17,7 +17,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 
 %> --%>
 <%
-TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
+List<TravelProduct> list=(List)request.getAttribute("list");
 
 %>
 
@@ -29,9 +29,11 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 <section id="trvWrite">
  <article id="trArt">
   <div class="container">
-	<form action="<%=request.getContextPath() %>/travel/travelAdminWrite?trvNo=<%=tp.getTrvNo()%>"
+ 					   
+	<form action="<%=request.getContextPath()%>/travel/travelAdminWriteView"
 	name="ajaxFile" method="post" enctype="multipart/form-data">
-	
+												<%-- ?trvNo=<%=tp.getTrvNo()%> --%>
+		
   <div class="inputData">
 	 <div class="inputArea">
 		<label for="trvTitle">여행제목</label> 
@@ -81,24 +83,24 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 	
 					<div id="trvImg1" style="width:250px">
 						<img id="preview" src="" width="200" alt="">
-						<input type="file" name="trvRepresentPic" id="getfile" style="width:200px" accept="image/*">
+						<input type="file" name="trvRepresentPic" id="getfile" style="width:200px">
 					</div>
 
 
 					<div id="trvImg2" style="width:250px">
 						<img id="preview2" src="" width="200" alt="">
-						<input type="file" name="trvPicSrc1" id="getfile2" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc1" id="getfile2" style="width:200px">
 					</div>
 					
 					
 					<div id="trvImg3" style="width:250px">
 						<img id="preview3" src="" width="200" alt="">
-						<input type="file" name="trvPicSrc2" id="getfile3" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc2" id="getfile3" style="width:200px" multiple>
 					</div>
 					
 					<div id="trvImg4" style="width:250px">
 						<img id="preview4" src="" width="200" alt="">
-						<input type="file" name="trvPicSrc3" id="getfile4" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc3" id="getfile4" style="width:200px" multiple>
 					</div>
 
 	</div>
@@ -116,30 +118,14 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 	</div>
 	
 	</form>
+	
   </div>
  </article>
 </section>
 
 
-
 <script>
 
-var file = document.querySelector('#getfile');
-
-file.onchange = function () { 
-    var fileList = file.files ;
-    
-    // 읽기
-    var reader = new FileReader();
-    reader.readAsDataURL(fileList [0]);
-
-    //로드 한 후
-    reader.onload = function  () {
-        //로컬 이미지를 보여주기
-        document.querySelector('#preview').src = reader.result;
-
-    }; 
-}; 
 
 
 
@@ -195,7 +181,7 @@ file4.onchange = function () {
     reader4.onload = function  () {
         //로컬 이미지를 보여주기
         document.querySelector('#preview4').src = reader4.result;
-        
+        document.querySelector('#preview4')
 
     }; 
 }; 
@@ -206,30 +192,29 @@ file4.onchange = function () {
 </script>
 
 
-
-<%-- <script>
+<script>
 		$(function(){
 			$("[name=trvRepresentPic]").change(function(){
-				$.each(ajaxFile.ajaxFileTest.files,function(index,item){
+				$.each(ajaxFile.trvRepresentPic.files,function(index,item){
 					/* console.log(item); */
 				var reader=new FileReader();
 				reader.onload=function(e){
-					var img=$("<img></img>").attr("src",e.target.result).css({'width':'100px','height':'100px'});
+					var img=$("<img></img>").attr("src",e.target.result).css({'width':'230px','height':'170px'});
 					/* $('#image').html(img); */
-					$('#trvImg1').append(img);
+					$('#trvImg1').prepend(img);
 				}
 				reader.readAsDataURL(item);
 			});
 			});
 			$('#register_Btn').on("click", function(){
 				var fd=new FormData();
-				/* console.log(ajaxFile.ajaxFileTest.files[0]); */
-				/* fd.append("test",ajaxFile.ajaxFileTest.files[0]); */
-				$.each(ajaxFile.ajaxFileTest.files,function(i,item){
+				/* console.log(ajaxFile.trvRepresentPic.files[0]); */
+				/* fd.append("test",ajaxFile.trvRepresentPic.files[0]); */
+				$.each(ajaxFile.trvRepresentPic.files,function(i,item){
 					fd.append("test"+i,item);
 				});
 				$.ajax({
-					url:"<%=request.getContextPath()%>/travel/travelAdminWrite",
+					url:"<%=request.getContextPath()%>/travel/travelAdminWriteView",
 					data:fd,
 					type:"post",
 					processData:false,
@@ -242,8 +227,57 @@ file4.onchange = function () {
 				});
 			});
 			
+			
+			
+			<%-- $("[name=trvPicSrc1]").change(function(){
+				$.each(ajaxFile.trvRepresentPic.files,function(index,item){
+					/* console.log(item); */
+				var reader=new FileReader();
+				reader.onload=function(e){
+					var img=$("<img></img>").attr("src",e.target.result).css({'width':'100px','height':'100px'});
+					/* $('#image').html(img); */
+					$('#trvImg2').append(img);
+				}
+				reader.readAsDataURL(item);
+			});
+			});
+			$('#register_Btn').on("click", function(){
+				var fd=new FormData();
+				/* console.log(ajaxFile.trvRepresentPic.files[0]); */
+				/* fd.append("test",ajaxFile.trvRepresentPic.files[0]); */
+				$.each(ajaxFile.trvRepresentPic.files,function(i,item){
+					fd.append("test"+i,item);
+				});
+				$.ajax({
+					url:"<%=request.getContextPath()%>/travel/travelAdminWriteView",
+					data:fd,
+					type:"post",
+					processData:false,
+					contentType:false,
+					success:function(data){
+						alert("업로드 완료");
+						$('#trvImg2').html('');
+						$('[name=trvPicSrc1]').val('');
+					}
+				});
+			}); --%>
+			
+			
+			
+			
+			
 		});
-	</script> --%>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</script>
 
 
 

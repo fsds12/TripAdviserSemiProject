@@ -18,8 +18,10 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 
 
 
+
 <section id="trvList">
-		
+	 												<%-- <% if(logginMember!=null) { %> --%>
+	  												<%-- <% } %> --%>
 		<div class="container">
 	<%-- <form name="AdminListFrm" id="AdminListFrm" action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">  --%>
 
@@ -30,6 +32,7 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 				<table id="tbl-list" class="table table-striped" style="margin-bottom: 1px">
 					<thead id="pro-list">
 						<tr>
+
 							
 							<th>여행제목</th>
 							<th>카테고리</th>
@@ -71,6 +74,10 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 				</table>
 
 			</div>
+					
+					<input type="button" class="btn btn-primary" value="글쓰기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminWrite()" />
+				
+				
 				<div id="tblljb-pageBar">
 					<%=pageBar %>
 				</div>
@@ -96,7 +103,7 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 					<input type="text" id="item" class="form-control" name="searchKeyword" value='<%="memberId".equals(searchType)?searchKeyword:"" %>'
 					placeholder="카테고리를 입력하세요"/>
 					
-					<!-- <input type="text" class="form-control" name="item" id="item" /> -->
+					
 					<button type="submit" id="pro-search">검색</button>
 				</form>
 				</div>
@@ -104,5 +111,14 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 		</div>
 	
 </section>
+
+<script>
+	function fn_travelAdminWrite() {
+		location.href="<%=request.getContextPath()%>/travel/travelAdminWrite";
+	}
+
+</script>
+
+
 
 <%@ include file="/views/common/footer.jsp"%>

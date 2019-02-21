@@ -198,13 +198,10 @@ public class TravelAdminDao {
 			pstmt.setString(1, tp.getTrvTitle());
 			pstmt.setString(2, tp.getTrvCity());
 			pstmt.setString(3, tp.getTrvAddress());
-			pstmt.setDate(4, (Date) tp.getTrvDateStart());
-			pstmt.setDate(5, (Date) tp.getTrvDateEnd());
-			pstmt.setString(6, tp.getTrvRepresentPic());
-			pstmt.setArray(7, (Array) tp.getAlbumUrls());
-			pstmt.setArray(8, (Array) tp.getAlbumUrls());
-			pstmt.setArray(9, (Array) tp.getAlbumUrls());
-			pstmt.setString(10, tp.getTrvReview());
+			/*pstmt.setDate(4, (Date) tp.getTrvDateStart());
+			pstmt.setDate(5, (Date) tp.getTrvDateEnd());*/
+			/*pstmt.setArray(6, (Array) tp.getAlbumUrls());*/
+			pstmt.setString(7, tp.getTrvReview());
 			result=pstmt.executeUpdate();
 		}
 		catch(SQLException e)
