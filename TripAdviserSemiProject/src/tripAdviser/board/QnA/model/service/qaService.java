@@ -2,6 +2,8 @@ package tripAdviser.board.QnA.model.service;
 
 import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.List;
 
@@ -24,6 +26,25 @@ public class qaService {
 		int result=dao.selectQaCount(conn);
 		close(conn);		
 		return result;
-	}	
+	}
 	
+	public Board selectQaOne(int boardNo) {
+		Connection conn=getConnection();
+		Board b=dao.selectQaOne(conn, boardNo);
+		close(conn);
+		return b;
+	}
+	
+	public int insertQnA(Board b) {
+		Connection conn=getConnection();
+		int result=dao.insertQnA(conn, b);
+		if(result>0) {
+			commit();			
+			result=dao.selectSeq(conn);			
+		}else {
+			rollback();
+		}
+		close(conn);
+		return result;
+	}
 }

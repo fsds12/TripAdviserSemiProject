@@ -33,7 +33,7 @@
             <tr>
                 <td><%=b.getBoardNo() %></td>
                 <td><%=b.getMemberId() %></td>
-                <td><a href="<%=request.getContextPath()%>/QnA/QnABoardView"><%=b.getTitle() %></a></td>
+                <td><a href="<%=request.getContextPath()%>/QnA/QnABoardView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle() %></a></td>
                 <td><%=b.getBoardDate() %></td>
                 <td><%=b.getHits() %></td>
             </tr>

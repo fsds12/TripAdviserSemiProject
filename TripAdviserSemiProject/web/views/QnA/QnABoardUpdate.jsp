@@ -23,23 +23,11 @@
                 <td>
                  	<textarea></textarea>
                 </td>
-            </tr>
-            <tr>
-                <th>파일첨부</th>
-                <td>
-                 	<input type="file" name="up_file"/>
-                </td>
-            </tr>
-            <tr>
-                <th>파일첨부</th>
-                <td>
-                 	<input type="file" name="up_file"/>
-                </td>
-            </tr>         
+            </tr>                     
         </table>  
     <div id="btn-container">
         <input type="button" value="등록" onclick="fn_submit()"/>
-        <input type="button" value="취소" onclick="location.href='<%=request.getContextPath()%>/views/QnA/QnABoard.jsp'"/>
+        <input type="button" value="취소" onclick="location.href='<%=request.getContextPath()%>/QnA/QnABoardView"/>
     </div>
 
 </section>

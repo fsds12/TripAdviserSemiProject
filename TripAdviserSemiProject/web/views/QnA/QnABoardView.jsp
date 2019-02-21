@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="tripAdviser.board.model.vo.Board"%>
+<% Board b=(Board)request.getAttribute("Board"); %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <%@ include file="/views/common/header.jsp" %>
 
@@ -10,20 +11,15 @@
     </div>        
 	<table class="noticeView-tbl" align="center">
 		<tr height="60px">
-			<td colspan="2" id="title-td">qnaTest</td>
+			<td colspan="2" id="title-td"><%=b.getTitle()%></td>
 		</tr>
 		<tr height="20px">
-			<td id="writer-td">user01</td>
-			<td id="date-td">19.02.12</td>
+			<td id="writer-td"><%=b.getMemberId() %></td>
+			<td id="date-td"><%=b.getBoardDate() %></td>
 		</tr>
 		<tr>
 			<td colspan="2" id="content-td">
-				<p>
-					test
-					test
-					test
-					test
-				</p>
+				<p><%=b.getContent() %></p>
 			</td>
 		</tr>
 		<tr>

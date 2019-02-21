@@ -76,4 +76,71 @@ public class qaDao {
 		
 		return result;
 	}
+	
+	public int insertQnA(Connection conn, Board b) {
+		String sql=prop.getProperty("insertQA");
+		int result=0;
+		PreparedStatement pstmt=null;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getMemberId());
+			pstmt.setString(2, b.getTitle());
+			pstmt.setString(3, b.getContent());
+			result=pstmt.executeUpdate();
+			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int selectSeq(Connection conn) {
+		String sql=prop.getProperty("selectSeq");
+		ResultSet rs=null;
+		int result=0;
+		PreparedStatement pstmt=null;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			
+		}
+		return result;
+	}
+	
+	public Board selectQaOne(Connection conn, int boardNo) {
+		String sql=prop.getProperty("selectQaOne");
+		ResultSet rs=null;
+		PreparedStatement pstmt=null;
+		Board b=null;
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				b=new Board();
+				b.setBoardNo(rs.getInt("board_no"));
+				b.setMemberId(rs.getString("member_id"));
+				b.setTitle(rs.getString("title"));
+				b.setContent(rs.getString("content"));
+				b.setHits(rs.getInt("hits"));
+				b.setBoardDate(rs.getDate("board_date"));
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return b;
+	}
 }
