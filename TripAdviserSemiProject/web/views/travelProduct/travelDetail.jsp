@@ -4,9 +4,14 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <%
-	String id = "admin";	//세션에서 로그인한 사용자의 객체를 불러와서 초기화할예정 임시로 스트링객체선언
+	String id = "";	//세션에서 로그인한 사용자의 객체를 불러와서 초기화할예정 임시로 스트링객체선언
 	Member m = (Member)session.getAttribute("loginMember");
-	boolean logined = m == null? true:false;
+	boolean logined = m == null? false:true;
+	
+	if(logined) {
+		id = m.getMemberId();
+	}
+	
 	boolean isScraped = (boolean)request.getAttribute("isScraped");
 	TravelProduct tp = (TravelProduct)request.getAttribute("travelProduct");
 	String pageBar = (String)request.getAttribute("pageBar");
@@ -44,21 +49,50 @@
         }
     }
 
-    function fn_scrap(trvNo) {
-        var conf = confirm("이 여행상품을 마이스크랩에 담으시겠습니까?");
-
-        if(conf == true) {
-            location.href = "<%=request.getContextPath() %>/myPage/scrap?trvNo=" + trvNo;
-        }
+    function fn_scrap_insert() {
+    	var logined = <%=logined %>;
+    	if(logined == false) {
+    		$('#error-message').html("<div class='alert alert-info'><button type='button' class='close' data-dismiss='alert'>&times;</button><a href='<%=request.getContextPath()%>/loginpage' class='alert-link'>로그인</a>후 스크랩하기 사용가능합니다.</div>");
+    	}
+    	else {
+    		$.ajax({
+    			url: "<%=request.getContextPath() %>/travel/myScrap?trvNo=<%=tp.getTrvNo() %>",
+    			type: "post",
+    			dataType: "text",
+    			success: function(data) {
+    				$('#travel-scrap-div').html(data);
+    				$('#message .modal-body').text("여행정보를 스크랩 했습니다.");
+    				$('#message').modal();
+    			},
+    			error: function(request, status, error) {
+    				
+    			}
+    		});
+    	}
+    }
+    
+    function fn_scrap_delete() {
+    	$.ajax({
+			url: "<%=request.getContextPath() %>/travel/myScrapDelete?trvNo=<%=tp.getTrvNo() %>",
+			type: "post",
+			dataType: "text",
+			success: function(data) {
+				$('#travel-scrap-div').html(data);
+				$('#message .modal-body').text("여행정보를 스크랩에서 제거했습니다.");
+				$('#message').modal();
+			},
+			error: function(request, status, error) {
+				
+			}
+		});
     }
 
-    function fn_modify() {
+    function fn_travel_modify() {
         //상품수정서블릿으로 연결
-        console.log();
-        //location.href = "<%=request.getContextPath() %>/travel/travelModify?trvNo=<%=tp.getTrvNo() %>";
+        location.href = "<%=request.getContextPath() %>/travel/travelModify?trvNo=<%=tp.getTrvNo() %>";
     }
 
-    function fn_delete() {
+    function fn_travel_delete() {
         var conf = confirm("이 여행상품을 삭제하시겠습니까?");
 
         if(conf == true) {
@@ -191,22 +225,31 @@
 
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-<style>
-section#travel-detail-container {
-	padding-top: 20px; padding-bottom: 20px; border-bottom: 1px solid lightgray; border-top: 2px solid lightgray;
-}
-article#travel-description-space {max-width: 926.44px; margin: auto;}
-article#travel-description-space div#travel-address-box {display: inline-block; width:70%;}
-article#travel-description-space div#travel-manage-btn-box {display: inline-block; text-align: right; width:30%;}
-article#travel-description-space div#travel-album-review-space {display: flex; border:0.5px solid lightgray;}
-article#travel-description-space div#travel-album-carausel-box {display: inline-block; width: 70%; height:380px;}
-article#travel-description-space div#travel-review-box {display: flex; flex-direction: column; width: 30%;}
-article#travel-description-space div#travel-evul-div {display: inline-block; width: 100%; height: 50%;}
-article#travel-description-space div#travel-map-div {display: inline-block; width: 100%; height: 40%;}
-article#travel-description-space div#travel-scrap-div {display: inline-block; width: 100%;}
-article#travel-description-space div#travel-content-container {display: block; margin-top: 20px; padding-top: 10px; border:0.5px solid lightgray;}
+<!-- The Modal -->
+  <div class="modal fade" id="message">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Message</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+           	모달 내용
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
-</style>
 <section id='travel-detail-container'>
     <article id="travel-description-space">
     	<div id="travel-title-container" style="display: block;">
@@ -218,8 +261,8 @@ article#travel-description-space div#travel-content-container {display: block; m
     				<span class="glyphicon glyphicon-map-marker">&#xe062;</span><span><%=tp.getTrvProvince() %></span> <span><%=tp.getTrvCity() %></span> <span><%=tp.getTrvAddress() %></span>
     			</div>
     			<div id="travel-manage-btn-box" >
-    			<%if(id.equals("admi") || tp.getMemberId().equals(id))  {%>
-    				<button class="btn btn-dark" style="width: ;">수정하기</button> <button class="btn btn-dark" style="width: ;">삭제</button>
+    			<%if(id.equals("admin") || tp.getMemberId().equals(id))  {%>
+    				<button class="btn btn-dark" style="width: ;" onclick='fn_travel_modify()'>수정하기</button> <button class="btn btn-dark" style="width: ;" onclick='fn_travel_delete()'>삭제</button>
     			<%} %>
     			</div>
     		</div>
@@ -254,21 +297,30 @@ article#travel-description-space div#travel-content-container {display: block; m
 					</a>
     			</div>
     			<div id="travel-review-box">
-    				<div id="travel-evul-div">
-    					<span class="starR on"></span><span style="font-size: 24px;"><%=Math.floor(tp.getAvgStarRate()*10)/10 %>평점</span>
+    				<div id="travel-evul-intro-div">
+    					<p>
+    						<span class="starR on"></span><span style="font-size: 24px;"><%=Math.floor(tp.getAvgStarRate()*10)/10 %>평점</span><br>
+    					</p>
+    					<p>
+    						<span>카테고리: <%=tp.getTrvLargeCtg() %> - <%=tp.getTrvSmallCtg() %></span>
+    					</p>
     				</div>
     				<div id="travel-map-div">
     					google map
     				</div>
     				<div id="travel-scrap-div">
     				<%if(!isScraped) {%>
-    					<button class="btn btn-primary" style="width: 100%;">스크랩하기</button>
+    					<button class="btn btn-primary" style="width: 100%;" id='is-scrap' onclick='fn_scrap_insert();'>스크랩하기</button>
+    					<!-- <button class="btn btn-primary" style="width: 100%;" id='is-scrap'>스크랩하기</button> -->
     				<%}else {%>
-    					<button class="btn btn-outline-danger" style="width: 100%;">스크랩제거</button>
+    					<button class="btn btn-outline-danger" style="width: 100%;" id='is-scrap-delete' onclick='fn_scrap_delete()'>스크랩제거</button>
+    					<!-- <button class="btn btn-outline-danger" style="width: 100%;" id='is-scrap-delete'>스크랩제거</button> -->
     				<%} %>
     				</div>
     			</div>
     		</div>
+    	</div>
+    	<div id="error-message" style="margin-top: 3px;">
     	</div>
     	<div id="travel-content-container" style="height: 250px;">
     		<%=tp.getTrvReview() %>
@@ -277,7 +329,7 @@ article#travel-description-space div#travel-content-container {display: block; m
 </section> 
 
 <section style="padding-top: 20px; padding-bottom: 20px;">
-    <article id='travel-comment-container' style="display: block; max-width: 880px; margin: auto; background-color: white">
+    <article id='travel-comment-container'>
     	<form action="<%=request.getContextPath() %>/travel/inputComment" method="post" name="comment-frm" class="form-inline" onsubmit="return fn_comment_confirm()">
 			평점 :&nbsp;<input type="radio" name="evaluation" id="star1" value="1" />
 			<label for="star1"><span class="starR on"></span></label>&nbsp;&nbsp;

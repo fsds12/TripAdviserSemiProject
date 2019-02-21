@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 <!------ Include the above in your HEAD tag ---------->
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
-<%@ include file="/views/common/header.jsp" %>
 <style>
     section#myProfileUpdate-container{
     width: 100%;
@@ -170,5 +169,3 @@ section#myProfileUpdate-container article#myProfileupdate-article #update:active
     </article>
 
 </section>
-
-<%@ include file="/views/common/footer.jsp" %>

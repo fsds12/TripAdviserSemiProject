@@ -52,9 +52,10 @@ public class TravelProductDetailDao {
 				tp.setTrvDateStart(rs.getDate("trv_date_start"));
 				tp.setTrvDateEnd(rs.getDate("trv_date_end"));
 				tp.setTrvReview(rs.getString("trv_review"));
-				tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
 				/*tp.setTrvLargeCtg(trvLargeCtg);
 				tp.setTrvSmallCtg(trvSmallCtg);*/	//카테고리 테이블에서 조인하여 불러올것  
+				tp.setTrvLargeCtg(rs.getString("trv_ctg_large_name"));
+				tp.setTrvSmallCtg(rs.getString("trv_ctg_small_name"));
 				tp.setTrvGps(rs.getString("trv_gps"));
 				tp.setTrvDate(rs.getDate("trv_write_date"));
 				tp.setMemberId(rs.getString("member_id"));
