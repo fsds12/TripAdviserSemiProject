@@ -27,7 +27,7 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 			<div id="con-bottom">
 
 
-				<table class="table table-striped" style="margin-bottom: 1px">
+				<table id="tbl-list" class="table table-striped" style="margin-bottom: 1px">
 					<thead id="pro-list">
 						<tr>
 							
@@ -46,7 +46,7 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 						 
 						<tr>
 							<td>
-								<a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=t.getTrvNo()%>">
+								<a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=t.getTrvNo()%>" id="ljbtag">
 									<%=t.getTrvTitle() %>
 								</a>
 								
@@ -71,8 +71,9 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 				</table>
 
 			</div>
-				<%=pageBar %>
-			
+				<div id="tblljb-pageBar">
+					<%=pageBar %>
+				</div>
 		<!-- </form>  -->
 			
 				

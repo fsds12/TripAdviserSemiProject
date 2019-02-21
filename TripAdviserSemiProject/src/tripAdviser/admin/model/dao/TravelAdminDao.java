@@ -1,7 +1,9 @@
 package tripAdviser.admin.model.dao;
 
 import java.io.FileReader;
+import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -184,6 +186,37 @@ public class TravelAdminDao {
 		}
 		
 		return list;
+	}
+
+	public int insertAdmin(Connection conn, TravelProduct tp) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("insertAdmin");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, tp.getTrvTitle());
+			pstmt.setString(2, tp.getTrvCity());
+			pstmt.setString(3, tp.getTrvAddress());
+			pstmt.setDate(4, (Date) tp.getTrvDateStart());
+			pstmt.setDate(5, (Date) tp.getTrvDateEnd());
+			pstmt.setString(6, tp.getTrvRepresentPic());
+			pstmt.setArray(7, (Array) tp.getAlbumUrls());
+			pstmt.setArray(8, (Array) tp.getAlbumUrls());
+			pstmt.setArray(9, (Array) tp.getAlbumUrls());
+			pstmt.setString(10, tp.getTrvReview());
+			result=pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	

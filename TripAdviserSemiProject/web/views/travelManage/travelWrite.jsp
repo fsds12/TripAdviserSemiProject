@@ -1,7 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct" %>
+
 <%@ include file="/views/common/header.jsp" %>
+
+<%-- <%
+	
+List<TravelProduct> list=(List)request.getAttribute("list");
+String searchType=(String)request.getAttribute("searchType");
+String searchKeyword=(String)request.getAttribute("searchKeyword");
+String pageBar=(String)request.getAttribute("pageBar");
+int cPage=(int)request.getAttribute("cPage");
+int numPerPage=(int)request.getAttribute("numPerPage");
+TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
+
+%> --%>
+<%
+TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
+
+%>
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jquery-ui.min.css">
 <script src="<%=request.getContextPath() %>/js/jquery-ui.min.js"></script>
@@ -11,7 +29,8 @@
 <section id="trvWrite">
  <article id="trArt">
   <div class="container">
-	<form action="" method="post">
+	<form action="<%=request.getContextPath() %>/travel/travelAdminWrite?trvNo=<%=tp.getTrvNo()%>"
+	name="ajaxFile" method="post" enctype="multipart/form-data">
 	
   <div class="inputData">
 	 <div class="inputArea">
@@ -20,26 +39,24 @@
 	 </div>
 	 <div class="inputArea">
 		<label>카테고리</label> 
-		<select class="custom-select" id="trvBigCtgCode">
-			<option value="대분류">대분류</option>
-			<option value="기타">기타</option>
+		<select class="custom-select" id="trvCtgCode" name="trvCtg">
+			<option value="trvCtgLargeName">대분류</option>
+			<option value="trvCtgSmallName">소분류</option>
+			<!-- <option value="기타">기타</option> -->
 		</select> 
-		<select class="custom-select" id="trvSmallCtgCode">
-			<option value="소분류">소분류</option>
-			<option value="기타">기타</option>
-		</select> 
+		
 	 </div>
 	 <div class="inputArea">
 		<label for="trvProvince">여행지 도</label> 
-		<select class="custom-select" id="trvProvince">
-			<option value="경기도">경기도</option>
-			<option value="강원도">강원도</option>
-			<option value="충청북도">충청북도</option>
-			<option value="충청남도">충청남도</option>
-			<option value="전라북도">전라북도</option>
-			<option value="전라남도">전라남도</option>
-			<option value="경상북도">경상북도</option>
-			<option value="경상남도">경상남도</option>
+		<select class="custom-select" id="trvProvince" name="trvProvince">
+			<option value="trvProvince1">경기도</option>
+			<option value="trvProvince2">강원도</option>
+			<option value="trvProvince3">충청북도</option>
+			<option value="trvProvince4">충청남도</option>
+			<option value="trvProvince5">전라북도</option>
+			<option value="trvProvince6">전라남도</option>
+			<option value="trvProvince7">경상북도</option>
+			<option value="trvProvince8">경상남도</option>
 		</select> 
 	 </div>
 	 <div class="inputArea">
@@ -64,24 +81,24 @@
 	
 					<div id="trvImg1" style="width:250px">
 						<img id="preview" src="" width="200" alt="">
-						<input type="file" id="getfile" style="width:200px" accept="image/*">
+						<input type="file" name="trvRepresentPic" id="getfile" style="width:200px" accept="image/*">
 					</div>
 
 
 					<div id="trvImg2" style="width:250px">
 						<img id="preview2" src="" width="200" alt="">
-						<input type="file" id="getfile2" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc1" id="getfile2" style="width:200px" accept="image/*">
 					</div>
 					
 					
 					<div id="trvImg3" style="width:250px">
 						<img id="preview3" src="" width="200" alt="">
-						<input type="file" id="getfile3" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc2" id="getfile3" style="width:200px" accept="image/*">
 					</div>
 					
 					<div id="trvImg4" style="width:250px">
 						<img id="preview4" src="" width="200" alt="">
-						<input type="file" id="getfile4" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc3" id="getfile4" style="width:200px" accept="image/*">
 					</div>
 
 	</div>
@@ -102,6 +119,7 @@
   </div>
  </article>
 </section>
+
 
 
 <script>
@@ -186,6 +204,51 @@ file4.onchange = function () {
 
 
 </script>
+
+
+
+<%-- <script>
+		$(function(){
+			$("[name=trvRepresentPic]").change(function(){
+				$.each(ajaxFile.ajaxFileTest.files,function(index,item){
+					/* console.log(item); */
+				var reader=new FileReader();
+				reader.onload=function(e){
+					var img=$("<img></img>").attr("src",e.target.result).css({'width':'100px','height':'100px'});
+					/* $('#image').html(img); */
+					$('#trvImg1').append(img);
+				}
+				reader.readAsDataURL(item);
+			});
+			});
+			$('#register_Btn').on("click", function(){
+				var fd=new FormData();
+				/* console.log(ajaxFile.ajaxFileTest.files[0]); */
+				/* fd.append("test",ajaxFile.ajaxFileTest.files[0]); */
+				$.each(ajaxFile.ajaxFileTest.files,function(i,item){
+					fd.append("test"+i,item);
+				});
+				$.ajax({
+					url:"<%=request.getContextPath()%>/travel/travelAdminWrite",
+					data:fd,
+					type:"post",
+					processData:false,
+					contentType:false,
+					success:function(data){
+						alert("업로드 완료");
+						$('#trvImg1').html('');
+						$('[name=trvRepresentPic]').val('');
+					}
+				});
+			});
+			
+		});
+	</script> --%>
+
+
+
+
+
 
 
 

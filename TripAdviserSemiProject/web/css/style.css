@@ -234,13 +234,16 @@ div#paging-container ul li {
 } */
 
 /* 이정복 */
-nav#trvList ul.pagination {
-	color: white;
-	text-decoration: none;
-	margin-left:360px;
-	
+
+section#trvList div.container #tblljb-pageBar{
+	margin-top:30px;
 }
 
+section#trvList a#ljbtag{
+	text-decoration-line: none;
+	color:#5a5a5a;
+	/* color:#808080;  */
+}
 
 section#trvList form div div table {
 	margin-top: 50px;
@@ -249,11 +252,12 @@ section#trvList form div div table {
 section#trvList div.col-12 #item {
 	margin-left: 10px;
 	position: relative;
-	left: 280px;
+	left: 400px;
 	border-radius: 0.2em;
 	width:200px;
 	height: 37px;
-	margin-bottom: 60px;
+	margin-bottom: 10px;
+	bottom: 47px;
 }
 
 section#trvList div.col-12{
@@ -270,8 +274,9 @@ section#trvList div.col-12 #pro-search {
 	background-color: #ED786A;
 	border-radius: 5px;
 	color: white;
-	left: 300px;
-	margin-bottom: 60px;
+	left: 403px;
+	bottom: 47px;
+	/* margin-bottom: 60px; */
 }
 
 section#trvList div.col-12 #category{
@@ -279,6 +284,11 @@ section#trvList div.col-12 #category{
 	left: 280px;
 	margin-bottom: 10px;
 	width:110px;
+	
+}
+
+section#trvList div#con-bottom #tbl-list{
+	margin-top: 50px;
 }
 
 section#trvWrite form .inputArea {

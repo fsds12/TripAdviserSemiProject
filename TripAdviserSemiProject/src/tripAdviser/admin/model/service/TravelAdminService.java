@@ -3,11 +3,14 @@ package tripAdviser.admin.model.service;
 import java.sql.Connection;
 import java.util.List;
 
+import oracle.jdbc.OracleConnection.CommitOption;
 import tripAdviser.admin.model.dao.TravelAdminDao;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
 import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.rollback;
 
 public class TravelAdminService {
 
@@ -37,6 +40,21 @@ public class TravelAdminService {
 		List<TravelProduct> list=new TravelAdminDao().selectAdminSearch(conn,type,key,cPage, numPerPage);
 		close(conn);
 		return list;
+	}
+
+	public int insertAdmin(TravelProduct tp) {
+		Connection conn=getConnection();
+		int result=new TravelAdminDao().insertAdmin(conn,tp);
+		if(result>0)
+		{
+			commit();
+		}
+		else
+		{
+			rollback();
+		}
+		
+		return result;
 	}
 
 	
