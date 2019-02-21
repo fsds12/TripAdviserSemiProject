@@ -143,4 +143,42 @@ public class qaDao {
 		}
 		return b;
 	}
+	
+	public int updateQa(Connection conn, Board b) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateQa");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, b.getMemberId());
+			pstmt.setString(2, b.getTitle());
+			pstmt.setString(3, b.getContent());
+			pstmt.setInt(4, b.getBoardNo());
+			result=pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteQa(Connection conn, int boardNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteQa");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

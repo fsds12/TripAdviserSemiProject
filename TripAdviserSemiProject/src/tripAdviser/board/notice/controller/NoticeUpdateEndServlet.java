@@ -51,7 +51,7 @@ public class NoticeUpdateEndServlet extends HttpServlet {
 		
 		if(result>0) {
 			msg="수정되었습니다.";
-			loc="/notice/noticeView?boardNo="+request.getParameter("boardNo");
+			loc="/notice/noticeView?boardNo="+boardNo;
 		}else {
 			msg="수정 실패";
 			loc="/views/notice/noticeBoardUpdate.jsp";

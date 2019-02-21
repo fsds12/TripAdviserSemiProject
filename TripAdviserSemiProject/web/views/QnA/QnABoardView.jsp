@@ -61,11 +61,11 @@
 	}	
 	function fn_update(){
 		alert("수정하시겠습니까?");
-		location.href="<%=request.getContextPath()%>/QnA/updateQnA";
+		location.href="<%=request.getContextPath()%>/QnA/updateQnA?boardNo=<%=b.getBoardNo()%>";
 	}
 	function fn_delete(){
 		alert("삭제하시겠습니까?");
-		location.href="<%=request.getContextPath()%>/QnA/deleteQnA";
+		location.href="<%=request.getContextPath()%>/QnA/deleteQnA?boardNo=<%=b.getBoardNo()%>";
 	}
 	function fn_comment(){
 		alert("등록하시겠습니까?")

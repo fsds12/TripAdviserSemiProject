@@ -38,10 +38,7 @@
 </section>
 
 <script>
-	/* function fn_submit(){
-		alert("수정하시겠습니까?");
-		
-	} */
+	
 	function fn_cancle(){
 		location.href="<%=request.getContextPath()%>/notice/noticeList";
 	}

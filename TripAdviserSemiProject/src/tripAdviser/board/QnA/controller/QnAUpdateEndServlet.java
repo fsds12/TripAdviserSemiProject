@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tripAdviser.board.QnA.model.service.qaService;
+import tripAdviser.board.model.vo.Board;
 
 /**
- * Servlet implementation class QnADeleteServlet
+ * Servlet implementation class QnAUpdateEndServlet
  */
-@WebServlet("/QnA/deleteQnA")
-public class QnADeleteServlet extends HttpServlet {
+@WebServlet("/QnA/updateEnd")
+public class QnAUpdateEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnADeleteServlet() {
+    public QnAUpdateEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +31,32 @@ public class QnADeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
+		String userId=request.getParameter("userId");
+		String title=request.getParameter("title");
+		String content=request.getParameter("content");
 		
-		int result=new qaService().deleteQa(boardNo);
+		Board b=new Board();
+		b.setBoardNo(boardNo);
+		b.setMemberId(userId);
+		b.setTitle(title);
+		b.setContent(content);
+		
+		int result=new qaService().updateQa(b);
 		
 		String msg="";
-		String view="/views/common/msg.jsp";
 		String loc="";
+		String view="/views/common/msg.jsp";
 		
 		if(result>0) {
-			msg="삭제되었습니다.";
-			
-			loc="/QnA/QnAList";
+			msg="게시물이 수정되었습니다.";
+			loc="/QnA/QnABoardView?boardNo="+boardNo;
 		}else {
-			msg="삭제 실패";
-			loc="/";
+			msg="수정 실패";
+			loc="/QnA/updateQnA";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
+		
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 

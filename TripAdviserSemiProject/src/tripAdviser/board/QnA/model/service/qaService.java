@@ -47,4 +47,22 @@ public class qaService {
 		close(conn);
 		return result;
 	}
+	
+	public int updateQa(Board b) {
+		Connection conn=getConnection();
+		int result=dao.updateQa(conn, b);
+		if(result>0)commit();
+		else rollback();
+		close(conn);
+		return result;
+	}
+	
+	public int deleteQa(int boardNo) {
+		Connection conn=getConnection();
+		int result=dao.deleteQa(conn, boardNo);
+		if(result>0) commit();
+		else rollback();
+		close(conn);
+		return result;
+	}
 }

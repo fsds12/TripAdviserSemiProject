@@ -86,8 +86,7 @@ public class NoticeService {
 		Connection conn=getConnection();
 		int result=dao.updateNotice(conn, b);
 		if(result>0) {
-			commit();
-			/*result=dao.selectSeq(conn);*/
+			commit();			
 		}else {
 			rollback();
 		}
