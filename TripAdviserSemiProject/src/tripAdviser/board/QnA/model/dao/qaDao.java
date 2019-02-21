@@ -144,6 +144,21 @@ public class qaDao {
 		return b;
 	}
 	
+	public int increHits(Connection conn, int boardNo) {
+		int result=0;
+		PreparedStatement pstmt=null;
+		String sql=prop.getProperty("increHits");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	public int updateQa(Connection conn, Board b) {
 		PreparedStatement pstmt=null;
 		int result=0;

@@ -8,7 +8,32 @@
 %>
 <%@ include file="/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
-
+<style>
+	div#search-user, div#search-content{
+		display: none;
+	}
+	div#search-title{
+		display: inline-block;
+	}
+</style>
+<script>
+	$(function(){		
+	
+	var title=$('#search-title');
+	var user=$('#search-user');
+	var content=$('#search-content');
+	
+	$('#searchType').on("change", function(){
+		title.css("display", "none");
+		user.css("display", "none");
+		content.css("display", "none");
+		
+		$('#search-' + $(this).val()).css("display", "inline-block");
+	});
+	
+		$('#searchType').trigger("change");
+	})
+</script>
  <section id="notice-section" class="notice-section">    
     <div class="caption">
     	<img src="<%=request.getContextPath()%>/images/qnaBoard4.png" width="800px"/>
@@ -42,13 +67,31 @@
 	</table>
         <div id="search-container">
         	<button id="search-btn" onclick="location.href='<%=request.getContextPath()%>/QnA/QnAList'">목록</button>
-            <select id="search-category">
-                <option value="제목">제목</option>
-                <option value="제목">작성자</option>
-                <option value="글번호">글번호</option>                
-            </select>            
-            <input type="search" name="search" id="search-text"/>
-            <button id="search-btn">검색</button>          	               
+            <select id="searchType">
+                <option value="title">제목</option>
+                <option value="userId">작성자</option>
+                <option value="content">내용</option>                
+            </select>
+            <div id="search-title">
+            	<input type="hidden" name="type"/>
+            	<input type="hidden" name="key"/>            	
+            	<input type="search" name="search" placeholder="title"/>
+            	<button id="search-btn">검색</button>
+            </div>
+            <div id="search-user">
+            	<input type="hidden" name="type"/>
+            	<input type="hidden" name="key"/>            	
+            	<input type="search" name="search" placeholder="user"/>
+            	<button id="search-btn">검색</button>
+            </div>
+            <div id="search-content">
+            	<input type="hidden" name="type"/>
+            	<input type="hidden" name="key"/>            	
+            	<input type="search" name="search" placeholder="content"/>
+            	<button id="search-btn">검색</button>
+            </div>            
+            
+                      	               
         </div>        
          <div id="paging-container"> 
             <ul class="pagination pagination-sm justify-content-center">

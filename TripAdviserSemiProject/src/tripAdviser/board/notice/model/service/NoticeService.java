@@ -40,15 +40,7 @@ public class NoticeService {
 		int result=dao.selectNoticeCount(conn);
 		close(conn);
 		return result;
-	}
-	
-	/*public List<Board> selectSearchNotice(String type, String key){
-		
-		Connection conn=getConnection();
-		List<Board> list=dao.selectSearchNotice(conn, type, key);
-		close(conn);
-		return list;
-	}*/
+	}	
 	
 	public int selectNoticeCount(String type, String key) {
 		Connection conn=getConnection();

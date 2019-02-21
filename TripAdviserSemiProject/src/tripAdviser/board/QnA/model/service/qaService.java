@@ -28,6 +28,18 @@ public class qaService {
 		return result;
 	}
 	
+	public Board selectQaOne(int boardNo, boolean hasRead) {
+		Connection conn=getConnection();
+		Board b=dao.selectQaOne(conn, boardNo);
+		if(b!=null&&!hasRead) {
+			int result=dao.increHits(conn, boardNo);
+			if(result>0) commit();
+			else rollback();
+		}
+		close(conn);
+		return b;
+	}
+	
 	public Board selectQaOne(int boardNo) {
 		Connection conn=getConnection();
 		Board b=dao.selectQaOne(conn, boardNo);

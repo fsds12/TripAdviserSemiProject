@@ -99,44 +99,7 @@ public class NoticeDao {
 		}
 		
 		return result;
-	}
-	
-	/*public List<Board> selectSearchNotice(Connection conn, String type, String key){
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		String sql=prop.getProperty("selectSearchNotice");
-		List<Board> list=null;
-		switch(type) {
-		case "title": sql=prop.getProperty("selectTitleSearch"); break;
-		case "content": sql=prop.getProperty("selectContentSearch"); break;
-		}
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+key+"%");
-			pstmt.setInt(2, (cPage-1)*numPerPage+1);
-			pstmt.setInt(3, cPage*numPerPage);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				Board b=new Board();
-				b.setBoardNo(rs.getInt("board_no"));
-				b.setMemberId(rs.getString("member_id"));
-				b.setTitle(rs.getString("title"));
-				b.setContent(rs.getString("content"));
-				b.setHits(rs.getInt("hits"));
-				b.setBoardDate(rs.getDate("board_date"));
-				
-				list.add(b);
-			}
-			
-		}catch (Exception e) {
-			// TODO: handle exception
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return list;
-	}*/
+	}	
 	
 	public int selectNoticeCount(Connection conn, String key, String type) {
 		PreparedStatement pstmt=null;

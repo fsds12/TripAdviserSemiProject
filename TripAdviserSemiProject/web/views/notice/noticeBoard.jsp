@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*,tripAdviser.board.model.vo.Board" %>
+<%@ include file="/views/common/header.jsp" %>
+
 <%
 	List<Board> list=(List)request.getAttribute("list");
 	int cPage=(int)request.getAttribute("cPage");
@@ -20,22 +22,21 @@
 <script>
 	$(function(){		
 		var searchTitle=$('#search-title');
-		var searchNo=$('#search-content');		
+		var searchContent=$('#search-content');		
 		var searchType=$('#searchType');
 		
 		searchType.on("change", function(){
-			searchNo.css("display", "none");
-			searchTitle.css("display", "none");			
+			searchTitle.css("display", "none");
+			searchContent.css("display", "none");			
 			
 			$('[name=cPage]').val('1');
 			$('[name=numPerPage]').val('10');
 			$('#search-'+$(this).val()).css("display", "inline-block");
 		});
 		
-		$('#searchType').trigger("change");
+		 $('#searchType').trigger("change"); 
 	});
 </script>
-<%@ include file="/views/common/header.jsp" %>
 
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
  <section id="notice-section" class="notice-section">    
@@ -74,14 +75,14 @@
         	<button id="search-btn" onclick="location.href='<%=request.getContextPath()%>/notice/noticeList'">목록</button>
             <select id="searchType">
                 <option value="title" <%="title".equals(searchType)?"selected":"" %>>제목</option>
-                <option value="boardNo" <%="boardNo".equals(searchType)?"selected":"" %>>내용</option>                
+                <option value="content" <%="content".equals(searchType)?"selected":"" %>>내용</option>                
             </select>            
             <div id="search-title">
             	<form action="<%=request.getContextPath()%>/notice/noticeFind">
             		<input type="hidden" name="searchType" value="title"/>            		
             		<input type="hidden" name="cPage" value='<%=cPage%>'/>
             		<input type="hidden" name="numPerPage" value='<%=numPerPage%>'/>
-            		<input type="search" name="searchKey" value='<%="title".equals(searchType)?searchKey:""%>'/>
+            		<input type="search" name="searchKey" value='<%="title".equals(searchType)?searchKey:""%>' placeholder="title"/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>
@@ -90,7 +91,7 @@
             		<input type="hidden" name="searchType" value="content"/>            		
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
             		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>
-            		<input type="search" name="searchKey" value='<%="content".equals(searchType)?searchKey:""%>'/>
+            		<input type="search" name="searchKey" value='<%="content".equals(searchType)?searchKey:""%>' placeholder="content"/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>                     
