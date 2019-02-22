@@ -5,11 +5,16 @@
 	String pageBar=(String)request.getAttribute("pageBar");
 	int cPage=(int)request.getAttribute("cPage");
 	int numPerPage=(int)request.getAttribute("numPerPage");
+	String type=(String)request.getAttribute("type");
+	String key=(String)request.getAttribute("key");
 %>
 <%@ include file="/views/common/header.jsp" %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <style>
-	div#search-user, div#search-content{
+	div#search-id{
+		display: none;
+	}
+	div#search-content{
 		display: none;
 	}
 	div#search-title{
@@ -20,15 +25,19 @@
 	$(function(){		
 	
 	var title=$('#search-title');
-	var user=$('#search-user');
+	var user=$('#search-id');
 	var content=$('#search-content');
+	var searchType=$('#searchType');
 	
-	$('#searchType').on("change", function(){
-		title.css("display", "none");
-		user.css("display", "none");
+	searchType.on("change", function(){
+		title.css("display", "none");		
 		content.css("display", "none");
+		user.css("display", "none");
 		
-		$('#search-' + $(this).val()).css("display", "inline-block");
+		$('[name=cPage]').val('1');
+		$('[name=numPerPage]').val('10');
+		
+		$('#search-'+$(this).val()).css("display", "inline-block");
 	});
 	
 		$('#searchType').trigger("change");
@@ -68,30 +77,37 @@
         <div id="search-container">
         	<button id="search-btn" onclick="location.href='<%=request.getContextPath()%>/QnA/QnAList'">목록</button>
             <select id="searchType">
-                <option value="title">제목</option>
-                <option value="userId">작성자</option>
-                <option value="content">내용</option>                
+                <option value="title" <%="title".equals(type)?"selected":"" %>>제목</option>                
+                <option value="content" <%="content".equals(type)?"selected":"" %>>내용</option>
+                <option value="user" <%="user".equals(type)?"selected":"" %>>작성자</option>                
             </select>
             <div id="search-title">
-            	<input type="hidden" name="type"/>
-            	<input type="hidden" name="key"/>            	
-            	<input type="search" name="search" placeholder="title"/>
-            	<button id="search-btn">검색</button>
-            </div>
-            <div id="search-user">
-            	<input type="hidden" name="type"/>
-            	<input type="hidden" name="key"/>            	
-            	<input type="search" name="search" placeholder="user"/>
-            	<button id="search-btn">검색</button>
-            </div>
-            <div id="search-content">
-            	<input type="hidden" name="type"/>
-            	<input type="hidden" name="key"/>            	
-            	<input type="search" name="search" placeholder="content"/>
-            	<button id="search-btn">검색</button>
+            	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
+            		<input type="hidden" name="type" value="title"/>
+            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>            	
+            		<input type="search" name="key" value='<%="title".equals(type)?key:"" %>' placeholder="title"/>
+            		<button type="submit" id="search-btn">검색</button>
+            	</form>
             </div>            
-            
-                      	               
+            <div id="search-content">
+            	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
+            		<input type="hidden" name="type" value="content"/>
+            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>            	
+            		<input type="search" name="key" value='<%="content".equals(type)?key:""%>' placeholder="content"/>
+            		<button type="submit" id="search-btn">검색</button>
+            	</form>
+            </div>
+            <div id="search-id">
+            	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
+            		<input type="hidden" name="type" value="user"/>
+            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>            	
+            		<input type="search" name="key" value='<%="user".equals(type)?key:""%>' placeholder="user"/>
+            		<button type="submit" id="search-btn">검색</button>
+            	</form>
+            </div>                      	               
         </div>        
          <div id="paging-container"> 
             <ul class="pagination pagination-sm justify-content-center">

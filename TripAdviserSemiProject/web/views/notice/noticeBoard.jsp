@@ -86,6 +86,7 @@
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>
+            
             <div id="search-content">
             	<form action="<%=request.getContextPath()%>/notice/noticeFind">
             		<input type="hidden" name="searchType" value="content"/>            		

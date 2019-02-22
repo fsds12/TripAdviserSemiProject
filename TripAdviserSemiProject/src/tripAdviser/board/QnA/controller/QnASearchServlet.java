@@ -1,4 +1,4 @@
-package tripAdviser.board.notice.controller;
+package tripAdviser.board.QnA.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tripAdviser.board.QnA.model.service.qaService;
 import tripAdviser.board.model.vo.Board;
-import tripAdviser.board.notice.model.service.NoticeService;
 
 /**
- * Servlet implementation class NoticeListServlet
+ * Servlet implementation class QnASearchServlet
  */
-@WebServlet("/notice/noticeList")
-public class NoticeListServlet extends HttpServlet {
+@WebServlet("/QnA/QnAFind")
+public class QnASearchServlet extends HttpServlet {
+	private qaService service=new qaService();
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListServlet() {
+    public QnASearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +32,9 @@ public class NoticeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String type=request.getParameter("type");
+		String key=request.getParameter("key");
 		
-		//페이징 처리
 		int cPage;
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
@@ -47,27 +49,26 @@ public class NoticeListServlet extends HttpServlet {
 			numPerPage=10;
 		}
 		
-		int totalContent=new NoticeService().selectNoticeCount();
-		int totalPage=(int)Math.ceil((double)totalContent/numPerPage);	
-		
-		List<Board> list=new NoticeService().selectNoticeList(cPage, numPerPage);
+		int totalContent=service.selectQaCount(type, key);
+		List<Board> list=service.selectQaList(cPage, numPerPage, type, key);
+		int totalPage=(int)Math.ceil((double)numPerPage/totalContent);
 		
 		String pageBar="";
 		int pageBarSize=5;
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		
-		if(pageNo==1) {
-			pageBar+="<li class='page-item'><a class='page-link'> << </a></li>";
+		if(pageNo==cPage) {
+			pageBar+="<li class='page-item'><a class='page-link'> << <a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='" + request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"'><<</a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAFind?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&type="+type+"&key="+key+"'> << </li>";
 		}
 		
-		while(!(pageNo>pageEnd || pageNo>totalPage)) {
+		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
 				pageBar+="<li class='page-item'><a class='page-link'>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeList?cPage="+pageNo+"'>"+ pageNo + "</a></li>";
+				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAFind?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&searchType="+type+"&searchKey="+key+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
@@ -75,16 +76,16 @@ public class NoticeListServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<li class='page-item'><a class='page-link'> >> </a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"'> >> </a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAFind?cPage="+pageNo+"&numPerPage="+numPerPage+"&type="+type+"&key="+key+"'> >> </a></li>";
 		}
 		
-		System.out.println(list);
-		
 		request.setAttribute("cPage", cPage);
-		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("numPerPage", numPerPage);
-		request.setAttribute("list", list);		
-		request.getRequestDispatcher("/views/notice/noticeBoard.jsp").forward(request, response);
+		request.setAttribute("type", type);
+		request.setAttribute("key", key);
+		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/QnA/QnABoard.jsp").forward(request, response);
 	}
 
 	/**

@@ -54,6 +54,41 @@ public class qaDao {
 		return list;
 	}
 	
+	public List<Board> selectQaList(Connection conn, int cPage, int numPerPage, String type, String key){
+		List<Board> list=new ArrayList();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=null;
+		switch(type) {
+		case "title": sql=prop.getProperty("selectSearchTitle"); break;
+		case "user": sql=prop.getProperty("selectSearchUser");  break;
+		case "content": sql=prop.getProperty("selectSearchContent"); break;
+		}
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+key+"%");
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage+1);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Board b=new Board();
+				b.setBoardNo(rs.getInt("board_no"));
+				b.setMemberId(rs.getString("member_id"));
+				b.setTitle(rs.getString("title"));
+				b.setContent(rs.getString("content"));
+				b.setHits(rs.getInt("hits"));
+				b.setBoardDate(rs.getDate("board_date"));
+				list.add(b);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	public int selectQaCount(Connection conn) {
 		
 		ResultSet rs=null;
@@ -74,6 +109,32 @@ public class qaDao {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+	
+	public int selectQaCount(Connection conn, String type, String key) {
+		int result=0;
+		String sql=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		switch(type) {
+		case "title": sql=prop.getProperty("selectTitleCount"); break;
+		case "user": sql=prop.getProperty("selectUserCount"); break;
+		case "content": sql=prop.getProperty("selectContentCount"); break;
+		}
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+key+"%");
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
 		return result;
 	}
 	

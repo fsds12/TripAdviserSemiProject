@@ -77,4 +77,18 @@ public class qaService {
 		close(conn);
 		return result;
 	}
+	
+	public List<Board> selectQaList(int cPage, int numPerPage, String type, String key){
+		Connection conn=getConnection();
+		List<Board> list=dao.selectQaList(conn, cPage, numPerPage, type, key);
+		close(conn);
+		return list;
+	}
+	
+	public int selectQaCount(String type, String key) {
+		Connection conn=getConnection();
+		int result=dao.selectQaCount(conn, type, key);
+		close(conn);
+		return result;
+	}
 }
