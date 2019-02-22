@@ -83,7 +83,7 @@ div.card div img{width:370px; height:300px;}
 				<div class="card-block">
 					<h5 class="card-title" display="inline-block"><%=tp3.getTrvTitle() %></h5>
 					<p class="card-text" display="inline-block"><i class="fa fa-map-marker"></i>
-						<%=tp3.getTrvProvince()+"&nbsp;"+tp1.getTrvCity()+"&nbsp;"+tp3.getTrvAddress() %>.</p>
+						<%=tp3.getTrvProvince()+"&nbsp;"+tp3.getTrvCity()+"&nbsp;"+tp3.getTrvAddress() %>.</p>
 					<p class="card-text" display="inline-block">
 						<%
 						if(tp3.getAvgStarRate()<0||tp3.getAvgStarRate()>5){starRate=0;}
@@ -160,7 +160,7 @@ System.out.println("cate 1 성공?"+tp1+tp2+tp3);
 							%>
 							<i class="fa fa-star-o"></i>
 							<% } %>
-							<span id="starRateScore"><%=tp1.getAvgStarRate() %></span> Stars
+							<span id="starRateScore"><%=tp2.getAvgStarRate() %></span> Stars
 						</p>
 					</div>
 					</p>
@@ -170,7 +170,7 @@ System.out.println("cate 1 성공?"+tp1+tp2+tp3);
 					<div class="card-block">
 						<h5 class="card-title" display="inline-block"><%=tp3.getTrvTitle() %></h5>
 						<p class="card-text" display="inline-block"><i class="fa fa-map-marker"></i>
-								<%=tp3.getTrvProvince()+"&nbsp;"+tp1.getTrvCity()+"&nbsp;"+tp3.getTrvAddress() %>.</p>
+								<%=tp3.getTrvProvince()+"&nbsp;"+tp3.getTrvCity()+"&nbsp;"+tp3.getTrvAddress() %>.</p>
 						<p class="card-text" display="inline-block">
 							<%
 							if(tp3.getAvgStarRate()<0||tp3.getAvgStarRate()>5){starRate=0;}

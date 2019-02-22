@@ -7,9 +7,14 @@
 
 <% 
 List<TravelProduct> tplist = new ArrayList(); 
-TravelProduct tp=new TravelProduct();
-tplist=new travelSearchService().travelSearchCt(1);
+TravelProduct tp,tp1,tp2,tp3=new TravelProduct();
+//tplist = new travelSearchService().travelSearchAll();
+tplist=new travelSearchService().travelSearchCt(5);
+tp1=tplist.get(0);
+tp2=tplist.get(1);
+tp3=tplist.get(2);
 
+System.out.println("1성공?"+tp1+tp2+tp3);
 
 %>
 <style>
@@ -17,11 +22,8 @@ tplist=new travelSearchService().travelSearchCt(1);
 		display: inline-block;
 		font-size: 25px;
 	}
-
-	div.card div img {
-		width: 370px;
-		height: 300px;
-	}
+	
+div.card div img{width:370px; height:300px;}
 </style>
 
 
@@ -30,28 +32,17 @@ tplist=new travelSearchService().travelSearchCt(1);
 		<h4 class="category-title">전체 최고 별점 Best things in our website</h4>
 		<p class="category-sub">별점순 최고 호텔 랭킹 Top 3 The most popular Hotels
 			selected by our guests.</p>
-
-		<%for(int t=0; t<tplist.size(); t++) {%>
-		<%
-		System.out.println(t);
-		if(t%3 == 0)  {
-		System.out.println("걸림"+t);%>
 		<div class="card-group">
-			<%} tp=tplist.get(t); %>
-
 			<div class="card">
-				<div style="background: #333; height: 300px;"><a
-						href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo()%>"><img
-							src="<%=tp.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 300px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=tp1.getTrvRepresentPic()%>" /></a></div>
 				<div class="card-block">
-					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
-					<p class="card-text"><i class="fa fa-map-marker"></i>
-						<%=tp.getTrvProvince()+"&nbsp;"+tp.getTrvCity()+"&nbsp;"+tp.getTrvAddress() %>.</p>
+					<h5 class="card-title"><%=tp1.getTrvTitle() %></h5>
+					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp1.getTrvProvince()+"&nbsp;"+tp1.getTrvCity()+"&nbsp;"+tp1.getTrvAddress() %>.</p>
 					<p class="card-text">
 						<%
 						int starRate=0;
-						if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
-						else{starRate=(int)tp.getAvgStarRate();}
+						if(tp1.getAvgStarRate()<0||tp1.getAvgStarRate()>5){starRate=0;}
+						else{starRate=(int)tp1.getAvgStarRate();}
 						for (int i=0;i<starRate;++i){
 						%>
 						<i class="fa fa-star"></i>
@@ -60,16 +51,23 @@ tplist=new travelSearchService().travelSearchCt(1);
 						%>
 						<i class="fa fa-star-o"></i>
 						<% } %>
-						<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+						<span id="starRateScore"><%=tp1.getAvgStarRate() %></span> Stars
 					</p>
 				</div>
 			</div>
-			<%if(t%3 == 2)  {%>
 		</div>
-		<%} %>
-		<%} %>
-
 	</div>
 </div>
 <BR>
+
+<%
+tplist=new travelSearchService().travelSearchCt(1);
+tp1=tplist.get(0);
+tp2=tplist.get(1);
+tp3=tplist.get(2);
+
+System.out.println("cate 1 성공?"+tp1+tp2+tp3);
+%>
+
+
 </div>

@@ -41,12 +41,12 @@ public class categoryMenuServlet extends HttpServlet {
 	{
 	case 1:list="/views/travelSearch/travelMainPage_1.jsp";break;
 	case 2:list="/views/travelSearch/travelMainPage_2.jsp";break;
-	case 3:list="<%@ include file='views/travelSearch/travelMainPage_1.jsp'%>";break;
-	case 4:list="<%@ include file='views/travelSearch/travelMainPage_1.jsp'%>";break;
-	case 5:list="<%@ include file='views/travelSearch/travelMainPage_1.jsp'%>";break;
-	case 6:list="<%@ include file='views/travelSearch/travelMainPage_1.jsp'%>";break;
-	case 7:list="<%@ include file='views/travelSearch/travelMainPage_1.jsp'%>";break;
-	case 8:list="<%@ include file='views/travelSearch/travelMainPage_1.jsp'%>";break;
+	case 3:list="/views/travelSearch/travelMainPage_3.jsp";break;
+	case 4:list="/views/travelSearch/travelMainPage_4.jsp";break;
+	case 5:list="/views/travelSearch/travelMainPage_5.jsp";break;
+	case 6:list="/views/travelSearch/travelMainPage_6.jsp";break;
+	case 7:list="/views/travelSearch/travelMainPage_7.jsp";break;
+	case 8:list="/views/travelSearch/travelMainPage_8.jsp";break;
 	default : list="/views/travelSearch/travelMainPage.jsp";break;
 	}
 	request.getRequestDispatcher(list).forward(request,response);
