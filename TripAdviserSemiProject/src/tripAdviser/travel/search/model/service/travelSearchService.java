@@ -11,6 +11,15 @@ import tripAdviser.travel.search.model.dao.travelSearchDao;
 
 public class travelSearchService {
 	
+	public List<TravelProduct> travelSearchCt(int categoryNo)
+	{
+		Connection conn=getConnection();
+		List<TravelProduct> list= new travelSearchDao().travelSearchCt(conn, categoryNo);
+		close(conn);
+		return list;
+	}
+	
+	
 	public List<TravelProduct> travelSearchAll()
 	{
 		Connection conn=getConnection();

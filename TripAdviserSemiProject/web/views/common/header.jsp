@@ -29,7 +29,7 @@
 <body>
     <header>
         <div class="header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top" role="navigation">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed" role="navigation">
                 
                 <img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
                 <span>&nbsp;&nbsp;</span>
