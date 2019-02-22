@@ -61,6 +61,7 @@ section#mypage-main-section article#main #tab4:checked ~ #my-follows,
 section#mypage-main-section article#main #tab5:checked ~ #add-trip,
 section#mypage-main-section article#main #tab6:checked ~ #trips-list {
 	display: block;
+	/* min-height: 519px; */
 } 
 
 footer#footer-container {
