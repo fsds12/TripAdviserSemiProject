@@ -59,7 +59,7 @@ div.card div img{width:370px; height:300px;}
 				<div style="background: #333; height: 300px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=tp2.getTrvRepresentPic()%>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp2.getTrvTitle() %></h5>
-					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp2.getTrvProvince()+tp2.getTrvCity()+tp2.getTrvAddress() %>.</p>
+					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp2.getTrvProvince()+"&nbsp;"+tp2.getTrvCity()+"&nbsp;"+tp2.getTrvAddress() %>.</p>
 					<p class="card-text">
 
 						<%
@@ -83,7 +83,7 @@ div.card div img{width:370px; height:300px;}
 				<div class="card-block">
 					<h5 class="card-title" display="inline-block"><%=tp3.getTrvTitle() %></h5>
 					<p class="card-text" display="inline-block"><i class="fa fa-map-marker"></i>
-						<%=tp3.getTrvProvince()+tp3.getTrvCity()+tp3.getTrvAddress() %>.</p>
+						<%=tp3.getTrvProvince()+"&nbsp;"+tp3.getTrvCity()+"&nbsp;"+tp3.getTrvAddress() %>.</p>
 					<p class="card-text" display="inline-block">
 						<%
 						if(tp3.getAvgStarRate()<0||tp3.getAvgStarRate()>5){starRate=0;}

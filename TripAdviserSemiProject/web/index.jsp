@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="views/common/header.jsp"%>
-<% int IncludeFlag=1; %>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/vegas.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="<%=request.getContextPath() %>/css/vegas.min.js"></script>
@@ -59,8 +59,8 @@
 		<div class="lg_text" id="title_font">떠나 볼까요?</div>
 		<div class="sm_text" id="title_font">Where do you want to go?</div>
 		<div class="search-container">
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-3" id="searchName" type="search" placeholder="검색어입력" list="datalist"
+			<form action="<%=request.getContextPath()%>/travel/travelSearch" class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-3" id="searchName" type="searchkey" placeholder="검색어입력" list="datalist"
 					aria-label="Search">
 				<datalist id="datalist">
 					<!-- 자동완성기능 부분 -->
@@ -90,12 +90,11 @@
 			</script>
 		</div>
 	</div>
-	<%if (IncludeFlag==1){ %>
+	<%-- String list = (String)request.getAttribute("list"); --%>
 	
-	<%@ include file="views/travelSearch/travelMainPage.jsp"%>
-
-    <%} %>
-	<BR>
+	<div id="mydiv">
+    </div>
+    <BR>
 
 </section>
 
