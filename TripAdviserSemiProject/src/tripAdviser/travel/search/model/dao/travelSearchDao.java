@@ -108,6 +108,7 @@ public class travelSearchDao {
 		String sql="";
 		switch(categoryNo)
 		{
+		case 0:sql=prop.getProperty("selectProductCT0");break;
 		case 1:sql=prop.getProperty("selectProductCT1");break;
 		case 2:sql=prop.getProperty("selectProductCT2");break;
 		case 3:sql=prop.getProperty("selectProductCT3");break;

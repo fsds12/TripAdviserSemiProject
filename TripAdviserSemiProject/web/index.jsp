@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="views/common/header.jsp"%>
+<% int IncludeFlag=1; %>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/vegas.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="<%=request.getContextPath() %>/css/vegas.min.js"></script>
@@ -89,9 +90,11 @@
 			</script>
 		</div>
 	</div>
+	<%if (IncludeFlag==1){ %>
 	
 	<%@ include file="views/travelSearch/travelMainPage.jsp"%>
 
+    <%} %>
 	<BR>
 
 </section>
