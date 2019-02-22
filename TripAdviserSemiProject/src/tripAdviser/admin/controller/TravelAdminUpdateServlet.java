@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TravelAdminUpdateServlet
  */
-@WebServlet("/TravelAdminUpdateServlet")
+@WebServlet("/travel/travelAdminUpdate")
 public class TravelAdminUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,8 +26,8 @@ public class TravelAdminUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/views/travelManage/travelUpdate.jsp").forward(request, response);
+		
 	}
 
 	/**

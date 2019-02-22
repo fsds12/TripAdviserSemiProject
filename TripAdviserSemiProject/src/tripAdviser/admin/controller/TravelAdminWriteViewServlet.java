@@ -41,6 +41,12 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//int trvNo=Integer.parseInt(request.getParameter("trvNo"));
+		int trvNo = 0;
+		
+		/*System.out.println(trvNo);*/
+		
 		if(!ServletFileUpload.isMultipartContent(request))
 		{
 			request.setAttribute("msg", "업로드오류");
@@ -51,12 +57,8 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		//저장경로
 		String dir=getServletContext().getRealPath("/images/travel_upload_imgs");
 		int maxSize=1024*1024*1024;
-		
 		MultipartRequest mr=new MultipartRequest(request, dir,maxSize,"UTF-8",new DefaultFileRenamePolicy());
-		
 		//DB로직 구성~!
-		/*System.out.println(mr.getFilesystemName("test1"));
-		System.out.println(mr.getFilesystemName("test2"));*/
 		
 		Enumeration e=mr.getFileNames();
 		List<String> fileNames=new ArrayList();
@@ -67,58 +69,71 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		System.out.println(fileNames);
 		
 		
-		
-		
 		String title=mr.getParameter("trvTitle");
-		String ctg=mr.getParameter("trvCtg");
+					/*String ctg=mr.getParameter("trvCtg");*/ /*카테고리(대,소)2개??*/
 		String province=mr.getParameter("trvProvince");
 		String city=mr.getParameter("trvCity");
 		String addr=mr.getParameter("trvAddress");
 		
-		/*String dstart=mr.getParameter("trvDateStart");
-		Date ds = null;
-		try {
-			ds = new SimpleDateFormat("yyyy-MM-dd").parse(dstart);
-		} catch (ParseException e1) {
-			
-			e1.printStackTrace();
-		}
-		
-		String dend=mr.getParameter("trvDateEnd");
-		Date de = null;
-		try {
-			de = new SimpleDateFormat("yyyy-MM-dd").parse(dend);
-		} catch (ParseException e1) {
-			
-			e1.printStackTrace();
-		}*/
+	
+		/*String dstart=mr.getParameter("trvDateStart").replaceAll("-", "/");
+		String dend=mr.getParameter("trvDateEnd").replaceAll("-", "/");*/
 		
 		String content=mr.getParameter("proContent");
 		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		Date dstart=null;
+		try {
+			dstart = sdf.parse(mr.getParameter("trvDateStart"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		java.sql.Date sd1=new java.sql.Date(dstart.getTime());
+		Date dend=null;
+		try {
+			dend = sdf.parse(mr.getParameter("trvDateEnd"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		java.sql.Date sd2=new java.sql.Date(dend.getTime());
+		/*String dend=mr.getParameter("trvDateEnd").replaceAll("-", "/");*/
+		
+		System.out.println(title);
+				/*System.out.println(ctg);*/
+		System.out.println(province);
+		System.out.println(city);
+		System.out.println(addr);
+		System.out.println("90909"+dstart);
+		System.out.println("55555"+dend);
+		System.out.println(content);
+		
+		System.out.println(sd1);
+		System.out.println(sd2);
 		
 		TravelProduct tp=new TravelProduct();
+		
+		tp.setTrvNo(trvNo);
 		tp.setTrvTitle(title);
+				/*tp.setTrvSmallCtg(ctg);*/
+		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
-		/*tp.setTrvDateStart(ds);
-		tp.setTrvDateEnd(de);*/
-		/*tp.setAlbumUrls(fileNames);*/
+		tp.setTrvDateStart(sd1);
+		tp.setTrvDateEnd(sd2);
+		tp.setAlbumUrls(fileNames);
 		tp.setTrvReview(content);
 		
 		
-		/*tp.setTrvRepresentPic(rfile);
-		tp.setAlbumUrls(file1);
-		tp.setAlbumUrls(file2);
-		tp.setAlbumUrls(file3);*/
 		
 		
 		int result=new TravelAdminService().insertAdmin(tp);
-		
+	
 		System.out.println(result);
 		
-		
 		String msg="";
-		String loc="/travel/travelProductDetail"/*+trvNo*/;
+		String loc="/travel/travelProductDetail?trvNo="/*+tp.getTrvNo()*/;   /*+trvNo*/ /*tp.getTrvNo*/
 		String view="/views/common/msg.jsp";
 		
 		if(result>0)
@@ -135,37 +150,14 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request, response);
 		
+		
+		
+		
 		/*<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo()%>*/
 		/*request.getRequestDispatcher("").forward(request, response);*/
 		
 		
-		/*SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Date dsdate = null;
-		try {
-			dsdate = sdf.parse(dstart);
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
 		
-		/*SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
-		Date dsdate2 = null;
-		try {
-			dsdate2 = sdf2.parse(dend);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
-		/*String rfile=mr.getParameter("trvRepresentPic");*/
-		
-		/*List<String> file1=new ArrayList();
-		List<String> file2=new ArrayList();
-		List<String> file3=new ArrayList();*/
-		
-		/*String file1=mr.getFilesystemName("trvPicSrc1");
-		String file2=mr.getFilesystemName("trvPicSrc2");
-		String file3=mr.getFilesystemName("trvPicSrc3");*/
 		
 	}
 

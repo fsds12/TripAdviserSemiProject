@@ -12,6 +12,7 @@ String searchKeyword=(String)request.getAttribute("searchKeyword");
 String pageBar=(String)request.getAttribute("pageBar");
 int cPage=(int)request.getAttribute("cPage");
 int numPerPage=(int)request.getAttribute("numPerPage");
+TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 
 %>
 
@@ -20,11 +21,11 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 
 
 <section id="trvList">
-	 												<%-- <% if(logginMember!=null) { %> --%>
+	 													<%-- <% if(logginMember!=null) { %> --%>
 	  												<%-- <% } %> --%>
 		<div class="container">
 	<%-- <form name="AdminListFrm" id="AdminListFrm" action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">  --%>
-
+			
 			
 			<div id="con-bottom">
 
@@ -76,7 +77,7 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 			</div>
 					
 					<input type="button" class="btn btn-primary" value="글쓰기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminWrite()" />
-				
+					<!-- <input type="hidden" name="trvNo" value=""> -->
 				
 				<div id="tblljb-pageBar">
 					<%=pageBar %>
@@ -114,7 +115,10 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 
 <script>
 	function fn_travelAdminWrite() {
-		location.href="<%=request.getContextPath()%>/travel/travelAdminWrite";
+		
+			
+			location.href="<%=request.getContextPath()%>/travel/travelAdminWrite";
+		
 	}
 
 </script>

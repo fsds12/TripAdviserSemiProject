@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct,java.util.*" %>
+<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct" %>
 
 <%@ include file="/views/common/header.jsp" %>
 
@@ -16,8 +16,10 @@ int numPerPage=(int)request.getAttribute("numPerPage");
 TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 
 %> --%>
+
 <%
-List<TravelProduct> list=(List)request.getAttribute("list");
+
+TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 
 %>
 
@@ -117,6 +119,9 @@ List<TravelProduct> list=(List)request.getAttribute("list");
 		<button type="submit" id="cancle_Btn" class="btn btn-primary">취소</button>
 	</div>
 	
+				
+				<%-- 	<input type="hidden" name="trvNo" value="<%=tp.getTrvNo() %>"> --%>
+				
 	</form>
 	
   </div>
@@ -126,7 +131,23 @@ List<TravelProduct> list=(List)request.getAttribute("list");
 
 <script>
 
+var file = document.querySelector('#getfile');
 
+file.onchange = function () { 
+    var fileList = file.files ;
+    
+    // 읽기
+    var reader = new FileReader();
+    reader.readAsDataURL(fileList [0]);
+
+    //로드 한 후
+    reader.onload = function  () {
+        //로컬 이미지를 보여주기
+        document.querySelector('#preview').src = reader.result;
+        
+
+    }; 
+}; 
 
 
 var file2 = document.querySelector('#getfile2');
@@ -192,7 +213,7 @@ file4.onchange = function () {
 </script>
 
 
-<script>
+<%-- <script>
 		$(function(){
 			$("[name=trvRepresentPic]").change(function(){
 				$.each(ajaxFile.trvRepresentPic.files,function(index,item){
@@ -227,57 +248,9 @@ file4.onchange = function () {
 				});
 			});
 			
-			
-			
-			<%-- $("[name=trvPicSrc1]").change(function(){
-				$.each(ajaxFile.trvRepresentPic.files,function(index,item){
-					/* console.log(item); */
-				var reader=new FileReader();
-				reader.onload=function(e){
-					var img=$("<img></img>").attr("src",e.target.result).css({'width':'100px','height':'100px'});
-					/* $('#image').html(img); */
-					$('#trvImg2').append(img);
-				}
-				reader.readAsDataURL(item);
-			});
-			});
-			$('#register_Btn').on("click", function(){
-				var fd=new FormData();
-				/* console.log(ajaxFile.trvRepresentPic.files[0]); */
-				/* fd.append("test",ajaxFile.trvRepresentPic.files[0]); */
-				$.each(ajaxFile.trvRepresentPic.files,function(i,item){
-					fd.append("test"+i,item);
-				});
-				$.ajax({
-					url:"<%=request.getContextPath()%>/travel/travelAdminWriteView",
-					data:fd,
-					type:"post",
-					processData:false,
-					contentType:false,
-					success:function(data){
-						alert("업로드 완료");
-						$('#trvImg2').html('');
-						$('[name=trvPicSrc1]').val('');
-					}
-				});
-			}); --%>
-			
-			
-			
-			
-			
 		});
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	</script>
+	</script> --%>
 
 
 

@@ -33,6 +33,7 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
+		
 		//페이징처리로직
 		int cPage;
 		try {
@@ -86,6 +87,7 @@ public class TravelAdminListViewServlet extends HttpServlet {
 		
 	    System.out.println(list);
 	    
+	   
 	    request.setAttribute("cPage", cPage);
 	    request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("list", list);

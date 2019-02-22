@@ -57,6 +57,20 @@ public class TravelAdminService {
 		return result;
 	}
 
+	public TravelProduct selectNo(int no) {
+		Connection conn=getConnection();
+		TravelProduct tp=new TravelAdminDao().selectNo(conn,no);
+		close(conn);
+		return tp;
+	}
+
+	/*public List<TravelProduct> insertFile(List<String> fileNames) {
+		Connection conn=getConnection();
+		List<TravelProduct> list=new TravelAdminDao().insertFile(conn,fileNames);
+		close(conn);
+		return list;
+	}*/
+
 	
 
 }

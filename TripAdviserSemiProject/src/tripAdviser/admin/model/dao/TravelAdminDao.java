@@ -1,7 +1,6 @@
 package tripAdviser.admin.model.dao;
 
 import java.io.FileReader;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -192,17 +191,40 @@ public class TravelAdminDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
+		List<String> urlList=new ArrayList();
 		String sql=prop.getProperty("insertAdmin");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, tp.getTrvTitle());
-			pstmt.setString(2, tp.getTrvCity());
-			pstmt.setString(3, tp.getTrvAddress());
-			/*pstmt.setDate(4, (Date) tp.getTrvDateStart());
-			pstmt.setDate(5, (Date) tp.getTrvDateEnd());*/
-			/*pstmt.setArray(6, (Array) tp.getAlbumUrls());*/
+			pstmt.setString(2, tp.getTrvProvince());
+			pstmt.setString(3, tp.getTrvCity());
+			pstmt.setString(4, tp.getTrvAddress());
+			pstmt.setDate(5,  (Date) tp.getTrvDateStart());
+			pstmt.setDate(6,  (Date) tp.getTrvDateEnd());
 			pstmt.setString(7, tp.getTrvReview());
+			
+			
 			result=pstmt.executeUpdate();
+			
+		
+			close(rs);
+			close(pstmt);
+			
+			sql=prop.getProperty("insertImage");
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, tp.getTrvNo());
+			for(int i=0; i<urlList.size(); i++) {
+			   pstmt.setString(2, urlList.get(i));
+			   result = pstmt.executeUpdate();
+			}
+
+			
+			
+			close(rs);
+			close(pstmt);
+			
+			
+			
 		}
 		catch(SQLException e)
 		{
@@ -213,9 +235,103 @@ public class TravelAdminDao {
 			close(pstmt);
 		}
 		
+		
 		return result;
 	}
 
+	
+	public TravelProduct selectNo(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		TravelProduct tp=null;
+		String sql=prop.getProperty("selectNo");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			if(rs.next())
+			{
+				tp=new TravelProduct();
+				
+				tp.setTrvNo(rs.getInt("trv_no"));
+				tp.setTrvTitle(rs.getString("trv_title"));
+				tp.setTrvRepresentPic(rs.getString("trv_represent_pic"));
+				tp.setTrvProvince(rs.getString("trv_province"));
+				tp.setTrvCity(rs.getString("trv_city"));
+				tp.setTrvAddress(rs.getString("trv_address"));
+				tp.setTrvDateStart(rs.getDate("trv_date_start"));
+				tp.setTrvDateEnd(rs.getDate("trv_date_end"));
+				tp.setTrvReview(rs.getString("trv_review"));
+				tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
+				/*tp.setTrvLargeCtg(trvLargeCtg);
+				tp.setTrvSmallCtg(trvSmallCtg);*/	//카테고리 테이블에서 조인하여 불러올것  
+				tp.setTrvGps(rs.getString("trv_gps"));
+				tp.setTrvDate(rs.getDate("trv_write_date"));
+				tp.setMemberId(rs.getString("member_id"));
+				tp.setHits(rs.getInt("trv_hits"));
+				
+				
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return tp;
+	}
+
+	
+/*	public List<TravelProduct> insertFile(Connection conn, List<String> fileNames) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<TravelProduct> list=new ArrayList();
+		String sql=prop.getProperty("insertFile");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setArray(1, (Array) fileNames);
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				TravelProduct tp=new TravelProduct();
+				
+				
+				
+				tp.setTrvNo(rs.getInt("trv_no"));
+				tp.setTrvTitle(rs.getString("trv_title"));
+				tp.setTrvRepresentPic(rs.getString("trv_represent_pic"));
+				tp.setTrvProvince(rs.getString("trv_province"));
+				tp.setTrvCity(rs.getString("trv_city"));
+				tp.setTrvAddress(rs.getString("trv_address"));
+				tp.setTrvDateStart(rs.getDate("trv_date_start"));
+				tp.setTrvDateEnd(rs.getDate("trv_date_end"));
+				tp.setTrvReview(rs.getString("trv_review"));
+				tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
+				tp.setTrvLargeCtg(trvLargeCtg);
+				tp.setTrvSmallCtg(trvSmallCtg);	//카테고리 테이블에서 조인하여 불러올것  
+				tp.setTrvGps(rs.getString("trv_gps"));
+				tp.setTrvDate(rs.getDate("trv_write_date"));
+				tp.setMemberId(rs.getString("member_id"));
+				tp.setHits(rs.getInt("trv_hits"));
+				list.add(tp);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+*/
 	
 
 }
