@@ -8,8 +8,8 @@
 <% 
 List<TravelProduct> tplist = new ArrayList(); 
 TravelProduct tp,tp1,tp2,tp3=new TravelProduct();
-tplist = new travelSearchService().travelSearchAll();
-//tplist=new travelSearchService().travelSearchCt(1);
+//tplist = new travelSearchService().travelSearchAll();
+tplist=new travelSearchService().travelSearchCt(1);
 tp1=tplist.get(0);
 tp2=tplist.get(1);
 tp3=tplist.get(2);

@@ -66,6 +66,7 @@ public class travelSearchDao {
 			 
 			while (rs.next()) {
 				double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
+				//double aveStarRate = rs.getDouble("point");
 				TravelProduct tp=new TravelProduct();
 				tp.setTrvNo(rs.getInt("trv_No"));
 				tp.setTrvTitle(rs.getString("trv_Title"));
@@ -117,7 +118,12 @@ public class travelSearchDao {
 			rs=pstmt.executeQuery();
 			 
 			while (rs.next()) {
-				double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
+				//double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
+				double aveStarRate = 0.0;
+				if(rs.getString("point")!=null)
+				{
+					aveStarRate = rs.getDouble("point");
+				}		
 				TravelProduct tp=new TravelProduct();
 				tp.setTrvNo(rs.getInt("trv_No"));
 				tp.setTrvTitle(rs.getString("trv_Title"));
@@ -125,13 +131,13 @@ public class travelSearchDao {
 				tp.setTrvProvince(rs.getString("trv_Province"));
 				tp.setTrvCity(rs.getString("trv_city"));
 				tp.setTrvAddress(rs.getString("trv_address"));
-				tp.setTrvDateStart(rs.getDate("trv_date_start"));
-				tp.setTrvDateEnd(rs.getDate("trv_date_end"));
-				tp.setTrvReview(rs.getString("trv_review"));
-				tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
-				tp.setTrvGps(rs.getString("trv_gps"));
-				tp.setTrvDate(rs.getDate("trv_write_date"));
-				tp.setMemberId(rs.getString("member_id"));
+				//tp.setTrvDateStart(rs.getDate("trv_date_start"));
+				//tp.setTrvDateEnd(rs.getDate("trv_date_end"));
+				//tp.setTrvReview(rs.getString("trv_review"));
+				//tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
+				//tp.setTrvGps(rs.getString("trv_gps"));
+				//tp.setTrvDate(rs.getDate("trv_write_date"));
+				//tp.setMemberId(rs.getString("member_id"));
 				tp.setAvgStarRate(aveStarRate);
 				list.add(tp);
 								
