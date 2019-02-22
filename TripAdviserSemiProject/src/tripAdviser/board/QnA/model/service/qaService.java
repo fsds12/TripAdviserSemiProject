@@ -1,14 +1,16 @@
 package tripAdviser.board.QnA.model.service;
 
-import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.List;
 
 import tripAdviser.board.QnA.model.dao.qaDao;
 import tripAdviser.board.model.vo.Board;
+import tripAdviser.board.model.vo.BoardAnswer;
 
 public class qaService {
 	private qaDao dao=new qaDao();
@@ -88,6 +90,15 @@ public class qaService {
 	public int selectQaCount(String type, String key) {
 		Connection conn=getConnection();
 		int result=dao.selectQaCount(conn, type, key);
+		close(conn);
+		return result;
+	}
+	
+	public int insertComment(BoardAnswer ba) {
+		Connection conn=getConnection();
+		int result=dao.insertComment(conn, ba);
+		if(result>0) commit();
+		else rollback();
 		close(conn);
 		return result;
 	}

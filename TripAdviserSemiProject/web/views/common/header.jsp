@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="tripAdviser.member.model.vo.Member" %>
+<%
+	Member loginMember=(Member)session.getAttribute("loginMember");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +29,7 @@
 <body>
     <header>
         <div class="header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed-top" role="navigation">
+            <nav class="navbar navbar-expand-lg navbar-light bg-transparent fixed" role="navigation">
                 
                 <img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
                 <span>&nbsp;&nbsp;</span>
@@ -84,14 +88,14 @@
                             </ul>
               
                     <ul class="nav navbar-nav navbar-right">
-                        <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Sign up"></li>
-                        <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Log In"></li>
-
-                        <!-- 로그인시
+                    <%if(loginMember==null){ %>
+                        <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/enrollpage'" value="Sign up"></li>
+                        <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/loginpage'" value="Log In"></li>
+                         <%}else{ %>
                     <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="MyPage"></li>
                     <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Admin"></li> 
-                    <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Logout"></li>
-                    -->
+                    <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Logout" onclick="location.href='<%=request.getContextPath()%>/logout'"></li>
+                    <%} %>
                     </ul>
                 </div>
             </nav>

@@ -1,107 +1,138 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html>
+
 <%@ include file="/views/common/header.jsp" %>
-<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-<!------ Include the above in your HEAD tag ---------->
 
-<style>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
+    <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
+    <style>
+        :root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
 
-    section#enroll-container{
+body {
+  background: lightgray;
+  /* background: linear-gradient(to right, #0062E6, #33AEFF); */
+}
+section#wcw-enroll-container{
     width: 100%;
-    background-color:lightgray;
 }
-
-    section#enroll-container article#enroll-article{
-    width: 650px;
-    margin:auto;
-    
-    
+article{
+    margin-left: auto;
+    margin-right: auto;  
+      
 }
-
-    section#enroll-container article#enroll-article div#enroll-div{
-
-       background-color: white;
-        width: 625px;   
-        padding-top: 60px;
-        padding-bottom: 50px;
-        border: 0;
-  
+section#wcw-enroll-container .card-signin {
+  border: 0;
   box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.2);
+  width: 559px;
+  margin: auto;
   
+}
 
-        
-    }
+section#wcw-enroll-container .card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
 
-    section#enroll-container div#enroll-div div#enroll-title h5{
-        font-weight: initial;
-        font-size: 30px;    
-    }
-    div.control-group input[type="text"],div.control-group input[type="password"],div.control-group input[type="email"]{
+section#wcw-enroll-container .card-signin .card-body {
+  padding: 2rem;
+  margin: auto;
+  /* margin: auto; */
+}
+
+section#wcw-enroll-container .form-signin {
+    margin: auto;
+}
+
+
+
+section#wcw-enroll-container .form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+section#wcw-enroll-container .form-label-group input {
+  height: auto;
+  border-radius: 2rem;
+}
+
+section#wcw-enroll-container .form-label-group>input,
+section#wcw-enroll-container .form-label-group>label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+section#wcw-enroll-container .form-label-group>label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 355px;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+section#wcw-enroll-container .form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+section#wcw-enroll-container .form-label-group input:-ms-input-placeholder {
+  color: transparent;
+}
+
+section#wcw-enroll-container .form-label-group input::-ms-input-placeholder {
+  color: transparent;
+}
+
+section#wcw-enroll-container .form-label-group input::-moz-placeholder {
+  color: transparent;
+}
+
+section#wcw-enroll-container .form-label-group input::placeholder {
+  color: transparent;
+}
+
+section#wcw-enroll-container .form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+section#wcw-enroll-container .form-label-group input:not(:placeholder-shown)~label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
+}
+
+section#wcw-enroll-container .btn{
+    display: inline-block;
+    margin-left: 11px;
+}
+section#wcw-enroll-container input[type="text"],section#wcw-enroll-container input[type="password"],section#wcw-enroll-container input[type="email"]{
         width: 350px;
-        
-    }
-    article input#userid{
-        display: inline-block;       
-    }
-    div label{
-        margin-left: 15px;
+        height: 51px;
         display: inline-block;
     }
-    
-    section#enroll-container div[name="controls"]{
-        display: inline-block;
-        padding-bottom: 17px;
-    }
-    section#enroll-container #userid{
-        display: inline-block;
-        margin-left: 50px;
-        border-radius: 2rem;
-    }
-    section#enroll-container #password{
-        display: inline-block;
-        margin-left: 35px;
-        border-radius: 2rem;
 
-    }
-    section#enroll-container #password_confirm{
-        display: inline-block;
-        margin-left: 2px;
-        border-radius: 2rem;
-
-
-    }
-    section#enroll-container #email{
-        display: inline-block;
-        margin-left: 50px;
-        border-radius: 2rem;
-        line-height: 1.5;
-    }
-    section#enroll-container #cknumber{
-        display: inline-block;
-        margin-left: 35px;
-        border-radius: 2rem;
-    }
-    section#enroll-container #username{
-        display: inline-block;
-        margin-left: 64px;
-        border-radius: 2rem;
-    }
-    section#enroll-container #address{
-        display: inline-block;
-        margin-left: 34px;
-        border-radius: 2rem;
-    }
-    section#enroll-container #address2{
-        display: inline-block;
-        margin-left: 34px;
-        border-radius: 2rem;
-
-
-    }
-    section#enroll-container article#enroll-article div#enrollreset button{
-    outline: 0;
+    section#wcw-enroll-container div#enrollreset input{
+        outline: 0;
     padding: 5px 12px;
     color: #9fa8b0;
     font-weight: bold;
@@ -118,14 +149,14 @@
     -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.2); /* Firefox */
     -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.2); /* Safari, Chrome */
     }
-    section#enroll-container article#enroll-article div#enrollreset button:hover{
+    section#wcw-enroll-container #signup:hover, section#wcw-enroll-container #reset:hover{
         color: #fff;
     background: #4C5A64; /* old browsers */
     background: -moz-linear-gradient(top, #4C5A64 3%, #404F5A 4%, #2E3940 100%); /* firefox */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(3%,#4C5A64), color-stop(4%,#404F5A), color-stop(100%,#2E3940)); /* webkit */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4C5A64', endColorstr='#2E3940',GradientType=0 ); /* ie */
     }
-    section#enroll-container article#enroll-article div#enrollreset button:active{
+    section#wcw-enroll-container div#enrollreset #signup:active, section#wcw-enroll-container div#enrollreset #reset:active{
         background-position: 0 top;
     position: relative;
     top: 1px;
@@ -139,118 +170,82 @@
     -webkit-box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* Safari, Chrome */
     box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* CSS3 */
     }
-    section#enroll-container article#enroll-article div#enrollreset button{
-        position: relative; left: 420px;
-    }
-    section#enroll-container article#enroll-article div#enrollreset{
-        margin-top: 40px;
-    }
-   
-    section#enroll-container article#enroll-article div.control-group button.btn-secondary{
-        margin-left: 9px;
-    }
-    section#enroll-container article#enroll-article #enroll-title{
-        position: relative; bottom: 30px;
-        font-weight: 300;
-        font-size: 1.5rem;
-    }
-    
 </style>
-<section id="enroll-container">
-    <article id="enroll-article">
-        <div id="enroll-top-div">
-            <div id="enroll-div">
-                <form class="form-horizontal" action='' method="POST">
+</head>
 
-                    <div id="enroll-title">
-                        <h5 class="card-title text-center">회원가입</h5>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label" for="userid">아이디</label>
-                        <div class="controls" name="controls" style="display:inline-block;">
-                            <input type="text" id="userid" name="userid" placeholder="" class="form-control" />
-                            <button class="btn btn-secondary">중복확인</button>
+<body>
+    <section id="wcw-enroll-container">
+        <article id="enroll-article">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto">
+                    <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">회원가입</h5>
+                            <form action="<%=request.getContextPath() %>/login" class="form-signin" method="POST">
+                                <div class="form-label-group">
+                                    <input type="text" id="inputEmail" name="inputEmail" class="form-control"
+                                        placeholder="아이디" required autofocus>
+                                    <label for="inputEmail"> 아이디</label>
+                                    <button class="btn btn-secondary">중복확인</button>
+                                </div>
+
+                                <div class="form-label-group">
+                                    <input type="password" id="inputPassword" name="inputPassword" class="form-control"
+                                        placeholder="비밀번호" required>
+                                    <label for="inputPassword">비밀번호</label>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="password" id="password_confirm" name="password_confirm" class="form-control"
+                                        placeholder="비밀번호" required>
+                                    <label for="password_confirm">비밀번호 확인</label>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="이메일"
+                                        required>
+                                    <label for="email">이메일</label>
+                                    <button class="btn btn-secondary">인증번호보내기</button>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="text" id="cknumber" name="cknumber" class="form-control" placeholder="비밀번호"
+                                        required>
+                                    <label for="cknumber">인증번호</label>
+                                    <button class="btn btn-secondary">인증번호확인</button>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="text" id="username" name="username" class="form-control" placeholder="비밀번호"
+                                        required>
+                                    <label for="username">이름</label>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="text" id="address" name="address" class="form-control" placeholder="비밀번호"
+                                        required>
+                                    <label for="address">우편번호</label>
+                                    <button class="btn btn-secondary">우편번호검색</button>
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="text" id="address2" name="address2" class="form-control" placeholder="비밀번호"
+                                        required>
+                                    <label for="address2">상세주소</label>
+                                </div>
+
+                                <div class="control-group">
+                                        <!-- Button -->
+                                        <div class="controls" id="enrollreset">
+                                            <input type="submit" id="signup" value="회원가입" class="btn btn-success"/>
+                                            <input type="reset" id="reset" value="취소" class="btn btn-success"/>    
+                                                                                                 
+                                        </div>
+                                    </div>
+
+
+                            </form>
                         </div>
+                        <img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
                     </div>
-
-                    <div class="control-group">
-                        <!-- Password-->
-                        <label class="control-label" for="password">비밀번호</label>
-                        <div class="controls" name="controls">
-                            <input type="password" id="password" name="password" placeholder="" class="form-control">
-                            <!-- <p class="help-block">Password should be at least 4 characters</p> -->
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <!-- Password -->
-                        <label class="control-label" for="password_confirm">비밀번호 확인</label>
-                        <div class="controls" name="controls">
-                            <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="form-control">
-                            <!-- <p class="help-block">Please confirm password</p> -->
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <!-- E-mail -->
-                        <label class="control-label" for="email">이메일</label>
-                        <div class="controls" name="controls">
-                            <input type="email" id="email" name="email" placeholder="" class="form-control">
-                            <button class="btn btn-secondary">인증번호 보내기 </button>
-
-                            <!-- <p class="help-block">Please provide your E-mail</p> -->
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="cknumber">인증번호</label>
-                        <div class="controls" name="controls">
-                            <input type="text" id="cknumber" name="cknumber" class="form-control" />
-                            <button class="btn btn-secondary">인증번호 확인</button>
-
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <!-- Username -->
-                        <label class="control-label" for="username">이름</label>
-                        <div class="controls" name="controls">
-                            <input type="text" id="username" name="username" placeholder="" class="form-control">
-                            <!-- <p class="help-block">Username can contain any letters or numbers, without spaces</p> -->
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="address">우편번호</label>
-                        <div class="controls" name="controls">
-                            <input type="text" id="address" name="address" class="form-control" />
-                            <button class="btn btn-secondary">우편번호 검색</button>
-
-                        </div>
-                    </div>
-
-                    <div class="control-group">
-                        <label class="control-label" for="address2">상세주소</label>
-                        <div class="controls" name="controls">
-                            <input type="text" id="address2" name="address2" class="form-control" />
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="control-group">
-                        <!-- Button -->
-                        <div class="controls" id="enrollreset">
-                            <button id="enroll" class="btn btn-success">회원가입</button>
-                            <button id="reset" class="btn btn-success">취소</button>
-
-                        </div>
-                    </div>
-
-
-
-                </form>
+                </div>
             </div>
+        </div>
     </article>
-</section>
-<%@ include file="/views/common/footer.jsp" %>
+    </section>
+    <%@ include file="/views/common/footer.jsp" %>

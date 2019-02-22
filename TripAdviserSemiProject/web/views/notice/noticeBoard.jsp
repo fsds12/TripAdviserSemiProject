@@ -3,6 +3,7 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <%
+	
 	List<Board> list=(List)request.getAttribute("list");
 	int cPage=(int)request.getAttribute("cPage");
 	int numPerPage=(int)request.getAttribute("numPerPage");

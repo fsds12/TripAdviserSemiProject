@@ -1,5 +1,7 @@
 package tripAdviser.board.QnA.model.dao;
 
+import static common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +11,7 @@ import java.util.List;
 import java.util.Properties;
 
 import tripAdviser.board.model.vo.Board;
-import static common.JDBCTemplate.close;
+import tripAdviser.board.model.vo.BoardAnswer;
 
 public class qaDao {
 	private Properties prop=new Properties();
@@ -249,6 +251,23 @@ public class qaDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertComment(Connection conn, BoardAnswer ba) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("insertComment");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
 			result=pstmt.executeUpdate();
 		}catch (Exception e) {
 			// TODO: handle exception

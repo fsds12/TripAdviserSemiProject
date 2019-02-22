@@ -1,7 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	<% 
+	Cookie[] cookies=request.getCookies();
+	
+	String saveId=null;
+	
+	if(cookies!=null){
+		for(Cookie c : cookies){
+			String key=c.getName();
+			String value=c.getValue();
+			
+			if(key.equals("saveId")){
+				saveId=value;
+				break;
+			}
+			
+		}
+	}
+	%>
 <!DOCTYPE html>
 <html>
+
         <%@ include file="/views/common/header.jsp" %>
 
 <head>
@@ -143,21 +163,21 @@ div.container div.row div#checkboxdiv{
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">로그인</h5>
-                        <form class="form-signin">
+                        <form action="<%=request.getContextPath() %>/login" class="form-signin" method="POST">
                             <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control" placeholder="아이디" required
+                                <input type="text" id="inputEmail" name="inputEmail" class="form-control" placeholder="아이디" value="<%=saveId!=null?saveId:""%>" required
                                     autofocus>
                                 <label for="inputEmail"> 아이디</label>
                             </div>
 
                             <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호"
+                                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="비밀번호"
                                     required>
                                 <label for="inputPassword">비밀번호</label>
                             </div>
 
                             <div class="custom-control custom-checkbox mb-3" id="checkboxdiv">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <input type="checkbox" class="custom-control-input" name="customCheck1" id="customCheck1" <%=saveId!=null?"checked":"" %>>
                                 <label class="custom-control-label" for="customCheck1">아이디 저장</label>
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" id="login" type="submit">로그인</button>
