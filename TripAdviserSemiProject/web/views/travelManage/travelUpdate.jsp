@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="/views/common/header.jsp" %>
-
+<%-- <%@ include file="/views/common/header.jsp" %>
+ --%>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jquery-ui.min.css">
 <script src="<%=request.getContextPath() %>/js/jquery-ui.min.js"></script>
 <script src="<%=request.getContextPath() %>/js/scripts.js"></script>
 
 
-<section id="sec">
  <article id="trArt">
   <div class="container">
 	<form action="" method="post">
@@ -22,17 +21,37 @@
 		<label>카테고리</label> 
 		<select class="trvBigCtgCode">
 			<option value="대분류">대분류</option>
-			<option value="기타">기타</option>
+			<option value="CL01">휴식거리</option>
+			<option value="CL02">즐길거리</option>
+			<option value="CL03">먹을거리</option>
+			
 		</select> 
 		<select class="trvSmallCtgCode">
 			<option value="소분류">소분류</option>
-			<option value="기타">기타</option>
+			<option value="CS01">호텔</option>
+			<option value="CS02">게스트하우스</option>
+			<option value="CS03">템플스테이</option>
+			<option value="CS04">볼거리</option>
+			<option value="CS05">놀거리</option>
+			<option value="CS06">정식</option>
+			<option value="CS07">지역특산음식</option>
+			<option value="CS08">길거리음식</option>
 		</select> 
 	 </div>
 	 <div class="inputArea">
 		<label for="trvProvince">여행지 도</label> 
 		<select class="trvProvince">
+			<option value="서울시">서울시</option>
 			<option value="경기도">경기도</option>
+			<option value="대전시">대전시</option>
+			<option value="부산시">부산시</option>
+			<option value="대구시">대구시</option>
+			<option value="전주시">전주시</option>
+			<option value="광주시">광주시</option>
+			<option value="세종시">세종시</option>
+			<option value="춘천시">춘천시</option>
+			<option value="제주시">제주시</option>
+			<option value="서귀포시">서귀포시</option>
 			<option value="강원도">강원도</option>
 			<option value="충청북도">충청북도</option>
 			<option value="충청남도">충청남도</option>
@@ -113,7 +132,7 @@
 	</form>
   </div>
  </article>
-</section>
+
 
 
 <script>
@@ -159,5 +178,5 @@ file.onchange = function () {
 }; 
 
 </script>
-
-<%@ include file="/views/common/footer.jsp" %>
+<%-- 
+<%@ include file="/views/common/footer.jsp" %> --%>

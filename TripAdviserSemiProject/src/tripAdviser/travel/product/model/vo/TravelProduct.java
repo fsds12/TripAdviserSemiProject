@@ -206,6 +206,16 @@ public class TravelProduct {
 		this.bestComment = bestComment;
 	}
 
+	@Override
+	public String toString() {
+		return "TravelProduct [trvNo=" + trvNo + ", trvTitle=" + trvTitle + ", avgStarRate=" + avgStarRate
+				+ ", trvRepresentPic=" + trvRepresentPic + ", trvProvince=" + trvProvince + ", trvCity=" + trvCity
+				+ ", trvAddress=" + trvAddress + ", trvDateStart=" + trvDateStart + ", trvDateEnd=" + trvDateEnd
+				+ ", trvReview=" + trvReview + ", trvLargeCtg=" + trvLargeCtg + ", trvSmallCtg=" + trvSmallCtg
+				+ ", trvGps=" + trvGps + ", trvDate=" + trvDate + ", memberId=" + memberId + ", hits=" + hits
+				+ ", CommentLists=" + CommentLists + ", AlbumUrls=" + AlbumUrls + ", bestComment=" + bestComment + "]";
+	}
+
 	
 
 	

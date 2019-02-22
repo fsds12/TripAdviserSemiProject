@@ -1,15 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct, tripAdviser.member.model.vo.Member, java.util.*" %>
 
 <%@ include file="/views/common/header.jsp"%>
 
+<%
+	
+List<TravelProduct> list=(List)request.getAttribute("list");
+String pageBar=(String)request.getAttribute("pageBar");
+
+%>
 
 
-<section id="features">
-	<form action="" method="post">
+
+
+<section id="trvList">
+	<form name="AdminListFrm" id="AdminListFrm" action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">
+		<!-- <input type="hidden" name="trvNo" value=""/> -->
 		<div class="container">
 
-
+			
 			<div id="con-bottom">
 
 
@@ -25,32 +35,24 @@
 						</tr>
 					</thead>
 					<tbody>
+						<%
+							for(TravelProduct t : list)
+							{
+						%>
+						 
 						<tr>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-						
-						
+							<td>
+								<a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=t.getTrvNo()%>">
+									<%=t.getTrvTitle() %>
+								</a>
+								
+							</td>
+							<td><%=t.getTrvSmallCtg() %></td>
+							<td><%=t.getTrvDate() %></td>
+							<td><%=t.getMemberId() %></td>
 						</tr>
-
-						<tr>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							
-							
-						</tr>
-
-						<tr>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-							<td>리스트값</td>
-				
+						<%  } %>
 						
-						</tr>
 						
 					</tbody>
 					<tfoot>
@@ -69,32 +71,20 @@
 			
 
 			
-			<nav aria-label="Page navigation example" style="text-align: center;">
-				<ul class="pagination">
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							<span class="sr-only">Previous</span>
-					</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#"
-						aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
-							class="sr-only">Next</span>
-					</a></li>
-				</ul>
-			</nav>
+				<div>
+					<%=pageBar %>
+				</div>
 			<div class="row aln-center">
 
 				<div class="col-12">
 
-					<select id="category">
+					<select class="custom-select" id="category">
 						<option>항목</option>
 						<option>카테고리명</option>
 						<option>상품제목</option>
 					</select>
 
-					<input type="text" name="item" id="item" />
+					<input type="text" class="form-control" name="item" id="item" />
 					<button id="pro-search">검색</button>
 
 				</div>
