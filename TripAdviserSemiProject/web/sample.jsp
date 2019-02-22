@@ -50,6 +50,54 @@
   </div>
 </div>
 
+<br><br><BR><BR><BR><BR>
+<style>
+	div.box-padding-big div.container div.card-group div.card {
+		max-width: 300px;
+	}
+</style>
+<div class="box-padding-big white-bg" >
+	<div class="container" >
+		<div class="card-group" >
+
+         <%for(int i=0; i<2; i++){
+            if(i == 3){
+               break;
+            }
+         %> 
+         
+			<div class="card">
+            
+            	<a href=""><img class="card-img-top" src="http://korad.ecatalog.kr/file/webzine/79/wz_79_12_4_1505640412.jpg" style="height:300px"></a>
+   
+			<div class="card-block">
+      
+   
+   
+	         <h5 class="card-title">&nbsp;&nbsp;&nbsp;제목</h5>
+	         <p class="card-text">&nbsp;&nbsp;&nbsp;내용</p>
+	         <p class="card-text"><div class="starRev">&nbsp;&nbsp;
+			<%    
+	        for(int k=0; k<2; k++){
+			%>
+				<span class="starR on"></span>
+			        <% }
+			        for(int j=0; j<5-2; j++){
+			        %>
+			        <span class="starR"></span>
+			        <% } %>
+				<span id="starRateScore">3.0</span> Stars
+  
+			</div>
+         	</p>      
+      </div>
+      </div>
+
+         <%} %>
+      </div>
+   </div>
+</div> 
+
 <script>
 $(document).ready(function(){
   $(".nav-tabs a").click(function(){

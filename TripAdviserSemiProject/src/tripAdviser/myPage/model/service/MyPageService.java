@@ -6,6 +6,7 @@ import static common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import java.util.List;
 
+import tripAdviser.member.model.vo.Member;
 import tripAdviser.myPage.model.dao.MyPageDao;
 import tripAdviser.myPage.model.vo.MyPageComment;
 import tripAdviser.travel.product.model.vo.TravelProduct;
@@ -38,5 +39,13 @@ public class MyPageService {
 		close(conn);
 		
 		return list;
+	}
+	
+	public Member selectId(String id) {
+		conn = getConnection();
+		Member m = dao.selectId(conn, id);
+		close(conn);
+		
+		return m;
 	}
 }

@@ -23,7 +23,8 @@
 	$(function() {
 		$('#tab1').click(function() {
 			$.ajax({
-				url: "<%=request.getContextPath()%>/myPage/myProfile",
+				url: "<%=request.getContextPath()%>/myPage/myProfile?id=" + "<%=id %>" ,
+				<%-- url: "<%=request.getContextPath()%>/views/myPage/myProfile.jsp", --%>
 				type: "post",
 				dataType: "html",
 				success: function(data) {

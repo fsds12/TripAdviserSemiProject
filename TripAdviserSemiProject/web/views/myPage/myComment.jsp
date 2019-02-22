@@ -28,6 +28,7 @@
 <section id="myComment-section">
 	<article id="myComment-container" style="width: 100%;">
 	<div style="margin: auto; max-width:880px;">
+	<%if(myCommentList != null) {%>
 	<%for(int i=0; i<myCommentList.size(); i++) {%>
 		<div class="comment-space" style="margin-bottom: 5px; padding:2px; border: 1px solid black; max-width:880px; height: 110px;">
 			<div class=""><h6>여행지제목: <span><%=myCommentList.get(i).getTrvTitle() %></span></h6></div>
@@ -52,6 +53,9 @@
 		<nav id="pageBar">
 			<%=pageBar %>
 		</nav>
+	<%}else{ %>
+	<span>코멘트가없습니다!</span>
+	<%} %>
 	</div>
 	</article>
 </section>

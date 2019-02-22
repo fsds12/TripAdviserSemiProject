@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import tripAdviser.member.model.vo.Member;
 import tripAdviser.myPage.model.vo.MyPageComment;
 import tripAdviser.travel.product.model.dao.TravelProductDetailDao;
 import tripAdviser.travel.product.model.vo.TravelProduct;
@@ -119,5 +120,40 @@ public class MyPageDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public Member selectId(Connection conn, String id) {
+		Member m = null;
+		sql = prop.getProperty("selectId");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				m = new Member();
+				
+				m.setMemberId(rs.getString("member_id"));
+				m.setMemberPw(rs.getString("member_pw"));
+				m.setMemberGrade(rs.getInt("member_grade"));
+				m.setAddress(rs.getString("address"));
+				m.setAddressDetail(rs.getString("address_detail"));
+				m.setEmail(rs.getString("email"));
+				m.setName(rs.getString("name"));
+				m.setMemberPictureUrl(rs.getString("member_picture_url"));
+				m.setPhone(rs.getString("phone"));
+				m.setEnrollDate(rs.getDate("enroll_date"));
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return m;
 	}
 }
