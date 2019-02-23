@@ -68,7 +68,5 @@
 	<article id="profile-update-container">
 		<button type="button" class="btn btn-secondary" onclick="fn_profile_modify_close()">수정Article 닫기</button>
 	</article>
-<%}else{ %>
-<p>올바르지않은 접근이거나 데이터가 존재하지않습니다!</p>
-<%} %>
+<%}%>
 </section>
