@@ -44,6 +44,8 @@ public class TravelAdminService {
 
 	public int insertAdmin(TravelProduct tp) {
 		Connection conn=getConnection();
+		
+		
 		int result=new TravelAdminDao().insertAdmin(conn,tp);
 		if(result>0)
 		{
@@ -53,7 +55,7 @@ public class TravelAdminService {
 		{
 			rollback();
 		}
-		
+		close(conn);
 		return result;
 	}
 
@@ -64,13 +66,36 @@ public class TravelAdminService {
 		return tp;
 	}
 
-	/*public List<TravelProduct> insertFile(List<String> fileNames) {
+	public int updateAdmin(TravelProduct tp) {
 		Connection conn=getConnection();
-		List<TravelProduct> list=new TravelAdminDao().insertFile(conn,fileNames);
+		int result=new TravelAdminDao().updateAdmin(conn,tp);
+		if(result>0)
+		{
+			commit();
+		}
+		else
+		{
+			rollback();
+		}
 		close(conn);
-		return list;
-	}*/
+		return result;
+	}
 
-	
+	public int deleteAdmin() {
+		Connection conn=getConnection();
+		int result=new TravelAdminDao().deleteAdmin(conn);
+		if(result>0)
+		{
+			commit();
+		}
+		else
+		{
+			rollback();
+		}
+		
+		close(conn);
+		return result;
+	}
+
 
 }

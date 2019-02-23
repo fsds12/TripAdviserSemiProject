@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -20,6 +21,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import tripAdviser.admin.model.service.TravelAdminService;
+import tripAdviser.member.model.vo.Member;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
 /**
@@ -42,11 +44,11 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//int trvNo=Integer.parseInt(request.getParameter("trvNo"));
+		/*HttpSession session=request.getSession();
+		Member loginMember = (Member)session.getAttribute("loginMember");*/
+		
 		int trvNo = 0;
-		
-		/*System.out.println(trvNo);*/
-		
+
 		if(!ServletFileUpload.isMultipartContent(request))
 		{
 			request.setAttribute("msg", "업로드오류");
@@ -101,7 +103,6 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		/*String dend=mr.getParameter("trvDateEnd").replaceAll("-", "/");*/
 		
 		System.out.println(title);
-				/*System.out.println(ctg);*/
 		System.out.println(province);
 		System.out.println(city);
 		System.out.println(addr);
@@ -116,7 +117,6 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		
 		tp.setTrvNo(trvNo);
 		tp.setTrvTitle(title);
-				/*tp.setTrvSmallCtg(ctg);*/
 		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
@@ -124,16 +124,14 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		tp.setTrvDateEnd(sd2);
 		tp.setAlbumUrls(fileNames);
 		tp.setTrvReview(content);
-		
-		
-		
+		 
 		
 		int result=new TravelAdminService().insertAdmin(tp);
 	
 		System.out.println(result);
 		
 		String msg="";
-		String loc="/travel/travelProductDetail?trvNo="/*+tp.getTrvNo()*/;   /*+trvNo*/ /*tp.getTrvNo*/
+		String loc="/travel/TravelAdminListView";   
 		String view="/views/common/msg.jsp";
 		
 		if(result>0)
@@ -149,12 +147,6 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request, response);
-		
-		
-		
-		
-		/*<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo()%>*/
-		/*request.getRequestDispatcher("").forward(request, response);*/
 		
 		
 		

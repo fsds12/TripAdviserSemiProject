@@ -109,6 +109,5 @@ public class Member {
 				+ ", address=" + address + ", addressDetail=" + addressDetail + ", phone=" + phone + ", enrollDate="
 				+ enrollDate + "]";
 	}
-
 	
 }

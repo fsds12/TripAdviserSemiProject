@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TravelAdminUpdateServlet
  */
-@WebServlet("/travel/travelAdminUpdate")
+@WebServlet("/travel/travelAdminUpdate") 	/*/travel/travelModify*/
 public class TravelAdminUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -19,7 +19,7 @@ public class TravelAdminUpdateServlet extends HttpServlet {
      */
     public TravelAdminUpdateServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        // TODO Auto-generated  stub
     }
 
 	/**

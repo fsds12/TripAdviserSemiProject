@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tripAdviser.admin.model.service.TravelAdminService;
+import tripAdviser.member.model.vo.Member;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
 /**
@@ -32,6 +33,14 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	      /*Member loginMember=(Member)request.getSession(false).getAttribute("loginMember");
+	      if(loginMember==null||!"admin".equals(loginMember.getMemberId()))
+	      {
+	         request.setAttribute("msg", "잘못된 경로로 이동하셨습니다.");
+	         request.setAttribute("loc", "/");
+	         request.getRequestDispatcher("/views/common/msg.jsp")
+	         .forward(request, response);
+	      }*/
 		
 		
 		//페이징처리로직
