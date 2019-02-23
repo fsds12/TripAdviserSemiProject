@@ -157,6 +157,9 @@ section#idpwsearch-container article#allarti .blackbtn:active{
     -webkit-box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* Safari, Chrome */
     box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* CSS3 */
 }
+section#idpwsearch-container input[type=email]{
+display: inline-block; 
+}
 
 </style>
 </head>
@@ -185,8 +188,9 @@ section#idpwsearch-container article#allarti .blackbtn:active{
 
                                     <div class="form-label-group">
                                         <input type="email" id="email" name="email" class="form-control" placeholder="이메일"
-                                            required>
+                                            required >
                                         <label for="email">이메일주소</label>
+                                        
                                     </div>
                                     
                                     <div class="controlsbutton"> 
@@ -206,7 +210,7 @@ section#idpwsearch-container article#allarti .blackbtn:active{
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title text-center">비밀번호 찾기</h5>
-                                <form action="<%=request.getContextPath() %>/login" class="form-signin" method="POST">
+                                <form action="<%=request.getContextPath() %>/pwfind" class="form-signin" method="POST">
                                     <div class="form-label-group">
                                         <input type="text" id="inputEmail2" name="inputEmail2" class="form-control"
                                             placeholder="아이디" required autofocus>
@@ -226,8 +230,8 @@ section#idpwsearch-container article#allarti .blackbtn:active{
                                     </div>
                                     
                                     <div class="controlsbutton"> 
-                                            <input id="idfind" type="submit" value="아이디찾기" class="blackbtn" />
-                                            <input id="idreset" type="reset" value="취소" class="blackbtn" />
+                                            <input id="pwfind" type="submit" value="비밀번호찾기" class="blackbtn" />
+                                            <input id="pwreset" type="reset" value="취소" class="blackbtn" />
                                     </div>
 
                                 </form>

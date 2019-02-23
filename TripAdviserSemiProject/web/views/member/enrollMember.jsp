@@ -16,8 +16,9 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.3.1.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 
 <style>
 :root { -
@@ -39,130 +40,95 @@ article {
 	margin-right: auto;
 }
 
-section#wcw-enroll-container .card-signin {
-	border: 0;
-	box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.2);
-	width: 559px;
-	margin: auto;
+.card-signin {
+  border: 0;
+  
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.2);
 }
 
-section#wcw-enroll-container .card-signin .card-title {
-	margin-bottom: 2rem;
-	font-weight: 300;
-	font-size: 1.5rem;
+.card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
 }
 
-section#wcw-enroll-container .card-signin .card-body {
-	padding: 2rem;
-	margin: auto;
-	/* margin: auto; */
+.card-signin .card-body {
+  padding: 2rem;
 }
 
-section#wcw-enroll-container .form-signin {
-	margin: auto;
+.form-signin {
+  width: 100%;
 }
 
-section#wcw-enroll-container .form-label-group {
-	position: relative;
-	margin-bottom: 1rem;
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
 }
 
-section#wcw-enroll-container .form-label-group input {
-	height: auto;
-	border-radius: 2rem;
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
 }
 
-section#wcw-enroll-container .form-label-group>input, section#wcw-enroll-container .form-label-group>label
-	{
-	padding: var(- -input-padding-y) var(- -input-padding-x);
+.form-label-group input {
+  height: auto;
+  border-radius: 2rem;
 }
 
-section#wcw-enroll-container .form-label-group>label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: block;
-	width: 355px;
-	margin-bottom: 0;
-	/* Override default `<label>` margin */
-	line-height: 1.5;
-	color: #495057;
-	border: 1px solid transparent;
-	border-radius: .25rem;
-	transition: all .1s ease-in-out;
+.form-label-group>input,
+.form-label-group>label {
+  padding: var(--input-padding-y) var(--input-padding-x);
 }
 
-section#wcw-enroll-container .form-label-group input::-webkit-input-placeholder
-	{
-	color: transparent;
+.form-label-group>label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
 }
 
-section#wcw-enroll-container .form-label-group input:-ms-input-placeholder
-	{
-	color: transparent;
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
 }
 
-section#wcw-enroll-container .form-label-group input::-ms-input-placeholder
-	{
-	color: transparent;
+.form-label-group input:-ms-input-placeholder {
+  color: transparent;
 }
 
-section#wcw-enroll-container .form-label-group input::-moz-placeholder {
-	color: transparent;
+.form-label-group input::-ms-input-placeholder {
+  color: transparent;
 }
 
-section#wcw-enroll-container .form-label-group input::placeholder {
-	color: transparent;
+.form-label-group input::-moz-placeholder {
+  color: transparent;
 }
 
-section
-#wcw-enroll-container
- 
-.form-label-group
- 
-input
-:not
- 
-(
-:placeholder-shown
-
-	
-)
-{
-padding-top
-:
- 
-calc
-(var(-
- 
--input-padding-y
-)
-+
-var
-(-
- 
--input-padding-y
-)
-*
- 
-(2/3));
-padding-bottom
-:
- 
-calc
-(var(-
- 
--input-padding-y
-)/3);
-
-
+.form-label-group input::placeholder {
+  color: transparent;
 }
-section#wcw-enroll-container .form-label-group input:not (:placeholder-shown
-	 )~label {
-	padding-top: calc(var(- -input-padding-y)/3);
-	padding-bottom: calc(var(- -input-padding-y)/3);
-	font-size: 12px;
-	color: #777;
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-label-group input:not(:placeholder-shown)~label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
 }
 
 section#wcw-enroll-container .btn {
@@ -287,7 +253,7 @@ checkid.submit();
 											class="form-control" placeholder="아이디" required autofocus>
 										<label for="inputEmail"> 아이디</label>
 										<button type="button" id="useridbtn" onclick="idcheck()"
-											class="btn btn-secondary btn-lg">중복확인</button>
+											class="btn btn-secondary">중복확인</button>
 										<br> <span id="id_span"></span>
 									</div>
 
@@ -314,7 +280,7 @@ checkid.submit();
 											class="form-control" placeholder="이메일" required> <label
 											for="email">이메일</label>
 										<button type="button" id="cknumbergo" onclick="emailgo()"
-											class="btn btn-secondary btn-lg">인증번호보내기</button>
+											class="btn btn-secondary">인증번호보내기</button>
 									</div>
 
 									<%--  <script>
@@ -328,7 +294,7 @@ checkid.submit();
 											class="form-control" placeholder="인증번호"> <label
 											for="cknumber">인증번호</label>
 										<button type="button" id="united"
-											class="btn btn-secondary btn-lg">인증번호확인</button>
+											class="btn btn-secondary">인증번호확인</button>
 										<input type="hidden" id="united2" value="0" /> <input
 											type="hidden" id="united3" value="0" /> <input type="hidden"
 											id="united4" value="3" />
@@ -352,7 +318,7 @@ checkid.submit();
 											class="form-control" placeholder="우편번호" required> <label
 											for="address">우편번호</label>
 										<button type="button" onclick="sample4_execDaumPostcode()"
-											class="btn btn-secondary btn-lg">우편번호검색</button>
+											class="btn btn-secondary">우편번호검색</button>
 									</div>
 
 									<div class="form-label-group">
@@ -375,7 +341,7 @@ checkid.submit();
 												class="btn btn-success btn-lg" /> <input type="submit"
 												id="signup" value="회원가입" class="btn btn-success btn-lg" />
 
-
+								
 										</div>
 									</div>
 									<input type="hidden" readonly="readonly" name="code_check"
