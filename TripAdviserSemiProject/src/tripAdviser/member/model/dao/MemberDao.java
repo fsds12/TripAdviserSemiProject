@@ -103,6 +103,63 @@ public class MemberDao {
 		
 		return result;
 	}
+	public Member findPw(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("findPw");
+		System.out.println(sql);
+		Member result=null;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,m.getMemberId());
+			pstmt.setString(2,m.getPhone());
+			pstmt.setString(3,m.getEmail());
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=new Member();
+				result.setMemberId(rs.getString("MEMBER_ID"));
+				result.setMemberPw(rs.getString("MEMBER_PW"));
+				result.setMemberGrade(rs.getInt("MEMBER_GRADE"));
+				result.setEmail(rs.getString("EMAIL"));
+				result.setName(rs.getString("NAME"));
+				result.setMemberPictureUrl(rs.getString("MEMBER_PICTURE_URL"));
+				result.setPostalCode(rs.getInt("POSTAL_CODE"));
+				result.setAddress(rs.getString("ADDRESS"));
+				result.setAddressDetail(rs.getString("ADDRESS_DETAIL"));
+				result.setEnrollDate(rs.getDate("ENROLL_DATA"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	public int pwchange(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("pwchange");
+		
+		try {
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1,m.getMemberPw());
+		pstmt.setString(2,m.getMemberId());
+		result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		
+		
+		return result;
+	}
 	
 }
 	
