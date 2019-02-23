@@ -108,11 +108,19 @@ public class travelSearchDao {
 		String sql="";
 		switch(categoryNo)
 		{
-		case 0:sql=prop.getProperty("selectProductCT0");break;
-		case 1:sql=prop.getProperty("selectProductCT1");break;
-		case 2:sql=prop.getProperty("selectProductCT2");break;
-		case 3:sql=prop.getProperty("selectProductCT3");break;
-		default:sql=prop.getProperty("selectProductAll");break;
+		case 0:sql=prop.getProperty("selectProductCT0");break;//전체베스트
+		case 1:sql=prop.getProperty("selectProductCT1");break;//휴식거리 베스트
+		case 2:sql=prop.getProperty("selectProductCT2");break;//즐길거리베스트
+		case 3:sql=prop.getProperty("selectProductCT3");break;//먹을거리베스트
+		case 4:sql=prop.getProperty("selectProduct1");break;//호텔베스트
+		case 5:sql=prop.getProperty("selectProduct2");break;//게스트하우스베스트
+		case 6:sql=prop.getProperty("selectProduct3");break;//템플스테이베스트
+		case 7:sql=prop.getProperty("selectProduct4");break;//볼거리베스트
+		case 8:sql=prop.getProperty("selectProduct5");break;//놀거리베스트
+		case 9:sql=prop.getProperty("selectProduct6");break;//정식베스트
+		case 10:sql=prop.getProperty("selectProduct7");break;//향토음식베스트
+		case 11:sql=prop.getProperty("selectProduct8");break;//길거리음식베스트
+	    default:sql=prop.getProperty("selectProductAll");break;
 		}
 		try {
 			pstmt = conn.prepareStatement(sql);
