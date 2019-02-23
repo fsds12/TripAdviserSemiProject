@@ -19,8 +19,8 @@
 			<td colspan="2" id="title-td"><%=b.getTitle() %></td>
 		</tr>
 		<tr height="20px">
-			<td id="writer-td"><%=b.getMemberId() %></td>
-			<td id="date-td"><%=b.getBoardDate() %></td>
+			<td id="writer-td">작성자: <%=b.getMemberId() %></td>
+			<td id="date-td">작성일: <%=b.getBoardDate() %></td>
 		</tr>
 		<tr>
 			<td colspan="2" id="content-td">

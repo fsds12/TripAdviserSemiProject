@@ -56,7 +56,7 @@ public class qaDao {
 		return list;
 	}
 	
-	public List<Board> selectQaList(Connection conn, int cPage, int numPerPage, String type, String key){
+	public List<Board> selectSearchQa(Connection conn, int cPage, int numPerPage, String type, String key){
 		List<Board> list=new ArrayList();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;

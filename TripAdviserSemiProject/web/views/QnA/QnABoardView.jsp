@@ -40,9 +40,8 @@
 		<div id="comment-box">comment</div>
 			<table id="comment-tbl">
 				<tr>
-					<td id="writer-td" width="5%"><%=b.getMemberId() %></td>
-					<td id="date-td">19.02.12</td>					
-					
+					<td id="writer-td" width="5%"><%=b.getMemberId()%></td>
+					<td id="date-td">19.02.12</td>				
 				</tr>
 				<tr>
 					<td id="content-td" colspan="3">

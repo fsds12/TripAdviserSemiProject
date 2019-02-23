@@ -30,6 +30,7 @@ public class qaService {
 		return result;
 	}
 	
+	
 	public Board selectQaOne(int boardNo, boolean hasRead) {
 		Connection conn=getConnection();
 		Board b=dao.selectQaOne(conn, boardNo);
@@ -80,9 +81,9 @@ public class qaService {
 		return result;
 	}
 	
-	public List<Board> selectQaList(int cPage, int numPerPage, String type, String key){
+	public List<Board> selectSearchQa(int cPage, int numPerPage, String type, String key){
 		Connection conn=getConnection();
-		List<Board> list=dao.selectQaList(conn, cPage, numPerPage, type, key);
+		List<Board> list=dao.selectSearchQa(conn, cPage, numPerPage, type, key);
 		close(conn);
 		return list;
 	}
@@ -110,4 +111,6 @@ public class qaService {
 		close(conn);
 		return comment;
 	}
+	
+	
 }
