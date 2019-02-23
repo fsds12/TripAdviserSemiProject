@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct, tripAdviser.member.model.vo.*" %>
+<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct" %>
 
 <%@ include file="/views/common/header.jsp" %>
 

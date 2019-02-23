@@ -38,7 +38,7 @@ public class TravelAdminDeleteViewServlet extends HttpServlet {
 		System.out.println(result);
 		
 		String msg="";
-		String loc="/travel/travelProductDetail?trvNo="/*+tp.getTrvNo()*/;   /*+trvNo*/ /*tp.getTrvNo*/
+		String loc="/travel/TravelAdminListView";               /* /travel/travelProductDetail?trvNo= */  /*+trvNo*/ /*tp.getTrvNo*/
 		String view="/views/common/msg.jsp";
 		
 		if(result>0)
