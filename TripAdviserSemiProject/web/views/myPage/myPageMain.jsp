@@ -24,7 +24,6 @@
 		$('#tab1').click(function() {
 			$.ajax({
 				url: "<%=request.getContextPath()%>/myPage/myProfile?id=" + "<%=id %>" ,
-				<%-- url: "<%=request.getContextPath()%>/views/myPage/myProfile.jsp", --%>
 				type: "post",
 				dataType: "html",
 				success: function(data) {
@@ -164,5 +163,9 @@
 		<%} %>
 	</article>
 </section>
-
+<script>
+	$(function() {
+		$('#tab1').click();
+	});
+</script>
 <%@ include file="/views/common/footer.jsp" %>
