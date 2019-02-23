@@ -1,6 +1,7 @@
 package tripAdviser.board.QnA.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import tripAdviser.board.QnA.model.service.qaService;
 import tripAdviser.board.model.vo.Board;
+import tripAdviser.board.model.vo.BoardAnswer;
 
 /**
  * Servlet implementation class QnAViewServlet
@@ -60,6 +62,11 @@ public class QnAViewServlet extends HttpServlet {
 		}
 		
 		Board b=new qaService().selectQaOne(boardNo, hasRead);
+		
+		if(b!=null) {
+			List<BoardAnswer> comment=new qaService().selectComment(boardNo);
+			request.setAttribute("comment", comment);
+		}
 		
 		request.setAttribute("Board", b);
 		request.getRequestDispatcher("/views/QnA/QnABoardView.jsp").forward(request, response);

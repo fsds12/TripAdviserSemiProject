@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="tripAdviser.board.model.vo.Board"%>
-<% Board b=(Board)request.getAttribute("Board"); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, tripAdviser.board.model.vo.*" %>
+<% 
+	Board b=(Board)request.getAttribute("Board"); 
+	List<BoardAnswer> comment=(List)request.getAttribute("comment");	
+%>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <%@ include file="/views/common/header.jsp" %>
 

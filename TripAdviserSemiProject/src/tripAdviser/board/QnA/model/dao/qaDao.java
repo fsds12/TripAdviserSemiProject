@@ -276,4 +276,34 @@ public class qaDao {
 		}
 		return result;
 	}
+	
+	public List<BoardAnswer> selectComment(Connection conn, int boardNo){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectComment");
+		List<BoardAnswer> comment=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				BoardAnswer ba=new BoardAnswer();
+				ba.setCommentNo(rs.getInt("comment_no"));
+				ba.setBoardNoRef(rs.getInt("board_no_ref"));
+				ba.setBoardContent(rs.getString("board_content"));
+				ba.setMemberId(rs.getString("member_id"));
+				ba.setCommentLevel(rs.getInt("comment_level"));
+				ba.setCommentNoRef(rs.getInt("comment_no_ref"));
+				ba.setBoardDate(rs.getDate("board_date"));
+				
+				comment.add(ba);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return comment;
+	}
 }

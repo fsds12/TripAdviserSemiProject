@@ -102,4 +102,12 @@ public class qaService {
 		close(conn);
 		return result;
 	}
+	
+	public List<BoardAnswer> selectComment(int boardNo){
+		
+		Connection conn=getConnection();
+		List<BoardAnswer> comment=dao.selectComment(conn, boardNo);
+		close(conn);
+		return comment;
+	}
 }
