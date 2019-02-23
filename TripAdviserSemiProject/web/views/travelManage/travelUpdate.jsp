@@ -11,7 +11,9 @@
 <section id="trvUpdate">
  <article id="trArt">
   <div class="container">
-	<form action="" method="post">
+	
+	<form action="<%=request.getContextPath()%>/travel/travelAdminUpdateView"
+	name="ajaxFile" method="post" enctype="multipart/form-data">
 	
   <div class="inputData">
 	 <div class="inputArea">
@@ -20,26 +22,24 @@
 	 </div>
 	 <div class="inputArea">
 		<label>카테고리</label> 
-		<select class="custom-select" id="trvBigCtgCode">
-			<option value="대분류">대분류</option>
-			<option value="기타">기타</option>
+		<select class="custom-select" id="trvCtgCode" name="trvCtg">
+			<option value="trvCtgLargeName">대분류</option>
+			<option value="trvCtgSmallName">소분류</option>
+			<!-- <option value="기타">기타</option> -->
 		</select> 
-		<select class="custom-select" id="trvSmallCtgCode">
-			<option value="소분류">소분류</option>
-			<option value="기타">기타</option>
-		</select> 
+		
 	 </div>
 	 <div class="inputArea">
 		<label for="trvProvince">여행지 도</label> 
-		<select class="custom-select" id="trvProvince">
-			<option value="경기도">경기도</option>
-			<option value="강원도">강원도</option>
-			<option value="충청북도">충청북도</option>
-			<option value="충청남도">충청남도</option>
-			<option value="전라북도">전라북도</option>
-			<option value="전라남도">전라남도</option>
-			<option value="경상북도">경상북도</option>
-			<option value="경상남도">경상남도</option>
+		<select class="custom-select" id="trvProvince" name="trvProvince">
+			<option value="trvProvince1">경기도</option>
+			<option value="trvProvince2">강원도</option>
+			<option value="trvProvince3">충청북도</option>
+			<option value="trvProvince4">충청남도</option>
+			<option value="trvProvince5">전라북도</option>
+			<option value="trvProvince6">전라남도</option>
+			<option value="trvProvince7">경상북도</option>
+			<option value="trvProvince8">경상남도</option>
 		</select> 
 	 </div>
 	 <div class="inputArea">
@@ -64,24 +64,24 @@
 	
 					<div id="trvImg1" style="width:250px">
 						<img id="preview" src="" width="200" alt="">
-						<input type="file" id="getfile" style="width:200px" accept="image/*">
+						<input type="file" name="trvRepresentPic" id="getfile" style="width:200px">
 					</div>
 
 
 					<div id="trvImg2" style="width:250px">
 						<img id="preview2" src="" width="200" alt="">
-						<input type="file" id="getfile2" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc1" id="getfile2" style="width:200px">
 					</div>
 					
 					
 					<div id="trvImg3" style="width:250px">
 						<img id="preview3" src="" width="200" alt="">
-						<input type="file" id="getfile3" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc2" id="getfile3" style="width:200px" multiple>
 					</div>
 					
 					<div id="trvImg4" style="width:250px">
 						<img id="preview4" src="" width="200" alt="">
-						<input type="file" id="getfile4" style="width:200px" accept="image/*">
+						<input type="file" name="trvPicSrc3" id="getfile4" style="width:200px" multiple>
 					</div>
 
 	</div>

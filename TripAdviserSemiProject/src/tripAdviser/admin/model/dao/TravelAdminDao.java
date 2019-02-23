@@ -192,6 +192,8 @@ public class TravelAdminDao {
 		ResultSet rs=null;
 		int result=0;
 		List<String> urlList=new ArrayList();
+		
+		
 		String sql=prop.getProperty("insertAdmin");
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -285,40 +287,41 @@ public class TravelAdminDao {
 		return tp;
 	}
 
-	
-/*	public List<TravelProduct> insertFile(Connection conn, List<String> fileNames) {
+	public int updateAdmin(Connection conn, TravelProduct tp) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<TravelProduct> list=new ArrayList();
-		String sql=prop.getProperty("insertFile");
+		int result=0;
+		List<String> urlList=new ArrayList();
+		String sql=prop.getProperty("updateAdmin");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setArray(1, (Array) fileNames);
-			rs=pstmt.executeQuery();
-			while(rs.next())
-			{
-				TravelProduct tp=new TravelProduct();
-				
-				
-				
-				tp.setTrvNo(rs.getInt("trv_no"));
-				tp.setTrvTitle(rs.getString("trv_title"));
-				tp.setTrvRepresentPic(rs.getString("trv_represent_pic"));
-				tp.setTrvProvince(rs.getString("trv_province"));
-				tp.setTrvCity(rs.getString("trv_city"));
-				tp.setTrvAddress(rs.getString("trv_address"));
-				tp.setTrvDateStart(rs.getDate("trv_date_start"));
-				tp.setTrvDateEnd(rs.getDate("trv_date_end"));
-				tp.setTrvReview(rs.getString("trv_review"));
-				tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
-				tp.setTrvLargeCtg(trvLargeCtg);
-				tp.setTrvSmallCtg(trvSmallCtg);	//카테고리 테이블에서 조인하여 불러올것  
-				tp.setTrvGps(rs.getString("trv_gps"));
-				tp.setTrvDate(rs.getDate("trv_write_date"));
-				tp.setMemberId(rs.getString("member_id"));
-				tp.setHits(rs.getInt("trv_hits"));
-				list.add(tp);
+			pstmt.setString(1, tp.getTrvTitle());
+			pstmt.setString(2, tp.getTrvProvince());
+			pstmt.setString(3, tp.getTrvCity());
+			pstmt.setString(4, tp.getTrvAddress());
+			pstmt.setDate(5,  (Date) tp.getTrvDateStart());
+			pstmt.setDate(6,  (Date) tp.getTrvDateEnd());
+			pstmt.setString(7, tp.getTrvReview());
+			/*pstmt.setInt(8, tp.getTrvNo());*/
+			
+			result=pstmt.executeUpdate();
+			
+			close(rs);
+			close(pstmt);
+			
+			sql=prop.getProperty("insertImage");
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, tp.getTrvNo());
+			for(int i=0; i<urlList.size(); i++) {
+			   pstmt.setString(2, urlList.get(i));
+			   result = pstmt.executeUpdate();
 			}
+
+			
+			
+			close(rs);
+			close(pstmt);
+			
 		}
 		catch(SQLException e)
 		{
@@ -329,9 +332,33 @@ public class TravelAdminDao {
 			close(pstmt);
 		}
 		
-		return list;
+		
+		return result;
 	}
-*/
+
+	public int deleteAdmin(Connection conn) {
+		PreparedStatement pstmt=null;
+		
+		int result=0;
+		String sql=prop.getProperty("deleteAdmin");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			/*pstmt.setInt(1, trvNo);*/
+			result=pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	
 	
 
 }

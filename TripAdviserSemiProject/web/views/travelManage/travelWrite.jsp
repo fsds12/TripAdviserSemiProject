@@ -1,23 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct" %>
+<%@ page import="tripAdviser.travel.product.model.vo.TravelProduct, tripAdviser.member.model.vo.*" %>
 
 <%@ include file="/views/common/header.jsp" %>
 
-<%-- <%
-	
-List<TravelProduct> list=(List)request.getAttribute("list");
-String searchType=(String)request.getAttribute("searchType");
-String searchKeyword=(String)request.getAttribute("searchKeyword");
-String pageBar=(String)request.getAttribute("pageBar");
-int cPage=(int)request.getAttribute("cPage");
-int numPerPage=(int)request.getAttribute("numPerPage");
-TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
-
-%> --%>
 
 <%
+
 
 TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 
@@ -120,7 +110,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 	</div>
 	
 				
-				<%-- 	<input type="hidden" name="trvNo" value="<%=tp.getTrvNo() %>"> --%>
+					
 				
 	</form>
 	
@@ -213,44 +203,7 @@ file4.onchange = function () {
 </script>
 
 
-<%-- <script>
-		$(function(){
-			$("[name=trvRepresentPic]").change(function(){
-				$.each(ajaxFile.trvRepresentPic.files,function(index,item){
-					/* console.log(item); */
-				var reader=new FileReader();
-				reader.onload=function(e){
-					var img=$("<img></img>").attr("src",e.target.result).css({'width':'230px','height':'170px'});
-					/* $('#image').html(img); */
-					$('#trvImg1').prepend(img);
-				}
-				reader.readAsDataURL(item);
-			});
-			});
-			$('#register_Btn').on("click", function(){
-				var fd=new FormData();
-				/* console.log(ajaxFile.trvRepresentPic.files[0]); */
-				/* fd.append("test",ajaxFile.trvRepresentPic.files[0]); */
-				$.each(ajaxFile.trvRepresentPic.files,function(i,item){
-					fd.append("test"+i,item);
-				});
-				$.ajax({
-					url:"<%=request.getContextPath()%>/travel/travelAdminWriteView",
-					data:fd,
-					type:"post",
-					processData:false,
-					contentType:false,
-					success:function(data){
-						alert("업로드 완료");
-						$('#trvImg1').html('');
-						$('[name=trvRepresentPic]').val('');
-					}
-				});
-			});
-			
-		});
-		
-	</script> --%>
+
 
 
 
