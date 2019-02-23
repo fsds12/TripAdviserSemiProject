@@ -169,12 +169,12 @@ section#idpwsearch-container article#allarti .blackbtn:active{
                     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                         <div class="card card-signin my-5">
                             <div class="card-body">
-                                <h5 class="card-title text-center">아이디 변경</h5>
-                                <form action="<%=request.getContextPath() %>/login" class="form-signin" method="POST">
+                                <h5 class="card-title text-center">아이디 찾기</h5>
+                                <form action="<%=request.getContextPath() %>/idfind" class="form-signin" method="POST">
                                     <div class="form-label-group">
-                                        <input type="text" id="inputEmail" name="inputEmail" class="form-control"
-                                            placeholder="아이디" required autofocus>
-                                        <label for="inputEmail"> 아이디</label>
+                                        <input type="text" id="name" name="name" class="form-control"
+                                            placeholder="이름" required autofocus>
+                                        <label for="name"> 이름</label>
                                     </div>
 
                                     <div class="form-label-group">
@@ -196,9 +196,16 @@ section#idpwsearch-container article#allarti .blackbtn:active{
 
 
                                 </form>
+                                
+                                
+                                <!-- <form name="idsearch-form" method="post">
+                                	<input type="hidden" name="inputEmail"/>
+                                	<input type="hidden" name="phone"/>
+                                	<input type="hidden" name="email"/>
+                                </form> -->
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center">비밀번호 변경</h5>
+                                <h5 class="card-title text-center">비밀번호 찾기</h5>
                                 <form action="<%=request.getContextPath() %>/login" class="form-signin" method="POST">
                                     <div class="form-label-group">
                                         <input type="text" id="inputEmail2" name="inputEmail2" class="form-control"
