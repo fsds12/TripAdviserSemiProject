@@ -9,18 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tripAdviser.board.QnA.model.service.qaService;
+import tripAdviser.board.model.vo.BoardAnswer;
 
 /**
- * Servlet implementation class QnADeleteServlet
+ * Servlet implementation class QnACommentServlet
  */
-@WebServlet("/QnA/deleteQnA")
-public class QnADeleteServlet extends HttpServlet {
+@WebServlet("/QnA/insertComment")
+public class QnACommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnADeleteServlet() {
+    public QnACommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +30,38 @@ public class QnADeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
+		String writer=request.getParameter("commentWriter");
+		String content=request.getParameter("commentContent");
+		int boardRef=Integer.parseInt(request.getParameter("boardRef"));
+		int level=Integer.parseInt(request.getParameter("level"));
+		int commentRef=Integer.parseInt(request.getParameter("commentRef"));
 		
-		int result=new qaService().deleteQa(boardNo);
+		BoardAnswer ba=new BoardAnswer();
+		
+		ba.setMemberId(writer);
+		ba.setBoardContent(content);
+		ba.setBoardNoRef(boardRef);
+		ba.setCommentLevel(level);
+		ba.setCommentNoRef(commentRef);
+		
+		int result=new qaService().insertComment(ba);
 		
 		String msg="";
-		String view="/views/common/msg.jsp";
 		String loc="";
+		String view="";
 		
 		if(result>0) {
-			msg="삭제되었습니다.";
-			
-			loc="/QnA/QnAList";
+			msg="등록되었습니다.";
+			loc="/QnA/QnABoardView?boardNo=boardRef";
 		}else {
-			msg="삭제 실패";
+			msg="등록 실패";
 			loc="/";
 		}
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher(view).forward(request, response);
+		
 	}
 
 	/**
