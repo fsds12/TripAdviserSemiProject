@@ -8,7 +8,7 @@
 <% 
 List<TravelProduct> tplist = new ArrayList(); 
 TravelProduct tp=new TravelProduct();
-tplist=new travelSearchService().travelSearchCt(4);
+tplist=new travelSearchService().travelSearchCt(10);
 
 
 %>
@@ -27,9 +27,8 @@ tplist=new travelSearchService().travelSearchCt(4);
 
 <div class="box-padding-big light-bg">
 	<div class="container">
-		<h4 class="category-title">전체 호텔 최고 별점 Best hotels in our website</h4>
-		<p class="category-sub">별점순 최고 호텔 랭킹 Top ranking the most popular hotels
-			selected by our guests.</p>
+		<h4 class="category-title">전체 향토음식점 최고 별점 Best local restaurants in our website</h4>
+		<p class="category-sub">별점순 최고 호텔 랭킹 Top ranking the most popular local restaurants selected by our guests.</p>
 
 		<%for(int t=0; t<tplist.size(); t++) {%>
 		<%

@@ -25,6 +25,30 @@
 	text-shadow: 0 1px #F2F1F6;
 	}
 </style>
+<script>
+$(function(){
+	htmlMenu(0);
+});
+
+function htmlMenu(choice)
+{
+	$.ajax({
+		url:"<%=request.getContextPath()%>/category/menu.do",
+		type : "POST",
+		data : 'choice='+choice,
+		dataType : "text",
+		success : function(data){
+			console.log(data);
+			$("#mydiv").html(data);
+		},
+		error:function(request,status,error){
+		}
+		
+	})
+	
+	}
+</script>
+
 
 <body>
     <header>
@@ -44,9 +68,9 @@
                                         휴식거리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">호텔</a>
-                                        <a class="dropdown-item" href="#">게스트하우스</a>
-                                        <a class="dropdown-item" href="#">템플스테이</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(1)">호텔</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(2)">게스트하우스</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(3)">템플스테이</a>
                                     </div>
                                 </li>
                                 
@@ -56,9 +80,9 @@
                                         즐길거리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">볼거리</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(4)">볼거리</a>
                                         <!--<div class="dropdown-divider"></div>-->
-                                        <a class="dropdown-item" href="#">놀거리</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(5)">놀거리</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -67,10 +91,10 @@
                                         먹을거리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">정식</a>
-                                        <a class="dropdown-item" href="#">분식</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(6)">정식</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(7)">지역특산물</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">길거리음식</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(8)">길거리음식</a>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown">
