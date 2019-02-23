@@ -59,7 +59,7 @@ public class TravelAdminDao {
 	public List<TravelProduct> selectAdminList(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<TravelProduct> list= new ArrayList();
+		List<TravelProduct> list= new ArrayList<TravelProduct>();
 		String sql=prop.getProperty("selectAdminList");
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -138,7 +138,7 @@ public class TravelAdminDao {
 	public List<TravelProduct> selectAdminSearch(Connection conn, String type, String key, int cPage, int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<TravelProduct> list=new ArrayList();
+		List<TravelProduct> list=new ArrayList<TravelProduct>();
 		String sql="";
 		if("memberId".equals(type))
 		{
@@ -191,7 +191,7 @@ public class TravelAdminDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
-		List<String> urlList=new ArrayList();
+		List<String> urlList=new ArrayList<String>();
 		
 		
 		String sql=prop.getProperty("insertAdmin");
@@ -291,7 +291,7 @@ public class TravelAdminDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
-		List<String> urlList=new ArrayList();
+		List<String> urlList=new ArrayList<String>();
 		String sql=prop.getProperty("updateAdmin");
 		try {
 			pstmt=conn.prepareStatement(sql);
