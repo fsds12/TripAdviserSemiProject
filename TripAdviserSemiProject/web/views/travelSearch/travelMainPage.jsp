@@ -14,7 +14,6 @@ tp1=tplist.get(0);
 tp2=tplist.get(1);
 tp3=tplist.get(2);
 
-System.out.println("1성공?"+tp1+tp2+tp3);
 
 %>
 <style>
@@ -111,7 +110,6 @@ tp1=tplist.get(0);
 tp2=tplist.get(1);
 tp3=tplist.get(2);
 
-System.out.println("cate 1 성공?"+tp1+tp2+tp3);
 %>
 
 
@@ -197,7 +195,6 @@ tp1=tplist.get(0);
 tp2=tplist.get(1);
 tp3=tplist.get(2);
 
-System.out.println("cate 2 성공?"+tp1+tp2+tp3);
 %>
 
 <div class="box-padding-big light-bg">
@@ -279,7 +276,6 @@ tp1=tplist.get(0);
 tp2=tplist.get(1);
 tp3=tplist.get(2);
 
-System.out.println("cate 3 성공?"+tp1+tp2+tp3);
 %>
 
 <div class="box-padding-big white-bg">

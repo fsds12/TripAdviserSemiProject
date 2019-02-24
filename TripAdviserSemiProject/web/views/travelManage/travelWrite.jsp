@@ -34,8 +34,8 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 	 <div class="inputArea">
 		<label>카테고리</label> 
 		<select class="custom-select" id="trvCtgCode" name="trvCtg">
-			<option value="trvCtgLargeName">대분류</option>
-			<option value="trvCtgSmallName">소분류</option>
+			<option value="CS01">호텔</option>
+			<option value="CS02">게스트하우스</option>
 			<!-- <option value="기타">기타</option> -->
 		</select> 
 		

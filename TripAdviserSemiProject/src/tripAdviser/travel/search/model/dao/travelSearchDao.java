@@ -48,7 +48,6 @@ public class travelSearchDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("여행코드:"+trvNo+" 평점:"+StarAve);
 			
 		return StarAve;
 	}

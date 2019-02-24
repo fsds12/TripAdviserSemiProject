@@ -40,9 +40,7 @@ public class IdFindServlet extends HttpServlet {
 		m.setName(name);
 		m.setPhone(phone);
 		m.setEmail(email);
-		
 		Member result=new MemberService().findId(m);
-		
 		
 		request.setAttribute("Member", result);
 		

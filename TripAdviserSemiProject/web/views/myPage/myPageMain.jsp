@@ -131,13 +131,13 @@
 		<!-- <input id="tab4" type="radio" name="tabs">
 		<label for="tab4">My Follows</label> -->
 	    
-		<%if(id.equals("admin")) {%>  
+		<%-- <%if(id.equals("admin")) {%>  
 			<input id="tab5" type="radio" name="tabs">
 			<label for="tab5">Add Trip</label>
 			  
 			<input id="tab6" type="radio" name="tabs">
 			<label for="tab6">Trips List</label>
-		<%} %>
+		<%} %> --%>
 	    
 	    
 	    
