@@ -78,9 +78,9 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 					
 					<input type="button" class="btn btn-primary" value="글쓰기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminWrite()" />
 					
-					<input type="button" class="btn btn-primary" value="수정하기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminUpdate()" />
-					
-					<input type="button" class="btn btn-primary" value="삭제하기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminDelete()" />
+					<!-- <input type="button" class="btn btn-primary" value="수정하기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminUpdate()" />
+						 <input type="button" class="btn btn-primary" value="삭제하기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminDelete()" /> 
+						 -->
 				
 				<div id="tblljb-pageBar">
 					<%=pageBar %>
@@ -124,13 +124,13 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 		
 	}
 	
-	function fn_travelAdminUpdate() {
+	<%-- function fn_travelAdminUpdate() {
 		location.href="<%=request.getContextPath()%>/travel/travelAdminUpdate";
 	}
 	
 	function fn_travelAdminDelete() {
 		location.href="<%=request.getContextPath()%>/travel/travelAdminDeleteView";
-	}
+	} --%>
 </script>
 
 
