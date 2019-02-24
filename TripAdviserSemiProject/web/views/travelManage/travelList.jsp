@@ -21,10 +21,9 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 
 
 <section id="trvList">
-	 													<%-- <% if(logginMember!=null) { %> --%>
-	  												<%-- <% } %> --%>
+	 												
 		<div class="container">
-	<%-- <form name="AdminListFrm" id="AdminListFrm" action="<%=request.getContextPath() %>/travel/TravelAdminListView" method="post">  --%>
+	
 			
 			
 			<div id="con-bottom">
@@ -78,9 +77,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 					
 					<input type="button" class="btn btn-primary" value="글쓰기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminWrite()" />
 					
-					<!-- <input type="button" class="btn btn-primary" value="수정하기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminUpdate()" />
-						 <input type="button" class="btn btn-primary" value="삭제하기" id="trvTitle" name="trvTitle" onclick="fn_travelAdminDelete()" /> 
-						 -->
+					
 				
 				<div id="tblljb-pageBar">
 					<%=pageBar %>
@@ -92,20 +89,14 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 
 				<div class="col-12">
 
-					<select class="custom-select" id="category">
-						<option value="memberId" <%="memberId".equals(searchType)?"selected":"" %>>카테고리별</option>
-						<!-- <option>휴식거리</option>
-						<option>즐길거리</option>
-						<option>먹을거리</option>
-						<option>읽을거리</option> -->
-					</select>
+				
 					
 				<form action="<%=request.getContextPath() %>/travel/travelAdminFind">
 					<input type="hidden" name="searchType" value="memberId"/>
 					<input type="hidden" name="cPage" value="<%=cPage %>"/>
 					<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
 					<input type="text" id="item" class="form-control" name="searchKeyword" value='<%="memberId".equals(searchType)?searchKeyword:"" %>'
-					placeholder="카테고리를 입력하세요"/>
+					placeholder="여행제목을 입력하세요"/>
 					
 					
 					<button type="submit" id="pro-search">검색</button>
@@ -124,13 +115,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 		
 	}
 	
-	<%-- function fn_travelAdminUpdate() {
-		location.href="<%=request.getContextPath()%>/travel/travelAdminUpdate";
-	}
-	
-	function fn_travelAdminDelete() {
-		location.href="<%=request.getContextPath()%>/travel/travelAdminDeleteView";
-	} --%>
+
 </script>
 
 
