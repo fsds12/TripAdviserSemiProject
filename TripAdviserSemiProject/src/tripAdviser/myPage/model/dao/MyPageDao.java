@@ -108,6 +108,7 @@ public class MyPageDao {
 				mpc.setTrvTitle(rs.getString("trv_title"));
 				mpc.setTrvEvaluation(rs.getInt("trv_evaluation"));
 				mpc.setCommentContent(rs.getString("comment_content"));
+				mpc.setCommentNo(rs.getInt("comment_no"));
 				
 				list.add(mpc);
 			}
@@ -155,5 +156,25 @@ public class MyPageDao {
 		}
 		
 		return m;
+	}
+	
+	public int deleteMyComment(Connection conn, int commentNo) {
+		sql = prop.getProperty("deleteMyComment");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			
+			result = pstmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }

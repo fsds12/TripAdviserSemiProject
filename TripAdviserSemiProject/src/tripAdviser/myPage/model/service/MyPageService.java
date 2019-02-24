@@ -2,6 +2,8 @@ package tripAdviser.myPage.model.service;
 
 import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.getConnection;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -47,5 +49,21 @@ public class MyPageService {
 		close(conn);
 		
 		return m;
+	}
+	
+	public int deleteMyComment(int commentNo) {
+		int result = 0;
+		conn = getConnection();
+		result = dao.deleteMyComment(conn, commentNo);
+		
+		if(result > 0) {
+			commit();
+		}
+		else {
+			rollback();
+		}
+		
+		close(conn);
+		return result;
 	}
 }

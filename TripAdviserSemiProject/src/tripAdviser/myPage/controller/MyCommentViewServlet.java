@@ -83,10 +83,14 @@ public class MyCommentViewServlet extends HttpServlet {
 		
 		//데이터 받아오기
 		List<MyPageComment> list = new MyPageService().selectMyComment(id, cPage, numPerPage);
+		String msg = "";
+		msg = (String)request.getAttribute("msg");
 		
 		if(list.size() > 0) {
 			request.setAttribute("myCommentList", list);
 			request.setAttribute("pageBar", pageBar);
+			request.setAttribute("cPage", cPage);
+			request.setAttribute("msg", msg);
 		}
 		request.setAttribute("id", id);
 		request.getRequestDispatcher("/views/myPage/myComment.jsp").forward(request, response);

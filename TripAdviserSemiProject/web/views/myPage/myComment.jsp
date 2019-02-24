@@ -7,17 +7,38 @@
 	String pageBar = (String)request.getAttribute("pageBar");
 	int cPage = (Integer)request.getAttribute("cPage");
 	String id = (String)request.getAttribute("id");
+	//String msg = (String)request.getAttribute("msg");
 %>
 <script>
+	var id = "<%=id %>";
+	var cPage = <%=cPage %>;
 	function fn_change_page(pageNo) {
 		$.ajax({
-			url: "<%=request.getContextPath()%>/myPage/myComment?cPage=" + pageNo + "&id=" + 'admin' ,
+			url: "<%=request.getContextPath()%>/myPage/myComment?cPage=" + pageNo + "&id=" + id ,
 			type: "post",
 			dataType: "html",
 			success: function(data) {
 				$("#my-comments").html(data);
 				var offset = $('.mypage-header').offset();
 				$('html, body').animate({scrollTop:offset.top}, 0);
+			},
+			error: function(request, status, error) {
+				
+			}
+		});
+	}
+	
+	function fn_delete_comment(commentNo) {
+		$.ajax({
+			url: "<%=request.getContextPath()%>/myPage/myCommentDelete?cPage=" + cPage + "&id=" + id + "&commentNo=" + commentNo,
+			type: "post",
+			dataType: "html",
+			success: function(data) {
+				$("#my-comments").html(data);
+				var msg = "<%=(String)request.getAttribute("msg") %>";
+				console.log(msg);
+				//var offset = $('.mypage-header').offset();
+				//$('html, body').animate({scrollTop:offset.top}, 0);
 			},
 			error: function(request, status, error) {
 				
@@ -45,7 +66,7 @@
 					<span><%=myCommentList.get(i).getCommentContent() %></span>
 				</div> 
 				 <div style="display: inline-block; width:15%; text-align: center;">
-				 <button class='btn btn-dark'>수정</button> <button class='btn btn-danger'>삭제</button>
+				 <!-- <button class='btn btn-dark'>수정</button>  --><button class='btn btn-danger' onclick="fn_delete_comment(<%=myCommentList.get(i).getCommentNo() %>)">코멘트 삭제</button>
 				</div>
 			</div>
 		</div>
