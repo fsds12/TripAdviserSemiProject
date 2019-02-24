@@ -8,7 +8,7 @@
 	String pageBar=(String)request.getAttribute("pageBar");
 	int cPage=(int)request.getAttribute("cPage");
 	int numPerPage=(int)request.getAttribute("numPerPage");
-	
+	String searchKey = (String)request.getAttribute("searchKey");
 %>
 <style>
    #starRateScore{
@@ -27,7 +27,7 @@
         <form id="searchkey" action="<%=request.getContextPath()%>/travel/travelSearch" method="post">
             <br>
              <div style="display:block; width:800px;">
-	         <input class="form-control" type="text" id="searchkey" name="searchkey"  placeholder="여행지 입력" style="display:inline-block">&nbsp;
+	         <input class="form-control" type="text" id="searchkey" name="searchkey"  placeholder="여행지 입력" value="<%=searchKey %>" style="display:inline-block">&nbsp;
 	         <button type="submit" id="searchbtn1" name="searchbtn1" class="btn btn-secondary" style="padding: 0px;display:inline-block">여행지 검색</button>
         </div>
         </form>

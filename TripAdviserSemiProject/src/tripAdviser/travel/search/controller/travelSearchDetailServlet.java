@@ -101,6 +101,7 @@ public class travelSearchDetailServlet extends HttpServlet {
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);
 		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("searchKey", searchkey);
 		request.getRequestDispatcher(view).forward(request, response); 
 		
 		/*
