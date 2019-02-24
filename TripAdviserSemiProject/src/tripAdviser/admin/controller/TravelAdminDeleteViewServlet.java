@@ -13,7 +13,7 @@ import tripAdviser.travel.product.model.vo.TravelProduct;
 /**
  * Servlet implementation class TravelAdminDeleteViewServlet
  */
-@WebServlet("/travel/travelAdminDeleteView")	/*/travel/travelDelete*/
+@WebServlet("/travel/travelDelete")	/*/travel/travelDelete*/
 public class TravelAdminDeleteViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
