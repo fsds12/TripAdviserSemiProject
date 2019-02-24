@@ -66,7 +66,7 @@
 	      
 <div class="card">
 	
-<a href=""><img class="card-img-top" src="<%=toplist.get(i).getTrvRepresentPic() %>" style="height:300px" ></a>
+<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=toplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=toplist.get(i).getTrvRepresentPic() %>" style="height:300px" ></a>
 
 	 <div class="card-block">
 	 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=toplist.get(i).getTrvTitle() %></h5>
@@ -112,7 +112,7 @@
 %> 
 	      
 			<div class="card">			
-<a href=""><img class="card-img-top" src="<%=sleeplist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
+<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=sleeplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=sleeplist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
 	
 	<div class="card-block">
 			<h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=sleeplist.get(i).getTrvTitle() %></h5>
@@ -158,7 +158,7 @@
 
 			<div class="card">
 				
-			<a href=""><img class="card-img-top" src="<%=aclist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
+			<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=aclist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=aclist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
 	
 				<div class="card-block">
 		
@@ -206,7 +206,7 @@
 	      
 			<div class="card">
 				
-			<a href=""><img class="card-img-top" src="<%=eatlist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
+			<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=eatlist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=eatlist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
 	
 				<div class="card-block">
 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=eatlist.get(i).getTrvTitle() %></h5>

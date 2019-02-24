@@ -43,7 +43,7 @@
 <%} %>
  	
       <div class="card">
-         <a href=""><img class="card-img-top" src="<%=list.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
+         <a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=list.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=list.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
          <div class="card-block">
             <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=list.get(i).getTrvTitle() %></h5>
 			<p class="card-text">&nbsp;&nbsp;&nbsp;<%=list.get(i).getTrvAddress() %></p>
