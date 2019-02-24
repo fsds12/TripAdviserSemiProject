@@ -362,14 +362,14 @@ public class TravelAdminDao {
 		return result;
 	}
 
-	public int deleteAdmin(Connection conn) {
+	public int deleteAdmin(Connection conn,int trvNo) {
 		PreparedStatement pstmt=null;
 		
 		int result=0;
 		String sql=prop.getProperty("deleteAdmin");
 		try {
 			pstmt=conn.prepareStatement(sql);
-			/*pstmt.setInt(1, trvNo);*/
+			pstmt.setInt(1, trvNo);
 			result=pstmt.executeUpdate();
 		}
 		catch(SQLException e)

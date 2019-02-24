@@ -13,7 +13,7 @@ import tripAdviser.travel.product.model.vo.TravelProduct;
 /**
  * Servlet implementation class TravelAdminDeleteViewServlet
  */
-@WebServlet("/travel/travelDelete")	/*/travel/travelDelete*/
+@WebServlet("/travel/travelDelete")	
 public class TravelAdminDeleteViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,10 +30,10 @@ public class TravelAdminDeleteViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		/*int trvNo=Integer.parseInt(request.getParameter("trvNo"));*/
-		int trvNo=0;
+		int trvNo=Integer.parseInt(request.getParameter("trvNo"));
 		
-		int result=new TravelAdminService().deleteAdmin();
+		
+		int result=new TravelAdminService().deleteAdmin(trvNo);
 		
 		System.out.println(result);
 		
