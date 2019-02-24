@@ -44,8 +44,8 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*HttpSession session=request.getSession();
-		Member loginMember = (Member)session.getAttribute("loginMember");*/
+		HttpSession session=request.getSession();
+		Member loginMember = (Member)session.getAttribute("loginMember");
 		
 		int trvNo = 0;
 
@@ -76,42 +76,18 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		String province=mr.getParameter("trvProvince");
 		String city=mr.getParameter("trvCity");
 		String addr=mr.getParameter("trvAddress");
-		
-	
-		/*String dstart=mr.getParameter("trvDateStart").replaceAll("-", "/");
-		String dend=mr.getParameter("trvDateEnd").replaceAll("-", "/");*/
-		
 		String content=mr.getParameter("proContent");
 		
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Date dstart=null;
-		try {
-			dstart = sdf.parse(mr.getParameter("trvDateStart"));
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		java.sql.Date sd1=new java.sql.Date(dstart.getTime());
-		Date dend=null;
-		try {
-			dend = sdf.parse(mr.getParameter("trvDateEnd"));
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		java.sql.Date sd2=new java.sql.Date(dend.getTime());
-		/*String dend=mr.getParameter("trvDateEnd").replaceAll("-", "/");*/
+		
+		
 		
 		System.out.println(title);
 		System.out.println(province);
 		System.out.println(city);
 		System.out.println(addr);
-		System.out.println("90909"+dstart);
-		System.out.println("55555"+dend);
 		System.out.println(content);
 		
-		System.out.println(sd1);
-		System.out.println(sd2);
+		
 		
 		TravelProduct tp=new TravelProduct();
 		
@@ -120,8 +96,6 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
-		tp.setTrvDateStart(sd1);
-		tp.setTrvDateEnd(sd2);
 		tp.setAlbumUrls(fileNames);
 		tp.setTrvReview(content);
 		 

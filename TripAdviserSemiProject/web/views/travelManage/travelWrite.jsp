@@ -34,23 +34,29 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 	 <div class="inputArea">
 		<label>카테고리</label> 
 		<select class="custom-select" id="trvCtgCode" name="trvCtg">
-			<option value="trvCtgLargeName">대분류</option>
-			<option value="trvCtgSmallName">소분류</option>
-			<!-- <option value="기타">기타</option> -->
+			<option value="CS01">호텔</option>
+			<option value="CS02">게스트하우스</option>
+			<option value="CS03">템플스테이</option>
+			<option value="CS04">볼거리</option>
+			<option value="CS05">놀거리</option>
+			<option value="CS06">정식</option>
+			<option value="CS07">지역음식</option>
+			<option value="CS08">길거리음식</option>
 		</select> 
 		
 	 </div>
 	 <div class="inputArea">
 		<label for="trvProvince">여행지 도</label> 
 		<select class="custom-select" id="trvProvince" name="trvProvince">
-			<option value="trvProvince1">경기도</option>
-			<option value="trvProvince2">강원도</option>
-			<option value="trvProvince3">충청북도</option>
-			<option value="trvProvince4">충청남도</option>
-			<option value="trvProvince5">전라북도</option>
-			<option value="trvProvince6">전라남도</option>
-			<option value="trvProvince7">경상북도</option>
-			<option value="trvProvince8">경상남도</option>
+			<option value="경기도">경기도</option>
+			<option value="강원도">강원도</option>
+			<option value="충청북도">충청북도</option>
+			<option value="충청남도">충청남도</option>
+			<option value="전라북도">전라북도</option>
+			<option value="전라남도">전라남도</option>
+			<option value="경상북도">경상북도</option>
+			<option value="경상남도">경상남도</option>
+			<option value="제주도">제주도</option>
 		</select> 
 	 </div>
 	 <div class="inputArea">
@@ -62,13 +68,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 		<input type="text" class="form-control" id="trvAddress" name="trvAddress" />
 	 </div>
 	 
-	 <div class="inputArea">
-		<label for="trvDateStart">기간시작</label> 
-		<input type="text" class="form-control" id="from" name="trvDateStart" readonly/>
-		<label for="trvDateEnd">기간종료</label> 
-		<input type="text" class="form-control" id="to" name="trvDateEnd" readonly/>
-		
-	 </div>
+
    </div>
 	
    <div class="inputImage">
