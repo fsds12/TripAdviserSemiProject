@@ -60,7 +60,7 @@
 		<div class="sm_text" id="title_font">Where do you want to go?</div>
 		<div class="search-container">
 			<form action="<%=request.getContextPath()%>/travel/travelSearch" class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-3" id="searchName" type="searchkey" placeholder="검색어입력" list="datalist"
+				<input class="form-control mr-sm-3" id="searchName" type="text" name="searchkey" placeholder="검색어입력" list="datalist"
 					aria-label="Search">
 				<datalist id="datalist">
 					<!-- 자동완성기능 부분 -->

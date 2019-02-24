@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.List, java.util.ArrayList, tripAdviser.travel.product.model.vo.TravelProduct" %>
+<%@ page import="java.util.Collections, java.util.List, java.util.ArrayList, java.util.HashSet, tripAdviser.travel.product.model.vo.TravelProduct" %>
 <%
 	@SuppressWarnings (value="unchecked")
 	List<TravelProduct> scrapList = (List<TravelProduct>)request.getAttribute("scrapList");
@@ -8,6 +8,9 @@
 	for(TravelProduct tp : scrapList) {
 		trvProvinceList.add(tp.getTrvProvince());
 	}
+	HashSet<String> distinctData = new HashSet<String>(trvProvinceList);
+	trvProvinceList = new ArrayList<String>(distinctData);
+	Collections.sort(trvProvinceList);
 %>
 <style>
 section#my-scrap-container {
@@ -30,6 +33,8 @@ section#my-scrap-container div.scrap-col {
 	display: inline-block;
 	width: 25%;
 	height: 150px;
+}
+section#my-scrap-container div.card-group div {
 }
 </style>
 <section id='my-scrap-container'>
@@ -54,11 +59,36 @@ section#my-scrap-container div.scrap-col {
 	<%if(scrapList != null) {
 		for(int i=0; i<trvProvinceList.size(); i++){%>
 			<p><span style="font-size: 20px; font-weight: bold;"><%=trvProvinceList.get(i) %></span></p><br>
-			<%for(TravelProduct tp : scrapList) {%>
+			<div class='card-group'>
+			<%for(int j=0; j<scrapList.size(); j++) {
+				TravelProduct tp = scrapList.get(j);
+			%>
 				<%if(tp.getTrvProvince().equals(trvProvinceList.get(i))) {%>
-					<span><%=tp.getTrvTitle() %>&nbsp;&nbsp; <%=tp.getAvgStarRate() %></span><br>
+					<div class="card" style="max-width:33%; border:1px solid lightgray" onclick="location.href='<%=request.getContextPath() %>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo() %>'">
+						<img class="card-img-top" src="<%=tp.getTrvRepresentPic() %>" alt="sfsf" style="width:100%; height:250px;">
+						<div class="card-body" style="padding:5px;">
+							<h6 class="card-title" style="text-align: left; font-weight: bold;"><%=tp.getTrvTitle() %></h6>
+							<p class="card-text"><i class="fa fa-map-marker"></i><%=tp.getTrvProvince()+"&nbsp;"+tp.getTrvCity()+"&nbsp;"+tp.getTrvAddress() %>.</p>
+							<p class="card-text">
+								<%
+								int starRate=0;
+								if(tp.getAvgStarRate()<0||tp.getAvgStarRate()>5){starRate=0;}
+								else{starRate=(int)tp.getAvgStarRate();}
+								for (int k=0;k<starRate;++k){
+								%>
+								<i class="fa fa-star"></i>
+								<% }
+								for(int k=0;k<(5-starRate);++k){
+								%>
+								<i class="fa fa-star-o"></i>
+								<% } %>
+								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+							</p>
+						</div>
+					</div>
 				<%} %>
 			<%}%>
+			</div>
 			<hr />
 		<%} %> 
 	<%}%>

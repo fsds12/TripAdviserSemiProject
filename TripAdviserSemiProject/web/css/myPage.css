@@ -15,11 +15,11 @@ article#main div.tab {
 	border-top: 1px solid #ddd;
 }
 
-section#mypage-main-section article#main input {
+section#mypage-main-section article#main input[name=tabs] {
 	display: none;
 }
 
-section#mypage-main-section article#main label {
+section#mypage-main-section article#main > label {
 	display: inline-block;
 	margin: 0 0 -1px;
 	padding: 15px 25px;
