@@ -160,6 +160,9 @@ section#idpwsearch-container article#allarti .blackbtn:active{
 section#idpwsearch-container input[type=email]{
 display: inline-block; 
 }
+section#idpwsearch-container input[type=email],section#idpwsearch-container input[type=text]{
+width: 300px;
+}
 
 </style>
 </head>

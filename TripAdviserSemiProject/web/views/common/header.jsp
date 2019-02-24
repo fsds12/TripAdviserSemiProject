@@ -117,7 +117,9 @@ function htmlMenu(choice)
                         <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/loginpage'" value="Log In"></li>
                          <%}else{ %>
                     <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="MyPage" onclick="location.href='<%=request.getContextPath() %>/myPage'"></li>
-                    <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Admin"></li> 
+                    <%if(loginMember != null && loginMember.getMemberId().equals("admin")) {%>
+                    	<li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="TripManage" onclick="location.href='<%=request.getContextPath() %>/travel/TravelAdminListView'"></li> 
+                    <%} %>
                     <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="Logout" onclick="location.href='<%=request.getContextPath()%>/logout'"></li>
                     <%} %>
                     </ul>

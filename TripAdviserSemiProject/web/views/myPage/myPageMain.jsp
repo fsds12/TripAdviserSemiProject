@@ -143,6 +143,7 @@
 	    
 	  
 		<div id="my-info" class='tab'>
+		
 		</div>
 		    
 		<div id="my-scraps" class='tab'>

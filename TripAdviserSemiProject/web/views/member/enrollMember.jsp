@@ -62,7 +62,6 @@ article {
 
 .form-signin .btn {
   font-size: 80%;
-  border-radius: 5rem;
   letter-spacing: .1rem;
   font-weight: bold;
   padding: 1rem;
@@ -89,10 +88,10 @@ article {
   top: 0;
   left: 0;
   display: block;
-  width: 100%;
+  width: 300px;
   margin-bottom: 0;
   /* Override default `<label>` margin */
-  line-height: 1.5;
+  line-height: 2.9;
   color: #495057;
   border: 1px solid transparent;
   border-radius: .25rem;
@@ -138,7 +137,7 @@ section#wcw-enroll-container .btn {
 
 section#wcw-enroll-container input[type="text"], section#wcw-enroll-container input[type="password"],
 	section#wcw-enroll-container input[type="email"] {
-	width: 350px;
+	width: 300px;
 	height: 51px;
 	display: inline-block;
 }
@@ -163,6 +162,8 @@ section#wcw-enroll-container div#enrollreset input {
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* CSS3 */
 	-moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* Firefox */
 	-webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+	width: 100px;
+	height: 42px;
 	/* Safari, Chrome */
 }
 
@@ -199,18 +200,26 @@ section#wcw-enroll-container div#enrollreset #signup:active, section#wcw-enroll-
 }
 
 section#wcw-enroll-container article#enroll-article div#enrollreset {
+	padding-top:20px;
 	position: relative;
-	left: 300px;
+	left: 190px;
 }
 
-section#wcw-enroll-container article#enroll-article div.form-label-group button
-	{
+section#wcw-enroll-container article#enroll-article div.form-label-group button{
+	
 	font-size: 13px;
 }
 
 section#wcw-enroll-container article#enroll-article span#password_span {
 	color: red;
 }
+
+section#wcw-enroll-container .form-label-group button{
+width: 100px;
+height: 55px;
+font-size: 6px;
+}
+
 </style>
 </head>
 
@@ -280,7 +289,7 @@ checkid.submit();
 											class="form-control" placeholder="이메일" required> <label
 											for="email">이메일</label>
 										<button type="button" id="cknumbergo" onclick="emailgo()"
-											class="btn btn-secondary">인증번호보내기</button>
+											class="btn btn-secondary">인증번호 &nbsp보내기</button>
 									</div>
 
 									<%--  <script>
