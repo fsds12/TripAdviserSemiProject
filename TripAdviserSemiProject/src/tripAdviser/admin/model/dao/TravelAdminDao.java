@@ -13,6 +13,8 @@ import java.util.Properties;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
 import static common.JDBCTemplate.close;
+import static common.JDBCTemplate.commit;
+import static common.JDBCTemplate.rollback;
 
 public class TravelAdminDao {
 	
@@ -59,7 +61,7 @@ public class TravelAdminDao {
 	public List<TravelProduct> selectAdminList(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<TravelProduct> list= new ArrayList();
+		List<TravelProduct> list= new ArrayList<TravelProduct>();
 		String sql=prop.getProperty("selectAdminList");
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -138,7 +140,7 @@ public class TravelAdminDao {
 	public List<TravelProduct> selectAdminSearch(Connection conn, String type, String key, int cPage, int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		List<TravelProduct> list=new ArrayList();
+		List<TravelProduct> list=new ArrayList<TravelProduct>();
 		String sql="";
 		if("memberId".equals(type))
 		{
@@ -191,39 +193,63 @@ public class TravelAdminDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
-		List<String> urlList=new ArrayList();
+		List<String> urlList=new ArrayList<String>();
 		
 		
 		String sql=prop.getProperty("insertAdmin");
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, tp.getTrvTitle());
-			pstmt.setString(2, tp.getTrvProvince());
-			pstmt.setString(3, tp.getTrvCity());
-			pstmt.setString(4, tp.getTrvAddress());
-			pstmt.setDate(5,  (Date) tp.getTrvDateStart());
-			pstmt.setDate(6,  (Date) tp.getTrvDateEnd());
-			pstmt.setString(7, tp.getTrvReview());
+			pstmt.setString(2, tp.getTrvRepresentPic());
+			pstmt.setString(3, tp.getTrvProvince());
+			pstmt.setString(4, tp.getTrvCity());
+			pstmt.setString(5, tp.getTrvAddress());
+			pstmt.setString(6, tp.getTrvReview());
 			
 			
 			result=pstmt.executeUpdate();
 			
+			if(result>0)
+			{
+				commit();
+			}
+			else
+			{
+				rollback();
+			}
+			
 		
 			close(rs);
 			close(pstmt);
+			
+			
+			sql = prop.getProperty("selectpicSeq");
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				tp.setTrvNo(rs.getInt(1));
+				
+			}
+		
+			
+			close(rs);
+			close(pstmt);
+			
+			
+			
+			
 			
 			sql=prop.getProperty("insertImage");
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, tp.getTrvNo());
 			for(int i=0; i<urlList.size(); i++) {
 			   pstmt.setString(2, urlList.get(i));
-			   result = pstmt.executeUpdate();
+			   int resultAlbum = pstmt.executeUpdate();
+			   System.out.println(resultAlbum);
 			}
-
 			
-			
-			close(rs);
-			close(pstmt);
 			
 			
 			
@@ -291,7 +317,7 @@ public class TravelAdminDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
-		List<String> urlList=new ArrayList();
+		List<String> urlList=new ArrayList<String>();
 		String sql=prop.getProperty("updateAdmin");
 		try {
 			pstmt=conn.prepareStatement(sql);

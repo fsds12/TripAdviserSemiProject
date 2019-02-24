@@ -8,7 +8,7 @@
 <script>
 	alert("<%=request.getAttribute("msg") %>");
 	<%-- location.href = "<%=request.getContextPath() + request.getAttribute("loc") %>"; --%>
-	location.href = "<%=request.getContextPath() %><%=request.getAttribute("loc") %>";
+	location.href = "<%=request.getContextPath() %>/<%=request.getAttribute("loc") %>";
 	<%=request.getAttribute("script") %>
 </script>
 </head>

@@ -1,47 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="tripAdviser.board.model.vo.Board"%>
+
+<% Board b=(Board)request.getAttribute("Board"); %>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <%@ include file="/views/common/header.jsp" %>
-<%-- <%@ include file="/views/notice/nav.jsp" %> --%>
 
 <section id="noticeWrite-section" class="notice-section">	
 	<div class="caption">글수정</div>
+	<form action="<%=request.getContextPath()%>/QnA/updateEnd" method="post">
     <table align="center" class="write-tbl">    	
          	<tr>
             	<th>작성자</th>
             	<td>                
-               		<input type="text" name="userId" id="id" value=" user01" required/>
+               		<input type="text" name="userId" id="id" value="<%=b.getMemberId()%>" required/>
+               		<input type="hidden" name="boardNo" value="<%=b.getBoardNo()%>"/>
             	</td>
             </tr>
             <tr>
                 <th>제목</th>
                 <td>
-                 	<input type="text" name="title" id="title"/>
+                 	<input type="text" name="title" value="<%=b.getTitle()%>"/>
                 </td>
             </tr>             
             <tr>
                 <th>내용</th>
                 <td>
-                 	<textarea></textarea>
+                 	<textarea name="content"><%=b.getContent() %></textarea>
                 </td>
-            </tr>
-            <tr>
-                <th>파일첨부</th>
-                <td>
-                 	<input type="file" name="up_file"/>
-                </td>
-            </tr>
-            <tr>
-                <th>파일첨부</th>
-                <td>
-                 	<input type="file" name="up_file"/>
-                </td>
-            </tr>         
+            </tr>                     
         </table>  
     <div id="btn-container">
-        <input type="button" value="등록" onclick="fn_submit()"/>
-        <input type="button" value="취소" onclick="location.href='<%=request.getContextPath()%>/views/QnA/QnABoard.jsp'"/>
+        <input type="submit" value="수정"/>
+        <input type="button" value="취소" onclick="fn_cancle()"/>
     </div>
-
+	</form>
 </section>
-
+<script>
+	function fn_cancle(){
+		location.href="<%=request.getContextPath()%>/QnA/QnABoardView?boardNo=<%=b.getBoardNo()%>";
+	}
+</script>
 <%@ include file="/views/common/footer.jsp" %>

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ include file="/views/common/header.jsp" %>
 <style>
 section#myScrap-container {
 	width: 100%;
@@ -69,5 +67,3 @@ section#myScrap-container > div.card-group {
 	</div>
 	<%} %>
 </section>
-
-<%@ include file="/views/common/footer.jsp" %>

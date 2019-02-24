@@ -1,17 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
-<%@ include file="/views/common/header.jsp" %>
-<%-- <%@ include file="/views/notice/nav.jsp" %> --%>  
-    
+<%@ include file="/views/common/header.jsp" %>    
 
 <section id="noticeWrite-section" class="notice-section">	
 	<div class="caption">글쓰기</div>
+	<form name="qnaWriteFrm" action="<%=request.getContextPath()%>/QnA/insertQnA" method="post">
     <table align="center" class="write-tbl">    	
          	<tr>
             	<th>작성자</th>
             	<td>                
-               		<input type="text" name="userId" value=" user01" readonly/>
+               		<input type="text" name="userId" value="semi" readonly/>               		
             	</td>
             </tr>
             <tr>
@@ -23,32 +22,18 @@
             <tr>
                 <th>내용</th>
                 <td>
-                 	<textarea id="content"></textarea>
+                 	<textarea name="content" id="content"></textarea>
                 </td>
-            </tr>
-            <tr>
-                <th>파일첨부</th>
-                <td>
-                 	<input type="file" name="up_file"/>
-                </td>
-            </tr>
-            <tr>
-                <th>파일첨부</th>
-                <td>
-                 	<input type="file" name="up_file"/>
-                </td>
-            </tr>         
+            </tr>                    
         </table>  
     <div id="btn-container">
-        <input type="button" value="등록" onclick="fn_submit()"/>
+        <input type="submit" value="등록" onclick="fn_submit()"/>
         <input type="button" value="취소" onclick="fn_cancle()"/>
     </div>
+    </form>
 </section>
 <script>
-	function fn_submit(){
-		alert("등록하시겠습니까?");
-		location.href="<%=request.getContextPath()%>/QnA/insertQnA";
-	}
+	
 	function fn_cancle(){
 		alert("취소하시겠습니까?");
 		location.href="<%=request.getContextPath()%>/QnA/QnAList";

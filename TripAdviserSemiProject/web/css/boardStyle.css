@@ -57,21 +57,21 @@ section#notice-section table.notice-tbl tbody tr:hover{
 
 section#notice-section div#search-container{
 	margin-top: 5px; 
-	width: 100%; height: 35px; 
-	text-align: center;
+	width: 100%; height: 40px; 
+	text-align: center;	
 }
 
-section#notice-section div#search-container>input[type="button"]{
+section#notice-section button#search-btn{
     width: 50px; height: 28px; 
     border: 1px solid gainsboro; 
     background-color: white;
     border-radius: 10%;
     cursor: pointer;
 }
-section#notice-section div#search-container>input[type="button"]:hover{
+section#notice-section button#search-btn:hover{
 	background-color: whitesmoke;
 }
-section#notice-section div#search-container search#search-category{
+section#notice-section div#search-container search#searchType{
 	height: 30px; 
 	border: 1px solid gainsboro;
 }
@@ -79,15 +79,15 @@ section#notice-section div#search-container input[type="search"]{
     border: 0.05em solid gainsboro;
     width: 250px; height: 28px;
     border-radius: 0.3em;
+    
 }
 
 section#notice-section div#paging-container{text-align: center;}
 
 
-
 /* 글쓰기*/
 section#noticeWrite-section table.write-tbl{
-	width: 70%; height: 400px;
+	width: 70%; height: 300px;
 	margin-top: 20px;
 	border-spacing: 0;	
 }
@@ -114,6 +114,17 @@ section#noticeWrite-section div#btn-container{
 	text-align: center;
 	margin-top: 20px;
 }
+section#noticeWrite-section input[type="submit"]{
+    width: 50px; height: 30px; 
+    border: 1px solid gainsboro; 
+    background-color: white;
+    border-radius: 10%;
+    cursor: pointer;
+}
+section#noticeWrite-section input[type="submit"]:hover{    
+    background-color: whitesmoke;    
+}
+
 section#noticeWrite-section div#btn-container input[type="button"]{
     width: 50px; height: 30px; 
     border: 1px solid gainsboro; 
@@ -168,7 +179,7 @@ section#noticeView-section div#comment-container{
 	text-align: center; 
 	display: none;
 	margin: auto;
-	background-color: gainsboro;
+	/* background-color: gainsboro; */
 }
 section#noticeView-section div#comment-container textarea{
 	margin-top: 10px;
@@ -177,17 +188,28 @@ section#noticeView-section div#comment-container textarea{
 	border: 0.05em solid lightgrey;
 	border-radius: 0.5em;	
 }
-section#noticeView-section div#comment-container input[type="button"]{
+input#comment-btn{
 	width: 50px; height: 30px; 
 	border: 1px solid gainsboro; 
 	background-color: white;	
 	border-radius: 10%;
 	cursor: pointer;	
+	display: inline-block;	
 }
-section#noticeView-section div#comment-container div#comment-box{
-	
-	width: 90%; height: 100px;	
-	text-align: center;
+div#comment-box{	
+	width: 90%; height: 30px;	
+	text-align: left;
 	margin: auto;
-	
+	/* border: 1px solid lightgrey;
+	border-radius: 5em; */
+}
+table#comment-tbl{
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	width: 90%;
+	margin: auto;	
+}
+
+td#date-td{
+	font-size: 10px;
 }

@@ -57,10 +57,12 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 			return;
 		}
 		//저장경로
-		String dir=getServletContext().getRealPath("/images/travel_upload_imgs");
+		String dir=getServletContext().getRealPath("/images/travel_upload_imgs") ;
 		int maxSize=1024*1024*1024;
 		MultipartRequest mr=new MultipartRequest(request, dir,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		//DB로직 구성~!
+		
+		System.out.println(dir);
 		
 		Enumeration e=mr.getFileNames();
 		List<String> fileNames=new ArrayList();
@@ -72,12 +74,12 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		
 		
 		String title=mr.getParameter("trvTitle");
+		
 					/*String ctg=mr.getParameter("trvCtg");*/ /*카테고리(대,소)2개??*/
 		String province=mr.getParameter("trvProvince");
 		String city=mr.getParameter("trvCity");
 		String addr=mr.getParameter("trvAddress");
 		String content=mr.getParameter("proContent");
-		
 		
 		
 		
@@ -93,12 +95,17 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		
 		tp.setTrvNo(trvNo);
 		tp.setTrvTitle(title);
+		tp.setTrvRepresentPic(fileNames.get(0));
 		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
-		tp.setAlbumUrls(fileNames);
+		List<String> albumUrls = new ArrayList<String>();
+		for(int i=1; i<fileNames.size(); i++) {
+			albumUrls.add(fileNames.get(i));
+		}
+		tp.setAlbumUrls(albumUrls);
 		tp.setTrvReview(content);
-		 
+		 System.out.println(albumUrls);
 		
 		int result=new TravelAdminService().insertAdmin(tp);
 	

@@ -5,10 +5,22 @@ body{
 
 
 /* 손성식 */
-
+section#travel-detail-container {
+	padding-top: 20px; padding-bottom: 20px; border-bottom: 1px solid lightgray; border-top: 2px solid lightgray;
+}
+article#travel-description-space {max-width: 926.44px; margin: auto;}
+article#travel-description-space div#travel-address-box {display: inline-block; width:70%;}
+article#travel-description-space div#travel-manage-btn-box {display: inline-block; text-align: right; width:30%;}
+article#travel-description-space div#travel-album-review-space {display: flex; border:0.5px solid lightgray;}
+article#travel-description-space div#travel-album-carausel-box {display: inline-block; width: 70%; height:380px;}
+article#travel-description-space div#travel-review-box {display: flex; flex-direction: column; width: 30%;}
+article#travel-description-space div#travel-evul-intro-div {display: inline-block; width: 100%; height: 50%;}
+article#travel-description-space div#travel-map-div {display: inline-block; width: 100%; height: 40%;}
+article#travel-description-space div#travel-scrap-div {display: inline-block; width: 100%;}
+article#travel-description-space div#travel-content-container {display: block; margin-top: 20px; padding-top: 10px; border:0.5px solid lightgray;}
 
 article#travel-comment-container {
-	padding-bottom: 10px;
+	display: block; max-width: 880px; margin: auto; background-color: white
 }
 
 article#travel-comment-container #input-comment {
@@ -234,7 +246,13 @@ div#paging-container ul li {
 } */
 
 /* 이정복 */
-
+nav#trvList ul.pagination {
+   color: white;
+   text-decoration: none;
+   margin-left:360px;
+   /* position: relative;
+   left: 350px; */
+}
 section#trvList div.container #tblljb-pageBar{
 	margin-top:30px;
 }

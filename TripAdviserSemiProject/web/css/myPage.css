@@ -1,0 +1,168 @@
+section#mypage-main-section{background: #eee;}
+section#mypage-main-section article#main {
+font: 14px/1 'Open Sans', sans-serif;
+color: #555;	
+min-width: 320px;
+max-width: 1100px;
+padding: 20px;
+margin: 0 auto;
+background: #fff;
+}
+
+article#main div.tab {
+	display: none;
+	padding: 20px 0 0;
+	border-top: 1px solid #ddd;
+}
+
+section#mypage-main-section article#main input {
+	display: none;
+}
+
+section#mypage-main-section article#main label {
+	display: inline-block;
+	margin: 0 0 -1px;
+	padding: 15px 25px;
+	font-weight: 600;
+	text-align: center;
+	color: #bbb;
+	border: 1px solid transparent;
+}
+
+section#mypage-main-section article#main label:before {
+	font-family: fontawesome;
+	font-weight: normal;
+	margin-right: 10px;
+}
+
+section#mypage-main-section article#main label[for*='1']:before { content: '\f2bb'; }
+section#mypage-main-section article#main label[for*='2']:before { content: '\f07a'; }
+section#mypage-main-section article#main label[for*='3']:before { content: '\f11c'; }
+section#mypage-main-section article#main label[for*='4']:before { content: '\f234'; }
+section#mypage-main-section article#main label[for*='5']:before { content: '\f0fe'; }
+section#mypage-main-section article#main label[for*='6']:before { content: '\f044'; }
+
+section#mypage-main-section article#main label:hover {
+	color: #888;
+	cursor: pointer;
+}
+
+section#mypage-main-section article#main input:checked + label {
+	color: #555;
+	border: 1px solid #ddd;
+	border-top: 2px solid orange;
+	border-bottom: 1px solid #fff;
+}
+
+section#mypage-main-section article#main #tab1:checked ~ #my-info,
+section#mypage-main-section article#main #tab2:checked ~ #my-scraps,
+section#mypage-main-section article#main #tab3:checked ~ #my-comments,
+section#mypage-main-section article#main #tab4:checked ~ #my-follows,
+section#mypage-main-section article#main #tab5:checked ~ #add-trip,
+section#mypage-main-section article#main #tab6:checked ~ #trips-list {
+	display: block;
+	min-height: 519px;
+} 
+
+footer#footer-container {
+	display: flex;
+	font-style: "굴림";
+	font-size: 10px;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100px;
+	background-color: darkgrey;
+}
+
+div.mypage-header{
+font: 14px/1 'Open Sans', sans-serif;
+color: #555;
+background: #eee;
+margin: 0 0 0 200px auto;
+}
+
+div.mypage-header span.mypage-spacer{
+	width : 200px;
+}
+
+
+/* 마이프로필CSS */
+section#myProfile-view-container{
+	min-width: 300px;
+	max-width: 1200px;
+	display: flex;
+	flex-direction: column;
+}
+section#myProfile-view-container article{
+display: inline-block;
+max-width: 850px;
+border: 0px solid black;
+margin: auto;
+}
+section#myProfile-view-container article#profile-container {
+	width: 100%;
+	display: flex;
+	padding-top: 10px;
+	border: 1px solid lightgray;
+	min-height: 410px;
+}
+section#myProfile-view-container article#profile-container div#profile-img-container {
+	width: 40%;
+	margin-top: 35px;
+}
+section#myProfile-view-container article#profile-container div#profile-img-container div {
+	width: 100%;
+}
+section#myProfile-view-container article#profile-container div#profile-img-container > div{
+	display: inline-block;
+}
+section#myProfile-view-container article#profile-container div#profile-img-space {
+	
+}
+section#myProfile-view-container article#profile-container div#profile-img-btn-space {
+	margin-top: 15px;
+	text-align: center;
+}
+section#myProfile-view-container article#profile-container div#profile-info-container {
+	width: 60%;
+}
+section#myProfile-view-container article#profile-container div#profile-info-container div#profile-info-space {
+	display: inline-block;
+	padding-top: 4%;
+	height: 83%;
+	font-size: 1.4em;
+	margin-top: 1%;
+}
+section#myProfile-view-container article#profile-container div#profile-info-container div#profile-info-space > div {
+display: flex;
+}
+section#myProfile-view-container article#profile-container div#profile-info-container div#profile-info-space > div > div {
+margin-top: 12px;
+}
+section#myProfile-view-container article#profile-container div#profile-info-container div#profile-info-space div.info-label {
+display: inline-block;
+min-width: 100px;
+width:30%;
+}
+section#myProfile-view-container article#profile-container div#profile-info-container div#profile-info-space div.info-content {
+
+display: inline-block;
+width:70%;
+}
+section#myProfile-view-container article#profile-container div#profile-info-container div#profile-modify-btn-space {
+	width: 100%;
+	height: 15%;
+	text-align: right;
+	padding-right: 15px;
+}
+
+section#myProfile-view-container article#profile-container div {
+	border: 0px solid black;
+}
+section#myProfile-view-container article#profile-update-container {
+	display: none;
+	width: 100%;
+	min-height: 530px;
+	border: 1px solid lightgray;
+}
