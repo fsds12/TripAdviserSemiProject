@@ -322,13 +322,12 @@ public class TravelAdminDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, tp.getTrvTitle());
-			pstmt.setString(2, tp.getTrvProvince());
-			pstmt.setString(3, tp.getTrvCity());
-			pstmt.setString(4, tp.getTrvAddress());
-			pstmt.setDate(5,  (Date) tp.getTrvDateStart());
-			pstmt.setDate(6,  (Date) tp.getTrvDateEnd());
-			pstmt.setString(7, tp.getTrvReview());
-			/*pstmt.setInt(8, tp.getTrvNo());*/
+			pstmt.setString(2, tp.getTrvRepresentPic());
+			pstmt.setString(3, tp.getTrvProvince());
+			pstmt.setString(4, tp.getTrvCity());
+			pstmt.setString(5, tp.getTrvAddress());
+			pstmt.setString(6, tp.getTrvReview());
+			pstmt.setInt(7, tp.getTrvNo());
 			
 			result=pstmt.executeUpdate();
 			

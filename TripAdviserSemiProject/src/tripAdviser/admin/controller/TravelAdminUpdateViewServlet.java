@@ -42,7 +42,7 @@ public class TravelAdminUpdateViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int trvNo = 0;
+		int trvNo=Integer.parseInt(request.getParameter("trvNo"));
 
 		if(!ServletFileUpload.isMultipartContent(request))
 		{
@@ -88,11 +88,12 @@ public class TravelAdminUpdateViewServlet extends HttpServlet {
 		
 		tp.setTrvNo(trvNo);
 		tp.setTrvTitle(title);
+		tp.setTrvRepresentPic(fileNames.get(0));
 				/*tp.setTrvSmallCtg(ctg);*/
 		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
-		tp.setAlbumUrls(fileNames);
+		/*tp.setAlbumUrls(fileNames);*/
 		tp.setTrvReview(content);
 		
 		

@@ -3,6 +3,12 @@
 
 <%@ include file="/views/common/header.jsp" %>
 
+<%
+
+int trvNo=(int)request.getAttribute("trvNo");
+
+%>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/jquery-ui.min.css">
 <script src="<%=request.getContextPath() %>/js/jquery-ui.min.js"></script>
 <script src="<%=request.getContextPath() %>/js/scripts.js"></script>
@@ -12,7 +18,7 @@
  <article id="trArt">
   <div class="container">
 	
-	<form action="<%=request.getContextPath()%>/travel/travelAdminUpdateView"
+	<form action="<%=request.getContextPath()%>/travel/travelAdminUpdateView?trvNo=<%=trvNo %>"
 	name="ajaxFile" method="post" enctype="multipart/form-data">
 	
   <div class="inputData">
@@ -67,22 +73,6 @@
 						<input type="file" name="trvRepresentPic" id="getfile" style="width:200px">
 					</div>
 
-
-					<div id="trvImg2" style="width:250px">
-						<img id="preview2" src="" width="200" alt="">
-						<input type="file" name="trvPicSrc1" id="getfile2" style="width:200px">
-					</div>
-					
-					
-					<div id="trvImg3" style="width:250px">
-						<img id="preview3" src="" width="200" alt="">
-						<input type="file" name="trvPicSrc2" id="getfile3" style="width:200px" multiple>
-					</div>
-					
-					<div id="trvImg4" style="width:250px">
-						<img id="preview4" src="" width="200" alt="">
-						<input type="file" name="trvPicSrc3" id="getfile4" style="width:200px" multiple>
-					</div>
 
 	</div>
 	
