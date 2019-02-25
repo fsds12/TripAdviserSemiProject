@@ -22,7 +22,7 @@ tp3=tplist.get(2);
 		font-size: 25px;
 	}
 	
-div.card div img{width:370px; height:300px;}
+div.card div img{width:310px; height:300px;}
 </style>
 
 

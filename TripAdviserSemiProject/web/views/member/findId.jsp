@@ -12,7 +12,7 @@ section#idfind-container{
 width: 100%;
 }
 section#idfind-container article#idfind-article{
-width: 650px;
+width: 430px;
 margin: auto;
 }
 section#idfind-container article#idfind-article div#idfind-div{
@@ -27,13 +27,19 @@ background-color: lightgray;
 	<div id="idfind-div">
 	
 	<%if(m!=null){ %> 
-		<span>조회된 아이디는 <%=m.getMemberId()%></span>
+		<span>조회된 아이디는 <%=m.getMemberId()%> 입니다.</span>
+		
 	<%}else{ %>
 		<span>입력한 정보와 일치하는 회원이 존재하지 않습니다.</span>
 	<%} %>
 	</div>
 </article>
 </section>
+
+<script>
+	
+
+</script>
 
 
 <%@ include file="/views/common/footer.jsp" %>

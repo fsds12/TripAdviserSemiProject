@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 	<% 
 	Cookie[] cookies=request.getCookies();
 	
@@ -23,7 +23,8 @@
 <html>
 
         <%@ include file="/views/common/header.jsp" %>
-
+       
+        
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
@@ -139,6 +140,9 @@ div#wcw-login-container .btn-naver {
   color: white;
   background-color: rgb(0, 199, 60);
 }
+div#wcw-login-container .btn-naver:hover{
+color:black;
+}
 
 div#wcw-login-container .btn-kakao {
   
@@ -156,11 +160,13 @@ div.container div.row div#checkboxdiv{
 div#wcw-login-container a#idpwsearchpage{
 color: black;
 margin-left:15px;
+font-size: 14px;
 }
 
 div#wcw-login-container a#signuppage{
 color:black;
-margin-left: 130px;
+margin-left: 100px;
+font-size: 14px;
 }
 
 
@@ -168,6 +174,9 @@ margin-left: 130px;
 </head>
 
 <body>
+ 
+ 
+ 
     <div id="wcw-login-container" class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -193,12 +202,9 @@ margin-left: 130px;
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" id="login" type="submit">로그인</button>
                             <br>
-                            <a href="<%=request.getContextPath()%>/idpwsearchpage" id="idpwsearchpage">아이디 비밀번호 찾기</a> <a href="<%=request.getContextPath()%>/enrollpage" id="signuppage">회원가입</a>
+                            
                             <hr class="my-4">
-                            <button class="btn btn-lg btn-naver btn-block text-uppercase" type="submit"><img src="<%=request.getContextPath()%>/images/naver.png"
-                                    width="20px" height="20px" /> 네이버 아이디로 로그인</button>
-                            <button class="btn btn-lg btn-kakao btn-block text-uppercase" type="submit"><img src="<%=request.getContextPath()%>/images/kakao.png"
-                                    width="20px" height="20px" /> 카카오 계정으로 로그인</button>
+                            <a href="<%=request.getContextPath()%>/idpwsearchpage" id="idpwsearchpage">아이디 비밀번호 찾기</a> <a href="<%=request.getContextPath()%>/enrollpage" id="signuppage">회원가입</a>
                         </form>
                     </div>
                     <img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
