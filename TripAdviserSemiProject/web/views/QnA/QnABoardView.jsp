@@ -15,14 +15,18 @@
     </div>        
 	<table class="noticeView-tbl" align="center">
 		<tr height="60px">
-			<td colspan="2" id="title-td"><%=b.getTitle()%></td>
+			<!-- <td>제목</td> -->
+			<td colspan="3" id="title-td"><%=b.getTitle()%></td>
 		</tr>
 		<tr height="20px">
+			<!-- <td id='writer-td'>작성자</td> -->
 			<td id="writer-td"><%=b.getMemberId() %></td>
+			<!-- <td id='date-td'>작성일</td> -->
 			<td id="date-td"><%=b.getBoardDate() %></td>
 		</tr>
 		<tr>
-			<td colspan="2" id="content-td">
+			<!-- <td>내용</td> -->
+			<td colspan="3" id="content-td">
 				<p><%=b.getContent() %></p>
 			</td>
 		</tr>
@@ -38,9 +42,11 @@
 	<div id="comment-container">
 		
 		<div id="comment-box">comment</div>
+		
 			<table id="comment-tbl">
+				
 				<tr>
-					<td id="writer-td" width="5%"><%=b.getMemberId()%></td>
+					<td id="writer-td" width="5%"></td>
 					<td id="date-td">19.02.12</td>				
 				</tr>
 				<tr>
@@ -50,7 +56,9 @@
 						</p>
 					</td>
 				</tr>
+					
 			</table>
+		
 		<form action="<%=request.getContextPath()%>/QnA/insertComment" method="post">
 			<input type="hidden" name="boardRef" value="<%=b.getBoardNo()%>"/>
 			<input type="hidden" name="commentWriter" value="admin"/>
@@ -59,7 +67,7 @@
 			<textarea name="commentContent"></textarea>		
 			<input type="submit" value="등록" id="comment-btn"/>
 		</form>
-				
+			
 	</div>	
 </div>	  
 </section>

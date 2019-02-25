@@ -267,7 +267,10 @@ public class qaDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			
+			pstmt.setInt(1, ba.getBoardNoRef());
+			pstmt.setString(2, ba.getMemberId());
+			pstmt.setString(3, ba.getBoardContent());
+			pstmt.setInt(4, ba.getCommentLevel());
 			result=pstmt.executeUpdate();
 		}catch (Exception e) {
 			// TODO: handle exception
