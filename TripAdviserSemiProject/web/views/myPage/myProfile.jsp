@@ -50,7 +50,7 @@
 		<div id="profile-img-container">
 			<div id="profile-img-space">
 				<%-- <img class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" /> --%>
-				<img id='profile-img' class="img-thumbnail mx-auto d-block img-fluid" src="<%=m.getMemberPictureUrl() %>" />
+				<img id='profile-img' class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/myPage_imgs/<%=m.getMemberPictureUrl() %>" />
 			</div>
 			<div id="profile-img-btn-space">
 				<button type="button" id="up_file" class="btn btn-secondary" onclick="fn_change_profile_img()">사진 변경</button> 			
