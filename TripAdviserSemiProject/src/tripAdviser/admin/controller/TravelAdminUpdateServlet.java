@@ -31,10 +31,10 @@ public class TravelAdminUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int trvNo=Integer.parseInt(request.getParameter("trvNo"));
-		request.setAttribute("trvNo", trvNo);
 		
-		/*TravelProduct tp = new TravelAdminService().selectAdmin();
-		request.setAttribute("travelProduct", tp)*/;
+		
+		TravelProduct tp = new TravelAdminService().selectAdmin(trvNo);
+		request.setAttribute("travelProduct", tp);
 		
 		request.getRequestDispatcher("/views/travelManage/travelUpdate.jsp").forward(request, response);
 		

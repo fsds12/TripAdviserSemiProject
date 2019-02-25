@@ -409,13 +409,14 @@ public class TravelAdminDao {
 		return result;
 	}
 
-	public TravelProduct selectAdmin(Connection conn) {
+	public TravelProduct selectAdmin(Connection conn,int trvNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		TravelProduct tp=null;
 		String sql=prop.getProperty("selectAdmin");
 		try {
 			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, trvNo);
 			rs=pstmt.executeQuery();
 			if(rs.next())
 			{

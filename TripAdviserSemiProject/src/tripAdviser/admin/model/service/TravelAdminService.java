@@ -131,9 +131,9 @@ public class TravelAdminService {
 		return result;
 	}
 
-	public TravelProduct selectAdmin() {
+	public TravelProduct selectAdmin(int trvNo) {
 		Connection conn=getConnection();
-		TravelProduct tp=new TravelAdminDao().selectAdmin(conn);
+		TravelProduct tp=new TravelAdminDao().selectAdmin(conn,trvNo);
 		close(conn);
 		return tp;
 	}
