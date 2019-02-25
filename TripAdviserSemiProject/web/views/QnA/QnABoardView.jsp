@@ -15,19 +15,23 @@
     </div>        
 	<table class="noticeView-tbl" align="center">
 		<tr height="60px">
-			<td colspan="2" id="title-td"><%=b.getTitle()%></td>
+			<th>제목</th>
+			<td colspan="3" id="title-td"><%=b.getTitle()%></td>
 		</tr>
 		<tr height="20px">
+			<th>작성자</th>
 			<td id="writer-td"><%=b.getMemberId() %></td>
+			<th>작성일</th>
 			<td id="date-td"><%=b.getBoardDate() %></td>
 		</tr>
 		<tr>
-			<td colspan="2" id="content-td">
+			<th>내용</th>
+			<td colspan="3" id="content-td">
 				<p><%=b.getContent() %></p>
 			</td>
 		</tr>
-		<tr>
-			<td colspan="2" height="30px" id="btn-td">
+		<tr>			
+			<td colspan="4" height="30px" id="btn-td">
 				<input type="button" value="삭제" onclick="fn_delete()"/>
 				<input type="button" value="수정" onclick="fn_update()"/>
 				<input type="button" value="목록" onclick="fn_return()"/>
@@ -38,11 +42,12 @@
 	<div id="comment-container">
 		
 		<div id="comment-box">comment</div>
+		
 			<table id="comment-tbl">
+				
 				<tr>
-					<td id="writer-td" width="5%"><%=b.getMemberId() %></td>
-					<td id="date-td">19.02.12</td>					
-					
+					<td id="writer-td" width="5%"></td>
+					<td id="date-td">19.02.12</td>				
 				</tr>
 				<tr>
 					<td id="content-td" colspan="3">
@@ -51,16 +56,18 @@
 						</p>
 					</td>
 				</tr>
+					
 			</table>
-		<form action="<%=request.getContextPath()%>/QnA/insertComment" method="post">
+		
+		<form action="<%=request.getContextPath()%>/QnA/QnAinsertComment" method="post">
 			<input type="hidden" name="boardRef" value="<%=b.getBoardNo()%>"/>
 			<input type="hidden" name="commentWriter" value="admin"/>
 			<input type="hidden" name="level" value="1"/>
 			<input type="hidden" name="commentRef" value="0"/>
 			<textarea name="commentContent"></textarea>		
-			<input type="submit" value="등록" id="comment-btn"/>
+			<input type="submit" value="등록"/>
 		</form>
-				
+			
 	</div>	
 </div>	  
 </section>

@@ -1,30 +1,28 @@
-package tripAdviser.member.controller;
+package tripAdviser.myPage.controller;
 
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import tripAdviser.member.model.service.MemberService;
 import tripAdviser.member.model.vo.Member;
+import tripAdviser.myPage.model.service.MyPageService;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class MyPageProfileUpdateServlet
  */
-@WebServlet(name="LoginServlet",urlPatterns="/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet(name="MyPageProfileUpdateServlet",urlPatterns="/mypage/profileupdate")
+public class MyPageProfileUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public MyPageProfileUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,35 +31,34 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		String id=request.getParameter("inputEmail");
-		String password=request.getParameter("inputPassword");
+		String email=request.getParameter("email");
+		int pcode=Integer.parseInt(request.getParameter("postal-code"));
+		String address=request.getParameter("address");
+		String address2=request.getParameter("address2");
+		
+		System.out.println(id+email+pcode+address+address2);
 		
 		Member m=new Member();
+		
 		m.setMemberId(id);
-		m.setMemberPw(password);
+		m.setEmail(email);
+		m.setPostalCode(pcode);
+		m.setAddress(address);
+		m.setAddressDetail(address2);
 		
-		Member result=new MemberService().selectOne(m);
+		int result=new MyPageService().updateMember(m);
+		
 		String msg="";
-		String loc="/";
-		String view="/";
-		
-		if(result!=null/*&&result.getMemberId().equals(id)&&result.getMemberPw().equals(password)*/) {
-			msg="로그인 성공";
-			HttpSession session=request.getSession();
-			session.setAttribute("loginMember",m);
-			String saveId=request.getParameter("customCheck1");
+		String loc="/views/myPage/myPageMain.jsp";
+		String view="/views/common/msg.jsp";
+		if(result>0) {
+			msg="회원정보가 수정되었습니다.";
 			
-			if(saveId!=null) {
-				Cookie c=new Cookie("saveId",id);
-				c.setMaxAge(60*60*24*15);
-				response.addCookie(c);
-				}else {
-					Cookie c=new Cookie("saveId",id);
-					c.setMaxAge(0);
-					response.addCookie(c);
-			}
 		}else {
-			msg="아이디 또는 비밀번호가 일치하지 않습니다.";
+			msg="회원정보 수정을 실패하였습니다.";
+			
 		}
 		request.setAttribute("msg",msg);
 		request.setAttribute("loc",loc);
@@ -69,6 +66,12 @@ public class LoginServlet extends HttpServlet {
 		rd.forward(request, response);
 		
 	}
+		
+		
+		
+		
+		
+		
 	
 
 	/**

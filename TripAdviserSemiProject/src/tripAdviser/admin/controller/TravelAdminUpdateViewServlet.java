@@ -42,7 +42,7 @@ public class TravelAdminUpdateViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int trvNo=Integer.parseInt(request.getParameter("trvNo"));
+		int trvNo = Integer.parseInt(request.getParameter("trvNo"));
 
 		if(!ServletFileUpload.isMultipartContent(request))
 		{
@@ -63,24 +63,14 @@ public class TravelAdminUpdateViewServlet extends HttpServlet {
 		{
 			fileNames.add(mr.getFilesystemName((String)e.nextElement()));
 		}
-		System.out.println(fileNames);
 		
 		
 		String title=mr.getParameter("trvTitle");
-					/*String ctg=mr.getParameter("trvCtg");*/ /*카테고리(대,소)2개??*/
 		String province=mr.getParameter("trvProvince");
 		String city=mr.getParameter("trvCity");
 		String addr=mr.getParameter("trvAddress");
 		String content=mr.getParameter("proContent");
-		
-		
-		
-		System.out.println(title);
-				/*System.out.println(ctg);*/
-		System.out.println(province);
-		System.out.println(city);
-		System.out.println(addr);
-		System.out.println(content);
+		String smallCtg = mr.getParameter("trvCtg");
 		
 		
 		
@@ -89,22 +79,24 @@ public class TravelAdminUpdateViewServlet extends HttpServlet {
 		tp.setTrvNo(trvNo);
 		tp.setTrvTitle(title);
 		tp.setTrvRepresentPic(fileNames.get(0));
-				/*tp.setTrvSmallCtg(ctg);*/
 		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
-		/*tp.setAlbumUrls(fileNames);*/
+		tp.setTrvSmallCtg(smallCtg);
+		List<String> albumUrls = new ArrayList<String>();
+		for(int i=1; i<fileNames.size(); i++) {
+			albumUrls.add(fileNames.get(i));
+		}
+		tp.setAlbumUrls(albumUrls);
 		tp.setTrvReview(content);
-		
 		
 		
 		
 		int result=new TravelAdminService().updateAdmin(tp);
 	
-		System.out.println(result);
 		
 		String msg=""; 
-		String loc="/travel/TravelAdminListView";       /*/travel/travelProductDetail?trvNo=*/ 
+		String loc="travel/travelProductDetail?trvNo=" + tp.getTrvNo();        
 		String view="/views/common/msg.jsp";
 		
 		if(result>0)

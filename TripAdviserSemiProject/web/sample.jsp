@@ -18,12 +18,6 @@
 	<input type="file" />
 </form>
 <section>
-<<<<<<< HEAD
-
-
-<br><br><BR><BR><BR><BR>
-
-=======
 <div class="container mt-3">
   <h2>탭</h2>
   <br>
@@ -55,7 +49,6 @@
     </div>
   </div>
 </div>
->>>>>>> refs/heads/lza
 
 <script>
 $(document).ready(function(){

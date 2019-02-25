@@ -74,12 +74,11 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		
 		
 		String title=mr.getParameter("trvTitle");
-		
-					/*String ctg=mr.getParameter("trvCtg");*/ /*카테고리(대,소)2개??*/
 		String province=mr.getParameter("trvProvince");
 		String city=mr.getParameter("trvCity");
 		String addr=mr.getParameter("trvAddress");
 		String content=mr.getParameter("proContent");
+		String smallCtg = mr.getParameter("trvCtg");
 		
 		
 		
@@ -99,6 +98,7 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
+		tp.setTrvSmallCtg(smallCtg);
 		List<String> albumUrls = new ArrayList<String>();
 		for(int i=1; i<fileNames.size(); i++) {
 			albumUrls.add(fileNames.get(i));

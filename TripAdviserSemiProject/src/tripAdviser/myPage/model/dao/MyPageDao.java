@@ -108,6 +108,7 @@ public class MyPageDao {
 				mpc.setTrvTitle(rs.getString("trv_title"));
 				mpc.setTrvEvaluation(rs.getInt("trv_evaluation"));
 				mpc.setCommentContent(rs.getString("comment_content"));
+				mpc.setCommentNo(rs.getInt("comment_no"));
 				
 				list.add(mpc);
 			}
@@ -155,5 +156,95 @@ public class MyPageDao {
 		}
 		
 		return m;
+	}
+	
+	public int deleteMyComment(Connection conn, int commentNo) {
+		sql = prop.getProperty("deleteMyComment");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			
+			result = pstmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateMember(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updateMember");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,m.getEmail());
+			pstmt.setInt(2,m.getPostalCode());
+			pstmt.setString(3,m.getAddress());
+			pstmt.setString(4,m.getAddressDetail());
+			pstmt.setString(5,m.getMemberId());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Member seletOne(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectOne");
+		Member result=null;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, m.getMemberId());
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result=new Member();
+				result.setMemberId(rs.getString("MEMBER_ID"));
+				result.setMemberPw(rs.getString("MEMBER_PW"));
+				result.setMemberGrade(rs.getInt("MEMBER_GRADE"));
+				result.setEmail(rs.getString("EMAIL"));
+				result.setName(rs.getString("NAME"));
+				result.setMemberPictureUrl(rs.getString("MEMBER_PICTURE_URL"));
+				result.setPostalCode(rs.getInt("POSTAL_CODE"));
+				result.setAddress(rs.getString("ADDRESS"));
+				result.setAddressDetail(rs.getString("ADDRESS_DETAIL"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updatePassword(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updatePassword");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,m.getMemberPw());
+			pstmt.setString(2,m.getMemberId());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 }

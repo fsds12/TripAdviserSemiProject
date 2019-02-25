@@ -35,7 +35,7 @@ public class categoryMenuServlet extends HttpServlet {
 		choice=0;
 	}
 	
-	System.out.println("넘겨받은값"+choice);
+	//System.out.println("넘겨받은값"+choice);
 	String list;
 	switch(choice)
 	{

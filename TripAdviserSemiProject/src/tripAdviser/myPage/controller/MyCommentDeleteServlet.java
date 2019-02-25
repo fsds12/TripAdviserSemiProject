@@ -1,28 +1,26 @@
-package tripAdviser.member.controller;
+package tripAdviser.myPage.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tripAdviser.member.model.service.MemberService;
-import tripAdviser.member.model.vo.Member;
+import tripAdviser.myPage.model.service.MyPageService;
 
 /**
- * Servlet implementation class IdFindServlet
+ * Servlet implementation class MyCommentDeleteServlet
  */
-@WebServlet("/idfind")
-public class IdFindServlet extends HttpServlet {
+@WebServlet("/myPage/myCommentDelete")
+public class MyCommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IdFindServlet() {
+    public MyCommentDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,20 +30,24 @@ public class IdFindServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String name=request.getParameter("name");
-		String phone=request.getParameter("phone");
-		String email=request.getParameter("email");
+		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+		int cPage = Integer.parseInt(request.getParameter("cPage"));
+		String id = request.getParameter("id");
+		System.out.println(commentNo + ":" + cPage + ":" + id);
+		int result = new MyPageService().deleteMyComment(commentNo);
+		String msg = "";
 		
-		Member m=new Member();
-		m.setName(name);
-		m.setPhone(phone);
-		m.setEmail(email);
-		Member result=new MemberService().findId(m);
-		
-		request.setAttribute("Member", result);
-		
-		RequestDispatcher rd=request.getRequestDispatcher("/views/member/findId.jsp");
-		rd.forward(request, response);
+		if(result > 0) {
+			msg = "메시지 삭제 성공!";
+		}
+		else {
+			msg = "메시지 삭제 실패!";
+		}
+		System.out.println(msg);
+		request.setAttribute("cPage", cPage);
+		request.setAttribute("id", id);
+		request.setAttribute("msg", msg);
+		request.getRequestDispatcher("/myPage/myComment").forward(request, response);
 	}
 
 	/**

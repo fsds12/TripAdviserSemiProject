@@ -59,13 +59,15 @@ public class MemberDao {
 		Member result=null;
 		
 		try {
-			pstmt=conn.prepareStatement(sql);
+			pstmt=conn.prepareStatement("SELECT MEMBER_ID FROM MEMBER WHERE NAME=? AND PHONE=? AND EMAIL=?");
 			pstmt.setString(1,m.getName());
 			pstmt.setString(2,m.getPhone());
 			pstmt.setString(3,m.getEmail());
+			System.out.println(m.getName() + ":" + m.getPhone() + ":" + m.getEmail());
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
+				System.out.println("찾음");
 				result=new Member();
 				result.setMemberId(rs.getString("MEMBER_ID"));
 				
@@ -160,6 +162,7 @@ public class MemberDao {
 		
 		return result;
 	}
+	
 	
 }
 	

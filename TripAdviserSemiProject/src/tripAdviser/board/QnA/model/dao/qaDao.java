@@ -56,7 +56,7 @@ public class qaDao {
 		return list;
 	}
 	
-	public List<Board> selectQaList(Connection conn, int cPage, int numPerPage, String type, String key){
+	public List<Board> selectSearchQa(Connection conn, int cPage, int numPerPage, String type, String key){
 		List<Board> list=new ArrayList();
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -267,7 +267,10 @@ public class qaDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			
+			pstmt.setInt(1, ba.getBoardNoRef());
+			pstmt.setString(2, ba.getMemberId());
+			pstmt.setString(3, ba.getContent());
+			pstmt.setInt(4, ba.getCommentLevel());
 			result=pstmt.executeUpdate();
 		}catch (Exception e) {
 			// TODO: handle exception
@@ -290,11 +293,11 @@ public class qaDao {
 				BoardAnswer ba=new BoardAnswer();
 				ba.setCommentNo(rs.getInt("comment_no"));
 				ba.setBoardNoRef(rs.getInt("board_no_ref"));
-				ba.setBoardContent(rs.getString("board_content"));
 				ba.setMemberId(rs.getString("member_id"));
-				ba.setCommentLevel(rs.getInt("comment_level"));
-				ba.setCommentNoRef(rs.getInt("comment_no_ref"));
+				ba.setContent(rs.getString("content"));				
 				ba.setBoardDate(rs.getDate("board_date"));
+				ba.setCommentLevel(rs.getInt("comment_level"));
+				ba.setCommentNoRef(rs.getInt("comment_no_ref"));				
 				
 				comment.add(ba);
 			}

@@ -19,6 +19,7 @@
 		margin-left: 10px;
 		display: inline-block;
 	}
+	
 </style>
 <script>
 	$(function(){		
@@ -47,6 +48,7 @@
         <table align="center" class="notice-tbl">                    
             <thead>
             <tr>
+            	
             	<td colspan="5">
             		<input type="button" value="쓰기" class="write-btn" onclick="location.href='<%=request.getContextPath()%>/notice/noticeWrite'"/>
             	</td>
@@ -61,7 +63,7 @@
             </thead>
             <tbody>
             <%for(Board b : list){ %>                        
-            <tr>
+            <tr id="boardList-tr">
                 <td><%=b.getBoardNo()%></td>
                 <td><%=b.getMemberId() %></td>
                 <td><a href="<%=request.getContextPath()%>/notice/noticeView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle()%></a></td> 

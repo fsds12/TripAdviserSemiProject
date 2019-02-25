@@ -23,7 +23,7 @@ section#notice-section table.notice-tbl{
 	border-spacing: 0; 
 	text-align: center; 
 	margin: auto; 
-	height: 400px; width: 80%;
+	width: 80%;
 	border-bottom: 1px solid lightgrey;
 }
 	
@@ -42,7 +42,9 @@ section#notice-section input[type="button"].write-btn{
 	border-radius: 10%;
 	cursor: pointer;
 }
-
+tr#boardList-tr{
+		height: 34px;
+	}
 section#notice-section input[type="button"].write-btn:hover{
 	background-color: whitesmoke;
 }
@@ -149,6 +151,12 @@ section#noticeView-section table.noticeView-tbl td{
 	border-top: 1px solid lightgrey;	
 	border-bottom: 1px solid lightgrey;	
 }
+section#noticeView-section table.noticeView-tbl th{
+	border-top: 1px solid lightgrey;	
+	border-bottom: 1px solid lightgrey;
+	width: 10%;
+}
+
 section#noticeView-section td#btn-td{
 	border: none;
 }       

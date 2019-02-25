@@ -427,15 +427,15 @@ section#trvUpdate form div.inputImage img {
 
 /* 강도원 */
 #search-before {
-	width: 100%;
-	/* height: 2812px; */
-	background-color: white;
-	justify-content: center;
-	align-content: center;
+   width: 100%;
+   /* height: 2812px; */
+   background-color: white;
+   justify-content: center;
+   align-content: center;
 }
 
 
-#search1{
+#searchkey{
     width:400px;
     height:30px;
     margin-left: 20px;
@@ -455,21 +455,20 @@ section#trvUpdate form div.inputImage img {
     width:100px;
 }
 
-/*search after*/
-
 #search-after {
-	width: 100%;
-	/* height: 2812px; */
-	background-color: white;
-	justify-content: center;
-	align-content: center;
+   width: 100%;
+   /* height: 2812px; */
+   background-color: white;
+   justify-content: center;
+   align-content: center;
 }
 
 #hrf{
-	border: 0;
+   border: 0;
     height: 3px;
     background: #ccc;
 }
+
 
 /*별점*/
 .starR{

@@ -68,6 +68,7 @@ public class QnAViewServlet extends HttpServlet {
 			request.setAttribute("comment", comment);
 		}
 		
+		
 		request.setAttribute("Board", b);
 		request.getRequestDispatcher("/views/QnA/QnABoardView.jsp").forward(request, response);
 	}

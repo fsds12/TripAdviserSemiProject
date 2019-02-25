@@ -49,7 +49,7 @@ public class TravelProductDetailViewServlet extends HttpServlet {
 		//페이지바 만들기
 		String pageBar = "<ul class='pagination justify-content-center'>";
 		int pageBarSize = 5;
-		int pageNo = ((cPage / pageBarSize) * pageBarSize) + 1;	//페이지바의 시작페이지숫자 설정
+		int pageNo = (((cPage-1) / pageBarSize) * pageBarSize) + 1;	//페이지바의 시작페이지숫자 설정
 		int pageStart = pageNo;
 		int pageEnd = pageNo + pageBarSize - 1;
 		

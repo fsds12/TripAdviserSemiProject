@@ -41,7 +41,6 @@ public class QnASearchServlet extends HttpServlet {
 		}catch (Exception e) {
 			cPage=1;
 		}
-		
 		int numPerPage;
 		try {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
@@ -50,25 +49,27 @@ public class QnASearchServlet extends HttpServlet {
 		}
 		
 		int totalContent=service.selectQaCount(type, key);
-		List<Board> list=service.selectQaList(cPage, numPerPage, type, key);
-		int totalPage=(int)Math.ceil((double)numPerPage/totalContent);
+		List<Board> list=service.selectSearchQa(cPage, numPerPage, type, key);		
+		
+		
+		int totalPage=(int)Math.ceil((double)totalContent/numPerPage);
 		
 		String pageBar="";
 		int pageBarSize=5;
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
 		
-		if(pageNo==cPage) {
-			pageBar+="<li class='page-item'><a class='page-link'> << <a></li>";
+		if(pageNo==1) {
+			pageBar+="<li class='page-item'><a class='page-link' href=''> << </a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAFind?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&type="+type+"&key="+key+"'> << </li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='" + request.getContextPath()+"QnA/QnAFind?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&type="+type+"&key="+key+"'> << </a></li>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
 				pageBar+="<li class='page-item'><a class='page-link'>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAFind?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&searchType="+type+"&searchKey="+key+"'>"+pageNo+"</a></li>";
+				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"QnA/QnAFind?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&type="+type+"&key="+key+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
@@ -76,14 +77,14 @@ public class QnASearchServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<li class='page-item'><a class='page-link'> >> </a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAFind?cPage="+pageNo+"&numPerPage="+numPerPage+"&type="+type+"&key="+key+"'> >> </a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"QnA/QnAFind?cPage="+pageNo+"&numPerPage="+numPerPage+"&type="+type+"&key="+key+"'> >> </a></li>";
 		}
 		
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("numPerPage", numPerPage);
-		request.setAttribute("type", type);
-		request.setAttribute("key", key);
 		request.setAttribute("pageBar", pageBar);
+		request.setAttribute("searchType", type);
+		request.setAttribute("searchKey", key);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/QnA/QnABoard.jsp").forward(request, response);
 	}
