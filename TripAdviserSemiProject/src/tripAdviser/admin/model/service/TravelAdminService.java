@@ -81,9 +81,9 @@ public class TravelAdminService {
 		return result;
 	}
 
-	public int deleteAdmin() {
+	public int deleteAdmin(int trvNo) {
 		Connection conn=getConnection();
-		int result=new TravelAdminDao().deleteAdmin(conn);
+		int result=new TravelAdminDao().deleteAdmin(conn,trvNo);
 		if(result>0)
 		{
 			commit();

@@ -260,7 +260,7 @@ section#trvList div.container #tblljb-pageBar{
 section#trvList a#ljbtag{
 	text-decoration-line: none;
 	color:#5a5a5a;
-	/* color:#808080;  */
+	
 }
 
 section#trvList form div div table {
@@ -270,12 +270,12 @@ section#trvList form div div table {
 section#trvList div.col-12 #item {
 	margin-left: 10px;
 	position: relative;
-	left: 400px;
+	left: 300px;
 	border-radius: 0.2em;
 	width:200px;
 	height: 37px;
 	margin-bottom: 10px;
-	bottom: 47px;
+	bottom: 10px;
 }
 
 section#trvList div.col-12{
@@ -292,10 +292,10 @@ section#trvList div.col-12 #pro-search {
 	background-color: #ED786A;
 	border-radius: 5px;
 	color: white;
-	left: 403px;
-	bottom: 47px;
+	left: 310px;
+	bottom: 12px;
 	cursor:pointer;
-	/* margin-bottom: 60px; */
+	
 }
 
 section#trvList div.col-12 #category{
