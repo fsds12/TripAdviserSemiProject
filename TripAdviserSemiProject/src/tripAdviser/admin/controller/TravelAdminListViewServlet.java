@@ -78,12 +78,19 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	      
 	      //페이지바 숫자채우기
 	      while(pageNo <= totalAdminPageCnt && pageNo <= pageEnd) {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
-	         pageNo++;
+	    	  if(cPage==pageNo)
+	    	  {
+	    		  pageBar = pageBar + "<li class='page-item active'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
+	    	  }
+	    	  else {
+	    		  pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage="+ pageNo + "'>" + pageNo + "</a></li>";
+	    	  }
+	    	pageNo++;
+	    	  
 	      }
 	      
 	      //다음 만들기
-	      
+	      				/*<li class='active'>*/
 	      if(pageEnd >= totalAdminPageCnt) {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&raquo;</a></li></ul>";
 	      }

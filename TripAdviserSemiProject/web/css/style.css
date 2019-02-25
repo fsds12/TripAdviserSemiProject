@@ -270,7 +270,7 @@ section#trvList form div div table {
 section#trvList div.col-12 #item {
 	margin-left: 10px;
 	position: relative;
-	left: 225px;
+	left: 300px;
 	border-radius: 0.2em;
 	width:200px;
 	height: 37px;
@@ -292,7 +292,7 @@ section#trvList div.col-12 #pro-search {
 	background-color: #ED786A;
 	border-radius: 5px;
 	color: white;
-	left: 230px;
+	left: 310px;
 	bottom: 12px;
 	cursor:pointer;
 	
