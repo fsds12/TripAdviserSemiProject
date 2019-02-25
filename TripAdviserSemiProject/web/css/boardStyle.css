@@ -15,9 +15,10 @@ section.notice-section div.caption{
 	font-size: 25px;
 }
 section.notice-section div.caption>img{
-		height: 150px;
-		border: 1px solid grey;
+	height: 150px;
+	border: 1px solid grey;
 }
+
 /* 공지사항 게시판 css */
 section#notice-section table.notice-tbl{
 	border-spacing: 0; 
@@ -139,37 +140,34 @@ section#noticeWrite-section div#btn-container input[type="button"]:hover{
     background-color: whitesmoke;    
 }
 
-
-
 section#noticeView-section table.noticeView-tbl{	
-	width: 80%; height: 450px;
+	width: 80%; height: 480px;
 	border-spacing: 0;
 	border-collapse: collapse;
 	margin-top: 10px;
 }
 section#noticeView-section table.noticeView-tbl td{
-	border-top: 1px solid lightgrey;	
+	
 	border-bottom: 1px solid lightgrey;	
 }
 section#noticeView-section table.noticeView-tbl th{
-	border-top: 1px solid lightgrey;	
+		
 	border-bottom: 1px solid lightgrey;
 	width: 10%;
 }
 
-section#noticeView-section td#btn-td{
-	border: none;
-}       
-section#noticeView-section td#btn-td input[type="button"]{            
+    
+section#noticeView-section input[type="button"]{            
 	border: 1px solid gainsboro;
     background-color: white;
     width: 50px; height: 30px;
     cursor: pointer;
     margin: auto;
     float: right;
-    border-radius: 10%;                  
+    border-radius: 10%;
+    border-bottom: none;                  
 }
-section#noticeView-section td#btn-td input[type="button"]:hover{
+section#noticeView-section td.btn-td input[type="button"]:hover{
     background-color: whitesmoke;
 }
 
@@ -187,7 +185,7 @@ section#noticeView-section div#comment-container{
 	text-align: center; 
 	display: none;
 	margin: auto;
-	/* background-color: gainsboro; */
+	
 }
 section#noticeView-section div#comment-container textarea{
 	margin-top: 10px;
@@ -207,9 +205,7 @@ input#comment-btn{
 div#comment-box{	
 	width: 90%; height: 30px;	
 	text-align: left;
-	margin: auto;
-	/* border: 1px solid lightgrey;
-	border-radius: 5em; */
+	margin: auto;	
 }
 table#comment-tbl{
 	border-top: 1px solid lightgrey;

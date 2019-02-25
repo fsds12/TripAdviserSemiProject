@@ -38,8 +38,7 @@ public class QnADeleteServlet extends HttpServlet {
 		String loc="";
 		
 		if(result>0) {
-			msg="삭제되었습니다.";
-			
+			msg="삭제되었습니다.";			
 			loc="/QnA/QnAList";
 		}else {
 			msg="삭제 실패";

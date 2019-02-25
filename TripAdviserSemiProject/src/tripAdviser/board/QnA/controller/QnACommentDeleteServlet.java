@@ -29,15 +29,18 @@ public class QnACommentDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		int commentNo=Integer.parseInt(request.getParameter("commentNo"));
+		/*int boardRef=Integer.parseInt(request.getParameter("boardRef"));*/
 		int result=new qaService().deleteComment(commentNo);
 		
 		String msg="";
 		String view="/views/common/msg.jsp";
-		String loc="QnA/QnABoardView";
+		String loc="/QnA/QnAList";
 		
 		if(result>0) {
 			msg="삭제 완료";
+			
 		}else {
 			msg="삭제 실패";
 		}

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <%@ include file="/views/common/header.jsp" %>    
 
@@ -35,8 +34,11 @@
 <script>
 	
 	function fn_cancle(){
-		alert("취소하시겠습니까?");
-		location.href="<%=request.getContextPath()%>/QnA/QnAList";
+		if(confirm('취소하시겠습니까?')){
+			location.href="<%=request.getContextPath()%>/QnA/QnAList";
+		}else{
+			return;
+		}		
 	}
 	
 	$(function(){

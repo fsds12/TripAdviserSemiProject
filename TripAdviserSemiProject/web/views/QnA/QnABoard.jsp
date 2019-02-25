@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, tripAdviser.board.model.vo.Board" %>
+<%@ include file="/views/common/header.jsp" %>
 <%
 	List<Board> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
@@ -7,8 +8,9 @@
 	int numPerPage=(int)request.getAttribute("numPerPage");
 	String type=(String)request.getAttribute("type");
 	String key=(String)request.getAttribute("key");
+	Member m = (Member)session.getAttribute("loginMember");
 %>
-<%@ include file="/views/common/header.jsp" %>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <style>
 	div#search-id{
