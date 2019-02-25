@@ -2,7 +2,6 @@ package tripAdviser.admin.model.dao;
 
 import java.io.FileReader;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +12,6 @@ import java.util.Properties;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
 import static common.JDBCTemplate.close;
-import static common.JDBCTemplate.commit;
-import static common.JDBCTemplate.rollback;
 
 public class TravelAdminDao {
 	

@@ -3,7 +3,6 @@ package tripAdviser.admin.model.service;
 import java.sql.Connection;
 import java.util.List;
 
-import oracle.jdbc.OracleConnection.CommitOption;
 import tripAdviser.admin.model.dao.TravelAdminDao;
 import tripAdviser.travel.product.model.vo.TravelProduct;
 
