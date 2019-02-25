@@ -19,7 +19,7 @@ tplist=new travelSearchService().travelSearchCt(11);
 	}
 
 	div.card div img {
-		width: 310px;
+		width: 100%;
 		height: 300px;
 	}
 </style>

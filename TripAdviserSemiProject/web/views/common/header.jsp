@@ -57,7 +57,7 @@ function htmlMenu(choice)
                 
                 <img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
                 <span>&nbsp;&nbsp;</span>
-                <a class="navbar-brand" id="menu"  href="<%=request.getContextPath() %>/index.jsp">TripAdvisor</a>
+                <a class="navbar-brand" id="menu"  href="<%=request.getContextPath() %>/index.jsp">Local Traveler</a>
    
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav mr-auto">
@@ -92,7 +92,7 @@ function htmlMenu(choice)
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" onClick="htmlMenu(6)">정식</a>
-                                        <a class="dropdown-item" onClick="htmlMenu(7)">지역특산물</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(7)">향토음식점</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" onClick="htmlMenu(8)">길거리음식</a>
                                     </div>
@@ -104,9 +104,9 @@ function htmlMenu(choice)
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/QnA/QnAList">Q/A</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">사이트소개</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/QnA/QnAList">Q/A</a>
+                                        <a class="dropdown-item" href="#">FAQ</a>
                                     </div>
                                 </li>
                             </ul>

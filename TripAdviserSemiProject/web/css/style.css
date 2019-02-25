@@ -124,35 +124,26 @@ div#div-top-rank {
 
 div#div-category1 {
 	width: 100%;
-	/* height: 400px; */
-	/* background-color: pink; */
 	margin: 2px 0 10px;
 }
 
 div#div-category2 {
 	width: 100%;
-	/* height: 400px;
-	 background-color: lightblue; */
 	margin: 2px;
 }
 
 div#div-category3 {
 	width: 100%;
-	/* height: 400px; */
-	/* background-color: pink; */
 	margin: 2px;
 }
 
 div#div-category4 {
 	width: 100%;
-	/* height: 400px; */
-	/* background-color: lightblue; */
 	margin: 2px;
 }
 
 section#mainpage-container {
 	width: 100%;
-	/* height: 2812px; */
 	background-color: white;
 	justify-content: center;
 	align-content: center;
