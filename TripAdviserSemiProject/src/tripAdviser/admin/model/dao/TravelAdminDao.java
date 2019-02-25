@@ -193,7 +193,6 @@ public class TravelAdminDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int result=0;
-		List<String> urlList=new ArrayList<String>();
 		
 		
 		String sql=prop.getProperty("insertAdmin");
@@ -205,53 +204,10 @@ public class TravelAdminDao {
 			pstmt.setString(4, tp.getTrvCity());
 			pstmt.setString(5, tp.getTrvAddress());
 			pstmt.setString(6, tp.getTrvReview());
+			pstmt.setString(7, tp.getTrvSmallCtg());
 			
 			
 			result=pstmt.executeUpdate();
-			
-			if(result>0)
-			{
-				commit();
-			}
-			else
-			{
-				rollback();
-			}
-			
-		
-			close(rs);
-			close(pstmt);
-			
-			
-			sql = prop.getProperty("selectpicSeq");
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next())
-			{
-				tp.setTrvNo(rs.getInt(1));
-				
-			}
-		
-			
-			close(rs);
-			close(pstmt);
-			
-			
-			
-			
-			
-			sql=prop.getProperty("insertImage");
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, tp.getTrvNo());
-			for(int i=0; i<urlList.size(); i++) {
-			   pstmt.setString(2, urlList.get(i));
-			   int resultAlbum = pstmt.executeUpdate();
-			   System.out.println(resultAlbum);
-			}
-			
-			
-			
 			
 		}
 		catch(SQLException e)
@@ -266,7 +222,48 @@ public class TravelAdminDao {
 		
 		return result;
 	}
+	
+	public int getTrvNo(Connection conn) {
+		String sql = prop.getProperty("selectpicSeq");
+		int trvNo = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				trvNo = rs.getInt(1);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(rs);
+			close(pstmt);
+		}
+		return trvNo;
+	}
 
+	public int insertAlbumUrls(Connection conn, int trvNo, String urls) {
+		String sql = prop.getProperty("insertImage");
+		int result = 0;
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, trvNo);
+			pstmt.setString(2, urls);
+			
+			result = pstmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	public TravelProduct selectNo(Connection conn, int no) {
 		PreparedStatement pstmt=null;
@@ -383,7 +380,27 @@ public class TravelAdminDao {
 		return result;
 	}
 
-	
+	public int deleteTravelInfo(Connection conn, int trvNo) {
+		PreparedStatement pstmt=null;
+		
+		int result=0;
+		String sql=prop.getProperty("deleteTravelInfo");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, trvNo);
+			result=pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
+		finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 
 }

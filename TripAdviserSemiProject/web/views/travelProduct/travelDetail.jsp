@@ -279,11 +279,11 @@
 					<!-- The slideshow -->
 					<div class="carousel-inner">
 					  <div class="carousel-item active">
-					    <img src="<%=tp.getTrvRepresentPic() %>" alt="Travel Represent Pic" width="100%" height="380px" />
+					    <img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp.getTrvRepresentPic() %>" alt="Travel Represent Pic" width="100%" height="380px" />
 					  </div>
 					  <%for(int i=0; i<tp.getAlbumUrls().size(); i++) { %>
 						  <div class="carousel-item">
-						    <img src="<%=tp.getAlbumUrls().get(i) %>" alt="Travel Album Pic" width="100%" height="380px" />
+						    <img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp.getAlbumUrls().get(i) %>" alt="Travel Album Pic" width="100%" height="380px" />
 						  </div>
 					  <%} %>
 					</div>

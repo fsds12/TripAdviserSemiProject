@@ -80,6 +80,7 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		String city=mr.getParameter("trvCity");
 		String addr=mr.getParameter("trvAddress");
 		String content=mr.getParameter("proContent");
+		String smallCtg = mr.getParameter("trvCtg");
 		
 		
 		
@@ -99,6 +100,7 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
+		tp.setTrvSmallCtg(smallCtg);
 		List<String> albumUrls = new ArrayList<String>();
 		for(int i=1; i<fileNames.size(); i++) {
 			albumUrls.add(fileNames.get(i));
