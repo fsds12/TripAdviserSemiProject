@@ -14,7 +14,7 @@ import tripAdviser.board.model.vo.BoardAnswer;
 /**
  * Servlet implementation class QnACommentServlet
  */
-@WebServlet("/QnA/insertComment")
+@WebServlet("/QnA/QnAinsertComment")
 public class QnACommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,7 +39,7 @@ public class QnACommentServlet extends HttpServlet {
 		BoardAnswer ba=new BoardAnswer();
 		
 		ba.setMemberId(writer);
-		ba.setBoardContent(content);
+		ba.setContent(content);
 		ba.setBoardNoRef(boardRef);
 		ba.setCommentLevel(level);
 		ba.setCommentNoRef(commentRef);
@@ -55,7 +55,7 @@ public class QnACommentServlet extends HttpServlet {
 			loc="/QnA/QnABoardView?boardNo="+boardRef;
 		}else {
 			msg="등록 실패";
-			loc="/";
+			loc="/QnA/QnABoardView";
 		}
 		
 		

@@ -59,13 +59,13 @@
 					
 			</table>
 		
-		<form action="<%=request.getContextPath()%>/QnA/insertComment" method="post">
+		<form action="<%=request.getContextPath()%>/QnA/QnAinsertComment" method="post">
 			<input type="hidden" name="boardRef" value="<%=b.getBoardNo()%>"/>
 			<input type="hidden" name="commentWriter" value="admin"/>
 			<input type="hidden" name="level" value="1"/>
 			<input type="hidden" name="commentRef" value="0"/>
 			<textarea name="commentContent"></textarea>		
-			<input type="submit" value="등록" id="comment-btn"/>
+			<input type="submit" value="등록"/>
 		</form>
 			
 	</div>	
