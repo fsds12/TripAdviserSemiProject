@@ -62,7 +62,7 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		MultipartRequest mr=new MultipartRequest(request, dir,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		//DB로직 구성~!
 		
-		System.out.println(dir);
+		
 		
 		Enumeration e=mr.getFileNames();
 		List<String> fileNames=new ArrayList();
@@ -70,7 +70,7 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		{
 			fileNames.add(mr.getFilesystemName((String)e.nextElement()));
 		}
-		System.out.println(fileNames);
+		
 		
 		
 		String title=mr.getParameter("trvTitle");
@@ -79,14 +79,6 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		String addr=mr.getParameter("trvAddress");
 		String content=mr.getParameter("proContent");
 		String smallCtg = mr.getParameter("trvCtg");
-		
-		
-		
-		System.out.println(title);
-		System.out.println(province);
-		System.out.println(city);
-		System.out.println(addr);
-		System.out.println(content);
 		
 		
 		
@@ -105,11 +97,8 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		}
 		tp.setAlbumUrls(albumUrls);
 		tp.setTrvReview(content);
-		 System.out.println(albumUrls);
 		
 		int result=new TravelAdminService().insertAdmin(tp);
-	
-		System.out.println(result);
 		
 		String msg="";
 		String loc="/travel/TravelAdminListView";   

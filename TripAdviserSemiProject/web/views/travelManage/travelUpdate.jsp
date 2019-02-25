@@ -6,7 +6,7 @@
 
 <%
 
-/* int trvNo=(int)request.getAttribute("trvNo");  */
+
 TravelProduct tp=(TravelProduct)request.getAttribute("travelProduct");
 
 %>

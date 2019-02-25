@@ -93,7 +93,7 @@ public class TravelAdminUpdateViewServlet extends HttpServlet {
 		
 		
 		int result=new TravelAdminService().updateAdmin(tp);
-	
+		
 		
 		String msg=""; 
 		String loc="travel/travelProductDetail?trvNo=" + tp.getTrvNo();        
