@@ -247,7 +247,7 @@ public class travelSearchDao {
 	               sl.setMemberId(rs.getString("member_id"));
 	               sl.setAvgStarRate(rs.getDouble("rate"));
 	            sleepList.add(sl);
-	            System.out.println(sleepList);
+	            //System.out.println(sleepList);
 	         }
 	      }catch (Exception e) {
 	         e.printStackTrace();
@@ -409,8 +409,8 @@ public class travelSearchDao {
 	         pstmt.setString(2, "%"+searchkey+"%");
 	         pstmt.setString(3, "%"+searchkey+"%");
 	         pstmt.setString(4, "%"+searchkey+"%");
-	         System.out.println("씨페이지"+cPage);
-	         System.out.println("넘퍼페이지"+numPerPage);
+	         //System.out.println("씨페이지"+cPage);
+	         //System.out.println("넘퍼페이지"+numPerPage);
 	         pstmt.setInt(5, (cPage-1)*numPerPage+1);
 	         pstmt.setInt(6, cPage*numPerPage);
 	         //System.out.println(category + ":" + searchkey);

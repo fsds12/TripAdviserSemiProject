@@ -50,9 +50,9 @@ public class travelSearchDetailServlet extends HttpServlet {
 		
 		
 		  int totalContent= new travelSearchService().selectCountAll(category, searchkey);
-		  System.out.println("토탈컨텐트"+totalContent);
+		  //System.out.println("토탈컨텐트"+totalContent);
 		  int totalPage=(int)Math.ceil((double)totalContent/numPerPage);
-		  System.out.println("토탈페이지"+totalPage);
+		  //System.out.println("토탈페이지"+totalPage);
 		  
 		  
 		//페이지바 만들기

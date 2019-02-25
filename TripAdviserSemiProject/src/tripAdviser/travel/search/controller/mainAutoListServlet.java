@@ -35,7 +35,7 @@ public class mainAutoListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String search=request.getParameter("search");
-		System.out.println("검색어:"+search);
+		//System.out.println("검색어:"+search);
 		String csv="";
 		List<String> isList;
 		if(!search.trim().isEmpty())
@@ -50,7 +50,7 @@ public class mainAutoListServlet extends HttpServlet {
 			}
 		}
 	}
-System.out.println("csv : "+csv);
+//System.out.println("csv : "+csv);
 response.setContentType("text/csv;charset=UTF-8");
 response.getWriter().append(csv);		
 	}
