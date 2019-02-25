@@ -49,6 +49,7 @@ public class TravelAdminService {
 		int result=new TravelAdminDao().insertAdmin(conn,tp);
 		if(result>0)
 		{
+			
 			commit();
 		}
 		else
