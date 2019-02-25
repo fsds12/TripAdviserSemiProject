@@ -60,9 +60,9 @@ public class travelSearchServlet extends HttpServlet {
 			request.setAttribute("msg",msg);
 			request.setAttribute("loc", loc);
 			request.setAttribute("sleepList", sleepList);
-			for(TravelProduct tem : sleepList) {
-				System.out.println(tem);
-			}
+			/*
+			 * for(TravelProduct tem : sleepList) { System.out.println(tem); }
+			 */
 			
 		}
 		
@@ -76,9 +76,9 @@ public class travelSearchServlet extends HttpServlet {
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
 			request.setAttribute("acList", acList);
-			for(TravelProduct tem : acList) {
-				System.out.println(tem);
-			}
+			/*
+			 * for(TravelProduct tem : acList) { System.out.println(tem); }
+			 */
 		}
 		
 		//맛집 top3
@@ -92,9 +92,9 @@ public class travelSearchServlet extends HttpServlet {
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
 			request.setAttribute("eatList", eatList);
-			for(TravelProduct tem : eatList) {
-				System.out.println(tem);
-			}
+			/*
+			 * for(TravelProduct tem : eatList) { System.out.println(tem); }
+			 */
 		}
 		
 		request.setAttribute("searchkey", searchkey);

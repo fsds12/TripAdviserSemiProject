@@ -33,12 +33,14 @@
         </form>
 <br><br><br><br>
         
-&nbsp;&nbsp;&nbsp;<span style="font-size: 25px">선택된 카테고리 : </span> <span><%=list.get(0).getTrvLargeCtg() %></span>
+        
+<%-- &nbsp;&nbsp;&nbsp;<span style="font-size: 25px;">검색어 : </span>	<span><%=searchKey %></span>  --%>	
+&nbsp;&nbsp;&nbsp;<span style="font-size: 25px;">선택된 카테고리  : </span> <span><%=list.get(0).getTrvLargeCtg() %></span>
 <hr id="hrf" >
 
 <div class="container" >	
 <%for(int i=0; i<list.size(); i++) {%>
-<%if(i%3 == 0)  {%>
+<%if(i%3 == 0)  {%><br><br>
 	<div class="card-group" id="sear-af">
 <%} %>
  	
@@ -70,6 +72,7 @@
    <%} %>
   <%} %>
 </div>
+<br><br><br><br>
 <nav>
 	<%=pageBar %>
 </nav>
