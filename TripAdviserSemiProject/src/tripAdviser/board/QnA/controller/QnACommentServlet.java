@@ -52,11 +52,12 @@ public class QnACommentServlet extends HttpServlet {
 		
 		if(result>0) {
 			msg="등록되었습니다.";
-			loc="/QnA/QnABoardView?boardNo=boardRef";
+			loc="/QnA/QnABoardView?boardNo="+boardRef;
 		}else {
 			msg="등록 실패";
 			loc="/";
 		}
+		
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
