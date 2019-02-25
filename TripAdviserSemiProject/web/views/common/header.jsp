@@ -40,6 +40,7 @@ function htmlMenu(choice)
 		success : function(data){
 			console.log(data);
 			$("#mydiv").html(data);
+	        document.getElementById('mydiv').scrollIntoView();
 		},
 		error:function(request,status,error){
 		}

@@ -94,20 +94,12 @@ public class TravelAdminService {
 
 	public int deleteAdmin(int trvNo) {
 		Connection conn=getConnection();
-		int result=new TravelAdminDao().deleteAdmin(conn,trvNo);
-		if(result>0)
-		{
+		
+		int result = new TravelAdminDao().deleteTravelInfo(conn, trvNo);
+		if(result > 0) {
 			commit();
-			int resultTrv = new TravelAdminDao().deleteTravelInfo(conn, trvNo);
-			if(resultTrv > 0) {
-				commit();
-			}
-			else {
-				rollback();
-			}
 		}
-		else
-		{
+		else {
 			rollback();
 		}
 		
