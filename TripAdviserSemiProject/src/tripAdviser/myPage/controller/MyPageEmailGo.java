@@ -85,7 +85,7 @@ public class MyPageEmailGo extends HttpServlet {
             for( int i = 0; i < toAddress.length; i++) {
                 message.addRecipient(Message.RecipientType.TO, toAddress[i]);
             }
-
+ 
             message.setSubject(subject);
             message.setText(body);
             Transport transport = session.getTransport("smtp");
