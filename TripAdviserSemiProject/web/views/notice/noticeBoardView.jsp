@@ -8,6 +8,7 @@
 	section#noticeView-section{
 		height: 650px;
 	}
+	
 </style>
 
 <section id="noticeView-section" class="notice-section">
@@ -16,14 +17,18 @@
 	</div>        
 	<table class="noticeView-tbl" align="center">
 		<tr height="60px">
-			<td colspan="2" id="title-td"><%=b.getTitle() %></td>
+			<th>제목</th>
+			<td colspan="3" id="title-td"><%=b.getTitle() %></td>
 		</tr>
 		<tr height="20px">
-			<td id="writer-td">작성자: <%=b.getMemberId() %></td>
-			<td id="date-td">작성일: <%=b.getBoardDate() %></td>
+			<th>작성자</th>
+			<td id="writer-td"><%=b.getMemberId() %></td>
+			<th>작성일</th>
+			<td id="date-td"><%=b.getBoardDate() %></td>
 		</tr>
 		<tr>
-			<td colspan="2" id="content-td">
+			<th>내용</th>
+			<td colspan="3" id="content-td">
 				<p><%=b.getContent() %></p>
 			</td>
 		</tr>

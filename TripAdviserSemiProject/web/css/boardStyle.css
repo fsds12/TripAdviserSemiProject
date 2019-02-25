@@ -43,7 +43,7 @@ section#notice-section input[type="button"].write-btn{
 	cursor: pointer;
 }
 tr#boardList-tr{
-		height: 33px;
+		height: 34px;
 	}
 section#notice-section input[type="button"].write-btn:hover{
 	background-color: whitesmoke;
@@ -151,6 +151,12 @@ section#noticeView-section table.noticeView-tbl td{
 	border-top: 1px solid lightgrey;	
 	border-bottom: 1px solid lightgrey;	
 }
+section#noticeView-section table.noticeView-tbl th{
+	border-top: 1px solid lightgrey;	
+	border-bottom: 1px solid lightgrey;
+	width: 10%;
+}
+
 section#noticeView-section td#btn-td{
 	border: none;
 }       

@@ -60,14 +60,14 @@ public class NoticeSearchServlet extends HttpServlet {
 		if(pageNo==1) {
 			pageBar+="<li class='page-item'><a class='page-link' href=''> << </a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/notice/noticeList?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&searchType="+type+"&searchKey="+key+"'> << </a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/notice/noticeList?cPage="+(pageNo-1)+"&searchType="+type+"&searchKey="+key+"'> << </a></li>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
 			if(cPage==pageNo) {
 				pageBar+="<li class='page-item'><a class='page-link'>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeFind?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"&searchType="+type+"&searchKey="+key+"'>"+pageNo+"</a></li>";
+				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeFind?cPage="+(pageNo-1)+"&searchType="+type+"&searchKey="+key+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
@@ -75,7 +75,7 @@ public class NoticeSearchServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<li class='page-item'><a class='page-link'> >> </a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeFind?cPage="+pageNo+"&numPerPage="+numPerPage+"&searchType="+type+"&searchKey="+key+"'> >> </a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeFind?cPage="+pageNo+"&searchType="+type+"&searchKey="+key+"'> >> </a></li>";
 		}
 		
 		request.setAttribute("cPage", cPage);
