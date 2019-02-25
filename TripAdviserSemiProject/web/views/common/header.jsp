@@ -30,16 +30,18 @@ $(function(){
 	htmlMenu(0);
 });
 
+//tripAdvisor.travel.search.controller/categoryMenuServlet.java (/category/menu.do)연계
 function htmlMenu(choice)
 {
 	$.ajax({
-		url:"<%=request.getContextPath()%>/category/menu.do",
+		url:"<%=request.getContextPath()%>/category/menu.do", 
 		type : "POST",
 		data : 'choice='+choice,
 		dataType : "text",
 		success : function(data){
 			console.log(data);
 			$("#mydiv").html(data);
+			document.getElementById('mydiv').scrollIntoView();
 		},
 		error:function(request,status,error){
 		}
@@ -65,7 +67,7 @@ function htmlMenu(choice)
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
-                                        휴식거리
+                                        머물거리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" onClick="htmlMenu(1)">호텔</a>
@@ -103,10 +105,10 @@ function htmlMenu(choice)
                                         읽을거리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/QnA/QnAList">Q/A</a>
                                         <a class="dropdown-item" href="#">FAQ</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/QnA/QnAList">Q/A</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a>
                                     </div>
                                 </li>
                             </ul>

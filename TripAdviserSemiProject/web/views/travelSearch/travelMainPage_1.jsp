@@ -9,9 +9,8 @@
 List<TravelProduct> tplist = new ArrayList(); 
 TravelProduct tp=new TravelProduct();
 tplist=new travelSearchService().travelSearchCt(4);
-
-
 %>
+
 <style>
 	#starRateScore {
 		display: inline-block;
