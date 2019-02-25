@@ -33,7 +33,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2" height="30px" id="btn-td">
+			<td colspan="4" height="30px" id="btn-td">
 				<input type="button" value="삭제" onclick="fn_delete()"/>
 				<input type="button" value="수정" onclick="fn_update()"/>
 				<input type="button" value="목록" onclick="fn_return()"/>           	
