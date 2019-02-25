@@ -112,5 +112,15 @@ public class qaService {
 		return comment;
 	}
 	
+	public int deleteComment(int commentNo) {
+		
+		Connection conn=getConnection();
+		int result=dao.deleteComment(conn, commentNo);
+		if(result>0) commit();
+		else rollback();
+		
+		return result;
+	}
+	
 	
 }

@@ -271,9 +271,10 @@ public class qaDao {
 			pstmt.setString(2, ba.getMemberId());
 			pstmt.setString(3, ba.getContent());
 			pstmt.setInt(4, ba.getCommentLevel());
+			pstmt.setInt(5, ba.getCommentNoRef());
 			result=pstmt.executeUpdate();
 		}catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
@@ -308,5 +309,22 @@ public class qaDao {
 			close(pstmt);
 		}
 		return comment;
+	}
+	
+	public int deleteComment(Connection conn, int commentNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteComment");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, commentNo);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }

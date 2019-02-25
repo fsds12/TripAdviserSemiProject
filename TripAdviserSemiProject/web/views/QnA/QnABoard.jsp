@@ -79,7 +79,7 @@
             <select id="searchType">
                 <option value="title" <%="title".equals(type)?"selected":"" %>>제목</option>                
                 <option value="content" <%="content".equals(type)?"selected":"" %>>내용</option>
-                <option value="user" <%="user".equals(type)?"selected":"" %>>작성자</option>                
+                <%-- <option value="user" <%="memberId".equals(type)?"selected":"" %>>작성자</option> --%>                
             </select>
             <div id="search-title">
             	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
@@ -99,7 +99,7 @@
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>
-            <div id="search-id">
+            <%-- <div id="search-id">
             	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
             		<input type="hidden" name="type" value="user"/>
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
@@ -107,7 +107,7 @@
             		<input type="search" name="key" value='<%="user".equals(type)?key:""%>' placeholder="user"/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
-            </div>                      	               
+            </div> --%>                      	               
         </div>        
          <div id="paging-container"> 
             <ul class="pagination pagination-sm justify-content-center">

@@ -12,16 +12,16 @@ import tripAdviser.board.QnA.model.service.qaService;
 import tripAdviser.board.model.vo.BoardAnswer;
 
 /**
- * Servlet implementation class QnACommentServlet
+ * Servlet implementation class QnACommentInsertServlet
  */
-@WebServlet("/QnA/QnAinsertComment")
-public class QnACommentServlet extends HttpServlet {
+@WebServlet("/QnA/insertComment")
+public class QnACommentInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnACommentServlet() {
+    public QnACommentInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,38 +30,36 @@ public class QnACommentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String writer=request.getParameter("commentWriter");
-		String content=request.getParameter("commentContent");
+		
 		int boardRef=Integer.parseInt(request.getParameter("boardRef"));
-		int level=Integer.parseInt(request.getParameter("level"));
+		String memberId=request.getParameter("memberId");
+		String commentContent=request.getParameter("commentContent");
+		int commentLevel=Integer.parseInt(request.getParameter("commentLevel"));
 		int commentRef=Integer.parseInt(request.getParameter("commentRef"));
 		
-		BoardAnswer ba=new BoardAnswer();
+		BoardAnswer comment=new BoardAnswer();
+		comment.setBoardNoRef(boardRef);
+		comment.setMemberId(memberId);
+		comment.setContent(commentContent);
+		comment.setCommentLevel(commentLevel);
+		comment.setCommentNoRef(commentRef);
 		
-		ba.setMemberId(writer);
-		ba.setContent(content);
-		ba.setBoardNoRef(boardRef);
-		ba.setCommentLevel(level);
-		ba.setCommentNoRef(commentRef);
-		
-		int result=new qaService().insertComment(ba);
-		
+		int result=new qaService().insertComment(comment);
 		String msg="";
-		String loc="";
-		String view="";
+		String view="/views/common/msg.jsp";
+		String loc="/QnA/QnABoardView?boardNo="+boardRef;
 		
-		if(result>0) {
-			msg="등록되었습니다.";
-			loc="/QnA/QnABoardView?boardNo="+boardRef;
-		}else {
-			msg="등록 실패";
-			loc="/QnA/QnABoardView";
+		if(result>0)
+		{
+			msg="등록성공";
 		}
-		
-		
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher(view).forward(request, response);
+		else	
+		{
+			msg="등록실패";
+		}
+		request.setAttribute("msg",msg);
+		request.setAttribute("loc",loc);
+		request.getRequestDispatcher(view).forward(request, response);	
 		
 	}
 

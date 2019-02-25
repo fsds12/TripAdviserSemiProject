@@ -40,39 +40,46 @@
 		</tr>
 	</table>
 	<div id="comment-container">
-		
 		<div id="comment-box">comment</div>
-		
-			<table id="comment-tbl">
+		<div>			
+		<form action="<%=request.getContextPath()%>/QnA/insertComment">			
+			<input type="hidden" name="boardRef" value="<%=b.getBoardNo()%>"/>
+			<input type="hidden" name="memberId" value="admin"/>
+			<textarea name="commentContent"></textarea>
+			<input type="hidden" name="commentLevel" value="1"/>
+			<input type="hidden" name="commentRef" value="0"/>
+					
+			<button type="submit" id="comment-btn">등록</button>			
+		</form>
+		</div>
+		<table id="comment-tbl">
+			<%if(comment!=null){
+				for(BoardAnswer ba : comment) {
 				
+					if(ba.getCommentLevel()==1){%>			
 				<tr>
-					<td id="writer-td" width="5%"></td>
-					<td id="date-td">19.02.12</td>				
-				</tr>
-				<tr>
-					<td id="content-td" colspan="3">
-						<p>
-							답글 테스트
-						</p>
-					</td>
-				</tr>
+					<td><input type="hidden" value="<%=ba.getCommentNo() %>" /></td>
+					<td id="writer-td"><%=ba.getMemberId() %></td>
+					<td id="date-td"><%=ba.getBoardDate() %></td>
+					<td id="content-td" width="80%">
+						<%=ba.getContent() %>
+					</td>				
+					<td><input type="button" value="삭제" onclick="location.href='<%=request.getContextPath()%>/QnA/commentDelete?commentNo=<%=ba.getCommentNo()%>'"/></td>
+				</tr>				
+					<%}					
+					
+				}
+				
+			}%>
 					
 			</table>
-		
-		<form action="<%=request.getContextPath()%>/QnA/QnAinsertComment" method="post">
-			<input type="hidden" name="boardRef" value="<%=b.getBoardNo()%>"/>
-			<input type="hidden" name="commentWriter" value="admin"/>
-			<input type="hidden" name="level" value="1"/>
-			<input type="hidden" name="commentRef" value="0"/>
-			<textarea name="commentContent"></textarea>		
-			<input type="submit" value="등록"/>
-		</form>
 			
 	</div>	
 </div>	  
 </section>
 
-<script>
+<script>	
+	
 	function fn_return(){
 		location.href="<%=request.getContextPath()%>/QnA/QnAList";
 	}	
@@ -85,13 +92,12 @@
 		location.href="<%=request.getContextPath()%>/QnA/deleteQnA?boardNo=<%=b.getBoardNo()%>";
 	}
 	function fn_comment(){
-		alert("등록하시겠습니까?");
-		
+		alert("등록하시겠습니까?");		
 	}
 	
-	    $('#comment-btn').click(function(){	    	
-	        $('#comment-container').toggle();	        	
-	    });
+	$('#comment-btn').click(function(){	    	
+		$('#comment-container').toggle();	        	
+	});
 	
 </script>
 
