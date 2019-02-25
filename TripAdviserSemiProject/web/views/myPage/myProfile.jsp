@@ -98,6 +98,8 @@
                                 <input type="email" id="email" name="email" class="form-control" placeholder="이메일"
                                     required>
                                 <label for="email">이메일</label>
+                                <button type="button" id="cknumbergo" onclick="emailgo()"
+											class="btn btn-secondary">인증번호 &nbsp보내기</button>
                             </div>
                             
                             <div class="form-label-group">
@@ -134,10 +136,20 @@
                             <br>
                             </div>
                             
-                           
+                           <input type="hidden" readonly="readonly" name="code_check"
+										id="code_check" value="<%=getRandom()%>" />
+									<%!public String getRandom() {
+										int random = 0;
+										random = (int) Math.floor((Math.random() * (99999 - 10000 + 1))) + 100000;
+										return String.valueOf(random);
+	}%>
                         </form>
                     </div>
-                    <script>
+                    
+                </div>
+            </div>
+        </div>
+    <script>
                     function changePw(){
                     var url="<%=request.getContextPath()%>/changePassword?userId=<%=m.getMemberId()%>";
                     var title="ChangePassword";
@@ -145,11 +157,23 @@
                     var popup=window.open(url,title,option);
                     }
                     
+                    function emailgo(){
+                    	var email=$("#email").val().trim();
+            			var code=$("#code_check").val();
+            			console.log(email);
+            			console.log(code);
+            			var url="<%=request.getContextPath()%>/mypageemail";
+            			var title="인증번호";
+            			var option="left=500px, top=100px, width=300px, height=200px, menubar=no, status=no, scrollbars=yes";
+            			var popup=window.open("",title,option);
+            			emailgoFrm.email.value=email;
+            			emailgoFrm.code_check.value=code;
+            			emailgoFrm.target=title;
+            			emailgoFrm.action=url;
+            			emailgoFrm.method="post";
+            			emailgoFrm.submit();
+                    }
                     </script>
-                </div>
-            </div>
-        </div>
-    
 	</article>
 <%}%>
 </section>

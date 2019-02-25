@@ -61,4 +61,23 @@ public class MyPageService {
 		close(conn);
 		return result;
 	}
+
+	public Member selectOne(Member m) {
+		Connection conn=getConnection();
+		Member result=new MyPageDao().seletOne(conn,m);
+		close(conn);
+		return result;
+	}
+
+	public int updatePassword(Member m) {
+		Connection conn=getConnection();
+		int result=new MyPageDao().updatePassword(conn,m);
+		if(result>0) {
+			commit();
+		}else {
+			rollback();
+		}
+		close(conn);
+		return result;
+	}
 }

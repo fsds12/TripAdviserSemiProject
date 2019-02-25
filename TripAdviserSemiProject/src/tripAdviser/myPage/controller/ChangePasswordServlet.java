@@ -1,6 +1,8 @@
 package tripAdviser.myPage.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +29,8 @@ public class ChangePasswordServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id=request.getParameter("userId");
-		System.out.println(id);
+		RequestDispatcher rd=request.getRequestDispatcher("/views/myPage/changePassword.jsp");
+		rd.forward(request, response);
 		
 		
 	}
