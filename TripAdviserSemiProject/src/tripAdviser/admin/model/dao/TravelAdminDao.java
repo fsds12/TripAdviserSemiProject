@@ -197,7 +197,7 @@ public class TravelAdminDao {
 			pstmt.setString(5, tp.getTrvAddress());
 			pstmt.setString(6, tp.getTrvReview());
 			pstmt.setString(7, tp.getTrvSmallCtg());
-			
+			pstmt.setString(8, tp.getTrvGps());
 			
 			result=pstmt.executeUpdate();
 			
