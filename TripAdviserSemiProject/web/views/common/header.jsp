@@ -38,7 +38,6 @@ function htmlMenu(choice)
 		data : 'choice='+choice,
 		dataType : "text",
 		success : function(data){
-			console.log(data);
 			$("#mydiv").html(data);
 	        document.getElementById('mydiv').scrollIntoView();
 		},

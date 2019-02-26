@@ -436,6 +436,54 @@
 		</div>
     </article>
 </section>
-
-
+<!-- The Modal -->
+  <div class="modal fade" id="confirm-delete-comment">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">네 삭제합니다.</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">아니요.</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<!-- The Modal -->
+  <div class="modal" id="travel-confirm-modal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="font-weight: bold;">Message</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        	이 코멘트를 삭제하시겠습니까?
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="delete-confirm">네 삭제합니다.</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">아니요.</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 <%@ include file="/views/common/footer.jsp" %>
