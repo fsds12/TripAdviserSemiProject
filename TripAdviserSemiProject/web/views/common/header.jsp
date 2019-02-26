@@ -27,7 +27,10 @@
 </style>
 <script>
 $(function(){
-	htmlMenu(0);
+	var menuNum = <%= request.getParameter("menuNum")%>;
+	if (menuNum != undefined) {
+		htmlMenu(menuNum);
+	}	else 	htmlMenu(0);
 });
 
 //tripAdvisor.travel.search.controller/categoryMenuServlet.java (/category/menu.do)연계
@@ -39,8 +42,19 @@ function htmlMenu(choice)
 		data : 'choice='+choice,
 		dataType : "text",
 		success : function(data){
-			$("#mydiv").html(data);
-	        document.getElementById('mydiv').scrollIntoView();
+		if ($("#mydiv").length != 0){
+		$("#mydiv").html(data);
+		} else {
+			if(choice!=0){
+		    	console.log("새창실행?"+choice);
+		    	
+		    	window.open("<%=request.getContextPath()%>/index.jsp?menuNum="+choice,"_self");
+			}
+		}
+		
+		if((choice!=0)&&($("#mydiv").length != 0)){
+				document.getElementById('mydiv').scrollIntoView();
+		}
 		},
 		error:function(request,status,error){
 		}
@@ -104,7 +118,7 @@ function htmlMenu(choice)
                                         읽을거리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#">FAQ</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/views/QnA/faq.jsp">FAQ</a>
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/QnA/QnAList">Q/A</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a>
