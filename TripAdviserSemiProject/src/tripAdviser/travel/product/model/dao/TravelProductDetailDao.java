@@ -76,6 +76,7 @@ public class TravelProductDetailDao {
 					Comment c = new Comment();
 					c.setCommentNo(rs.getInt("comment_no"));
 					c.setMemberId(rs.getString("member_id"));
+					c.setMemberPictureUrl(rs.getString("member_picture_url"));
 					c.setTrvEvaluation(rs.getInt("trv_evaluation"));
 					c.setCommentContent(rs.getString("comment_content"));
 					c.setCommentDate(rs.getDate("comment_date"));

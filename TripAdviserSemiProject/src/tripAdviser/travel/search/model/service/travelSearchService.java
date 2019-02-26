@@ -36,4 +36,53 @@ public class travelSearchService {
 		return StarAve;
 	}
 	
+	//검색어top3
+	   public List<TravelProduct> traveltop(String searchkey)
+	   {
+	      Connection conn=getConnection();
+	      List<TravelProduct> toplist= new travelSearchDao().traveltop(conn, searchkey);
+	      close(conn);
+	      //System.out.println(list);
+	      return toplist;
+	   }
+
+	   //숙박top3
+	   public List<TravelProduct> travelSearchSleepAll(String searchkey) {
+	      
+	      Connection conn=getConnection();
+	      List<TravelProduct> sleepList= new travelSearchDao().travelSearchSleepAll(conn, searchkey);
+	      close(conn);
+	      return sleepList;
+	   }
+	   
+	   //액티비티top3
+	   public List<TravelProduct> travelSearchActivityAll(String searchkey) {
+	      Connection conn=getConnection();
+	      List<TravelProduct> acList= new travelSearchDao().travelSearchActivityAll(conn, searchkey);
+	      close(conn);
+	      return acList;
+	   }
+	   
+	   //맛집top3
+	   public List<TravelProduct> travelSearchEatAll(String searchkey){
+	      Connection conn = getConnection();
+	      List<TravelProduct> eatList = new travelSearchDao().travelSearchEatAll(conn, searchkey);
+	      close(conn);
+	      return eatList;
+	   }
+	   //전체페이지
+	   public int selectCountAll(String category, String searchkey ) {
+	      Connection conn = getConnection();
+	      int result = new travelSearchDao().selectCountAll(conn, category, searchkey);
+	      close(conn);
+	      return result;
+	   }
+
+	   public List travelDedailSearchCategoryAll(String category, String searchkey, int cPage, int numPerPage) {
+	      Connection conn = getConnection();
+	      List<TravelProduct>list = new travelSearchDao().travelDedailSearchCategoryAll(conn, category, searchkey, cPage, numPerPage);
+	      close(conn);
+	      return list;
+	   }
+	
 }

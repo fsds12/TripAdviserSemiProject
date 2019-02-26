@@ -19,8 +19,8 @@ tplist=new travelSearchService().travelSearchCt(10);
 	}
 
 	div.card div img {
-		width: 370px;
-		height: 300px;
+		width: 100%;
+		height: 200px;
 	}
 </style>
 
@@ -39,7 +39,7 @@ tplist=new travelSearchService().travelSearchCt(10);
 			<%} tp=tplist.get(t); %>
 
 			<div class="card">
-				<div style="background: #333; height: 300px;"><a
+				<div style="background: #333; height: 200px;"><a
 						href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo()%>"><img
 							src="<%=tp.getTrvRepresentPic()%>" /></a></div>
 				<div class="card-block">

@@ -46,7 +46,6 @@ public class travelProductListAllServlet extends HttpServlet {
 		request.setAttribute("tplist", list);
 		
 		request.getRequestDispatcher(view).forward(request, response);
-		System.out.println("성공?");
 	}
 	
 	

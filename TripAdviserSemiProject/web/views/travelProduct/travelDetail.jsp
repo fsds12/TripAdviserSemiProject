@@ -364,7 +364,8 @@
 		<%for(int i=0; i<tp.getCommentLists().size(); i++) {%>
 			<div class="comment-container" style="min-height:110px;">
 				<div class='comment-profile'>
-					<img src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" alt="" width="74px" height="84px" style="margin: 1px" />
+					<%-- <img src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" alt="" width="74px" height="84px" style="margin: 1px" /> --%>
+					<img src="<%=tp.getCommentLists().get(i).getMemberPictureUrl() %>" alt="" width="74px" height="84px" style="margin: 1px" />
 					<div class="comment-writer"><span><%=tp.getCommentLists().get(i).getMemberId() %></span></div>
 				</div>
 				<div class="comment-date">

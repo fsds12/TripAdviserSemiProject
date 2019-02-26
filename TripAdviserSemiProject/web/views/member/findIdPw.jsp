@@ -157,6 +157,12 @@ section#idpwsearch-container article#allarti .blackbtn:active{
     -webkit-box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* Safari, Chrome */
     box-shadow: 1px 1px 1px rgba(255,255,255,0.1); /* CSS3 */
 }
+section#idpwsearch-container input[type=email]{
+display: inline-block; 
+}
+section#idpwsearch-container input[type=email],section#idpwsearch-container input[type=text]{
+width: 300px;
+}
 
 </style>
 </head>
@@ -169,12 +175,12 @@ section#idpwsearch-container article#allarti .blackbtn:active{
                     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
                         <div class="card card-signin my-5">
                             <div class="card-body">
-                                <h5 class="card-title text-center">아이디 변경</h5>
-                                <form action="<%=request.getContextPath() %>/login" class="form-signin" method="POST">
+                                <h5 class="card-title text-center">아이디 찾기</h5>
+                                <form action="<%=request.getContextPath() %>/idfind" class="form-signin" method="POST">
                                     <div class="form-label-group">
-                                        <input type="text" id="inputEmail" name="inputEmail" class="form-control"
-                                            placeholder="아이디" required autofocus>
-                                        <label for="inputEmail"> 아이디</label>
+                                        <input type="text" id="name" name="name" class="form-control"
+                                            placeholder="이름" required autofocus>
+                                        <label for="name"> 이름</label>
                                     </div>
 
                                     <div class="form-label-group">
@@ -185,8 +191,9 @@ section#idpwsearch-container article#allarti .blackbtn:active{
 
                                     <div class="form-label-group">
                                         <input type="email" id="email" name="email" class="form-control" placeholder="이메일"
-                                            required>
+                                            required >
                                         <label for="email">이메일주소</label>
+                                        
                                     </div>
                                     
                                     <div class="controlsbutton"> 
@@ -196,10 +203,17 @@ section#idpwsearch-container article#allarti .blackbtn:active{
 
 
                                 </form>
+                                
+                                
+                                <!-- <form name="idsearch-form" method="post">
+                                	<input type="hidden" name="inputEmail"/>
+                                	<input type="hidden" name="phone"/>
+                                	<input type="hidden" name="email"/>
+                                </form> -->
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title text-center">비밀번호 변경</h5>
-                                <form action="<%=request.getContextPath() %>/login" class="form-signin" method="POST">
+                                <h5 class="card-title text-center">비밀번호 찾기</h5>
+                                <form action="<%=request.getContextPath() %>/pwfind" class="form-signin" method="POST">
                                     <div class="form-label-group">
                                         <input type="text" id="inputEmail2" name="inputEmail2" class="form-control"
                                             placeholder="아이디" required autofocus>
@@ -219,8 +233,8 @@ section#idpwsearch-container article#allarti .blackbtn:active{
                                     </div>
                                     
                                     <div class="controlsbutton"> 
-                                            <input id="idfind" type="submit" value="아이디찾기" class="blackbtn" />
-                                            <input id="idreset" type="reset" value="취소" class="blackbtn" />
+                                            <input id="pwfind" type="submit" value="비밀번호찾기" class="blackbtn" />
+                                            <input id="pwreset" type="reset" value="취소" class="blackbtn" />
                                     </div>
 
                                 </form>

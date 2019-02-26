@@ -102,5 +102,12 @@ public class Member {
 		this.enrollDate = enrollDate;
 	}
 	
+	@Override
+	public String toString() {
+		return "Member [memberId=" + memberId + ", memberPw=" + memberPw + ", memberGrade=" + memberGrade + ", email="
+				+ email + ", name=" + name + ", memberPictureUrl=" + memberPictureUrl + ", postalCode=" + postalCode
+				+ ", address=" + address + ", addressDetail=" + addressDetail + ", phone=" + phone + ", enrollDate="
+				+ enrollDate + "]";
+	}
 	
 }

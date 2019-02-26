@@ -1,10 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ page import="java.util.*, tripAdviser.board.model.vo.Board" %>
+<%
+	List<Board> list=(List)request.getAttribute("list");
+	String pageBar=(String)request.getAttribute("pageBar");
+	int cPage=(int)request.getAttribute("cPage");
+	int numPerPage=(int)request.getAttribute("numPerPage");
+	String type=(String)request.getAttribute("type");
+	String key=(String)request.getAttribute("key");
+%>
 <%@ include file="/views/common/header.jsp" %>
-<%-- <%@ include file="/views/notice/nav.jsp" %> --%>
-
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
-
+<style>
+	div#search-id{
+		display: none;
+	}
+	div#search-content{
+		display: none;
+	}
+	div#search-title{
+		display: inline-block;
+	}
+</style>
+<script>
+	$(function(){		
+	
+	var title=$('#search-title');
+	var user=$('#search-id');
+	var content=$('#search-content');
+	var searchType=$('#searchType');
+	
+	searchType.on("change", function(){
+		title.css("display", "none");		
+		content.css("display", "none");
+		user.css("display", "none");
+		
+		$('[name=cPage]').val('1');
+		$('[name=numPerPage]').val('10');
+		
+		$('#search-'+$(this).val()).css("display", "inline-block");
+	});
+	
+		$('#searchType').trigger("change");
+	})
+</script>
  <section id="notice-section" class="notice-section">    
     <div class="caption">
     	<img src="<%=request.getContextPath()%>/images/qnaBoard4.png" width="800px"/>
@@ -24,62 +62,56 @@
                 <th>조회수</th>
             </tr>
         </thead>
-        <tbody>            
-            <tr>
-                <td>10</td>
-                <td>user01</td>
-                <td><a href="<%=request.getContextPath()%>/QnA/QnABoardView">testQnA</a></td>
-                <td>19.02.12</td>
-                <td>19</td>
+        <tbody>
+        	<%for(Board b : list){ %>            
+            <tr id="boardList-tr">
+                <td><%=b.getBoardNo() %></td>
+                <td><%=b.getMemberId() %></td>
+                <td><a href="<%=request.getContextPath()%>/QnA/QnABoardView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle() %></a></td>
+                <td><%=b.getBoardDate() %></td>
+                <td><%=b.getHits() %></td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td>아무개</td>
-                <td>공지사항</td>
-                <td>19/01/23</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>이순신</td>
-                <td>공지사항</td>
-                <td>19/01/24</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/25</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>관리자</td>
-                <td>공지사항</td>
-                <td>19/01/26</td>
-                <td>1</td>
-            </tr>            
+            <%} %>                    
     	</tbody>                   
 	</table>
         <div id="search-container">
-            <select id="search-category">
-                <option value="제목">제목</option>
-                <option value="제목">작성자</option>
-                <option value="글번호">글번호</option>                
-            </select>            
-            <input type="search" name="search" id="search-text"/>
-            <input type="button" value="검색" id="search-btn"/>           	               
+        	<button id="search-btn" onclick="location.href='<%=request.getContextPath()%>/QnA/QnAList'">목록</button>
+            <select id="searchType">
+                <option value="title" <%="title".equals(type)?"selected":"" %>>제목</option>                
+                <option value="content" <%="content".equals(type)?"selected":"" %>>내용</option>
+                <option value="user" <%="user".equals(type)?"selected":"" %>>작성자</option>                
+            </select>
+            <div id="search-title">
+            	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
+            		<input type="hidden" name="type" value="title"/>
+            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>            	
+            		<input type="search" name="key" value='<%="title".equals(type)?key:"" %>' placeholder="title"/>
+            		<button type="submit" id="search-btn">검색</button>
+            	</form>
+            </div>            
+            <div id="search-content">
+            	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
+            		<input type="hidden" name="type" value="content"/>
+            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>            	
+            		<input type="search" name="key" value='<%="content".equals(type)?key:""%>' placeholder="content"/>
+            		<button type="submit" id="search-btn">검색</button>
+            	</form>
+            </div>
+            <div id="search-id">
+            	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
+            		<input type="hidden" name="type" value="user"/>
+            		<input type="hidden" name="cPage" value="<%=cPage%>"/>
+            		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>            	
+            		<input type="search" name="key" value='<%="user".equals(type)?key:""%>' placeholder="user"/>
+            		<button type="submit" id="search-btn">검색</button>
+            	</form>
+            </div>                      	               
         </div>        
          <div id="paging-container"> 
             <ul class="pagination pagination-sm justify-content-center">
-    			<li class="page-item"><a class="page-link" href="#"><<</a></li>
-    			<li class="page-item"><a class="page-link" href="#">1</a></li>
-    			<li class="page-item"><a class="page-link" href="#">2</a></li>
-    			<li class="page-item"><a class="page-link" href="#">3</a></li>
-    			<li class="page-item"><a class="page-link" href="#">4</a></li>
-    			<li class="page-item"><a class="page-link" href="#">5</a></li>
-    			<li class="page-item"><a class="page-link" href="#">>></a></li>
+    			<%=pageBar %>
   			</ul>            
    		</div>
 </section>

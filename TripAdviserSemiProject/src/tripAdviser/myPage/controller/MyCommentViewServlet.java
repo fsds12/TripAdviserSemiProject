@@ -49,7 +49,7 @@ public class MyCommentViewServlet extends HttpServlet {
 		//페이지바 만들기
 		String pageBar = "<ul class='pagination justify-content-center'>";
 		int pageBarSize = 5;
-		int pageNo = ((cPage / pageBarSize) * pageBarSize) + 1;	//페이지바의 시작페이지숫자 설정
+		int pageNo = (((cPage-1) / pageBarSize) * pageBarSize) + 1;	//페이지바의 시작페이지숫자 설정
 		int pageStart = pageNo;
 		int pageEnd = pageNo + pageBarSize - 1;
 		
@@ -83,10 +83,14 @@ public class MyCommentViewServlet extends HttpServlet {
 		
 		//데이터 받아오기
 		List<MyPageComment> list = new MyPageService().selectMyComment(id, cPage, numPerPage);
+		String msg = "";
+		msg = (String)request.getAttribute("msg");
 		
 		if(list.size() > 0) {
 			request.setAttribute("myCommentList", list);
 			request.setAttribute("pageBar", pageBar);
+			request.setAttribute("cPage", cPage);
+			request.setAttribute("msg", msg);
 		}
 		request.setAttribute("id", id);
 		request.getRequestDispatcher("/views/myPage/myComment.jsp").forward(request, response);

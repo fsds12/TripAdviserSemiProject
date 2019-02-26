@@ -6,6 +6,7 @@ public class Comment {
 	private int commentNo;
 	private int trvNo;
 	private String memberId;
+	private String memberPictureUrl;
 	private int trvEvaluation;
 	private String comment_title;
 	private String commentContent;
@@ -15,15 +16,16 @@ public class Comment {
 	
 	public Comment() {}
 
-	public Comment(int commentNo, int trvNo, String memberId, int trvEvaluation, String comment_title, String comment,
-			Date commentDate, int goodCnt, int badCnt) {
+	public Comment(int commentNo, int trvNo, String memberId, String memberPictureUrl, int trvEvaluation,
+			String comment_title, String commentContent, Date commentDate, int goodCnt, int badCnt) {
 		super();
 		this.commentNo = commentNo;
 		this.trvNo = trvNo;
 		this.memberId = memberId;
+		this.memberPictureUrl = memberPictureUrl;
 		this.trvEvaluation = trvEvaluation;
 		this.comment_title = comment_title;
-		this.commentContent = comment;
+		this.commentContent = commentContent;
 		this.commentDate = commentDate;
 		this.goodCnt = goodCnt;
 		this.badCnt = badCnt;
@@ -51,6 +53,14 @@ public class Comment {
 
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
+	}
+
+	public String getMemberPictureUrl() {
+		return memberPictureUrl;
+	}
+
+	public void setMemberPictureUrl(String memberPictureUrl) {
+		this.memberPictureUrl = memberPictureUrl;
 	}
 
 	public int getTrvEvaluation() {
@@ -100,6 +110,8 @@ public class Comment {
 	public void setBadCnt(int badCnt) {
 		this.badCnt = badCnt;
 	}
+
+	
 	
 	
 }

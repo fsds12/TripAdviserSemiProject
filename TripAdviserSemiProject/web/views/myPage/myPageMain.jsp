@@ -23,7 +23,7 @@
 	$(function() {
 		$('#tab1').click(function() {
 			$.ajax({
-				url: "<%=request.getContextPath()%>/myPage/myProfile",
+				url: "<%=request.getContextPath()%>/myPage/myProfile?id=" + "<%=id %>" ,
 				type: "post",
 				dataType: "html",
 				success: function(data) {
@@ -111,11 +111,23 @@
 </script>
 </head>
 <body>
+<style>
+.mypage-header {
+align-content: center;
+}
+.mypage-spacer {
+display: inline-block;
+}
+
+
+</style>
+
+
 <div class="mypage-header">
 	<span class="mypage-spacer"> </span>
 	<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
 	<span>&nbsp;&nbsp;</span>
-	<a id="menu"  href="<%=request.getContextPath() %>/index.jsp">TripAdvisor</a>
+	<a id="menu"  href="<%=request.getContextPath() %>/index.jsp">Local Traveler</a>
 </div>
 <section id='mypage-main-section'>
 	<article id='main'>    
@@ -131,18 +143,19 @@
 		<!-- <input id="tab4" type="radio" name="tabs">
 		<label for="tab4">My Follows</label> -->
 	    
-		<%if(id.equals("admin")) {%>  
+		<%-- <%if(id.equals("admin")) {%>  
 			<input id="tab5" type="radio" name="tabs">
 			<label for="tab5">Add Trip</label>
 			  
 			<input id="tab6" type="radio" name="tabs">
 			<label for="tab6">Trips List</label>
-		<%} %>
+		<%} %> --%>
 	    
 	    
 	    
 	  
 		<div id="my-info" class='tab'>
+		
 		</div>
 		    
 		<div id="my-scraps" class='tab'>
@@ -163,5 +176,9 @@
 		<%} %>
 	</article>
 </section>
-
+<script>
+	$(function() {
+		$('#tab1').click();
+	});
+</script>
 <%@ include file="/views/common/footer.jsp" %>
