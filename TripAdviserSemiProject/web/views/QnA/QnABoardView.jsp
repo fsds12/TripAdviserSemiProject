@@ -64,13 +64,13 @@
 			</td>
 		</tr>			
 		<tr>
-			<%if(loginMember.getMemberId().equals(b.getMemberId())||loginMember.getMemberId().equals("admin")){ %>			
+			<%-- <%if(loginMember.getMemberId().equals(b.getMemberId())||loginMember.getMemberId().equals("admin")){ %>	 --%>		
 				<td colspan="4" height="30px" id="btn-td">
 					<input type="button" value="삭제" onclick="fn_delete()"/>				
 					<input type="button" value="수정" onclick="fn_update()"/>
 					<input type="button" value="답글" id="comment-btn"/>					       	
 				</td>
-			<%} %>
+			<%-- <%} %> --%>
 		</tr>		
 	</table>
 	
