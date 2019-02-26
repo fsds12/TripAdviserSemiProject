@@ -317,7 +317,7 @@ public class qaDao {
 		String sql=prop.getProperty("deleteComment");
 		
 		try {
-			pstmt=conn.prepareStatement(sql);
+			pstmt=conn.prepareStatement(sql);			
 			pstmt.setInt(1, commentNo);
 			result=pstmt.executeUpdate();
 		}catch (Exception e) {

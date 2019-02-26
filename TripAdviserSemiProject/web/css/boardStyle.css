@@ -140,20 +140,13 @@ section#noticeWrite-section div#btn-container input[type="button"]:hover{
     background-color: whitesmoke;    
 }
 
+/* 게시판보기 */
+
 section#noticeView-section table.noticeView-tbl{	
-	width: 80%; height: 480px;
+	width: 80%;
 	border-spacing: 0;
 	border-collapse: collapse;
 	margin-top: 10px;
-}
-section#noticeView-section table.noticeView-tbl td{
-	
-	border-bottom: 1px solid lightgrey;	
-}
-section#noticeView-section table.noticeView-tbl th{
-		
-	border-bottom: 1px solid lightgrey;
-	width: 10%;
 }
 
     
@@ -165,21 +158,20 @@ section#noticeView-section input[type="button"]{
     margin: auto;
     float: right;
     border-radius: 10%;
-    border-bottom: none;                  
+                  
 }
-section#noticeView-section td.btn-td input[type="button"]:hover{
+section#noticeView-section input[type="button"]:hover{
     background-color: whitesmoke;
 }
 
-section#noticeView-section td#writer-td, td#date-td{
-	font-size: 13px;
-	color: grey;
-}
+
 
 section#noticeView-section{
 	height: 1000px; 
 	width: 100%; 
 }
+
+/* 답글 */
 section#noticeView-section div#comment-container{	
 	width:90%; height: 500px;	
 	text-align: center; 
@@ -187,10 +179,10 @@ section#noticeView-section div#comment-container{
 	margin: auto;
 	
 }
-section#noticeView-section div#comment-container textarea{
+section#noticeView-section div#comment-container textarea{ 
 	margin-top: 10px;
 	margin-left: auto;
-	width: 80%; height: 100px;
+	width: 100%; height: 80px;
 	border: 0.05em solid lightgrey;
 	border-radius: 0.5em;	
 }
@@ -208,9 +200,9 @@ div#comment-box{
 	margin: auto;	
 }
 table#comment-tbl{
-	border-top: 1px solid lightgrey;
-	border-bottom: 1px solid lightgrey;
-	width: 90%;
+	/* border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey; */
+	width: 90%; height: 80px;
 	margin: auto;	
 }
 

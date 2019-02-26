@@ -64,9 +64,9 @@
             <%for(Board b : list){ %>                        
             <tr id="boardList-tr">
                 <td><%=b.getBoardNo()%></td>
-                <td><%=b.getMemberId() %></td>
+                <td><%=b.getMemberId()%></td>
                 <td><a href="<%=request.getContextPath()%>/notice/noticeView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle()%></a></td> 
-                <td><%=b.getBoardDate() %></td>
+                <td><%=b.getBoardDate()%></td>
                 <td><%=b.getHits() %></td>
             </tr>
             <%} %>            

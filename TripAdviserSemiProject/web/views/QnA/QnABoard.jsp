@@ -22,6 +22,15 @@
 	div#search-title{
 		display: inline-block;
 	}
+	input#viewBtn{
+		border: none;
+		background-color: white;
+		cursor: pointer;
+		color: slategrey;
+	}
+	input#viewBtn:hover{
+		background-color: whitesmoke;
+	}
 </style>
 <script>
 	$(function(){		
@@ -44,6 +53,8 @@
 	
 		$('#searchType').trigger("change");
 	})
+	
+	
 </script>
  <section id="notice-section" class="notice-section">    
     <div class="caption">
@@ -52,9 +63,11 @@
     <table align="center" class="notice-tbl">                    
     	<thead>
             <tr>
-            	<td colspan="5">
+            	<%if(loginMember!=null){ %>                        	
+            	<td colspan="5">            	
             		<input type="button" value="쓰기" class="write-btn" onclick="location.href='<%=request.getContextPath()%>/QnA/QnAWrite'"/>
             	</td>
+            	<%} %>
             </tr>                        
             <tr class="title">
                 <th>번호</th>
@@ -65,17 +78,26 @@
             </tr>
         </thead>
         <tbody>
+        
         	<%for(Board b : list){ %>            
             <tr id="boardList-tr">
                 <td><%=b.getBoardNo() %></td>
-                <td><%=b.getMemberId() %></td>
-                <td><a href="<%=request.getContextPath()%>/QnA/QnABoardView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle() %></a></td>
+                <td><%=b.getMemberId() %></td>                
+                <td>               	
+                	<%-- <form name="qnaViewFrm" action="<%=request.getContextPath()%>/QnA/QnABoardView" method="post">
+						<input type="hidden" name="boardNo" value="<%=b.getBoardNo()%>"/>
+						<input type="hidden" name="userId" value="<%=b.getMemberId()%>"/>
+						<input type="submit" id="viewBtn" value="<%=b.getTitle()%>"/>
+					</form> --%>
+					<a href="<%=request.getContextPath()%>/QnA/QnABoardView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle()%></a>
+                </td>                
                 <td><%=b.getBoardDate() %></td>
                 <td><%=b.getHits() %></td>
             </tr>
-            <%} %>                    
+            <%}%>                    
     	</tbody>                   
 	</table>
+	
         <div id="search-container">
         	<button id="search-btn" onclick="location.href='<%=request.getContextPath()%>/QnA/QnAList'">목록</button>
             <select id="searchType">
@@ -117,4 +139,5 @@
   			</ul>            
    		</div>
 </section>
+
 <%@ include file="/views/common/footer.jsp" %>

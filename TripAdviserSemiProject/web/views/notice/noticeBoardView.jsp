@@ -7,8 +7,33 @@
 <%@ include file="/views/common/header.jsp" %>
 <style>
 	section#noticeView-section{
-		height: 680px;
+		height: 700px;
 	}
+	th{
+		width: 10%;
+	}
+	/* td{
+		width: 50%;
+	} */
+	td.write-td{
+		border-bottom: 1px solid lightgrey;
+	}
+	td#title-td{
+		border-top: 1px solid lightgrey;
+		border-bottom: 1px solid lightgrey;
+	}
+	th.title-th{		
+		border-bottom: 1px solid lightgrey;
+	}
+	th.content-th{
+		border-top: 1px solid lightgrey;
+		border-bottom: 1px solid lightgrey;
+	}
+	td#content-td{
+		border-top: 1px solid lightgrey;
+		border-bottom: 1px solid lightgrey;
+	}
+	
 </style>
 
 <section id="noticeView-section" class="notice-section">
@@ -16,11 +41,11 @@
 		<img src="<%=request.getContextPath()%>/images/notice.png" width="800px"/>
 	</div>        
 	<table class="noticeView-tbl" align="center">
-		<tr >
-			<td id="list-td" colspan="4" height="30px"><input type="button" value="목록" onclick="fn_return()"/></td>
+		<tr>
+			<td class="write-td" colspan="4" height="30px"><input type="button" value="목록" onclick="fn_return()"/></td>
 		</tr>
 		<tr height="50px">
-			<th>제목</th>
+			<th class="title-th">제목</th>
 			<td colspan="3" id="title-td"><%=b.getTitle() %></td>
 		</tr>
 		<tr height="20px">
@@ -30,23 +55,27 @@
 			<td id="date-td"><%=b.getBoardDate() %></td>
 		</tr>
 		<tr>
-			<th>내용</th>
-			<td colspan="3" id="content-td">
+			<th class="content-th" height="350px">내용</th>
+			<td colspan="3" id="content-td" height="350px">
 				<%=(b.getContent()).replace("\r\n", "<br>")%>
 			</td>
-		</tr>
-		<%if(m.getMemberId().equals("admin")){ %>
-		<tr>			
-			<td colspan="4" height="30px" id="btn-td">					
+		</tr>		
+		<tr>
+			<%if(loginMember!=null&&loginMember.getMemberId().equals("admin")){ %>				
+			<td colspan="4" height="30px" id="btn-td" class="btn-td">					
 				<input type="button" value="삭제" onclick="fn_delete()"/>
 				<input type="button" value="수정" onclick="fn_update()"/>				          	
-			</td>
+			</td>					
+			<%} %>
 		</tr>		
-		<%} %>		
 	</table>
-		  
+
+			  
 </section>
 <script>
+	$(function(){
+		
+	})
 	function fn_return(){
 		location.href="<%=request.getContextPath()%>/notice/noticeList";
 	}	

@@ -31,7 +31,7 @@ public class QnACommentDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int commentNo=Integer.parseInt(request.getParameter("commentNo"));
-		/*int boardRef=Integer.parseInt(request.getParameter("boardRef"));*/
+		
 		int result=new qaService().deleteComment(commentNo);
 		
 		String msg="";
