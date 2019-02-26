@@ -82,7 +82,7 @@ section#my-scrap-container div.card-group div {
 								%>
 								<i class="fa fa-star-o"></i>
 								<% } %>
-								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+								<span id="starRateScore"><%=Math.floor(tp.getAvgStarRate()*10)/10 %></span> Stars
 							</p>
 						</div>
 					</div>

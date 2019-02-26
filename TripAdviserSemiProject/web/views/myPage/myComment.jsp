@@ -62,7 +62,7 @@
 	<%if(myCommentList != null) {%>
 	<%for(int i=0; i<myCommentList.size(); i++) {%>
 		<div class="comment-space" style="margin-bottom: 5px; padding:2px; border: 0.5px solid lightgray; border-radius:0px; max-width:880px; height: 110px;">
-			<div class=""><h6>여행지제목: <span><%=myCommentList.get(i).getTrvTitle() %></span></h6></div>
+			<div class=""><h6>여행지제목: <span><a href="<%=request.getContextPath() %>/travel/travelProductDetail?trvNo=<%=myCommentList.get(i).getTrvNo() %>" style="text-decoration: none; color: black;"><%=myCommentList.get(i).getTrvTitle() %></a></span></h6></div>
 			<div class="" style="margin-bottom: 5px;">별점: 
 			<%for(int j = 0; j < myCommentList.get(i).getTrvEvaluation(); j++) {%>
 				<span class="starR on"></span>
