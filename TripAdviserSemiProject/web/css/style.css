@@ -468,6 +468,10 @@ section#trvUpdate form div.inputImage img {
     height: 3px;
     background: #ccc;
 }
+section#search-before div.container div.card-group div.card {
+   max-width: 33%;
+   }
+
 
 
 /*별점*/

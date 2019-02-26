@@ -41,12 +41,13 @@ public class travelSearchServlet extends HttpServlet {
 			String view ="/views/travelSearch/travelSearch.jsp";
 			if(toplist==null)
 			{
-				System.out.println("검색결과가 없습니다.");
+				System.out.println("검색결과가 없습니다!");
+				
 			}else
 			{
+				request.setAttribute("toplist", toplist);
 				request.setAttribute("msg",msg);
 				request.setAttribute("loc", loc);
-				request.setAttribute("toplist", toplist);
 				
 			}
 			

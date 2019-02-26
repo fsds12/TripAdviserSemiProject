@@ -1,10 +1,11 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="tripAdviser.travel.search.controller.travelProductListAllServlet"%>
 <%@page import="com.sun.crypto.provider.RSACipher"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,tripAdviser.travel.product.model.vo.*,tripAdviser.travel.search.model.service.*" %>
 
 <%@ include file="/views/common/header.jsp" %>
-
+<link href="https://fonts.googleapis.com/css?family=Gaegu" rel="stylesheet">
    
 <% 
 	//검색어top3
@@ -26,19 +27,28 @@
 	
 	String searchkey = (String)request.getAttribute("searchkey");
 
+		
+	/* DecimalFormat format = new DecimalFormat(".#"); */
 	
-	
-	
-	
+			
 %>
+
 <style>
-   #starRateScore{
-      display: inline-block;
-      font-size: 25px;
-   }
-   section#search-before div.container div.card-group div.card {
-   max-width: 33%;
-   }
+#starRateScore{
+   display: inline-block;
+   font-size: 25px;
+}
+section#search-before div.container div.card-group div.card {
+	max-width: 33%;
+}
+section#search-before div.container #nosearch{
+	font-size:50px;
+	font-family:Gaegu;
+	 color: #3E9D37; 
+   
+}
+
+
 </style>
 
 
@@ -51,22 +61,23 @@
         </div>
     </form>
 <br><br><br><br>
-        
-&nbsp;&nbsp;&nbsp;<span style="font-size: 25px;">검색어 Top3</span> <%-- &nbsp;&nbsp;<a href="<%=request.getContextPath()%>/travelDetail">more</a> --%>
+
+&nbsp;&nbsp;&nbsp;<span style="font-family:Gaegu;font-size: 40px;">검색어 Top3</span> <%-- &nbsp;&nbsp;<a href="<%=request.getContextPath()%>/travelDetail">more</a> --%>
 <hr id="hrf" >
 <div class="box-padding-big light-bg" >
 	<div class="container">	
 		<div class="card-group">
-
+<%if(toplist.size() > 0) {%>
 <%for(int i=0; i<toplist.size(); i++){
+	
 	 if(i == 3) {
 		break;
-	 } 
+	 } 	 
 %> 
 	      
 <div class="card">
 	
-<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=toplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=toplist.get(i).getTrvRepresentPic() %>" style="height:300px" ></a>
+<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=toplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=toplist.get(i).getTrvRepresentPic() %>" style="height:200px" ></a>
 
 	 <div class="card-block">
 	 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=toplist.get(i).getTrvTitle() %></h5>
@@ -89,22 +100,27 @@
 	
 	</div>
 </div>
-
+	
 	<%} %>
 		</div>
+		<%} else{ %>
+		<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="70px" height="70px" /><p id="nosearch">검색결과가 없습니다!!</p>
+		<%} %>
 	</div>
 </div> 
 
     <br><br><br>
 
-&nbsp;&nbsp;&nbsp;<span style="font-size: 25px">숙박 Top3</span> &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<span style="font-family:Gaegu;font-size: 40px">머물거리 Top3</span> &nbsp;&nbsp;
+<%if(sleeplist.size()!=0) {%>
 <a href="<%=request.getContextPath()%>/detail?category=CL01&searchkey=<%=searchkey %>">more</a>
+<%} %>
 <br>
 <hr id="hrf" >
 <div class="box-padding-big white-bg" >
 	<div class="container">	
 		<div class="card-group">
-
+<%if(sleeplist.size() > 0)  {%>
 <%for(int i=0; i<sleeplist.size(); i++){
 	if(i == 3){
 		break;
@@ -112,7 +128,7 @@
 %> 
 	      
 			<div class="card">			
-<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=sleeplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=sleeplist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
+<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=sleeplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=sleeplist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
 	
 	<div class="card-block">
 			<h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=sleeplist.get(i).getTrvTitle() %></h5>
@@ -131,7 +147,7 @@
 <span class="starR"></span>
 <% } %>
 <span id="starRateScore"><%=sleeplist.get(i).getAvgStarRate() %></span> Stars
-  
+
 </div>
 					
 	</div>
@@ -139,30 +155,35 @@
 
 			<%} %>
 		</div>
+		<%} else{ %>
+		<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="70px" height="70px" /><p id="nosearch">검색결과가 없습니다!!</p>
+		<%} %>
 	</div>
 </div> 
         <br><br><br>
 
-&nbsp;&nbsp;&nbsp;<span style="font-size: 25px">액티비티 Top3</span> &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<span style="font-family:Gaegu;font-size: 40px">즐길거리 Top3</span> &nbsp;&nbsp;
+<%if(aclist.size()!=0) {%>
 <a href="<%=request.getContextPath() %>/detail?category=CL02&searchkey=<%=searchkey %>">more</a>
+<%} %>
 <hr id="hrf" >
 <div class="box-padding-big light-bg" >
 	<div class="container">
 		<div class="card-group">
-
+<%if(aclist.size() > 0) {%>
 <%for(int i=0; i<aclist.size(); i++){
 	if(i == 3){
 		break;
 	}
 %> 
 
-			<div class="card">
-				
-			<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=aclist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=aclist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
+<div class="card">
 	
-				<div class="card-block">
-		
-	
+<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=aclist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=aclist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
+
+	<div class="card-block">
+
+
 
 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=aclist.get(i).getTrvTitle() %></h5>
 <p class="card-text">&nbsp;&nbsp;&nbsp;<%=aclist.get(i).getTrvAddress() %></p>
@@ -180,7 +201,7 @@
 	     <span class="starR"></span>
 	     <% } %>
 <span id="starRateScore"><%=aclist.get(i).getAvgStarRate() %></span> Stars
-  
+ 
 </div>
 					
 			</div>
@@ -188,16 +209,22 @@
 
 			<%} %>
 		</div>
+		<%} else{ %>
+		<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="70px" height="70px" /><p id="nosearch">검색결과가 없습니다!!</p>
+		<%} %>
 	</div>
 </div> 
 <br><br><br>
 
-&nbsp;&nbsp;&nbsp; <span style="font-size: 25px">맛집 Top3</span> &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <span style="font-family:Gaegu;font-size: 40px">먹을거리 Top3</span> &nbsp;&nbsp;
+<%if(eatlist.size()!=0) {%>
 <a href="<%=request.getContextPath()%>/detail?category=CL03&searchkey=<%=searchkey %>">more</a>
+<%} %>
   <hr id="hrf" >
 <div class="box-padding-big white-bg" >
 	<div class="container" >
 		<div class="card-group" >
+<%if(eatlist.size() > 0) {%>
 <%for(int i=0; i<eatlist.size(); i++){
 	if(i == 3){
 		break;
@@ -206,7 +233,7 @@
 	      
 			<div class="card">
 				
-			<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=eatlist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=eatlist.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
+			<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=eatlist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=eatlist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
 	
 				<div class="card-block">
 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=eatlist.get(i).getTrvTitle() %></h5>
@@ -233,6 +260,9 @@
 
 			<%} %>
 		</div>
+		<%} else{ %>
+		<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="70px" height="70px" /><p id="nosearch">검색결과가 없습니다!!</p>
+		<%} %>
 	</div>
 </div> 
 <br><br><br>
