@@ -19,16 +19,21 @@ tplist=new travelSearchService().travelSearchCt(4);
 	}
 
 	div.card div img {
-		width: 310px;
-		height: 300px;
+		width: 100%;
+		height: 200px;
 	}
-</style>
+
+	div.card-group div{
+		width : 310px;
+	}
+
+	</style>
 
 
 <div class="box-padding-big light-bg">
 	<div class="container">
-		<h4 class="category-title">전체 호텔 최고 별점 Best hotels in our website</h4>
-		<p class="category-sub">별점순 최고 호텔 랭킹 Top ranking the most popular hotels
+		<h4 class="category-title">전체 최고 별점 Best things in our website</h4>
+		<p class="category-sub">별점순 최고 호텔 랭킹 Top 3 The most popular Hotels
 			selected by our guests.</p>
 
 		<%for(int t=0; t<tplist.size(); t++) {%>
@@ -40,9 +45,10 @@ tplist=new travelSearchService().travelSearchCt(4);
 			<%} tp=tplist.get(t); %>
 
 			<div class="card">
-				<div style="background: #333; height: 300px;"><a
+				<div style="background: #333; height: 200px;"><a
 						href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo()%>"><img
-							src="<%=tp.getTrvRepresentPic()%>" /></a></div>
+							src="<%=tp.getTrvRepresentPic()%>" /></a>
+				</div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i>
