@@ -114,6 +114,7 @@ public class TravelProductCommentDao {
 				c.setTrvEvaluation(rs.getInt("trv_evaluation"));
 				c.setCommentContent(rs.getString("comment_content"));
 				c.setCommentDate(rs.getDate("comment_date"));
+				c.setMemberPictureUrl(rs.getString("member_picture_url"));
 				
 				commentList.add(c);
 			}
