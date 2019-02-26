@@ -51,11 +51,8 @@ article#travel-comment-container div.comment-btn-container {
 header {
 	width: 100%;
 	height: 70px;
-	background-color: #f6f6f6;
-	/* align-content: top; 안먹음 */
-	/* 임시로 주석처리해놨습니다. */
-	/* z-index: 9999;
-    position: fixed; */
+	background-color: #fafafa;
+
 }
 
 div.logo {
@@ -108,7 +105,7 @@ div.login-container {
 
 div#div-mainpage {
 	width: 100%;
-	height: 600px;
+	height: 150px;
 	/* background-color: pink;*/
 	margin: 2px 0 10px;
 	text-align: center;
@@ -124,26 +121,35 @@ div#div-top-rank {
 
 div#div-category1 {
 	width: 100%;
+	/* height: 400px; */
+	/* background-color: pink; */
 	margin: 2px 0 10px;
 }
 
 div#div-category2 {
 	width: 100%;
+	/* height: 400px;
+	 background-color: lightblue; */
 	margin: 2px;
 }
 
 div#div-category3 {
 	width: 100%;
+	/* height: 400px; */
+	/* background-color: pink; */
 	margin: 2px;
 }
 
 div#div-category4 {
 	width: 100%;
+	/* height: 400px; */
+	/* background-color: lightblue; */
 	margin: 2px;
 }
 
 section#mainpage-container {
 	width: 100%;
+	/* height: 2812px; */
 	background-color: white;
 	justify-content: center;
 	align-content: center;
@@ -156,7 +162,7 @@ footer#footer-container {
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: 100px;
+	height: 50px;
 	background-color: darkgrey;
 }
 
@@ -244,37 +250,27 @@ nav#trvList ul.pagination {
    /* position: relative;
    left: 350px; */
 }
-section#trvList div.container #tblljb-pageBar{
-	margin-top:30px;
-}
 
-section#trvList a#ljbtag{
-	text-decoration-line: none;
-	color:#5a5a5a;
-	
-}
 
-section#trvList form div div table {
+section form div div table {
 	margin-top: 50px;
 }
 
-section#trvList div.col-12 #item {
+section div.col-12 #item {
 	margin-left: 10px;
 	position: relative;
-	left: 225px;
-	border-radius: 0.2em;
-	width:200px;
+	left: 280px;
+	border-radius: 2px;
 	height: 37px;
-	margin-bottom: 10px;
-	bottom: 10px;
+	margin-bottom: 30px;
 }
 
-section#trvList div.col-12{
+section div.col-12{
 	margin-top:20px;
 	margin-bottom: 10px;
 }
 
-section#trvList div.col-12 #pro-search {
+section div.col-12 #pro-search {
 	position: relative;
 	display: inline-block;
 	margin-left: 10px;
@@ -283,150 +279,111 @@ section#trvList div.col-12 #pro-search {
 	background-color: #ED786A;
 	border-radius: 5px;
 	color: white;
-	left: 230px;
-	bottom: 12px;
-	cursor:pointer;
-	
+	left: 300px;
+	margin-bottom: 30px;
 }
 
-section#trvList div.col-12 #category{
+section div.col-12 #category{
 	position: relative;
-	left: 280px;
-	margin-bottom: 10px;
-	width:110px;
-	
+	left: 270px;
 }
 
-section#trvList div#con-bottom #tbl-list{
-	margin-top: 50px;
-}
-
-section#trvWrite form .inputArea {
+section form .inputArea {
 	 	margin:0px 0px 0px 5px;
 	}
-section#trvWrite form .inputArea	select { 
+section form .inputArea	select { 
 		width:190px; 
 	}
-section#trvWrite form .inputArea	label { 
+section form .inputArea	label { 
 		display:inline-block; width:70px; padding:5px; 
 	}
 
-section#trvWrite form .inputArea	input { 
+section form .inputArea	input { 
 		width:190px; 
 	}
 
-section#trvWrite form .inputContent label[for="proContent"] {
+section form .inputContent label[for="proContent"] {
 	display: block;
 }
 
-section#trvWrite form .inputContent textarea#proContent {
+section form .inputContent textarea#proContent {
 	width:400px; height:180px;
 }
 
 
-section#trvWrite form .inputBtn {
+section form .inputBtn {
 	 	margin:0px 0px 0px 5px;
 	}
 
-
-section#trvWrite form .inputBtn #register_Btn{
-		position: relative;
-		left:140px; 
-		margin: 50px 5px 40px 0px;
-	}
-section#trvWrite form .inputBtn	#cancle_Btn{
-		position: relative;
-		left:150px;
-		margin: 50px 5px 40px 0px;
-	}	
-
-
-section#trvUpdate form .inputArea {
-	 	margin:0px 0px 0px 5px;
-	}
-section#trvUpdate form .inputArea	select { 
-		width:190px; 
-	}
-section#trvUpdate form .inputArea	label { 
-		display:inline-block; width:70px; padding:5px; 
-	}
-
-section#trvUpdate form .inputArea	input { 
-		width:190px; 
-	}
-
-section#trvUpdate form .inputContent label[for="proContent"] {
-	display: block;
-}
-
-section#trvUpdate form .inputContent textarea#proContent {
-	width:400px; height:180px;
-}
-
-
-section#trvUpdate form .inputBtn {
-	 	margin:0px 0px 0px 5px;
-	}
-
-	
-section#trvUpdate form .inputBtn #update_Btn{
+section form .inputBtn #register_Btn{
 		position: relative;
 		left:140px;
 		margin: 50px 5px 40px 0px;
 	}
-section#trvUpdate form .inputBtn #cancle_Btn{
+	
+	
+section form .inputBtn #update_Btn{
+		position: relative;
+		left:140px;
+		margin: 50px 5px 40px 0px;
+	}
+section form .inputBtn	#cancle_Btn{
 		position: relative;
 		left:150px;
 		margin: 50px 5px 40px 0px;
 	}
+section form .inputBtn	.btn-search{
+	width: 100px;
+	height: 37px;
+	margin-left: 10px;
+	background-color: #ED786A;
+	border-radius: 5px;
+	color: white;
+}	
 	
-	
-section#trvUpdate{
+section#sec{
 	margin-top:10px;
 }
 
-section#trvWrite{
-	margin-top:10px;
+section form div.container div#btn #btn-update{
+	position: relative;
+	display: inline-block;
+	width: 80px;
+	height: 37px;
+	background-color: #ED786A;
+	border-radius: 5px;
+	color: white;
+	
 }
 
-section#trvWrite form div.inputImage{
-	 display: flex;
-	 
+section form div.container div#btn #btn-delete{
+	position: relative;
+	display: inline-block;
+	width: 80px;
+	height: 37px;
+	background-color: #ED786A;
+	border-radius: 5px;
+	color: white;
 }
 
-section#trvUpdate form div.inputImage{
-	 display: flex;
-}
-
-
-section#trvWrite form div.inputImage img {
+section form div.inputImage img {
     margin: 1em 0;
-    display: inline-block;
+    display: block;
     background: rgb(240, 240, 240);
-    
+    border: 1px solid rgb(0,0,0);
 }
-
-
-section#trvUpdate form div.inputImage img {
-    margin: 1em 0;
-    display: inline-block;
-    background: rgb(240, 240, 240);
-    
-}
-
-
 
 /* 강도원 */
 #search-before {
-   width: 100%;
-   /* height: 2812px; */
-   background-color: white;
-   justify-content: center;
-   align-content: center;
+	width: 100%;
+	/* height: 2812px; */
+	background-color: white;
+	justify-content: center;
+	align-content: center;
 }
 
 
-#searchkey{
+#search1{
     width:400px;
     height:30px;
     margin-left: 20px;
@@ -449,19 +406,18 @@ section#trvUpdate form div.inputImage img {
 /*search after*/
 
 #search-after {
-   width: 100%;
-   /* height: 2812px; */
-   background-color: white;
-   justify-content: center;
-   align-content: center;
+	width: 100%;
+	/* height: 2812px; */
+	background-color: white;
+	justify-content: center;
+	align-content: center;
 }
 
 #hrf{
-   border: 0;
+	border: 0;
     height: 3px;
     background: #ccc;
 }
-
 
 /*별점*/
 .starR{

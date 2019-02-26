@@ -20,7 +20,7 @@ tplist=new travelSearchService().travelSearchCt(11);
 
 	div.card div img {
 		width: 100%;
-		height: 300px;
+		height: 200px;
 	}
 </style>
 
@@ -36,11 +36,12 @@ tplist=new travelSearchService().travelSearchCt(11);
 		System.out.println(t);
 		if(t%3 == 0)  {
 		System.out.println("걸림"+t);%>
+<BR>
 		<div class="card-group">
 			<%} tp=tplist.get(t); %>
 
 			<div class="card">
-				<div style="background: #333; height: 300px;"><a
+				<div style="background: #333; height: 200px;"><a
 						href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo()%>"><img
 							src="<%=tp.getTrvRepresentPic()%>" /></a></div>
 				<div class="card-block">
@@ -71,5 +72,5 @@ tplist=new travelSearchService().travelSearchCt(11);
 
 	</div>
 </div>
-<BR>
+
 </div>

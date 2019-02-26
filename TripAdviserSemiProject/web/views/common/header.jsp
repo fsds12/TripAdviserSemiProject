@@ -21,7 +21,7 @@
 <style>
 	
 	#navbarDropdown, #menu {
-/* 	text-shadow: -1px 0 #F2F1F6, 0 1px #F2F1F6, 1px 0 #F2F1F6, 0 -1px #F2F1F6; */
+
 	text-shadow: 0 1px #F2F1F6;
 	}
 </style>
@@ -39,7 +39,7 @@ function htmlMenu(choice)
 		data : 'choice='+choice,
 		dataType : "text",
 		success : function(data){
-			console.log(data);
+		
 			$("#mydiv").html(data);
 			document.getElementById('mydiv').scrollIntoView();
 		},
@@ -116,7 +116,7 @@ function htmlMenu(choice)
                     <ul class="nav navbar-nav navbar-right">
                     <%if(loginMember==null){ %>
                         <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/enrollpage'" value="Sign up"></li>
-                        <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/loginpage'" value="Log In"></li>
+                        <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/loginpage'"  value="Log In"></li>
                          <%}else{ %>
                     <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="MyPage" onclick="location.href='<%=request.getContextPath() %>/myPage'"></li>
                     <%if(loginMember != null && loginMember.getMemberId().equals("admin")) {%>
