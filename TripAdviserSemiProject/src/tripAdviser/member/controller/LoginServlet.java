@@ -39,8 +39,9 @@ public class LoginServlet extends HttpServlet {
 		Member m=new Member();
 		m.setMemberId(id);
 		m.setMemberPw(password);
-		
+		m.setMemberPictureUrl("profile_default.gif");
 		Member result=new MemberService().selectOne(m);
+		
 		String msg="";
 		String loc="/";
 		String view="/";

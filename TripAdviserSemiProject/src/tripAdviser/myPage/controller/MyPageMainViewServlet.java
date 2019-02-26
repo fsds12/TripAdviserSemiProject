@@ -32,6 +32,7 @@ public class MyPageMainViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Member loginMember = (Member)request.getSession().getAttribute("loginMember");
 		
+		
 		if(loginMember != null) {
 			request.getRequestDispatcher("/views/myPage/myPageMain.jsp").forward(request, response);
 		}

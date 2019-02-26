@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+                        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    
 <%@page import="tripAdviser.member.model.vo.Member"%>
 <%
 	Member m = (Member)session.getAttribute("loginMember");
@@ -8,6 +10,8 @@
 		id = m.getMemberId();
 	}
 %>
+<%String img = (String)request.getAttribute("img"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +38,7 @@
 				}
 			});
 		});
+		console.log("<%=img%>")
 		
 		$('#tab2').click(function() {
 			$.ajax({

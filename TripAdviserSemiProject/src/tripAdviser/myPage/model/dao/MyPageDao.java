@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.corba.se.impl.orb.PrefixParserData;
+
 import tripAdviser.member.model.vo.Member;
 import tripAdviser.myPage.model.vo.MyPageComment;
 import tripAdviser.travel.product.model.dao.TravelProductDetailDao;
@@ -142,6 +144,7 @@ public class MyPageDao {
 				m.setAddressDetail(rs.getString("address_detail"));
 				m.setEmail(rs.getString("email"));
 				m.setName(rs.getString("name"));
+				m.setPostalCode(rs.getInt("postal_code"));
 				m.setMemberPictureUrl(rs.getString("member_picture_url"));
 				m.setPhone(rs.getString("phone"));
 				m.setEnrollDate(rs.getDate("enroll_date"));
@@ -245,6 +248,56 @@ public class MyPageDao {
 			close(pstmt);
 		}
 		
+		return result;
+	}
+
+	public int withMember(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("withMember");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,m.getMemberId());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updatePicture(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("updatePicture");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,m.getMemberPictureUrl());
+			pstmt.setString(2,m.getMemberId());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteImage(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteImage");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,m.getMemberId());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		return result;
 	}
 }
