@@ -1,16 +1,17 @@
 package tripAdviser.travel.product.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tripAdviser.member.model.vo.Member;
+import tripAdviser.member.model.vo.Comment;
 import tripAdviser.travel.product.model.service.TravelProductCommentService;
 import tripAdviser.travel.product.model.service.TravelProductDetailService;
-import tripAdviser.travel.product.model.vo.TravelProduct;
 
 /**
  * Servlet implementation class TravelProductDeleteCommentAjaxServlet
@@ -85,37 +86,19 @@ public class TravelProductDeleteCommentAjaxServlet extends HttpServlet {
 			pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelProductDetail?trvNo=" + commentRefTrvNo + "&cPage=" + (pageStart + pageBarSize) + "#travel-comment-container"  + "'>&raquo;</a></li></ul>";
 		}
 		
-		TravelProduct tp = new TravelProductDetailService().selectTrvProduct(commentRefTrvNo, cPage, numPerPage);
-		
-		boolean isScraped;
-		
-		if((Member)request.getSession().getAttribute("loginMember") != null) {
-			Member m = (Member)request.getSession().getAttribute("loginMember");
-			isScraped = new TravelProductDetailService().selectScrap(commentRefTrvNo, m.getMemberId());
-		}
-		else {
-			isScraped = false;
-		}
-		
-		String view = "";
-		String loc = "";
-		String msg = "";
+		List<Comment> commentList = new TravelProductCommentService().selectComment(commentRefTrvNo, cPage, numPerPage);
 		
 		if(result > 0) {
-			view = "/views/travelProduct/travelDetail.jsp";
-			request.setAttribute("travelProduct", tp);
+			request.setAttribute("commentList", commentList);
 			request.setAttribute("pageBar", pageBar);
-			request.setAttribute("isScraped", isScraped);
+			request.setAttribute("cPage", cPage);
+			request.setAttribute("trvNo", commentRefTrvNo);
 		}
 		else {
-			view = "/views/common/msg.jsp";
-			loc = "/";
-			msg = "잘못된 경로거나 존재하지않는 여행정보입니다.";
+			System.out.println("코멘트등록실패!");
 		}
 		
-		request.setAttribute("loc", loc);
-		request.setAttribute("msg", msg);
-		request.getRequestDispatcher(view).forward(request, response);
+		request.getRequestDispatcher("/views/travelProduct/travelComment.jsp").forward(request, response);
 	}
 
 	/**

@@ -28,17 +28,15 @@
 		});
 	}
 	
-	function fn_delete_comment(commentNo) {
+	function fn_delete_comment() {
+		$('.modal .close').click();
+		var commentNo = $("#commentNoData").val();
 		$.ajax({
 			url: "<%=request.getContextPath()%>/myPage/myCommentDelete?cPage=" + cPage + "&id=" + id + "&commentNo=" + commentNo,
 			type: "post",
 			dataType: "html",
 			success: function(data) {
 				$("#my-comments").html(data);
-				var msg = "<%=(String)request.getAttribute("msg") %>";
-				console.log(msg);
-				//var offset = $('.mypage-header').offset();
-				//$('html, body').animate({scrollTop:offset.top}, 0);
 			},
 			error: function(request, status, error) {
 				
@@ -46,14 +44,11 @@
 		});
 	}
 	
-	function fn_delete_comment_modal(commentNo) {
-		var commentNo = commentNo;
+	function fn_delete_confirm(no) {
+		var no = no;
+		var commentNo = $("input[name=commentNo]").eq(no).val();
+		$("#commentNoData").val(commentNo);
 		$('#confirm-delete-comment').modal();
-		//$('#delete-confirm').click(fn_delete_comment(commentNo));
-		$('#delete-confirm').click(function () {
-			$('.modal .close').click();
-			fn_delete_comment(commentNo);
-		});
 	}
 </script>
 <section id="myComment-section">
@@ -76,7 +71,8 @@
 					<span><%=myCommentList.get(i).getCommentContent() %></span>
 				</div> 
 				 <div style="display: inline-block; width:15%; text-align: center;">
-				 <!-- <button class='btn btn-dark'>수정</button>  --><button class='btn btn-danger' onclick="fn_delete_comment_modal(<%=myCommentList.get(i).getCommentNo() %>)">코멘트 삭제</button>
+				 <input type="hidden" name="commentNo" value="<%=myCommentList.get(i).getCommentNo() %>" />
+				 <!-- <button class='btn btn-dark'>수정</button>  --><button class='btn btn-danger' onclick="fn_delete_confirm(<%=i %>)">코멘트 삭제</button>
 				</div>
 			</div>
 		</div>
@@ -108,7 +104,8 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="delete-confirm">네 삭제합니다.</button>
+          <input type="hidden" id="commentNoData" value="" />
+          <button type="button" class="btn btn-primary" id="delete-confirm" onclick="fn_delete_comment()">네 삭제합니다.</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">아니요.</button>
         </div>
         
