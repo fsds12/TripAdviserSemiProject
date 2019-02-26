@@ -82,6 +82,7 @@ public class TravelAdminService {
 		int result=new TravelAdminDao().updateAdmin(conn,tp);
 		if(result>0)
 		{
+			commit();
 			result = new TravelAdminDao().deleteAlbumUrls(conn, tp);
 			if(result > 0) {
 				commit();
@@ -98,7 +99,6 @@ public class TravelAdminService {
 			else {
 				rollback();
 			}
-			commit();
 		}
 		else
 		{

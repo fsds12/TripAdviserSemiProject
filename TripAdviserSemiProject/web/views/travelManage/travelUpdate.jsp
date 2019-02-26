@@ -45,7 +45,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("travelProduct");
 	 <div class="inputArea">
 		<label for="trvProvince">여행지 도</label> 
 		<select class="custom-select" id="trvProvince" name="trvProvince">
-			<option value="서울">서울</option>
+			<option value="서울시">서울시</option>
 			<option value="경기도">경기도</option>
 			<option value="강원도">강원도</option>
 			<option value="충청북도">충청북도</option>
