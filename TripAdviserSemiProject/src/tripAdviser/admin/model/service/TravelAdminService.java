@@ -81,6 +81,22 @@ public class TravelAdminService {
 		int result=new TravelAdminDao().updateAdmin(conn,tp);
 		if(result>0)
 		{
+			result = new TravelAdminDao().deleteAlbumUrls(conn, tp);
+			if(result > 0) {
+				commit();
+				for(String urls : tp.getAlbumUrls()) {
+					result = new TravelAdminDao().insertAlbumUrls(conn, tp.getTrvNo(), urls);
+					if(result > 0) {
+						commit();
+					}
+					else {
+						rollback();
+					}
+				}
+			}
+			else {
+				rollback();
+			}
 			commit();
 		}
 		else
@@ -92,18 +108,26 @@ public class TravelAdminService {
 	}
 
 	public int deleteAdmin(int trvNo) {
+	      Connection conn=getConnection();
+	      
+	      int result = new TravelAdminDao().deleteTravelInfo(conn, trvNo);
+	      if(result > 0) {
+	         commit();
+	      }
+	      else {
+	         rollback();
+	      }
+	      
+	      close(conn);
+	      return result;
+	   }
+
+	public TravelProduct selectAdmin(int trvNo) {
 		Connection conn=getConnection();
 		
-		int result = new TravelAdminDao().deleteTravelInfo(conn, trvNo);
-		if(result > 0) {
-			commit();
-		}
-		else {
-			rollback();
-		}
-		
+		TravelProduct tp=new TravelAdminDao().selectAdmin(conn,trvNo);
 		close(conn);
-		return result;
+		return tp;
 	}
 
 

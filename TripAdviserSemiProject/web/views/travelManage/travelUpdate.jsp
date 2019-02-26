@@ -1,3 +1,4 @@
+<%@page import="tripAdviser.travel.product.model.vo.TravelProduct"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -5,7 +6,8 @@
 
 <%
 
-int trvNo=(int)request.getAttribute("trvNo");
+
+TravelProduct tp=(TravelProduct)request.getAttribute("travelProduct");
 
 %>
 
@@ -18,13 +20,13 @@ int trvNo=(int)request.getAttribute("trvNo");
  <article id="trArt">
   <div class="container">
 	
-	<form action="<%=request.getContextPath()%>/travel/travelAdminUpdateView?trvNo=<%=trvNo %>"
+	<form action="<%=request.getContextPath()%>/travel/travelAdminUpdateView?trvNo=<%=tp.getTrvNo() %>"
 	name="ajaxFile" method="post" enctype="multipart/form-data">
 	
   <div class="inputData">
 	 <div class="inputArea">
 		<label for="trvTitle">여행제목</label> 
-		<input type="text" class="form-control" id="trvTitle" name="trvTitle" />
+		<input type="text" class="form-control" id="trvTitle" name="trvTitle" value="<%=tp.getTrvTitle()%>" />
 	 </div>
 	 <div class="inputArea">
 		<label>카테고리</label> 
@@ -43,6 +45,7 @@ int trvNo=(int)request.getAttribute("trvNo");
 	 <div class="inputArea">
 		<label for="trvProvince">여행지 도</label> 
 		<select class="custom-select" id="trvProvince" name="trvProvince">
+			<option value="서울">서울</option>
 			<option value="경기도">경기도</option>
 			<option value="강원도">강원도</option>
 			<option value="충청북도">충청북도</option>
@@ -56,11 +59,11 @@ int trvNo=(int)request.getAttribute("trvNo");
 	 </div>
 	 <div class="inputArea">
 		<label for="trvCity">여행지 시군구</label> 
-		<input type="text" class="form-control" id="trvCity" name="trvCity" />
+		<input type="text" class="form-control" id="trvCity" name="trvCity" value="<%=tp.getTrvCity()%>"/>
 	 </div>
 	  <div class="inputArea">
 		<label for="trvAddress">나머지 주소</label> 
-		<input type="text" class="form-control" id="trvAddress" name="trvAddress" />
+		<input type="text" class="form-control" id="trvAddress" name="trvAddress" value="<%=tp.getTrvAddress()%>"/>
 	 </div>
 	 
 	 
@@ -72,7 +75,22 @@ int trvNo=(int)request.getAttribute("trvNo");
 						<img id="preview" src="" width="200" alt="">
 						<input type="file" name="trvRepresentPic" id="getfile" style="width:200px">
 					</div>
-
+					
+					<div id="trvImg2" style="width:250px">
+						<img id="preview2" src="" width="200" alt="">
+						<input type="file" name="trvPicSrc1" id="getfile2" style="width:200px">
+					</div>
+					
+					
+					<div id="trvImg3" style="width:250px">
+						<img id="preview3" src="" width="200" alt="">
+						<input type="file" name="trvPicSrc2" id="getfile3" style="width:200px" multiple>
+					</div>
+					
+					<div id="trvImg4" style="width:250px">
+						<img id="preview4" src="" width="200" alt="">
+						<input type="file" name="trvPicSrc3" id="getfile4" style="width:200px" multiple>
+					</div>
 
 	</div>
 	
@@ -171,6 +189,11 @@ file4.onchange = function () {
 
     }; 
 }; 
+
+$("select[name=trvCtg]").val("<%=tp.getTrvSmallCtg() %>".trim());
+$("#trvProvince").val("<%=tp.getTrvProvince()%>");
+
+$("#proContent").val("<%=tp.getTrvReview()%>");
 
 
 

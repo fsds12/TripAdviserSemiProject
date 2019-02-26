@@ -33,14 +33,6 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	      /*Member loginMember=(Member)request.getSession(false).getAttribute("loginMember");
-	      if(loginMember==null||!"admin".equals(loginMember.getMemberId()))
-	      {
-	         request.setAttribute("msg", "잘못된 경로로 이동하셨습니다.");
-	         request.setAttribute("loc", "/");
-	         request.getRequestDispatcher("/views/common/msg.jsp")
-	         .forward(request, response);
-	      }*/
 		
 		
 		//페이징처리로직
@@ -90,7 +82,7 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	      }
 	      
 	      //다음 만들기
-	      				/*<li class='active'>*/
+	      			
 	      if(pageEnd >= totalAdminPageCnt) {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&raquo;</a></li></ul>";
 	      }
@@ -99,9 +91,6 @@ public class TravelAdminListViewServlet extends HttpServlet {
 	      }
 		
 		
-		
-		
-	    System.out.println(list);
 	    
 	   
 	    request.setAttribute("cPage", cPage);

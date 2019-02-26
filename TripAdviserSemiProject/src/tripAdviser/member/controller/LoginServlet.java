@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
 		String msg="";
 		String loc="/";
 		String view="/";
+		
 		if(result!=null/*&&result.getMemberId().equals(id)&&result.getMemberPw().equals(password)*/) {
 			msg="로그인 성공";
 			HttpSession session=request.getSession();
