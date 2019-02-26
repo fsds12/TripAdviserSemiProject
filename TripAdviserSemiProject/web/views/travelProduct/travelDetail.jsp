@@ -24,7 +24,7 @@
 		cPage = 1;
 	}
 %>
-<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyCDSMMBC3FVr1gSB2QtcPfMFJwHW0-m9WA"></script>
 <script>
     function fn_comment_confirm() {
         var comment = $('textarea[name=comment]').val();
