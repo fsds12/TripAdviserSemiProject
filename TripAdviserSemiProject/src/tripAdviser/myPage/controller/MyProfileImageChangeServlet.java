@@ -1,11 +1,22 @@
 package tripAdviser.myPage.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import tripAdviser.member.model.service.MemberService;
+import tripAdviser.member.model.vo.Member;
+import tripAdviser.myPage.model.service.MyPageService;
 
 /**
  * Servlet implementation class MyProfileImageChangeServlet
@@ -26,10 +37,38 @@ public class MyProfileImageChangeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("id");
-		String filePath = request.getParameter("profile_up_file");
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.setAttribute("msg","오류[관리자에 문의하세요]");
+			request.setAttribute("log","/");
+			RequestDispatcher rd=request.getRequestDispatcher("/views/common/msg.jsp");
+			rd.forward(request, response);
+			return;
+		}
 		
-		System.out.println(id + filePath);
+		String dir=getServletContext().getRealPath("/");
+		dir+="/images/myPage-imgs";
+		int maxSize=1024*1024*10; 
+		MultipartRequest mr=new MultipartRequest(request,dir,maxSize,"UTF-8",new DefaultFileRenamePolicy());
+		String id=mr.getParameter("hiddenid");
+		String filePath = mr.getFilesystemName("profile_up_file");
+		
+		System.out.println(filePath);
+		
+		/*Member m=new Member();
+		m.setMemberId(id);
+		m.setMemberPictureUrl(filePath);*/
+		Member m = (Member)request.getSession().getAttribute("loginMember");
+		m.setMemberPictureUrl(filePath);
+		int result=new MyPageService().updatePicture(m);
+		
+		
+		String view="/myPage";
+		String img=filePath;
+		
+		
+		RequestDispatcher rd=request.getRequestDispatcher(view);
+		rd.forward(request,response);
+		
 		
 	}
 
