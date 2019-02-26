@@ -250,13 +250,21 @@ nav#trvList ul.pagination {
    /* position: relative;
    left: 350px; */
 }
+section#trvList div.container #tblljb-pageBar{
+	margin-top:30px;
+}
 
+section#trvList a#ljbtag{
+	text-decoration-line: none;
+	color:#5a5a5a;
+	
+}
 
-section form div div table {
+section#trvList form div div table {
 	margin-top: 50px;
 }
 
-section div.col-12 #item {
+section#trvList div.col-12 #item {
 	margin-left: 10px;
 	position: relative;
 	left: 300px;
@@ -267,12 +275,12 @@ section div.col-12 #item {
 	bottom: 10px;
 }
 
-section div.col-12{
+section#trvList div.col-12{
 	margin-top:20px;
 	margin-bottom: 60px;
 }
 
-section div.col-12 #pro-search {
+section#trvList div.col-12 #pro-search {
 	position: relative;
 	display: inline-block;
 	margin-left: 10px;
@@ -284,96 +292,132 @@ section div.col-12 #pro-search {
 	left: 310px;
 	bottom: 12px;
 	cursor:pointer;
+	
 }
 
-section div.col-12 #category{
+section#trvList div.col-12 #category{
 	position: relative;
-	left: 270px;
+	left: 280px;
+	margin-bottom: 10px;
+	width:110px;
+	
 }
 
-section form .inputArea {
+section#trvList div#con-bottom #tbl-list{
+	margin-top: 50px;
+}
+
+section#trvWrite form .inputArea {
 	 	margin:0px 0px 0px 5px;
 	}
-section form .inputArea	select { 
+section#trvWrite form .inputArea	select { 
 		width:190px; 
 	}
-section form .inputArea	label { 
+section#trvWrite form .inputArea	label { 
 		display:inline-block; width:70px; padding:5px; 
 	}
 
-section form .inputArea	input { 
+section#trvWrite form .inputArea	input { 
 		width:190px; 
 	}
 
-section form .inputContent label[for="proContent"] {
+section#trvWrite form .inputContent label[for="proContent"] {
 	display: block;
 }
 
-section form .inputContent textarea#proContent {
+section#trvWrite form .inputContent textarea#proContent {
 	width:400px; height:180px;
 }
 
 
-section form .inputBtn {
+section#trvWrite form .inputBtn {
 	 	margin:0px 0px 0px 5px;
 	}
 
-section form .inputBtn #register_Btn{
+
+section#trvWrite form .inputBtn #register_Btn{
+		position: relative;
+		left:140px; 
+		margin: 50px 5px 40px 0px;
+	}
+section#trvWrite form .inputBtn	#cancle_Btn{
+		position: relative;
+		left:150px;
+		margin: 50px 5px 40px 0px;
+	}	
+
+
+section#trvUpdate form .inputArea {
+	 	margin:0px 0px 0px 5px;
+	}
+section#trvUpdate form .inputArea	select { 
+		width:190px; 
+	}
+section#trvUpdate form .inputArea	label { 
+		display:inline-block; width:70px; padding:5px; 
+	}
+
+section#trvUpdate form .inputArea	input { 
+		width:190px; 
+	}
+
+section#trvUpdate form .inputContent label[for="proContent"] {
+	display: block;
+}
+
+section#trvUpdate form .inputContent textarea#proContent {
+	width:400px; height:180px;
+}
+
+
+section#trvUpdate form .inputBtn {
+	 	margin:0px 0px 0px 5px;
+	}
+
+	
+section#trvUpdate form .inputBtn #update_Btn{
 		position: relative;
 		left:140px;
 		margin: 50px 5px 40px 0px;
 	}
-	
-	
-section form .inputBtn #update_Btn{
-		position: relative;
-		left:140px;
-		margin: 50px 5px 40px 0px;
-	}
-section form .inputBtn	#cancle_Btn{
+section#trvUpdate form .inputBtn #cancle_Btn{
 		position: relative;
 		left:150px;
 		margin: 50px 5px 40px 0px;
 	}
-section form .inputBtn	.btn-search{
-	width: 100px;
-	height: 37px;
-	margin-left: 10px;
-	background-color: #ED786A;
-	border-radius: 5px;
-	color: white;
-}	
 	
-section#sec{
+	
+section#trvUpdate{
 	margin-top:10px;
 }
 
-section form div.container div#btn #btn-update{
-	position: relative;
-	display: inline-block;
-	width: 80px;
-	height: 37px;
-	background-color: #ED786A;
-	border-radius: 5px;
-	color: white;
-	
+section#trvWrite{
+	margin-top:10px;
 }
 
-section form div.container div#btn #btn-delete{
-	position: relative;
-	display: inline-block;
-	width: 80px;
-	height: 37px;
-	background-color: #ED786A;
-	border-radius: 5px;
-	color: white;
+section#trvWrite form div.inputImage{
+	 display: flex;
+	 
 }
 
-section form div.inputImage img {
+section#trvUpdate form div.inputImage{
+	 display: flex;
+}
+
+
+section#trvWrite form div.inputImage img {
     margin: 1em 0;
-    display: block;
+    display: inline-block;
     background: rgb(240, 240, 240);
-    border: 1px solid rgb(0,0,0);
+    
+}
+
+
+section#trvUpdate form div.inputImage img {
+    margin: 1em 0;
+    display: inline-block;
+    background: rgb(240, 240, 240);
+    
 }
 
 /* 강도원 */
