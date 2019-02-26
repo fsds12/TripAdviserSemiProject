@@ -36,9 +36,7 @@ public class JDBCTemplate {
 	public static Connection getConnection() {
 		try {
 			Class.forName(driver);
-			System.out.println("드라이버로드성공");
 			conn = DriverManager.getConnection(url, dbId, dbPw);
-			System.out.println("DB연결성공");
 			conn.setAutoCommit(false);
 		}
 		catch(ClassNotFoundException e) {

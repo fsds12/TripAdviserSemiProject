@@ -65,7 +65,7 @@ section#my-scrap-container div.card-group div {
 			%>
 				<%if(tp.getTrvProvince().equals(trvProvinceList.get(i))) {%>
 					<div class="card" style="max-width:33%; border:1px solid lightgray" onclick="location.href='<%=request.getContextPath() %>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo() %>'">
-						<img class="card-img-top" src="<%=tp.getTrvRepresentPic() %>" alt="sfsf" style="width:100%; height:250px;">
+						<img class="card-img-top" src="<%=tp.getTrvRepresentPic() %>" alt="sfsf" style="width:100%; height:170px;">
 						<div class="card-body" style="padding:5px;">
 							<h6 class="card-title" style="text-align: left; font-weight: bold;"><%=tp.getTrvTitle() %></h6>
 							<p class="card-text"><i class="fa fa-map-marker"></i><%=tp.getTrvProvince()+"&nbsp;"+tp.getTrvCity()+"&nbsp;"+tp.getTrvAddress() %>.</p>
@@ -82,7 +82,7 @@ section#my-scrap-container div.card-group div {
 								%>
 								<i class="fa fa-star-o"></i>
 								<% } %>
-								<span id="starRateScore"><%=tp.getAvgStarRate() %></span> Stars
+								<span id="starRateScore"><%=Math.floor(tp.getAvgStarRate()*10)/10 %></span> Stars
 							</p>
 						</div>
 					</div>

@@ -109,6 +109,7 @@ public class MyPageDao {
 				mpc.setTrvEvaluation(rs.getInt("trv_evaluation"));
 				mpc.setCommentContent(rs.getString("comment_content"));
 				mpc.setCommentNo(rs.getInt("comment_no"));
+				mpc.setTrvNo(rs.getInt("trv_no"));
 				
 				list.add(mpc);
 			}
