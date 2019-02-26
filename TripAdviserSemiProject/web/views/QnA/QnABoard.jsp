@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, tripAdviser.board.model.vo.Board" %>
+<%@ include file="/views/common/header.jsp" %>
 <%
 	List<Board> list=(List)request.getAttribute("list");
 	String pageBar=(String)request.getAttribute("pageBar");
@@ -7,8 +8,9 @@
 	int numPerPage=(int)request.getAttribute("numPerPage");
 	String type=(String)request.getAttribute("type");
 	String key=(String)request.getAttribute("key");
+	Member m = (Member)session.getAttribute("loginMember");
 %>
-<%@ include file="/views/common/header.jsp" %>
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
 <style>
 	div#search-id{
@@ -19,6 +21,15 @@
 	}
 	div#search-title{
 		display: inline-block;
+	}
+	input#viewBtn{
+		border: none;
+		background-color: white;
+		cursor: pointer;
+		color: slategrey;
+	}
+	input#viewBtn:hover{
+		background-color: whitesmoke;
 	}
 </style>
 <script>
@@ -42,6 +53,8 @@
 	
 		$('#searchType').trigger("change");
 	})
+	
+	
 </script>
  <section id="notice-section" class="notice-section">    
     <div class="caption">
@@ -50,9 +63,11 @@
     <table align="center" class="notice-tbl">                    
     	<thead>
             <tr>
-            	<td colspan="5">
+            	<%if(loginMember!=null){ %>                        	
+            	<td colspan="5">            	
             		<input type="button" value="쓰기" class="write-btn" onclick="location.href='<%=request.getContextPath()%>/QnA/QnAWrite'"/>
             	</td>
+            	<%} %>
             </tr>                        
             <tr class="title">
                 <th>번호</th>
@@ -63,23 +78,32 @@
             </tr>
         </thead>
         <tbody>
+        
         	<%for(Board b : list){ %>            
             <tr id="boardList-tr">
                 <td><%=b.getBoardNo() %></td>
-                <td><%=b.getMemberId() %></td>
-                <td><a href="<%=request.getContextPath()%>/QnA/QnABoardView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle() %></a></td>
+                <td><%=b.getMemberId() %></td>                
+                <td>               	
+                	<%-- <form name="qnaViewFrm" action="<%=request.getContextPath()%>/QnA/QnABoardView" method="post">
+						<input type="hidden" name="boardNo" value="<%=b.getBoardNo()%>"/>
+						<input type="hidden" name="userId" value="<%=b.getMemberId()%>"/>
+						<input type="submit" id="viewBtn" value="<%=b.getTitle()%>"/>
+					</form> --%>
+					<a href="<%=request.getContextPath()%>/QnA/QnABoardView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle()%></a>
+                </td>                
                 <td><%=b.getBoardDate() %></td>
                 <td><%=b.getHits() %></td>
             </tr>
-            <%} %>                    
+            <%}%>                    
     	</tbody>                   
 	</table>
+	
         <div id="search-container">
         	<button id="search-btn" onclick="location.href='<%=request.getContextPath()%>/QnA/QnAList'">목록</button>
             <select id="searchType">
                 <option value="title" <%="title".equals(type)?"selected":"" %>>제목</option>                
                 <option value="content" <%="content".equals(type)?"selected":"" %>>내용</option>
-                <option value="user" <%="user".equals(type)?"selected":"" %>>작성자</option>                
+                <%-- <option value="user" <%="memberId".equals(type)?"selected":"" %>>작성자</option> --%>                
             </select>
             <div id="search-title">
             	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
@@ -99,7 +123,7 @@
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>
-            <div id="search-id">
+            <%-- <div id="search-id">
             	<form action="<%=request.getContextPath()%>/QnA/QnAFind">
             		<input type="hidden" name="type" value="user"/>
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
@@ -107,7 +131,7 @@
             		<input type="search" name="key" value='<%="user".equals(type)?key:""%>' placeholder="user"/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
-            </div>                      	               
+            </div> --%>                      	               
         </div>        
          <div id="paging-container"> 
             <ul class="pagination pagination-sm justify-content-center">
@@ -115,4 +139,5 @@
   			</ul>            
    		</div>
 </section>
+
 <%@ include file="/views/common/footer.jsp" %>

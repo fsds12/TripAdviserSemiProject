@@ -1,7 +1,6 @@
 package tripAdviser.board.QnA.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +12,16 @@ import tripAdviser.board.QnA.model.service.qaService;
 import tripAdviser.board.model.vo.BoardAnswer;
 
 /**
- * Servlet implementation class QnADeleteServlet
+ * Servlet implementation class QnACommentInsertServlet
  */
-@WebServlet("/QnA/deleteQnA")
-public class QnADeleteServlet extends HttpServlet {
+@WebServlet("/QnA/insertComment")
+public class QnACommentInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnADeleteServlet() {
+    public QnACommentInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,25 +30,37 @@ public class QnADeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo=Integer.parseInt(request.getParameter("boardNo"));	
 		
-		int result=new qaService().deleteQa(boardNo);
+		int boardRef=Integer.parseInt(request.getParameter("boardRef"));
+		String memberId=request.getParameter("memberId");
+		String commentContent=request.getParameter("commentContent");
+		int commentLevel=Integer.parseInt(request.getParameter("commentLevel"));
+		int commentRef=Integer.parseInt(request.getParameter("commentRef"));
 		
+		BoardAnswer comment=new BoardAnswer();
+		comment.setBoardNoRef(boardRef);
+		comment.setMemberId(memberId);
+		comment.setContent(commentContent);
+		comment.setCommentLevel(commentLevel);
+		comment.setCommentNoRef(commentRef);
+		
+		int result=new qaService().insertComment(comment);
 		String msg="";
 		String view="/views/common/msg.jsp";
-		String loc="";
+		String loc="/QnA/QnABoardView?boardNo="+boardRef;
 		
-		if(result>0) {
-			msg="삭제되었습니다.";			
-			loc="/QnA/QnAList";
-		}else {
-			
-			msg="댓글이 있는 경우 삭제가 불가능합니다.";
-			loc="/QnA/QnABoardView?boardNo="+boardNo;
+		if(result>0)
+		{
+			msg="등록성공";
 		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("loc", loc);
-		request.getRequestDispatcher(view).forward(request, response);
+		else	
+		{
+			msg="등록실패";
+		}
+		request.setAttribute("msg",msg);
+		request.setAttribute("loc",loc);
+		request.getRequestDispatcher(view).forward(request, response);	
+		
 	}
 
 	/**

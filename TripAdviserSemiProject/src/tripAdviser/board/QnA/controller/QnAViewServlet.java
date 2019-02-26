@@ -35,6 +35,7 @@ public class QnAViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int boardNo=Integer.parseInt(request.getParameter("boardNo"));
+		String memberId=request.getParameter("userId");
 		
 		Cookie[] cookies=request.getCookies();
 		String boardCookie="";
@@ -65,11 +66,10 @@ public class QnAViewServlet extends HttpServlet {
 		
 		if(b!=null) {
 			List<BoardAnswer> comment=new qaService().selectComment(boardNo);
-			request.setAttribute("comment", comment);
-		}
-		
-		
-		request.setAttribute("Board", b);
+			request.setAttribute("comment", comment);			
+		}	
+		String view="/QnA/QnABoardView?boardNo="+boardNo;
+		request.setAttribute("Board", b);		
 		request.getRequestDispatcher("/views/QnA/QnABoardView.jsp").forward(request, response);
 	}
 

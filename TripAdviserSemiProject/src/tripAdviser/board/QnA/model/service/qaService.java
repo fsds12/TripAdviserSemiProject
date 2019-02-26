@@ -75,8 +75,12 @@ public class qaService {
 	public int deleteQa(int boardNo) {
 		Connection conn=getConnection();
 		int result=dao.deleteQa(conn, boardNo);
-		if(result>0) commit();
-		else rollback();
+		if(result>0) {
+			commit();
+			
+		}else {
+			rollback();
+		}
 		close(conn);
 		return result;
 	}
@@ -110,6 +114,16 @@ public class qaService {
 		List<BoardAnswer> comment=dao.selectComment(conn, boardNo);
 		close(conn);
 		return comment;
+	}
+	
+	public int deleteComment(int commentNo) {
+		
+		Connection conn=getConnection();
+		int result=dao.deleteComment(conn, commentNo);
+		if(result>0) commit();
+		else rollback();
+		
+		return result;
 	}
 	
 	
