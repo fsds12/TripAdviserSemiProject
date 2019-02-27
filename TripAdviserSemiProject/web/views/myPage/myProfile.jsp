@@ -108,7 +108,7 @@
 		<div id="profile-img-container">
 			<div id="profile-img-space">
 				<%-- <img class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" /> --%>
-				<img id='profile-img' class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/myPage-imgs/<%=m.getMemberPictureUrl() %>" width="156px" height="156px" />
+				<img id='profile-img' class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/myPage_imgs/<%=m.getMemberPictureUrl() %>" width="156px" height="156px" />
 
 			</div>
 			<div id="profile-img-btn-space">
