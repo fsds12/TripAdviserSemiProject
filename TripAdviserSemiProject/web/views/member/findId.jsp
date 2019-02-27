@@ -1,10 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="tripAdviser.member.model.vo.Member" %>
-    
+<%@ page import="java.util.*" %>    
 <%
-Member m =(Member)request.getAttribute("Member");
-
+List<Member> list=(List)request.getAttribute("idList");
 %>
 <%@ include file="/views/common/header.jsp" %>
 <style>
@@ -39,8 +38,18 @@ font-size: 17px;
 <article id="idfind-article">
 	<div id="idfind-div">
 	
-	<%if(m!=null){ %> 
-		<span>조회된 아이디는 </span> <span style="color: orange;"><%=m.getMemberId()%></span> <span>입니다.</span>
+	<%if(!list.isEmpty()){ %> 
+		<span>조회된 아이디는 </span><br>
+		<%for(Member m:list) {%>
+		
+		 <span style="color: orange;"><%=m.getMemberId()%></span> <br>
+		
+		<%} %>
+		
+		
+		
+		
+		<span>입니다.</span>
 		
 	<%}else{ %>
 		<span>입력한 정보와 일치하는 회원이 존재하지 않습니다.</span>
