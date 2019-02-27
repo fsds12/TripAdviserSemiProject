@@ -32,7 +32,8 @@ public class TravelAdminSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String type=request.getParameter("searchType");
+		//String type=request.getParameter("searchType");
+		String type = "memberId";
 		String key=request.getParameter("searchKeyword");
 		
 		//페이징처리로직
@@ -67,12 +68,18 @@ public class TravelAdminSearchServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&laquo;</a></li>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminFind?cPage=" + (pageNo - pageBarSize) + "&SearchType"+type+"&SearchKeyword="+key+"'>&laquo;</a></li>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelAdminFind?cPage=" + (pageNo - pageBarSize) +"&searchKeyword="+key+"'>&laquo;</a></li>";
 	      }
 	      
 	      //페이지바 숫자채우기
 	      while(pageNo <= totalAdminPageCnt && pageNo <= pageEnd) {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage="+ pageNo + "&SearchType"+type+"&SearchKeyword="+key+"'>" + pageNo + "</a></li>";
+	         //pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelAdminFind?cPage="+ pageNo +"&searchKeyword="+key+"'>" + pageNo + "</a></li>";
+	         if(cPage == pageNo) {
+				pageBar = pageBar + "<li class='page-item active'><a class='page-link' href='" + request.getContextPath() + "/travel/travelAdminFind?cPage="+ pageNo +"&searchKeyword="+key+"'>" + pageNo + "</a></li>";
+			 }
+			 else {
+				 pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelAdminFind?cPage="+ pageNo +"&searchKeyword="+key+"'>" + pageNo + "</a></li>";
+			 }
 	         pageNo++;
 	      }
 	      
@@ -82,7 +89,7 @@ public class TravelAdminSearchServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&raquo;</a></li></ul>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage=" + (pageStart + pageBarSize)  + "&SearchType"+type+"&SearchKeyword="+key+"'>&raquo;</a></li></ul>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/travelAdminFind?cPage=" + (pageStart + pageBarSize) + "&searchKeyword="+key+"'>&raquo;</a></li></ul>";
 	      }
 		
 	    
