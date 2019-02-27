@@ -107,11 +107,8 @@
 		<div id="profile-img-container">
 			<div id="profile-img-space">
 				<%-- <img class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" /> --%>
-<<<<<<< HEAD
 				<img id='profile-img' class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/myPage_imgs/<%=m.getMemberPictureUrl() %>" width="156px" height="156px" />
-=======
-				<img id='profile-img' class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath()%>/images/myPage-imgs/<%=m.getMemberPictureUrl() %>"/>
->>>>>>> refs/heads/wcw
+
 			</div>
 			<div id="profile-img-btn-space">
 				<button type="button" id="up_file" class="btn btn-secondary" onclick="fn_change_profile_img()">사진 변경</button>
