@@ -59,7 +59,7 @@ section#search-after div.container div.card-group div.card {
 <%} %>
  	
       <div class="card">
-         <a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=list.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=list.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
+         <a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=list.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=list.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
          <div class="card-block">
             <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=list.get(i).getTrvTitle() %></h5>
 			<p class="card-text">&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i><%=list.get(i).getTrvProvince()+"&nbsp;"+list.get(i).getTrvCity()+"&nbsp;"+list.get(i).getTrvAddress() %>
