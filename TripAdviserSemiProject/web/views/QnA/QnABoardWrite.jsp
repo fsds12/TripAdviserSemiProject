@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/boardStyle.css">
-<%@ include file="/views/common/header.jsp" %>    
+<%@ include file="/views/common/header.jsp" %>
+<script>
+	
+	function fn_cancle(){
+		if(confirm('취소하시겠습니까?')){
+			location.href="<%=request.getContextPath()%>/QnA/QnAList";
+		}else{
+			return;
+		}		
+	}	
+</script>     
 
 <section id="noticeWrite-section" class="notice-section">	
 	<div class="caption">글쓰기</div>
-	<form name="qnaWriteFrm" action="<%=request.getContextPath()%>/QnA/insertQnA" method="post">
+	<form name="qnaWriteFrm" action="<%=request.getContextPath()%>/QnA/insertQnA" onsubmit="return fn_validate()" method="post">
     <table align="center" class="write-tbl">    	
          	<tr>
             	<th>작성자</th>
@@ -16,7 +25,7 @@
             <tr>
                 <th>제목</th>
                 <td>
-                 	<input type="text" name="title" id="title"/>
+                 	<input type="text" name="title" id="title" required/>
                 </td>
             </tr>             
             <tr>
@@ -33,17 +42,24 @@
     </form>
 </section>
 <script>
+function fn_validate(){
+	var title=$('#title').val().trim();
+	var content=$('#content').val().trim();
 	
-	function fn_cancle(){
-		alert("취소하시겠습니까?");
-		location.href="<%=request.getContextPath()%>/QnA/QnAList";
+	if(title.length<1){
+		alert("제목을 입력하세요");		
+		return false;	
+		} 
 	}
+	return true;		
+}
+
+
+$(function(){
+	var text=document.getElementById('content');
+	text.value+="관리자와 글쓴사람만 볼 수 있음";
 	
-	$(function(){
-		var text=document.getElementById('content');
-		text.value+="관리자와 글쓴사람만 볼 수 있음";
-		
-	})
-</script> 
+})
+</script>
 
 <%@ include file="/views/common/footer.jsp" %>

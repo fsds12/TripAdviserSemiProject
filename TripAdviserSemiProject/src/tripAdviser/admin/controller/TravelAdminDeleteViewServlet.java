@@ -35,10 +35,10 @@ public class TravelAdminDeleteViewServlet extends HttpServlet {
 		
 		int result=new TravelAdminService().deleteAdmin(trvNo);
 		
-		System.out.println(result);
+		
 		
 		String msg="";
-		String loc="/travel/TravelAdminListView";               /* /travel/travelProductDetail?trvNo= */  /*+trvNo*/ /*tp.getTrvNo*/
+		String loc="/travel/TravelAdminListView";
 		String view="/views/common/msg.jsp";
 		
 		if(result>0)

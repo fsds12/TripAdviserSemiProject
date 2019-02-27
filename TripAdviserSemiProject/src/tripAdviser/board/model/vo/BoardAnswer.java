@@ -5,26 +5,26 @@ import java.util.Date;
 public class BoardAnswer {
 	//댓글 객체
 	private int commentNo;
-	private String memberId;
-	private String boardContent;
-	private Date boardDate;
-	private int commentLevel;
 	private int boardNoRef;
+	private String memberId;
+	private String content;
+	private Date boardDate;
+	private int commentLevel;	
 	private int commentNoRef;
 	
 	
 	public BoardAnswer() {}
 
 
-	public BoardAnswer(int commentNo, String memberId, String boardContent, Date boardDate, int commentLevel,
-			int boardNoRef, int commentNoRef) {
+	public BoardAnswer(int commentNo, int boardNoRef, String memberId, String content, Date boardDate, int commentLevel,
+			int commentNoRef) {
 		super();
 		this.commentNo = commentNo;
+		this.boardNoRef = boardNoRef;
 		this.memberId = memberId;
-		this.boardContent = boardContent;
+		this.content = content;
 		this.boardDate = boardDate;
 		this.commentLevel = commentLevel;
-		this.boardNoRef = boardNoRef;
 		this.commentNoRef = commentNoRef;
 	}
 
@@ -39,6 +39,16 @@ public class BoardAnswer {
 	}
 
 
+	public int getBoardNoRef() {
+		return boardNoRef;
+	}
+
+
+	public void setBoardNoRef(int boardNoRef) {
+		this.boardNoRef = boardNoRef;
+	}
+
+
 	public String getMemberId() {
 		return memberId;
 	}
@@ -49,13 +59,13 @@ public class BoardAnswer {
 	}
 
 
-	public String getBoardContent() {
-		return boardContent;
+	public String getContent() {
+		return content;
 	}
 
 
-	public void setBoardContent(String boardContent) {
-		this.boardContent = boardContent;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 
@@ -79,16 +89,6 @@ public class BoardAnswer {
 	}
 
 
-	public int getBoardNoRef() {
-		return boardNoRef;
-	}
-
-
-	public void setBoardNoRef(int boardNoRef) {
-		this.boardNoRef = boardNoRef;
-	}
-
-
 	public int getCommentNoRef() {
 		return commentNoRef;
 	}
@@ -101,10 +101,12 @@ public class BoardAnswer {
 
 	@Override
 	public String toString() {
-		return "BoardAnswer [commentNo=" + commentNo + ", memberId=" + memberId + ", boardContent=" + boardContent
-				+ ", boardDate=" + boardDate + ", commentLevel=" + commentLevel + ", boardNoRef=" + boardNoRef
+		return "BoardAnswer [commentNo=" + commentNo + ", boardNoRef=" + boardNoRef + ", memberId=" + memberId
+				+ ", content=" + content + ", boardDate=" + boardDate + ", commentLevel=" + commentLevel
 				+ ", commentNoRef=" + commentNoRef + "]";
 	}
+
+
 	
 	
 	

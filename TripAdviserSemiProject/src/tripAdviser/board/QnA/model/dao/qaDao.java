@@ -269,11 +269,12 @@ public class qaDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setInt(1, ba.getBoardNoRef());
 			pstmt.setString(2, ba.getMemberId());
-			pstmt.setString(3, ba.getBoardContent());
+			pstmt.setString(3, ba.getContent());
 			pstmt.setInt(4, ba.getCommentLevel());
+			pstmt.setInt(5, ba.getCommentNoRef());
 			result=pstmt.executeUpdate();
 		}catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
@@ -293,11 +294,11 @@ public class qaDao {
 				BoardAnswer ba=new BoardAnswer();
 				ba.setCommentNo(rs.getInt("comment_no"));
 				ba.setBoardNoRef(rs.getInt("board_no_ref"));
-				ba.setBoardContent(rs.getString("board_content"));
 				ba.setMemberId(rs.getString("member_id"));
-				ba.setCommentLevel(rs.getInt("comment_level"));
-				ba.setCommentNoRef(rs.getInt("comment_no_ref"));
+				ba.setContent(rs.getString("content"));				
 				ba.setBoardDate(rs.getDate("board_date"));
+				ba.setCommentLevel(rs.getInt("comment_level"));
+				ba.setCommentNoRef(rs.getInt("comment_no_ref"));				
 				
 				comment.add(ba);
 			}
@@ -308,5 +309,22 @@ public class qaDao {
 			close(pstmt);
 		}
 		return comment;
+	}
+	
+	public int deleteComment(Connection conn, int commentNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql=prop.getProperty("deleteComment");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);			
+			pstmt.setInt(1, commentNo);
+			result=pstmt.executeUpdate();
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }

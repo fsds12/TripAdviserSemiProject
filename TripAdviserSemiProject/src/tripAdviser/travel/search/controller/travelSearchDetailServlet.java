@@ -67,16 +67,16 @@ public class travelSearchDetailServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&laquo;</a></li>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail/list?category=" + category + "&searchkey=" + searchkey + "&cPage=" + (pageNo - pageBarSize)+ "'>&laquo;</a></li>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail?category=" + category + "&searchkey=" + searchkey + "&cPage=" + (pageNo - pageBarSize)+ "'>&laquo;</a></li>";
 	      }
 	      
 	      //페이지바 숫자채우기
 	      while(pageNo <= totalPage && pageNo <= pageEnd) {
 	         if(cPage == pageNo) {
-	            pageBar = pageBar + "<li class='page-item active'><a class='page-link' href='" + request.getContextPath() + "/detail/list?category=" + category + "&searchkey=" + searchkey + "&cPage=" + pageNo +"'>" + pageNo + "</a></li>";
+	            pageBar = pageBar + "<li class='page-item active'><a class='page-link' href='" + request.getContextPath() + "/detail?category=" + category + "&searchkey=" + searchkey + "&cPage=" + pageNo +"'>" + pageNo + "</a></li>";
 	         }
 	         else {
-	            pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail/list?category=" + category + "&searchkey=" + searchkey + "&cPage=" + pageNo +"'>" + pageNo + "</a></li>";
+	            pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail?category=" + category + "&searchkey=" + searchkey + "&cPage=" + pageNo +"'>" + pageNo + "</a></li>";
 	         }
 	         pageNo++;
 	      }
@@ -87,7 +87,7 @@ public class travelSearchDetailServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&raquo;</a></li></ul>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail/list?&cPage=" + (pageStart + pageBarSize) +"'>&raquo;</a></li></ul>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail?&cPage=" + (pageStart + pageBarSize) +"'>&raquo;</a></li></ul>";
 	      }
 		 
 		

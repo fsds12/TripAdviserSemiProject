@@ -12,16 +12,16 @@ import tripAdviser.member.model.vo.Member;
 import tripAdviser.myPage.model.service.MyPageService;
 
 /**
- * Servlet implementation class MyProfileViewServlet
+ * Servlet implementation class MyProfileImageDeleteServlet
  */
-@WebServlet("/myPage/myProfile")
-public class MyProfileViewServlet extends HttpServlet {
+@WebServlet("/myPage/imagedelete")
+public class MyProfileImageDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyProfileViewServlet() {
+    public MyProfileImageDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +31,12 @@ public class MyProfileViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("id");
-		String loginedId = "";
-		Member m = (Member)request.getSession().getAttribute("loginMember");
+		String id=request.getParameter("id");
+		Member m=new Member();
+		m.setMemberId(id);
+		int result= new MyPageService().deleteImage(m);
+		System.out.println(result);
 		
-		
-		if(m != null) {
-			loginedId = m.getMemberId();
-		}
-		
-		if(id.equals(loginedId) && id != null && !id.equals("")) {
-			m = new MyPageService().selectId(id);
-			request.setAttribute("member", m);
-			
-			request.getRequestDispatcher("/views/myPage/myProfile.jsp").forward(request, response);
-		}
-		else {
-			request.getRequestDispatcher("/").forward(request, response);
-		}
 	}
 
 	/**

@@ -85,12 +85,6 @@ public class TravelAdminSearchServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/travel/TravelAdminListView?cPage=" + (pageStart + pageBarSize)  + "&SearchType"+type+"&SearchKeyword="+key+"'>&raquo;</a></li></ul>";
 	      }
 		
-		
-		
-		
-	    System.out.println(list);
-	    System.out.println(type);
-	    System.out.println(key);
 	    
 	    request.setAttribute("searchType", type);
 	    request.setAttribute("searchKeyword", key);

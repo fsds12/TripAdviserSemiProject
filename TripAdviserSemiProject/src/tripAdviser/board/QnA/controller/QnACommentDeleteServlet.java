@@ -1,4 +1,4 @@
-package tripAdviser.myPage.controller;
+package tripAdviser.board.QnA.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tripAdviser.member.model.vo.Member;
-import tripAdviser.myPage.model.service.MyPageService;
+import tripAdviser.board.QnA.model.service.qaService;
 
 /**
- * Servlet implementation class MyProfileViewServlet
+ * Servlet implementation class QnACommentDeleteServlet
  */
-@WebServlet("/myPage/myProfile")
-public class MyProfileViewServlet extends HttpServlet {
+@WebServlet("/QnA/commentDelete")
+public class QnACommentDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyProfileViewServlet() {
+    public QnACommentDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,25 +29,26 @@ public class MyProfileViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String id = request.getParameter("id");
-		String loginedId = "";
-		Member m = (Member)request.getSession().getAttribute("loginMember");
 		
+		int commentNo=Integer.parseInt(request.getParameter("commentNo"));
 		
-		if(m != null) {
-			loginedId = m.getMemberId();
-		}
+		int result=new qaService().deleteComment(commentNo);
 		
-		if(id.equals(loginedId) && id != null && !id.equals("")) {
-			m = new MyPageService().selectId(id);
-			request.setAttribute("member", m);
+		String msg="";
+		String view="/views/common/msg.jsp";
+		String loc="/QnA/QnAList";
+		
+		if(result>0) {
+			msg="삭제 완료";
 			
-			request.getRequestDispatcher("/views/myPage/myProfile.jsp").forward(request, response);
+		}else {
+			msg="삭제 실패";
 		}
-		else {
-			request.getRequestDispatcher("/").forward(request, response);
-		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher(view).forward(request, response);
+		
 	}
 
 	/**

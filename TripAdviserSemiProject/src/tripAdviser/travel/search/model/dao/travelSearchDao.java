@@ -195,10 +195,10 @@ public class travelSearchDao {
 	               top.setTrvGps(rs.getString("trv_gps"));
 	               top.setTrvDate(rs.getDate("trv_write_date"));
 	               top.setMemberId(rs.getString("member_id"));
-	               top.setAvgStarRate(rs.getDouble("rate"));
+	               top.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);
 	            toplist.add(top);
 	            //System.out.println(list);
-	                        
+	            //<%-- <%=Math.floor(tp.getAvgStarRate()*10)/10 %>평점 --%>
 	         }
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -245,7 +245,7 @@ public class travelSearchDao {
 	               sl.setTrvGps(rs.getString("trv_gps"));
 	               sl.setTrvDate(rs.getDate("trv_write_date"));
 	               sl.setMemberId(rs.getString("member_id"));
-	               sl.setAvgStarRate(rs.getDouble("rate"));
+	               sl.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);
 	            sleepList.add(sl);
 	            //System.out.println(sleepList);
 	         }
@@ -294,7 +294,7 @@ public class travelSearchDao {
 	            ac.setTrvGps(rs.getString("trv_gps"));
 	            ac.setTrvDate(rs.getDate("trv_write_date"));
 	            ac.setMemberId(rs.getString("member_id"));
-	            ac.setAvgStarRate(rs.getDouble("rate"));
+	            ac.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);
 	         acList.add(ac);
 	         }
 	         
@@ -342,7 +342,7 @@ public class travelSearchDao {
 	            ea.setTrvGps(rs.getString("trv_gps"));
 	            ea.setTrvDate(rs.getDate("trv_write_date"));
 	            ea.setMemberId(rs.getString("member_id"));     
-	            ea.setAvgStarRate(rs.getDouble("rate"));           
+	            ea.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);     
 	         eatList.add(ea);
 	         }
 	         
@@ -434,9 +434,9 @@ public class travelSearchDao {
 	            cate.setTrvGps(rs.getString("trv_gps"));
 	            cate.setTrvDate(rs.getDate("trv_write_date"));
 	            cate.setMemberId(rs.getString("member_id"));
-	            cate.setAvgStarRate(rs.getDouble("rate"));
+	            cate.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);
 	            list.add(cate);
-	            //System.out.println("나오냐?????????????????????"+cate);
+	            System.out.println("나오냐?????????????????????"+cate);
 	            
 	                        
 	         }

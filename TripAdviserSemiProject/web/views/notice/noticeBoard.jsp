@@ -2,8 +2,7 @@
 <%@ page import="java.util.*,tripAdviser.board.model.vo.Board" %>
 <%@ include file="/views/common/header.jsp" %>
 
-<%
-	
+<%	
 	List<Board> list=(List)request.getAttribute("list");
 	int cPage=(int)request.getAttribute("cPage");
 	int numPerPage=(int)request.getAttribute("numPerPage");
@@ -65,9 +64,9 @@
             <%for(Board b : list){ %>                        
             <tr id="boardList-tr">
                 <td><%=b.getBoardNo()%></td>
-                <td><%=b.getMemberId() %></td>
+                <td><%=b.getMemberId()%></td>
                 <td><a href="<%=request.getContextPath()%>/notice/noticeView?boardNo=<%=b.getBoardNo()%>"><%=b.getTitle()%></a></td> 
-                <td><%=b.getBoardDate() %></td>
+                <td><%=b.getBoardDate()%></td>
                 <td><%=b.getHits() %></td>
             </tr>
             <%} %>            

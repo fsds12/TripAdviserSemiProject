@@ -97,4 +97,41 @@ public class MyPageService {
 		close(conn);
 		return result;
 	}
+
+	public int withMember(Member m) {
+		Connection conn=getConnection();
+		int result=new MyPageDao().withMember(conn,m);
+		if(result>0) {
+			commit();
+		}else {
+			rollback();
+		}
+		close(conn);
+		return result;
+	}
+
+	public int updatePicture(Member m) {
+		Connection conn=getConnection();
+		int result=new MyPageDao().updatePicture(conn,m);
+		if(result>0) {
+			commit();
+		}else {	
+			rollback();
+		}
+		close(conn);
+		return result;
+	}
+
+	public int deleteImage(Member m) {
+		Connection conn=getConnection();
+		int result=new MyPageDao().deleteImage(conn,m);
+		if(result>0) {
+			commit();
+		}else {
+			rollback();
+		}
+		close(conn);
+		return result;
+		
+	}
 }

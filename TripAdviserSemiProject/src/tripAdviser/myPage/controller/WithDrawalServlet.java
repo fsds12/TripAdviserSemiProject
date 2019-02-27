@@ -12,16 +12,16 @@ import tripAdviser.member.model.vo.Member;
 import tripAdviser.myPage.model.service.MyPageService;
 
 /**
- * Servlet implementation class MyProfileViewServlet
+ * Servlet implementation class WithDrawalServlet
  */
-@WebServlet("/myPage/myProfile")
-public class MyProfileViewServlet extends HttpServlet {
+@WebServlet("/member/with")
+public class WithDrawalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyProfileViewServlet() {
+    public WithDrawalServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,24 +31,31 @@ public class MyProfileViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("id");
-		String loginedId = "";
-		Member m = (Member)request.getSession().getAttribute("loginMember");
+		String id=request.getParameter("userId");
 		
+		System.out.println(id);
 		
-		if(m != null) {
-			loginedId = m.getMemberId();
-		}
+		Member m=new Member();
+		m.setMemberId(id);
 		
-		if(id.equals(loginedId) && id != null && !id.equals("")) {
-			m = new MyPageService().selectId(id);
-			request.setAttribute("member", m);
-			
-			request.getRequestDispatcher("/views/myPage/myProfile.jsp").forward(request, response);
+		int result=new MyPageService().withMember(m);
+		
+		String msg="";
+		String loc="";
+		String view="/views/common/msg.jsp";
+		if(result>0)
+		{
+			msg="회원탈퇴가 완료되었습니다.";
+			//접속자에 대한 세션삭제
+			request.getSession(false).invalidate();
 		}
 		else {
-			request.getRequestDispatcher("/").forward(request, response);
+			msg="회원탈퇴를 실패하였습니다.";
+			loc="/updateMember";
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher(view).forward(request, response);
 	}
 
 	/**

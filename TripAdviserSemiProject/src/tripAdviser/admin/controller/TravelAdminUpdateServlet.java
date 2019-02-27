@@ -32,7 +32,9 @@ public class TravelAdminUpdateServlet extends HttpServlet {
 		
 		int trvNo=Integer.parseInt(request.getParameter("trvNo"));
 		
-		request.setAttribute("trvNo", trvNo);
+		
+		TravelProduct tp = new TravelAdminService().selectAdmin(trvNo);
+		request.setAttribute("travelProduct", tp);
 		
 		request.getRequestDispatcher("/views/travelManage/travelUpdate.jsp").forward(request, response);
 		
