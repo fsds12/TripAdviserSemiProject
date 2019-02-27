@@ -46,15 +46,12 @@ public class travelSearchDetailServlet extends HttpServlet {
 		}catch(NumberFormatException e){
 			cPage=1;
 		}
-		int numPerPage=12;
-		
+		int numPerPage=12;		
 		
 		  int totalContent= new travelSearchService().selectCountAll(category, searchkey);
-		  //System.out.println("토탈컨텐트"+totalContent);
 		  int totalPage=(int)Math.ceil((double)totalContent/numPerPage);
-		  //System.out.println("토탈페이지"+totalPage);
-		  
-		  
+
+	  
 		//페이지바 만들기
 	      String pageBar = "<ul class='pagination justify-content-center'>";
 	      int pageBarSize = 5;
@@ -103,23 +100,6 @@ public class travelSearchDetailServlet extends HttpServlet {
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("searchKey", searchkey);
 		request.getRequestDispatcher(view).forward(request, response); 
-		
-		/*
-		 * if(category.equals("sleepdelist")) { List<TravelProduct> list = new
-		 * travelSearchService().travelDedailSleepAll(searchkey, cPage, numPerPage);
-		 * //System.out.println("나오냐?????????????????????"+list);
-		 * 
-		 * request.setAttribute("list",list);
-		 * request.getRequestDispatcher(view).forward(request, response); } else
-		 * if(category.equals("aclist")) { List<TravelProduct> list = new
-		 * travelSearchService().travelDedailSleepAll(searchkey, cPage, numPerPage);
-		 * request.setAttribute("list", list);
-		 * request.getRequestDispatcher(view).forward(request, response); } else
-		 * if(category.equals("eatlist")) { List<TravelProduct> list = new
-		 * travelSearchService().travelDedailSleepAll(searchkey, cPage, numPerPage);
-		 * request.setAttribute("list", list);
-		 * request.getRequestDispatcher(view).forward(request, response); }
-		 */
 		
 	}
 
