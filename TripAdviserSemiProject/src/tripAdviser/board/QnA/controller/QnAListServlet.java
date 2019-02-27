@@ -53,12 +53,12 @@ public class QnAListServlet extends HttpServlet {
 		String pageBar="";
 		int pageBarSize=5;
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
-		int pageEnd=pageNo+pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
 		
 		if(pageNo==1) {
 			pageBar+="<li class='page-item'><a class='page-link'> << </a<</li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAList?cPage="+(pageNo-1)+"'> << </a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAList?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'><<</a></li>";
 		}
 		
 		
@@ -66,7 +66,7 @@ public class QnAListServlet extends HttpServlet {
 			if(cPage==pageNo) {
 				pageBar+="<li class='page-item'><a class='page-link'>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAList?cPage="+pageNo+"'>"+pageNo+"</a></li>";
+				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAList?cPage="+pageNo+"&numPerPage="+numPerPage+"'>"+pageNo+"</a></li>";
 			}
 			pageNo++;
 		}
@@ -74,7 +74,7 @@ public class QnAListServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<li class='page-item'><a class='page-link'> >> </a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAList?cPage="+(pageNo-1)+"'> >> </a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/QnA/QnAList?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'> >> </a></li>";
 		}
 		
 		request.setAttribute("cPage", cPage);
