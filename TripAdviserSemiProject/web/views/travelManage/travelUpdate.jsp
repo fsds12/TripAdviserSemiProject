@@ -23,6 +23,13 @@ TravelProduct tp=(TravelProduct)request.getAttribute("travelProduct");
 	<form action="<%=request.getContextPath()%>/travel/travelAdminUpdateView?trvNo=<%=tp.getTrvNo() %>"
 	name="ajaxFile" method="post" enctype="multipart/form-data">
 	
+	<div id="ljbGps">
+	
+	
+		<div id="map" style="dipslay:inline-block; width:300px; height: 300px; float: right; margin-right:250px "></div>
+	</div>	
+	
+	
   <div class="inputData">
 	 <div class="inputArea">
 		<label for="trvTitle">여행제목</label> 
@@ -44,7 +51,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("travelProduct");
 	 </div>
 	 <div class="inputArea">
 		<label for="trvProvince">여행지 도</label> 
-		<select class="custom-select" id="trvProvince" name="trvProvince">
+		<select class="custom-select" id="province" name="trvProvince">
 			<option value="서울시">서울시</option>
 			<option value="경기도">경기도</option>
 			<option value="강원도">강원도</option>
@@ -59,12 +66,63 @@ TravelProduct tp=(TravelProduct)request.getAttribute("travelProduct");
 	 </div>
 	 <div class="inputArea">
 		<label for="trvCity">여행지 시군구</label> 
-		<input type="text" class="form-control" id="trvCity" name="trvCity" value="<%=tp.getTrvCity()%>"/>
+		<input type="text" class="form-control" id="city" name="trvCity" value="<%=tp.getTrvCity()%>"/>
 	 </div>
 	  <div class="inputArea">
 		<label for="trvAddress">나머지 주소</label> 
-		<input type="text" class="form-control" id="trvAddress" name="trvAddress" value="<%=tp.getTrvAddress()%>"/>
+		<input type="text" class="form-control" id="address" name="trvAddress" value="<%=tp.getTrvAddress()%>"/>
 	 </div>
+	 
+	
+	 
+	 <script>
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: {lat: 36.7, lng: 127.9}
+        });
+        var geocoder = new google.maps.Geocoder();
+
+        document.getElementById('submit').addEventListener('click', function() {
+          geocodeAddress(geocoder, map);
+          map.zoom = 15;
+        });
+      }
+
+      function geocodeAddress(geocoder, resultsMap) {
+        var address = document.getElementById('address').value;
+        address = $("#province").val() + " " + $("#city").val() + " " + $("#address").val();
+        var gps = "222";
+        geocoder.geocode({'address': address}, function(results, status) {
+          if (status === 'OK') {
+            resultsMap.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: resultsMap,
+              position: results[0].geometry.location
+            });
+            var lat = results[0]['geometry']['location']['lat']();
+            var lng = results[0]['geometry']['location']['lng']();
+            gps = lat + ", " + lng;
+            $("input[name=trvGps]").val(gps);
+            console.log(gps);
+            $("#testGps").append(gps);
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDSMMBC3FVr1gSB2QtcPfMFJwHW0-m9WA&callback=initMap">
+    </script>
+    <div style="display:none;"><input type="hidden" name="trvGps" value="" /></div>
+    		
+    	<div id="ljbGpsBtn">
+			<input id="submit" type="button" value="Gps입력" style="margin-left:378px; margin-top:10px; margin-bottom:5px;">	
+			<span id="testGps"></span>
+		</div>
+	 
+	 
 	 
 	 
    </div>
