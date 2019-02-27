@@ -338,7 +338,7 @@
     	</div>
     	<div id="error-message" style="margin-top: 3px;">
     	</div>
-    	<div id="travel-content-container" style="height: 250px;">
+    	<div id="travel-content-container" style="min-height: 250px;">
     		<%=tp.getTrvReview() %>
     	</div>
     </article>
