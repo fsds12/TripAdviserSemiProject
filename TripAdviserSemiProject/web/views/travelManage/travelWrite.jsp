@@ -116,6 +116,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
             gps = lat + ", " + lng;
             $("input[name=trvGps]").val(gps);
             console.log(gps);
+            $("#testGps").append(gps);
           } else {
             alert('Geocode was not successful for the following reason: ' + status);
           }
@@ -125,13 +126,14 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDSMMBC3FVr1gSB2QtcPfMFJwHW0-m9WA&callback=initMap">
     </script>
-    
+    <div style="display:none;"><input type="hidden" name="trvGps" value="" /></div>
     		
     	<div id="ljbGpsBtn">
-			<input id="submit" type="button" value="Gps버튼" style="margin-left:378px; margin-top:10px; margin-bottom:5px;">	
+			<input id="submit" type="button" value="Gps입력" style="margin-left:378px; margin-top:10px; margin-bottom:5px;">	
+			<span id="testGps"></span>
 		</div>
 		
-    <div id='testGps' hidden><input type="text" name="trvGps" value="" /></div>
+    
 	
 	
 	
