@@ -21,7 +21,7 @@
 <style>
 	
 	#navbarDropdown, #menu {
-/* 	text-shadow: -1px 0 #F2F1F6, 0 1px #F2F1F6, 1px 0 #F2F1F6, 0 -1px #F2F1F6; */
+
 	text-shadow: 0 1px #F2F1F6;
 	}
 </style>
@@ -30,16 +30,17 @@ $(function(){
 	htmlMenu(0);
 });
 
+//tripAdvisor.travel.search.controller/categoryMenuServlet.java (/category/menu.do)연계
 function htmlMenu(choice)
 {
 	$.ajax({
-		url:"<%=request.getContextPath()%>/category/menu.do",
+		url:"<%=request.getContextPath()%>/category/menu.do", 
 		type : "POST",
 		data : 'choice='+choice,
 		dataType : "text",
 		success : function(data){
-			console.log(data);
 			$("#mydiv").html(data);
+	        document.getElementById('mydiv').scrollIntoView();
 		},
 		error:function(request,status,error){
 		}
@@ -57,7 +58,7 @@ function htmlMenu(choice)
                 
                 <img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
                 <span>&nbsp;&nbsp;</span>
-                <a class="navbar-brand" id="menu"  href="<%=request.getContextPath() %>/index.jsp">TripAdvisor</a>
+                <a class="navbar-brand" id="menu"  href="<%=request.getContextPath() %>/index.jsp">Local Traveler</a>
    
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav mr-auto">
@@ -65,7 +66,7 @@ function htmlMenu(choice)
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
-                                        휴식거리
+                                        머물거리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" onClick="htmlMenu(1)">호텔</a>
@@ -92,7 +93,7 @@ function htmlMenu(choice)
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" onClick="htmlMenu(6)">정식</a>
-                                        <a class="dropdown-item" onClick="htmlMenu(7)">지역특산물</a>
+                                        <a class="dropdown-item" onClick="htmlMenu(7)">향토음식점</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" onClick="htmlMenu(8)">길거리음식</a>
                                     </div>
@@ -103,10 +104,10 @@ function htmlMenu(choice)
                                         읽을거리
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a>
+                                        <a class="dropdown-item" href="#">FAQ</a>
                                         <a class="dropdown-item" href="<%=request.getContextPath()%>/QnA/QnAList">Q/A</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">사이트소개</a>
+                                        <a class="dropdown-item" href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a>
                                     </div>
                                 </li>
                             </ul>
@@ -114,7 +115,7 @@ function htmlMenu(choice)
                     <ul class="nav navbar-nav navbar-right">
                     <%if(loginMember==null){ %>
                         <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/enrollpage'" value="Sign up"></li>
-                        <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/loginpage'" value="Log In"></li>
+                        <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='<%=request.getContextPath()%>/loginpage'"  value="Log In"></li>
                          <%}else{ %>
                     <li><input type="button" class="btn btn-outline-success my-2 my-sm-0" value="MyPage" onclick="location.href='<%=request.getContextPath() %>/myPage'"></li>
                     <%if(loginMember != null && loginMember.getMemberId().equals("admin")) {%>

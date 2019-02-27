@@ -111,11 +111,23 @@
 </script>
 </head>
 <body>
+<style>
+.mypage-header {
+align-content: center;
+}
+.mypage-spacer {
+display: inline-block;
+}
+
+
+</style>
+
+
 <div class="mypage-header">
 	<span class="mypage-spacer"> </span>
 	<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
 	<span>&nbsp;&nbsp;</span>
-	<a id="menu"  href="<%=request.getContextPath() %>/index.jsp">TripAdvisor</a>
+	<a id="menu"  href="<%=request.getContextPath() %>/index.jsp">Local Traveler</a>
 </div>
 <section id='mypage-main-section'>
 	<article id='main'>    

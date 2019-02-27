@@ -76,14 +76,16 @@ footer#footer-container {
 }
 
 div.mypage-header{
-font: 14px/1 'Open Sans', sans-serif;
+font: 20px 'Open Sans', sans-serif;
 color: #555;
-background: #eee;
+background: #FAFAFA;
 margin: 0 0 0 200px auto;
+align-content: center;
 }
 
 div.mypage-header span.mypage-spacer{
-	width : 200px;
+display: inline-block;
+	width : 260px;
 }
 
 

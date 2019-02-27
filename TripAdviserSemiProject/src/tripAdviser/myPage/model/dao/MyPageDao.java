@@ -142,6 +142,7 @@ public class MyPageDao {
 				m.setAddressDetail(rs.getString("address_detail"));
 				m.setEmail(rs.getString("email"));
 				m.setName(rs.getString("name"));
+				m.setPostalCode(rs.getInt("postal_code"));
 				m.setMemberPictureUrl(rs.getString("member_picture_url"));
 				m.setPhone(rs.getString("phone"));
 				m.setEnrollDate(rs.getDate("enroll_date"));

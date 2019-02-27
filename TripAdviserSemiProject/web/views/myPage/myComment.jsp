@@ -45,6 +45,16 @@
 			}
 		});
 	}
+	
+	function fn_delete_comment_modal(commentNo) {
+		var commentNo = commentNo;
+		$('#confirm-delete-comment').modal();
+		//$('#delete-confirm').click(fn_delete_comment(commentNo));
+		$('#delete-confirm').click(function () {
+			$('.modal .close').click();
+			fn_delete_comment(commentNo);
+		});
+	}
 </script>
 <section id="myComment-section">
 	<article id="myComment-container" style="width: 100%;">
@@ -66,7 +76,7 @@
 					<span><%=myCommentList.get(i).getCommentContent() %></span>
 				</div> 
 				 <div style="display: inline-block; width:15%; text-align: center;">
-				 <!-- <button class='btn btn-dark'>수정</button>  --><button class='btn btn-danger' onclick="fn_delete_comment(<%=myCommentList.get(i).getCommentNo() %>)">코멘트 삭제</button>
+				 <!-- <button class='btn btn-dark'>수정</button>  --><button class='btn btn-danger' onclick="fn_delete_comment_modal(<%=myCommentList.get(i).getCommentNo() %>)">코멘트 삭제</button>
 				</div>
 			</div>
 		</div>
@@ -80,3 +90,28 @@
 	</div>
 	</article>
 </section>
+<!-- The Modal -->
+  <div class="modal" id="confirm-delete-comment">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="font-weight: bold;">Message</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        	이 코멘트를 삭제하시겠습니까?
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="delete-confirm">네 삭제합니다.</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">아니요.</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>

@@ -5,32 +5,27 @@
     pageEncoding="UTF-8" import="java.util.*,tripAdviser.travel.product.model.vo.*,tripAdviser.travel.search.model.service.*" %>
 
 <%@ include file="/views/common/header.jsp" %>
-<link href="https://fonts.googleapis.com/css?family=Gaegu" rel="stylesheet">
-   
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <% 
 	//검색어top3
 	List<TravelProduct> toplist = (List)request.getAttribute("toplist");
-	
-	
-	//System.out.println("되니??"+tplist.size());
-	//tp=tplist.get(0);
+		
 	//숙박top3
 	List<TravelProduct> sleeplist = (List)request.getAttribute("sleepList");
-	System.out.println(sleeplist.size());
+
 	//액티비티top3
 	List<TravelProduct> aclist = (List)request.getAttribute("acList");
-	System.out.println(aclist.size());
 	
 	//맛집top3
 	List<TravelProduct> eatlist = (List)request.getAttribute("eatList");
-	System.out.println(eatlist.size());
-	
+
+	//검색키
 	String searchkey = (String)request.getAttribute("searchkey");
 
 		
-	/* DecimalFormat format = new DecimalFormat(".#"); */
-	
-			
 %>
 
 <style>
@@ -43,9 +38,18 @@ section#search-before div.container div.card-group div.card {
 }
 section#search-before div.container #nosearch{
 	font-size:50px;
-	font-family:Gaegu;
-	 color: #3E9D37; 
-   
+	/* font-family:Gaegu; */
+	/*  color: #3E9D37;  */
+}
+#searchkey{
+    width:400px;
+    height:30px;
+    margin-left: 10px;
+}
+#searchbtn1{
+    height:30px;
+    width:100px;
+    
 }
 
 
@@ -62,7 +66,7 @@ section#search-before div.container #nosearch{
     </form>
 <br><br><br><br>
 
-&nbsp;&nbsp;&nbsp;<span style="font-family:Gaegu;font-size: 40px;">검색어 Top3</span> <%-- &nbsp;&nbsp;<a href="<%=request.getContextPath()%>/travelDetail">more</a> --%>
+&nbsp;&nbsp;&nbsp;<span style="font-Noto+Sans+KR;font-size: 30px;">검색어 Top3</span> <%-- &nbsp;&nbsp;<a href="<%=request.getContextPath()%>/travelDetail">more</a> --%>
 <hr id="hrf" >
 <div class="box-padding-big light-bg" >
 	<div class="container">	
@@ -81,7 +85,7 @@ section#search-before div.container #nosearch{
 
 	 <div class="card-block">
 	 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=toplist.get(i).getTrvTitle() %></h5>
-	 <p class="card-text">&nbsp;&nbsp;&nbsp;<%=toplist.get(i).getTrvAddress() %></p>
+	 <p class="card-text">&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i><%=toplist.get(i).getTrvProvince()+"&nbsp;"+toplist.get(i).getTrvCity()+"&nbsp;"+toplist.get(i).getTrvAddress() %></p>
 	 <p class="card-text"></p>	
 		<div class="starRev">&nbsp;&nbsp;
 
@@ -111,7 +115,7 @@ section#search-before div.container #nosearch{
 
     <br><br><br>
 
-&nbsp;&nbsp;&nbsp;<span style="font-family:Gaegu;font-size: 40px">머물거리 Top3</span> &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<span style="font-family:Gaegu;font-size: 30px">머물거리 Top3</span> &nbsp;&nbsp;
 <%if(sleeplist.size()!=0) {%>
 <a href="<%=request.getContextPath()%>/detail?category=CL01&searchkey=<%=searchkey %>">more</a>
 <%} %>
@@ -132,7 +136,7 @@ section#search-before div.container #nosearch{
 	
 	<div class="card-block">
 			<h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=sleeplist.get(i).getTrvTitle() %></h5>
-			<p class="card-text">&nbsp;&nbsp;&nbsp;<%=sleeplist.get(i).getTrvAddress() %></p>
+			<p class="card-text">&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i><%=sleeplist.get(i).getTrvProvince()+"&nbsp;"+sleeplist.get(i).getTrvCity()+"&nbsp;"+sleeplist.get(i).getTrvAddress() %></p>
 			<p class="card-text"></p>
 			
 <div class="starRev">&nbsp;&nbsp;
@@ -162,7 +166,7 @@ section#search-before div.container #nosearch{
 </div> 
         <br><br><br>
 
-&nbsp;&nbsp;&nbsp;<span style="font-family:Gaegu;font-size: 40px">즐길거리 Top3</span> &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<span style="font-family:Gaegu;font-size: 30px">즐길거리 Top3</span> &nbsp;&nbsp;
 <%if(aclist.size()!=0) {%>
 <a href="<%=request.getContextPath() %>/detail?category=CL02&searchkey=<%=searchkey %>">more</a>
 <%} %>
@@ -186,7 +190,7 @@ section#search-before div.container #nosearch{
 
 
 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=aclist.get(i).getTrvTitle() %></h5>
-<p class="card-text">&nbsp;&nbsp;&nbsp;<%=aclist.get(i).getTrvAddress() %></p>
+<p class="card-text">&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i><%=aclist.get(i).getTrvProvince()+"&nbsp;"+aclist.get(i).getTrvCity()+"&nbsp;"+aclist.get(i).getTrvAddress() %></p>
 <p class="card-text"></p>
 			
 <div class="starRev">&nbsp;&nbsp;
@@ -216,7 +220,7 @@ section#search-before div.container #nosearch{
 </div> 
 <br><br><br>
 
-&nbsp;&nbsp;&nbsp; <span style="font-family:Gaegu;font-size: 40px">먹을거리 Top3</span> &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <span style="font-family:Gaegu;font-size: 30px">먹을거리 Top3</span> &nbsp;&nbsp;
 <%if(eatlist.size()!=0) {%>
 <a href="<%=request.getContextPath()%>/detail?category=CL03&searchkey=<%=searchkey %>">more</a>
 <%} %>
@@ -237,7 +241,7 @@ section#search-before div.container #nosearch{
 	
 				<div class="card-block">
 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=eatlist.get(i).getTrvTitle() %></h5>
-<p class="card-text">&nbsp;&nbsp;&nbsp;<%=eatlist.get(i).getTrvAddress() %></p>
+<p class="card-text">&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i><%=eatlist.get(i).getTrvProvince()+"&nbsp;"+eatlist.get(i).getTrvCity()+"&nbsp;"+eatlist.get(i).getTrvAddress() %>
 <p class="card-text"></p>	
 			
 <div class="starRev">&nbsp;&nbsp;

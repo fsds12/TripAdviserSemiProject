@@ -259,7 +259,7 @@ checkid.submit();
 									onsubmit="return formstrans();">
 									<div class="form-label-group">
 										<input type="text" id="inputEmail" name="inputEmail"
-											class="form-control" placeholder="아이디" required autofocus>
+											class="form-control" placeholder="&nbsp;&nbsp;아이디" required autofocus>
 										<label for="inputEmail"> 아이디</label>
 										<button type="button" id="useridbtn" onclick="idcheck()"
 											class="btn btn-secondary">중복확인</button>
@@ -269,14 +269,14 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="password" id="inputPassword" name="inputPassword"
-											class="form-control" placeholder="비밀번호" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;비밀번호" required> <label
 											for="inputPassword">비밀번호</label>
 									</div>
 
 									<div class="form-label-group">
 										<input type="password" id="password_confirm"
 											name="password_confirm" class="form-control"
-											placeholder="비밀번호" required> <label
+											placeholder="&nbsp;&nbsp;비밀번호확인" required> <label
 											for="password_confirm">비밀번호 확인</label><br> <span
 											id="password_span"></span>
 									</div>
@@ -286,7 +286,7 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="email" id="email" name="email"
-											class="form-control" placeholder="이메일" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;이메일" required> <label
 											for="email">이메일</label>
 										<button type="button" id="cknumbergo" onclick="emailgo()"
 											class="btn btn-secondary">인증번호 &nbsp보내기</button>
@@ -300,7 +300,7 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="text" id="cknumber" name="cknumber"
-											class="form-control" placeholder="인증번호"> <label
+											class="form-control" placeholder="&nbsp;&nbsp;인증번호"> <label
 											for="cknumber">인증번호</label>
 										<button type="button" id="united"
 											class="btn btn-secondary">인증번호확인</button>
@@ -311,7 +311,7 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="text" id="phone" name="phone"
-											class="form-control" placeholder="전화번호"> <label
+											class="form-control" placeholder="&nbsp;&nbsp;전화번호"> <label
 											for="phone">전화번호</label>
 									</div>
 
@@ -319,12 +319,12 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="text" id="username" name="username"
-											class="form-control" placeholder="이름" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;이름" required> <label
 											for="username">이름</label>
 									</div>
 									<div class="form-label-group">
 										<input type="text" id="sample4_postcode" name="address"
-											class="form-control" placeholder="우편번호" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;우편번호" required> <label
 											for="address">우편번호</label>
 										<button type="button" onclick="sample4_execDaumPostcode()"
 											class="btn btn-secondary">우편번호검색</button>
@@ -333,13 +333,13 @@ checkid.submit();
 									<div class="form-label-group">
 										<input type="text" id="sample4_roadAddress"
 											name="sample4_roadAddress" class="form-control"
-											placeholder="주소" required> <label
+											placeholder="&nbsp;&nbsp;주소" required> <label
 											for="sample4_roadAddress">주소</label>
 									</div>
 
 									<div class="form-label-group">
 										<input type="text" id="sample4_detailAddress" name="address2"
-											class="form-control" placeholder="상세주소" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;상세주소" required> <label
 											for="sample4_detailAddress">상세주소</label>
 									</div>
 
