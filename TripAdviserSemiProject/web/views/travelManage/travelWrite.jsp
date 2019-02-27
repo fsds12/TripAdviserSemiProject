@@ -89,20 +89,20 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
     <script>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          center: {lat: -34.397, lng: 150.644}
+          zoom: 6,
+          center: {lat: 36.721916, lng: 127.907956}
         });
         var geocoder = new google.maps.Geocoder();
 
         document.getElementById('submit').addEventListener('click', function() {
           geocodeAddress(geocoder, map);
+          map.zoom = 15;
         });
       }
 
       function geocodeAddress(geocoder, resultsMap) {
         var address = document.getElementById('address').value;
         address = $("#province").val() + " " + $("#city").val() + " " + $("#address").val();
-        console.log(address);
         var gps = "222";
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {

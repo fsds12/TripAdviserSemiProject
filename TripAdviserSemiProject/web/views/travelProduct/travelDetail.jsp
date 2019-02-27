@@ -220,8 +220,9 @@
     }
     
     function initialize() {
-    	  var LatLng = new google.maps.LatLng("<%=tp.getTrvGps() %>");
-    	  
+    	  var lat = "<%=tp.getTrvGps().split(", ")[0] %>";
+    	  var lng = "<%=tp.getTrvGps().split(", ")[1] %>";
+    	  var LatLng = new google.maps.LatLng(lat, lng);
     	  var mapProp = {
     	    center: LatLng, // 위치
     	    zoom:15, // 어느정도까지 세세하게 볼 것인지.
