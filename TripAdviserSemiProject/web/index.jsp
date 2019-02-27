@@ -20,6 +20,22 @@
 					}
 				}]
 			});
+	
+	$('#div-mainpage').on('mouseover', function(){
+	    console.log("마우스올라감");
+		$('.lg_text').show().animate();
+	    $('.sm_text').show().animate();
+	    $(this).css('height', '450px').slideDown( "slow" );
+	    $('.search-container').css('padding-top','10px');
+	});
+	
+	$('#div-mainpage').on('mouseleave', function(){
+	    console.log("마우스내려감");
+	    $('.lg_text').hide().animate();
+	    $('.sm_text').hide().animate();
+	    $(this).css('height', '150px').slideDown( "slow" );
+	    $('.search-container').css('padding-top','70px');
+	});
 	});
 </script>
 <section id='mainpage-container'>
@@ -32,15 +48,16 @@
 			}
 
 			.lg_text {
-				padding-top: 200px;
+				padding-top: 130px;
 				font-weight: bold;
 				font-size: 80px;
+				display:none;
 			}
 
 			.sm_text {
 				margin: 5px auto;
 				font-size: 25px;
-
+                display:none;
 			}
 
 			.category-title {
@@ -52,16 +69,16 @@
 			}
 
 			.search-container {
-				padding-top: 70px;
+				padding-top: 60px;
 				text-align: center;
 				display: inline-block;
 			}
 		</style>
-	<!-- 	<div class="lg_text" id="title_font">떠나 볼까요?</div> -->
-		<!-- <div class="sm_text" id="title_font">Where do you want to go?</div> -->
+	    <div class="lg_text" id="title_font" >떠나 볼까요?</div>
+		<div class="sm_text" id="title_font" >Where do you want to go?</div>
 		<div class="search-container">
 			<form action="<%=request.getContextPath()%>/travel/travelSearch" class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-3" id="searchName" type="text" name="searchkey" placeholder="예)홍대" list="datalist"
+				<input class="form-control mr-sm-3" id="searchName" type="text" name="searchkey" placeholder="검색어 입력: 예)홍대" list="datalist"
 					aria-label="Search">
 				<datalist id="datalist">
 					<!-- 자동완성기능 부분 -->

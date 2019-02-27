@@ -9,8 +9,6 @@
 List<TravelProduct> tplist = new ArrayList(); 
 TravelProduct tp=new TravelProduct();
 tplist=new travelSearchService().travelSearchCt(11);
-
-
 %>
 <style>
 	#starRateScore {
@@ -43,7 +41,7 @@ tplist=new travelSearchService().travelSearchCt(11);
 			<div class="card">
 				<div style="background: #333; height: 200px;"><a
 						href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo()%>"><img
-							src="<%=tp.getTrvRepresentPic()%>" /></a></div>
+							src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i>

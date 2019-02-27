@@ -31,7 +31,7 @@ div.card div img{width:100%; height:200px;}
 			selected by our guests.</p>
 		<div class="card-group">
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=tp1.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp1.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp1.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp1.getTrvProvince()+"&nbsp;"+tp1.getTrvCity()+"&nbsp;"+tp1.getTrvAddress() %>.</p>
@@ -53,7 +53,7 @@ div.card div img{width:100%; height:200px;}
 				</div>
 			</div>
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=tp2.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp2.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp2.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp2.getTrvProvince()+"&nbsp;"+tp2.getTrvCity()+"&nbsp;"+tp2.getTrvAddress() %>.</p>
@@ -76,7 +76,7 @@ div.card div img{width:100%; height:200px;}
 				</p>
 			</div>
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp3.getTrvNo()%>"><img src="<%=tp3.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp3.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp3.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title" display="inline-block"><%=tp3.getTrvTitle() %></h5>
 					<p class="card-text" display="inline-block"><i class="fa fa-map-marker"></i>
@@ -117,7 +117,7 @@ tp3=tplist.get(2);
 		<p class="category-sub">별점순 랭킹 top 3 The most popular accomodations selected by our guests.</p>
 		<div class="card-group">
 				<div class="card">
-					<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=tp1.getTrvRepresentPic()%>" /></a></div>
+					<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp1.getTrvRepresentPic() %>" /></a></div>
 					<div class="card-block">
 						<h5 class="card-title"><%=tp1.getTrvTitle() %></h5>
 						<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp1.getTrvProvince()+"&nbsp;"+tp1.getTrvCity()+"&nbsp;"+tp1.getTrvAddress() %>.</p>
@@ -139,7 +139,7 @@ tp3=tplist.get(2);
 					</div>
 				</div>
 				<div class="card">
-					<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=tp2.getTrvRepresentPic()%>" /></a></div>
+					<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp2.getTrvRepresentPic() %>" /></a></div>
 					<div class="card-block">
 						<h5 class="card-title"><%=tp2.getTrvTitle() %></h5>
 						<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp2.getTrvProvince()+"&nbsp;"+tp2.getTrvCity()+"&nbsp;"+tp2.getTrvAddress() %>.</p>
@@ -162,7 +162,7 @@ tp3=tplist.get(2);
 					</p>
 				</div>
 				<div class="card">
-					<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp3.getTrvNo()%>"><img src="<%=tp3.getTrvRepresentPic()%>" /></a></div>
+					<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp3.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp3.getTrvRepresentPic() %>" /></a></div>
 					<div class="card-block">
 						<h5 class="card-title" display="inline-block"><%=tp3.getTrvTitle() %></h5>
 						<p class="card-text" display="inline-block"><i class="fa fa-map-marker"></i>
@@ -202,7 +202,7 @@ tp3=tplist.get(2);
 			selected by our guests.</p>
 		<div class="card-group">
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=tp1.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp1.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp1.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp1.getTrvProvince()+"&nbsp;"+tp1.getTrvCity()+"&nbsp;"+tp1.getTrvAddress() %>.</p>
@@ -223,7 +223,7 @@ tp3=tplist.get(2);
 				</div>
 			</div>
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=tp2.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp2.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp2.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp2.getTrvProvince()+"&nbsp;"+tp2.getTrvCity()+"&nbsp;"+tp2.getTrvAddress() %>.</p>
@@ -244,7 +244,7 @@ tp3=tplist.get(2);
 				</div>
 			</div>
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp3.getTrvNo()%>"><img src="<%=tp3.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp3.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp3.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp3.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp3.getTrvProvince()+"&nbsp;"+tp3.getTrvCity()+"&nbsp;"+tp3.getTrvAddress() %>.</p>
@@ -284,7 +284,7 @@ tp3=tplist.get(2);
 			foods selected by our guests.</p>
 		<div class="card-group">
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=tp1.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp1.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp1.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp1.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp1.getTrvProvince()+"&nbsp;"+tp1.getTrvCity()+"&nbsp;"+tp1.getTrvAddress() %>.</p>
@@ -305,7 +305,7 @@ tp3=tplist.get(2);
 				</div>
 			</div>
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=tp2.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp2.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp2.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp2.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp2.getTrvProvince()+"&nbsp;"+tp2.getTrvCity()+"&nbsp;"+tp2.getTrvAddress() %>.</p>
@@ -326,7 +326,7 @@ tp3=tplist.get(2);
 				</div>
 			</div>
 			<div class="card">
-				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp3.getTrvNo()%>"><img src="<%=tp3.getTrvRepresentPic()%>" /></a></div>
+				<div style="background: #333; height: 200px;"><a href="<%=request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=tp3.getTrvNo()%>"><img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp3.getTrvRepresentPic() %>" /></a></div>
 				<div class="card-block">
 					<h5 class="card-title"><%=tp3.getTrvTitle() %></h5>
 					<p class="card-text"><i class="fa fa-map-marker"></i> <%=tp3.getTrvProvince()+"&nbsp;"+tp1.getTrvCity()+"&nbsp;"+tp3.getTrvAddress() %>.</p>
