@@ -164,6 +164,13 @@ section#idpwsearch-container input[type=email],section#idpwsearch-container inpu
 width: 300px;
 }
 
+section#idpwsearch-container .controlsbutton{
+text-align: right;
+margin-right: 35px;
+margin-top: 10px;
+
+}
+
 </style>
 </head>
 
@@ -239,7 +246,7 @@ width: 300px;
 
                                 </form>
                             </div>
-                            <img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
+                            
                         </div>
                     </div>
                 </div>

@@ -106,9 +106,9 @@ section#idduplicate-container input[type=text] {
 				<%
 					if (isAble) {
 				%>
-				<span id="trueAble"><%=userId%></span>는 사용 가능합니다. <br>
+				<span id="trueAble" style="color:orange; font: bolder;" ><%=userId%></span>는 사용 가능합니다. <br>
 				<br>
-				<button type="button" onclick="close1()">창닫기</button>
+				<button type="button" class="btn btn-secondary" onclick="close1()">창닫기</button>
 				<%
 					} else {
 				%>

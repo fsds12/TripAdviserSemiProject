@@ -32,6 +32,7 @@
 			}
 		}); --%>
 		
+
 	}
 	
 	var file=document.querySelector('input[name=profile_up_file]');
@@ -98,7 +99,7 @@
 	function defaultImage(){
 		document.querySelector('#profile-img').src="<%=request.getContextPath()%>/images/travel_detail_imgs/profile_default.gif";
 	}
-
+	
 	
 </script>
 <section id='myProfile-view-container'>
@@ -107,7 +108,7 @@
 		<div id="profile-img-container">
 			<div id="profile-img-space">
 				<%-- <img class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" /> --%>
-				<img id='profile-img' class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/myPage_imgs/<%=m.getMemberPictureUrl() %>" width="156px" height="156px" />
+				<img id='profile-img' class="img-thumbnail mx-auto d-block img-fluid" src="<%=request.getContextPath() %>/images/myPage-imgs/<%=m.getMemberPictureUrl() %>" width="156px" height="156px" />
 
 			</div>
 			<div id="profile-img-btn-space">
@@ -208,7 +209,7 @@
                            </div>          
                             <div class="btn-container">
                             <button type="button" id="pwChange" name="pwChange" onclick="changePw()" class="btn btn-secondary">비밀번호변경</button>                                            
-                            <button class="btn btn-lg btn-secondary text-uppercase" id="profileupdate" type="submit">정보수정</button>
+                            <button class="btn btn-secondary text-uppercase" id="profileupdate" type="submit">정보수정</button>
                             <button type="button" class="btn btn-secondary" onclick="fn_profile_modify_close()">취소</button>
                             <br>
                             </div>
