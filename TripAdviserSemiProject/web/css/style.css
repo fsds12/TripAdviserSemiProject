@@ -386,7 +386,7 @@ section form div.inputImage img {
 }
 
 
-#search1{
+section#search-before div#searchde #searchkey{
     width:400px;
     height:30px;
     margin-left: 20px;
@@ -396,6 +396,7 @@ section form div.inputImage img {
     width:100px;
     
 }
+
 #search2{
     width:400px;
     height:30px;
