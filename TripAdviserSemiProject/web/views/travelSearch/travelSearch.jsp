@@ -80,8 +80,8 @@ section#search-before div.container #nosearch{
 %> 
 	      
 <div class="card">
-	
-<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=toplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=toplist.get(i).getTrvRepresentPic() %>" style="height:200px" ></a>
+																						<%-- /*<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp.getTrvRepresentPic() %> --%>
+<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=toplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=toplist.get(i).getTrvRepresentPic() %>" style="height:200px" ></a>
 
 	 <div class="card-block">
 	 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=toplist.get(i).getTrvTitle() %></h5>
@@ -108,7 +108,7 @@ section#search-before div.container #nosearch{
 	<%} %>
 		</div>
 		<%} else{ %>
-		<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="70px" height="70px" /><p id="nosearch">검색결과가 없습니다!!</p>
+		<p id="nosearch">검색결과가 없습니다.</p>
 		<%} %>
 	</div>
 </div> 
@@ -132,7 +132,7 @@ section#search-before div.container #nosearch{
 %> 
 	      
 			<div class="card">			
-<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=sleeplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=sleeplist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
+<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=sleeplist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=sleeplist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
 	
 	<div class="card-block">
 			<h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=sleeplist.get(i).getTrvTitle() %></h5>
@@ -160,7 +160,7 @@ section#search-before div.container #nosearch{
 			<%} %>
 		</div>
 		<%} else{ %>
-		<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="70px" height="70px" /><p id="nosearch">검색결과가 없습니다!!</p>
+		<p id="nosearch">검색결과가 없습니다.</p>
 		<%} %>
 	</div>
 </div> 
@@ -183,7 +183,7 @@ section#search-before div.container #nosearch{
 
 <div class="card">
 	
-<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=aclist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=aclist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
+<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=aclist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=aclist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
 
 	<div class="card-block">
 
@@ -214,7 +214,7 @@ section#search-before div.container #nosearch{
 			<%} %>
 		</div>
 		<%} else{ %>
-		<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="70px" height="70px" /><p id="nosearch">검색결과가 없습니다!!</p>
+		<p id="nosearch">검색결과가 없습니다.</p>
 		<%} %>
 	</div>
 </div> 
@@ -237,7 +237,7 @@ section#search-before div.container #nosearch{
 	      
 			<div class="card">
 				
-			<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=eatlist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=eatlist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
+			<a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=eatlist.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=eatlist.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
 	
 				<div class="card-block">
 <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=eatlist.get(i).getTrvTitle() %></h5>
@@ -265,7 +265,7 @@ section#search-before div.container #nosearch{
 			<%} %>
 		</div>
 		<%} else{ %>
-		<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="70px" height="70px" /><p id="nosearch">검색결과가 없습니다!!</p>
+		<p id="nosearch">검색결과가 없습니다.</p>
 		<%} %>
 	</div>
 </div> 
