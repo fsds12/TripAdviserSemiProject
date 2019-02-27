@@ -155,7 +155,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("travelProduct");
 	
 	<div class="inputContent">
 		<label for="proContent">상품소개</label>
-		<textarea class="form-control" rows="5" cols="50" id="proContent" name="proContent"></textarea>
+		<textarea class="form-control" rows="5" cols="50" id="proContent" name="proContent"><%=tp.getTrvReview() %></textarea>
 	</div>
 
 
