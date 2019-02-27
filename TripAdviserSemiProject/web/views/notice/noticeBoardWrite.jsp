@@ -25,13 +25,13 @@
             <tr>
                 <th>제목</th>
                 <td>
-                 	<input type="text" name="title" placeholder="제목을 입력하세요"/>                 	
+                 	<input type="text" name="title" required placeholder="제목을 입력하세요"/>                 	
                 </td>
             </tr>             
             <tr>
                 <th>내용</th>
                 <td>
-                 	<textarea name="content" id="content" required></textarea>                 	
+                 	<textarea name="content" id="content" required placeholder="내용을 입력하세요"></textarea>                 	
                 </td>
             </tr>                     
         </table>

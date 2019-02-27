@@ -18,6 +18,9 @@
 		margin-left: 10px;
 		display: inline-block;
 	}
+	table#notice-tbl{
+		margin-top: 10px;
+	}
 	
 </style>
 <script>
@@ -46,12 +49,13 @@
 		</div>    	  	
         <table align="center" class="notice-tbl">                    
             <thead>
-            <tr>
-            	
-            	<td colspan="5">
-            		<input type="button" value="쓰기" class="write-btn" onclick="location.href='<%=request.getContextPath()%>/notice/noticeWrite'"/>
-            	</td>
-            </tr>                        
+            <%if(loginMember!=null&&"admin".equals(loginMember.getMemberId())){ %>
+            	<tr>            	
+            		<td colspan="5">
+            			<input type="button" value="쓰기" class="write-btn" onclick="location.href='<%=request.getContextPath()%>/notice/noticeWrite'"/>
+            		</td>
+            	</tr>
+            <%} %>                        
             <tr class="title">
                 <th>번호</th>
                 <th>작성자</th>
