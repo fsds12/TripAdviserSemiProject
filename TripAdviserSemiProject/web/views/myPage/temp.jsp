@@ -5,12 +5,14 @@
 	@SuppressWarnings (value="unchecked")
 	List<TravelProduct> scrapList = (List<TravelProduct>)request.getAttribute("scrapList");
 	List<String> trvProvinceList = new ArrayList<String>();
-	for(TravelProduct tp : scrapList) {
-		trvProvinceList.add(tp.getTrvProvince());
+	if(scrapList != null){
+		for(TravelProduct tp : scrapList) {
+			trvProvinceList.add(tp.getTrvProvince());
+		}
+		HashSet<String> distinctData = new HashSet<String>(trvProvinceList);
+		trvProvinceList = new ArrayList<String>(distinctData);
+		Collections.sort(trvProvinceList);
 	}
-	HashSet<String> distinctData = new HashSet<String>(trvProvinceList);
-	trvProvinceList = new ArrayList<String>(distinctData);
-	Collections.sort(trvProvinceList);
 %>
 <style>
 section#my-scrap-container {
@@ -65,7 +67,7 @@ section#my-scrap-container div.card-group div {
 			%>
 				<%if(tp.getTrvProvince().equals(trvProvinceList.get(i))) {%>
 					<div class="card" style="max-width:33%; border:1px solid lightgray" onclick="location.href='<%=request.getContextPath() %>/travel/travelProductDetail?trvNo=<%=tp.getTrvNo() %>'">
-						<img class="card-img-top" src="<%=tp.getTrvRepresentPic() %>" alt="sfsf" style="width:100%; height:170px;">
+						<img class="card-img-top" src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp.getTrvRepresentPic() %>" alt="sfsf" style="width:100%; height:170px;">
 						<div class="card-body" style="padding:5px;">
 							<h6 class="card-title" style="text-align: left; font-weight: bold;"><%=tp.getTrvTitle() %></h6>
 							<p class="card-text"><i class="fa fa-map-marker"></i><%=tp.getTrvProvince()+"&nbsp;"+tp.getTrvCity()+"&nbsp;"+tp.getTrvAddress() %>.</p>
@@ -91,13 +93,8 @@ section#my-scrap-container div.card-group div {
 			</div>
 			<hr />
 		<%} %> 
-	<%}%>
+	<%} else {%>
+	<p>여행지 스크랩이 없습니다.</p>
+	<%} %>
 	</article>
-	<%-- <%if(scrapList != null) {
-	for(TravelProduct tp : scrapList) {%>
-		<p><%=tp.getTrvTitle() %>&nbsp;&nbsp; <%=tp.getAvgStarRate() %></p>
-	<%}
-	} else {%>
-		<p>스크랩이 없습니다!</p>
-	<%} %> --%>
 </section>

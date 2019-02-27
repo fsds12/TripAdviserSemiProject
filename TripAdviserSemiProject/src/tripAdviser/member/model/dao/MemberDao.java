@@ -30,6 +30,7 @@ public class MemberDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1,m.getMemberId());
+			pstmt.setString(2, m.getMemberPw());
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				result=new Member();

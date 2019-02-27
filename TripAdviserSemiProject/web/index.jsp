@@ -25,17 +25,17 @@
 	    console.log("마우스올라감");
 		$('.lg_text').show().animate();
 	    $('.sm_text').show().animate();
-	    $(this).css('height', '450px').slideDown( "slow" );
+	    $(this).css('height','450px').css('transition','height 1s');
 	    $('.search-container').css('padding-top','10px');
 	});
 	
-	$('#div-mainpage').on('mouseleave', function(){
+	/* $('#div-mainpage').on('mouseleave', function(){
 	    console.log("마우스내려감");
 	    $('.lg_text').hide().animate();
 	    $('.sm_text').hide().animate();
-	    $(this).css('height', '150px').slideDown( "slow" );
+	    $(this).css('height','150px').css('transition','height 2s');
 	    $('.search-container').css('padding-top','70px');
-	});
+	}); */
 	});
 </script>
 <section id='mainpage-container'>

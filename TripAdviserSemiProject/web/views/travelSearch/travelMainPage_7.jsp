@@ -22,6 +22,10 @@ tplist=new travelSearchService().travelSearchCt(10);
 		width: 100%;
 		height: 200px;
 	}
+	
+		div.card-group div{
+		width : 310px;
+	}
 </style>
 
 

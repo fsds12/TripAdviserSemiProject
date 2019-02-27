@@ -1,5 +1,6 @@
 package tripAdviser.myPage.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +15,6 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import tripAdviser.member.model.service.MemberService;
 import tripAdviser.member.model.vo.Member;
 import tripAdviser.myPage.model.service.MyPageService;
 
@@ -46,7 +46,7 @@ public class MyProfileImageChangeServlet extends HttpServlet {
 		}
 		
 		String dir=getServletContext().getRealPath("/");
-		dir+="/images/myPage-imgs";
+		dir+="images" + File.separator + "myPage_imgs";
 		int maxSize=1024*1024*10; 
 		MultipartRequest mr=new MultipartRequest(request,dir,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		String id=mr.getParameter("hiddenid");
