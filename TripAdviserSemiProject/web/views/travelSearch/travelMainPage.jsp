@@ -13,7 +13,6 @@ tplist=new travelSearchService().travelSearchCt(0);
 tp1=tplist.get(0);
 tp2=tplist.get(1);
 tp3=tplist.get(2);
-
 %>
 <style>
 	#starRateScore {

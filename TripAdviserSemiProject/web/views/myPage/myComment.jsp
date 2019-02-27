@@ -4,10 +4,13 @@
 <%
 	@SuppressWarnings (value="unchecked")
 	List<MyPageComment> myCommentList = (List<MyPageComment>)request.getAttribute("myCommentList");
-	String pageBar = (String)request.getAttribute("pageBar");
+	String pageBar = ""; 
+	//String msg = (String)request.getAttribute("msg");
+%>
+<%if(myCommentList != null) {
+	pageBar = (String)request.getAttribute("pageBar");
 	int cPage = (Integer)request.getAttribute("cPage");
 	String id = (String)request.getAttribute("id");
-	//String msg = (String)request.getAttribute("msg");
 %>
 <script>
 	var id = "<%=id %>";
@@ -51,6 +54,7 @@
 		$('#confirm-delete-comment').modal();
 	}
 </script>
+<%} %>
 <section id="myComment-section">
 	<article id="myComment-container" style="width: 100%;">
 	<div style="margin: auto; max-width:880px;">
