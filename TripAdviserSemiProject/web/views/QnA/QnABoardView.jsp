@@ -201,6 +201,7 @@ textarea#contentUpdate{
 							<input type="button" id="commentDelete" value="삭제" onclick="location.href='<%=request.getContextPath()%>/QnA/commentDelete?commentNo=<%=ba.getCommentNo()%>'"/>												
 							<!-- <input type="button" id="commentUpdate" value="수정" onclick="fn_commentUpdate()"/> -->
 						</td>
+					
 					</tr>
 				
 			</table>

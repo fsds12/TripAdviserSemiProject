@@ -88,7 +88,7 @@
             		<input type="hidden" name="searchType" value="title"/>            		
             		<input type="hidden" name="cPage" value='<%=cPage%>'/>
             		<input type="hidden" name="numPerPage" value='<%=numPerPage%>'/>
-            		<input type="search" name="searchKey" value='<%="title".equals(searchType)?searchKey:""%>' placeholder="title"/>
+            		<input type="search" name="searchKey" value='<%="title".equals(searchType)?searchKey:""%>'/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>
@@ -98,7 +98,7 @@
             		<input type="hidden" name="searchType" value="content"/>            		
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
             		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>
-            		<input type="search" name="searchKey" value='<%="content".equals(searchType)?searchKey:""%>' placeholder="content"/>
+            		<input type="search" name="searchKey" value='<%="content".equals(searchType)?searchKey:""%>'/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>                     

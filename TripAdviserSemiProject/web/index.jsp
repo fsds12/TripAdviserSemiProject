@@ -73,7 +73,7 @@
 				text-align: center;
 				display: inline-block;
 			}
-		</style>
+			</style>
 	    <div class="lg_text" id="title_font" >떠나 볼까요?</div>
 		<div class="sm_text" id="title_font" >Where do you want to go?</div>
 		<div class="search-container">
