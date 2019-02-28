@@ -227,7 +227,7 @@ height: 55px;
 function idcheck(){
 var userid=$("#inputEmail").val().trim();
 
-if(!userid||userid.length<5){
+if(!userid||userid.length<4){
 	alert("아이디의 최소 길이는 4글자 입니다.");
 	return;
 }
@@ -289,7 +289,7 @@ checkid.submit();
 											class="form-control" placeholder="&nbsp;&nbsp;이메일" required> <label
 											for="email">이메일</label>
 										<button type="button" id="cknumbergo" onclick="emailgo()"
-											class="btn btn-secondary">인증번호 &nbsp보내기</button>
+											class="btn btn-secondary">인증번호 &nbsp;보내기</button>
 									</div>
 
 									<%--  <script>

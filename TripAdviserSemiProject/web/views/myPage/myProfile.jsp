@@ -239,10 +239,10 @@
     				$("#cknumbere").click(function(){
     					var number=$("#cknumber").val().trim();
     					var code=$("#code_check").val();
-    		       		var flag=$("#united").val();
+    		       		var flag=$("#united2").val();
     		       		if(number!=code){
     		       			alert("인증번호가 일치하지 않습니다.");
-    		       			flag=$("#united").val(0);
+    		       			flag=$("#united2").val(0);
     		       			console.log(flag.val());
     		       			$("#cknumber").val("");
     		       			$("#cknumber").focus();
@@ -283,7 +283,7 @@
             			emailgoFrm.submit();
                     }                    
                     function formstrans(){
-                    	var tfnumber=$("#united").val();         ;           	
+                    	var tfnumber=$("#united2").val();         ;           	
                     	if(tfnumber==0){
                     		alert("인증번호를 확인해주세요");
                     		return false;
