@@ -120,7 +120,7 @@ section#idduplicate-container input[type=text] {
 						<input type="text" id="inputId" name="hiddenid"
 							class="form-control" placeholder="아이디" required> <label
 							for="inputId">아이디</label>
-							<input type="submit" value="재검색"/>
+							<input class="btn btn-outline-light text-dark" type="submit" value="재검색"/>
 					</div>
 				</form>
 
