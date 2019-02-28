@@ -46,15 +46,12 @@ public class travelSearchDetailServlet extends HttpServlet {
 		}catch(NumberFormatException e){
 			cPage=1;
 		}
-		int numPerPage=12;
-		
+		int numPerPage=12;		
 		
 		  int totalContent= new travelSearchService().selectCountAll(category, searchkey);
-		  //System.out.println("토탈컨텐트"+totalContent);
 		  int totalPage=(int)Math.ceil((double)totalContent/numPerPage);
-		  //System.out.println("토탈페이지"+totalPage);
-		  
-		  
+
+	  
 		//페이지바 만들기
 	      String pageBar = "<ul class='pagination justify-content-center'>";
 	      int pageBarSize = 5;
@@ -67,16 +64,16 @@ public class travelSearchDetailServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&laquo;</a></li>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail/list?category=" + category + "&searchkey=" + searchkey + "&cPage=" + (pageNo - pageBarSize)+ "'>&laquo;</a></li>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail?category=" + category + "&searchkey=" + searchkey + "&cPage=" + (pageNo - pageBarSize)+ "'>&laquo;</a></li>";
 	      }
 	      
 	      //페이지바 숫자채우기
 	      while(pageNo <= totalPage && pageNo <= pageEnd) {
 	         if(cPage == pageNo) {
-	            pageBar = pageBar + "<li class='page-item active'><a class='page-link' href='" + request.getContextPath() + "/detail/list?category=" + category + "&searchkey=" + searchkey + "&cPage=" + pageNo +"'>" + pageNo + "</a></li>";
+	            pageBar = pageBar + "<li class='page-item active'><a class='page-link' href='" + request.getContextPath() + "/detail?category=" + category + "&searchkey=" + searchkey + "&cPage=" + pageNo +"'>" + pageNo + "</a></li>";
 	         }
 	         else {
-	            pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail/list?category=" + category + "&searchkey=" + searchkey + "&cPage=" + pageNo +"'>" + pageNo + "</a></li>";
+	            pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail?category=" + category + "&searchkey=" + searchkey + "&cPage=" + pageNo +"'>" + pageNo + "</a></li>";
 	         }
 	         pageNo++;
 	      }
@@ -87,7 +84,7 @@ public class travelSearchDetailServlet extends HttpServlet {
 	         pageBar = pageBar + "<li class='page-item disabled'><a class='page-link' href='#'>&raquo;</a></li></ul>";
 	      }
 	      else {
-	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail/list?&cPage=" + (pageStart + pageBarSize) +"'>&raquo;</a></li></ul>";
+	         pageBar = pageBar + "<li class='page-item'><a class='page-link' href='" + request.getContextPath() + "/detail?&cPage=" + (pageStart + pageBarSize) +"'>&raquo;</a></li></ul>";
 	      }
 		 
 		
@@ -103,23 +100,6 @@ public class travelSearchDetailServlet extends HttpServlet {
 		request.setAttribute("pageBar", pageBar);
 		request.setAttribute("searchKey", searchkey);
 		request.getRequestDispatcher(view).forward(request, response); 
-		
-		/*
-		 * if(category.equals("sleepdelist")) { List<TravelProduct> list = new
-		 * travelSearchService().travelDedailSleepAll(searchkey, cPage, numPerPage);
-		 * //System.out.println("나오냐?????????????????????"+list);
-		 * 
-		 * request.setAttribute("list",list);
-		 * request.getRequestDispatcher(view).forward(request, response); } else
-		 * if(category.equals("aclist")) { List<TravelProduct> list = new
-		 * travelSearchService().travelDedailSleepAll(searchkey, cPage, numPerPage);
-		 * request.setAttribute("list", list);
-		 * request.getRequestDispatcher(view).forward(request, response); } else
-		 * if(category.equals("eatlist")) { List<TravelProduct> list = new
-		 * travelSearchService().travelDedailSleepAll(searchkey, cPage, numPerPage);
-		 * request.setAttribute("list", list);
-		 * request.getRequestDispatcher(view).forward(request, response); }
-		 */
 		
 	}
 

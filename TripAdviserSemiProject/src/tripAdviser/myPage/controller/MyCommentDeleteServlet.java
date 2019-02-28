@@ -33,8 +33,8 @@ public class MyCommentDeleteServlet extends HttpServlet {
 		int commentNo = Integer.parseInt(request.getParameter("commentNo"));
 		int cPage = Integer.parseInt(request.getParameter("cPage"));
 		String id = request.getParameter("id");
-		System.out.println(commentNo + ":" + cPage + ":" + id);
 		int result = new MyPageService().deleteMyComment(commentNo);
+		
 		String msg = "";
 		
 		if(result > 0) {
@@ -43,7 +43,7 @@ public class MyCommentDeleteServlet extends HttpServlet {
 		else {
 			msg = "메시지 삭제 실패!";
 		}
-		System.out.println(msg);
+		
 		request.setAttribute("cPage", cPage);
 		request.setAttribute("id", id);
 		request.setAttribute("msg", msg);

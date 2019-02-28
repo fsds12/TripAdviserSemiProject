@@ -6,6 +6,7 @@ import static common.JDBCTemplate.getConnection;
 import static common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
 import tripAdviser.member.model.dao.MemberDao;
 import tripAdviser.member.model.vo.Member;
@@ -17,11 +18,11 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
-	public Member findId(Member m) {
+	public List<Member> findId(Member m) {
 		Connection conn=getConnection();
-		Member result=new MemberDao().findId(conn,m);
+		List<Member> list=new MemberDao().findId(conn,m);
 		close(conn);
-		return result;
+		return list;
 	}
 	public int enrollMember(Member m) {
 		Connection conn=getConnection();
@@ -51,6 +52,14 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	public Member selectId(Member m) {
+		Connection conn=getConnection();
+		Member result=new MemberDao().selectId(conn,m);
+		close(conn);
+		
+		return result;
+	}
+	
 	
 	
 }

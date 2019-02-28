@@ -34,6 +34,8 @@ public class MyProfileViewServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		String loginedId = "";
 		Member m = (Member)request.getSession().getAttribute("loginMember");
+		
+		
 		if(m != null) {
 			loginedId = m.getMemberId();
 		}
@@ -41,6 +43,7 @@ public class MyProfileViewServlet extends HttpServlet {
 		if(id.equals(loginedId) && id != null && !id.equals("")) {
 			m = new MyPageService().selectId(id);
 			request.setAttribute("member", m);
+			
 			request.getRequestDispatcher("/views/myPage/myProfile.jsp").forward(request, response);
 		}
 		else {

@@ -2,7 +2,6 @@
     <wb-module deploy-name="TripAdviserProject">
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/web/views/travelSearch"/>
         <property name="java-output-path" value="/TripAdviserProject/web/WEB-INF/build"/>
         <property name="context-root" value="TripAdviserProject"/>
     </wb-module>

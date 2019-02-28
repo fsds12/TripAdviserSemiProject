@@ -35,7 +35,7 @@ public class CheckIdServlet extends HttpServlet {
 		Member m=new Member();
 		String userId=request.getParameter("hiddenid");
 		m.setMemberId(userId);
-		Member result=new MemberService().selectOne(m);
+		Member result=new MemberService().selectId(m);
 		System.out.println(result!=null);
 		boolean isAble=(result==null?true:false);
 		

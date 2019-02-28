@@ -61,10 +61,10 @@ article {
 }
 
 .form-signin .btn {
-  font-size: 80%;
-  letter-spacing: .1rem;
+  font-size: 100%;
+  /* letter-spacing: .1rem; */
   font-weight: bold;
-  padding: 1rem;
+ /*  padding: 1rem; */
   transition: all 0.2s;
 }
 
@@ -207,7 +207,7 @@ section#wcw-enroll-container article#enroll-article div#enrollreset {
 
 section#wcw-enroll-container article#enroll-article div.form-label-group button{
 	
-	font-size: 13px;
+	/* font-size: 13px; */
 }
 
 section#wcw-enroll-container article#enroll-article span#password_span {
@@ -217,7 +217,7 @@ section#wcw-enroll-container article#enroll-article span#password_span {
 section#wcw-enroll-container .form-label-group button{
 width: 100px;
 height: 55px;
-font-size: 6px;
+/* font-size: 6px; */
 }
 
 </style>
@@ -259,7 +259,7 @@ checkid.submit();
 									onsubmit="return formstrans();">
 									<div class="form-label-group">
 										<input type="text" id="inputEmail" name="inputEmail"
-											class="form-control" placeholder="아이디" required autofocus>
+											class="form-control" placeholder="&nbsp;&nbsp;아이디" required autofocus>
 										<label for="inputEmail"> 아이디</label>
 										<button type="button" id="useridbtn" onclick="idcheck()"
 											class="btn btn-secondary">중복확인</button>
@@ -269,14 +269,14 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="password" id="inputPassword" name="inputPassword"
-											class="form-control" placeholder="비밀번호" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;비밀번호" required> <label
 											for="inputPassword">비밀번호</label>
 									</div>
 
 									<div class="form-label-group">
 										<input type="password" id="password_confirm"
 											name="password_confirm" class="form-control"
-											placeholder="비밀번호" required> <label
+											placeholder="&nbsp;&nbsp;비밀번호확인" required> <label
 											for="password_confirm">비밀번호 확인</label><br> <span
 											id="password_span"></span>
 									</div>
@@ -286,7 +286,7 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="email" id="email" name="email"
-											class="form-control" placeholder="이메일" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;이메일" required> <label
 											for="email">이메일</label>
 										<button type="button" id="cknumbergo" onclick="emailgo()"
 											class="btn btn-secondary">인증번호 &nbsp보내기</button>
@@ -300,10 +300,10 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="text" id="cknumber" name="cknumber"
-											class="form-control" placeholder="인증번호"> <label
+											class="form-control" placeholder="&nbsp;&nbsp;인증번호"> <label
 											for="cknumber">인증번호</label>
 										<button type="button" id="united"
-											class="btn btn-secondary">인증번호확인</button>
+											class="btn btn-secondary">인증번호 확인</button>
 										<input type="hidden" id="united2" value="0" /> <input
 											type="hidden" id="united3" value="0" /> <input type="hidden"
 											id="united4" value="3" />
@@ -311,35 +311,35 @@ checkid.submit();
 
 									<div class="form-label-group">
 										<input type="text" id="phone" name="phone"
-											class="form-control" placeholder="전화번호"> <label
+											class="form-control" maxlength="11" placeholder="&nbsp;&nbsp;전화번호"> <label
 											for="phone">전화번호</label>
 									</div>
 
 
 
 									<div class="form-label-group">
-										<input type="text" id="username" name="username"
-											class="form-control" placeholder="이름" required> <label
+										<input type="text" maxlength="4" id="username" name="username"
+											class="form-control" placeholder="&nbsp;&nbsp;이름" required> <label
 											for="username">이름</label>
 									</div>
 									<div class="form-label-group">
 										<input type="text" id="sample4_postcode" name="address"
-											class="form-control" placeholder="우편번호" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;우편번호" required> <label
 											for="address">우편번호</label>
 										<button type="button" onclick="sample4_execDaumPostcode()"
-											class="btn btn-secondary">우편번호검색</button>
+											class="btn btn-secondary">우편번호 검색</button>
 									</div>
 
 									<div class="form-label-group">
 										<input type="text" id="sample4_roadAddress"
 											name="sample4_roadAddress" class="form-control"
-											placeholder="주소" required> <label
+											placeholder="&nbsp;&nbsp;주소" required> <label
 											for="sample4_roadAddress">주소</label>
 									</div>
 
 									<div class="form-label-group">
 										<input type="text" id="sample4_detailAddress" name="address2"
-											class="form-control" placeholder="상세주소" required> <label
+											class="form-control" placeholder="&nbsp;&nbsp;상세주소" required> <label
 											for="sample4_detailAddress">상세주소</label>
 									</div>
 
@@ -446,14 +446,16 @@ checkid.submit();
     			var pw1=$('#inputPassword').val();
     			var pw2=$('#password_confirm').val();
     			var pwuni=$("#united3").val();
-    			
+    			var x=document.getElementById("password_span");
     			if(pw1.trim()!=pw2.trim()){
     				$('#password_span').html("비밀번호가 일치하지 않습니다.");
+    				x.style.color="red";
     				pwuni=$("#united3").val(2);
     				console.log(pwuni.val());
     				return pwuni;
     			}else{
     				$('#password_span').html("비밀번호가 일치합니다.");
+    				x.style.color="lightgreen";
     				pwuni=$("#united3").val(1);
     				console.log(pwuni.val());
     				return pwuni;
@@ -497,6 +499,10 @@ checkid.submit();
     	   
     	   
        } 
+        
+        $(function(){
+        	var name=$("")
+        })
         
         
         </script>

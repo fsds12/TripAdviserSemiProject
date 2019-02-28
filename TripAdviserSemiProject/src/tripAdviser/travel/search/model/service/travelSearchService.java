@@ -41,8 +41,7 @@ public class travelSearchService {
 	   {
 	      Connection conn=getConnection();
 	      List<TravelProduct> toplist= new travelSearchDao().traveltop(conn, searchkey);
-	      close(conn);
-	      //System.out.println(list);
+	      close(conn);	     
 	      return toplist;
 	   }
 

@@ -24,31 +24,8 @@
 		cPage = 1;
 	}
 %>
-<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?&key=AIzaSyCDSMMBC3FVr1gSB2QtcPfMFJwHW0-m9WA"></script>
 <script>
-    function fn_comment_confirm() {
-        var comment = $('textarea[name=comment]').val();
-        var logined = <%=logined %>;
-        
-        if(comment.trim().length == 0) {
-            $('#comment-message').html("<div class='alert alert-warning alert-dismissible fade show' style='display: block; width: 700px;'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>경고!</strong> <span>코멘트 내용을 입력해주세요!</span></div>");
-            return false;
-        }
-        else if(logined == false) {
-            $('#comment-message').html("<div class='alert alert-warning alert-dismissible fade show' style='display: block; width: 700px;'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>경고!</strong> <span>로그인후 코멘트작성이 가능합니다!</span></div>");
-            return false;
-        }
-        else {
-            var conf = confirm("코멘트 작성을 하시겠습니까?");
-            if(conf == true) {
-            	return true;
-            }
-            else {
-                return false;
-            }
-        }
-    }
-
     function fn_scrap_insert() {
     	var logined = <%=logined %>;
     	if(logined == false) {
@@ -62,6 +39,9 @@
     			success: function(data) {
     				$('#travel-scrap-div').html(data);
     				$('#message .modal-body').text("여행정보를 스크랩 했습니다.");
+    				$("#detail-modal-btn").css('display','inline-block');
+    		        $("#detail-confirm-btn").css('display','none');
+    		        $("#detail-cancel-btn").css('display','none');
     				$('#message').modal();
     			},
     			error: function(request, status, error) {
@@ -79,6 +59,9 @@
 			success: function(data) {
 				$('#travel-scrap-div').html(data);
 				$('#message .modal-body').text("여행정보를 스크랩에서 제거했습니다.");
+				$("#detail-modal-btn").css('display','inline-block');
+		        $("#detail-confirm-btn").css('display','none');
+		        $("#detail-cancel-btn").css('display','none');
 				$('#message').modal();
 			},
 			error: function(request, status, error) {
@@ -93,11 +76,12 @@
     }
 
     function fn_travel_delete() {
-        var conf = confirm("이 여행상품을 삭제하시겠습니까?");
-
-        if(conf == true) {
-            location.href = "<%=request.getContextPath() %>/travel/travelDelete?trvNo=<%=tp.getTrvNo() %>";
-        }
+    	$('#message .modal-body').text("이 여행지 정보를 삭제 하시겠습니까?");
+        $("#detail-modal-btn").css('display','none');
+        $("#detail-confirm-btn").css('display','inline-block');
+        $("#detail-cancel-btn").css('display','inline-block');
+        $("#detail-confirm-btn").attr("onclick", "location.href='<%=request.getContextPath() %>/travel/travelDelete?trvNo=<%=tp.getTrvNo() %>'");
+        $("#message").modal();
     }
     
     $(function() {
@@ -112,29 +96,46 @@
                 $('#comment-message').html("<div class='alert alert-warning alert-dismissible fade show' style='display: block; width: 700px;'><button type='button' class='close' data-dismiss='alert'>&times;</button><strong>경고!</strong> <span>로그인후 코멘트작성이 가능합니다!</span></div>");
             }
             else {
-                var conf = confirm("코멘트 작성을 하시겠습니까?");
-                if(conf == true) {
-                	var formData = $('form[name=comment-frm]').serialize();
-        			$.ajax({
-        				url: "<%=request.getContextPath()%>/travel/travelCommentInsert",
-        				type: "post",
-        				data: formData,
-        				dataType: "html",
-        				success: function(data) {
-        					$("body").html(data);
-        				},
-        				error: function(request, status, error) {
-        					
-        				}
-        			});
-                }
-                else {
-                    return false;
-                }
-            }
+	            $('#message .modal-body').text("코멘트 작성을 하시겠습니까?");
+	            $("#detail-modal-btn").css('display','none');
+	            $("#detail-confirm-btn").css('display','inline-block');
+	            $("#detail-cancel-btn").css('display','inline-block');
+	            $("#detail-confirm-btn").attr("onclick", "fn_comment_input_ajax()");
+				$('#message').modal();
+    		}
     	});
     });
 
+    function fn_comment_input_ajax() {
+    	var formData = $('form[name=comment-frm]').serialize();
+		$.ajax({
+			url: "<%=request.getContextPath()%>/travel/travelCommentInsert",
+			type: "post",
+			data: formData,
+			dataType: "html",
+			success: function(data) {
+				$(".close").click();
+				$("textarea").val("");
+				$("#comment-space").html(data);
+				
+				$.ajax({
+    				url: "<%=request.getContextPath()%>/travel/travelRefreshRate?trvNo=<%=tp.getTrvNo() %>",
+    				type: "post",
+    				dataType: "text",
+    				success: function(data) {
+    					$("#travel-star-rate").text(data);
+    				},
+    				error: function(request, status, error) {
+    					
+    				}
+    			});
+			},
+			error: function(request, status, error) {
+				
+			}
+		});
+    }
+    
     function fn_comment_modify(commentNo, evaluation) {
         var selNo = commentNo;
         $(".comment-content-view").eq(selNo).css('display', 'none');
@@ -151,7 +152,19 @@
 			data: formData,
 			dataType: "html",
 			success: function(data) {
-				$("body").html(data);
+				$("#comment-space").html(data);
+				
+				$.ajax({
+    				url: "<%=request.getContextPath()%>/travel/travelRefreshRate?trvNo=<%=tp.getTrvNo() %>",
+    				type: "post",
+    				dataType: "text",
+    				success: function(data) {
+    					$("#travel-star-rate").text(data);
+    				},
+    				error: function(request, status, error) {
+    					
+    				}
+    			});
 			},
 			error: function(request, status, error) {
 				
@@ -166,37 +179,37 @@
         $(".comment-evaluation").eq(selNo).css('display', 'block');
         return false;
     }
-
-    function fn_comment_delete(commentNo, trvNo, cPage) {
-        var conf = confirm("이 코멘트를 삭제하시겠습니까?");
-
-        if(conf == true) {
-            location.href = "<%=request.getContextPath() %>/travel/commentDelete?commentNo=" + commentNo + "&trvNo=" + trvNo + "&cPage=" + cPage;
-        }
+    
+    function fn_comment_modal_delete(commentNo, trvNo, cPage) {
+    	$('#message .modal-body').text("코멘트를 삭제 하시겠습니까?");
+        $("#detail-modal-btn").css('display','none');
+        $("#detail-confirm-btn").css('display','inline-block');
+        $("#detail-cancel-btn").css('display','inline-block');
+        $("#detail-confirm-btn").attr("onclick", "fn_comment_delete_ajax(" + commentNo + ", " + trvNo + ", " + cPage + ")");
+		$('#message').modal();
     }
     
     function fn_comment_delete_ajax(commentNo, trvNo, cPage) {
-    	var conf = confirm("이 코멘트를 삭제하시겠습니까?");
-
-        if(conf == true) {
+        if(true) {
         	$.ajax({
     			url: "<%=request.getContextPath()%>/travel/commentDeleteAjax?commentNo=" + commentNo + "&trvNo=" + trvNo + "&cPage=" + cPage,
     			type: "post",
     			dataType: "html",
     			success: function(data) {
-    				$("body").html(data);
-    				<%-- $.ajax({
-    					url: "<%=request.getContextPath()%>/travel/refreshTrvRate?trvNo=" + trvNo,
-    					type: "post",
-    					data: formData,
-    					dataType: "html",
-    					success: function(data) {
-    						$("#travel-evul-div").html(data);
-    					},
-    					error: function(request, status, error) {
-    						
-    					}
-    				}); --%>
+    				$(".close").click();
+    				$("#comment-space").html(data);
+    				
+    				$.ajax({
+        				url: "<%=request.getContextPath()%>/travel/travelRefreshRate?trvNo=<%=tp.getTrvNo() %>",
+        				type: "post",
+        				dataType: "text",
+        				success: function(data) {
+        					$("#travel-star-rate").text(data);
+        				},
+        				error: function(request, status, error) {
+        					
+        				}
+        			});
     			},
     			error: function(request, status, error) {
     				
@@ -207,8 +220,9 @@
     }
     
     function initialize() {
-    	  var LatLng = new google.maps.LatLng(37.560658, 126.985484);
-    	  
+    	  var lat = "<%=tp.getTrvGps().split(", ")[0] %>";
+    	  var lng = "<%=tp.getTrvGps().split(", ")[1] %>";
+    	  var LatLng = new google.maps.LatLng(lat, lng);
     	  var mapProp = {
     	    center: LatLng, // 위치
     	    zoom:15, // 어느정도까지 세세하게 볼 것인지.
@@ -243,7 +257,9 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+          <button type="button" id="detail-modal-btn" class="btn btn-secondary" data-dismiss="modal">확인</button>
+          <button type="button" id="detail-confirm-btn" class="btn btn-primary" style="display:none;">예</button>
+          <button type="button" id="detail-cancel-btn" class="btn btn-danger" onclick="$('.close').click()" style="display:none;">아니오</button>
         </div>
         
       </div>
@@ -279,11 +295,11 @@
 					<!-- The slideshow -->
 					<div class="carousel-inner">
 					  <div class="carousel-item active">
-					    <img src="<%=tp.getTrvRepresentPic() %>" alt="Travel Represent Pic" width="100%" height="380px" />
+					    <img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp.getTrvRepresentPic() %>" alt="Travel Represent Pic" width="100%" height="380px" />
 					  </div>
 					  <%for(int i=0; i<tp.getAlbumUrls().size(); i++) { %>
 						  <div class="carousel-item">
-						    <img src="<%=tp.getAlbumUrls().get(i) %>" alt="Travel Album Pic" width="100%" height="380px" />
+						    <img src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=tp.getAlbumUrls().get(i) %>" alt="Travel Album Pic" width="100%" height="380px" />
 						  </div>
 					  <%} %>
 					</div>
@@ -299,7 +315,7 @@
     			<div id="travel-review-box">
     				<div id="travel-evul-intro-div">
     					<p>
-    						<span class="starR on"></span><span style="font-size: 24px;"><%=Math.floor(tp.getAvgStarRate()*10)/10 %>평점</span><br>
+    						<span class="starR on"></span><span id="travel-star-rate" style="font-size: 24px;"><%=Math.floor(tp.getAvgStarRate()*10)/10 %>평점</span><br>
     					</p>
     					<p>
     						<span>카테고리: <%=tp.getTrvLargeCtg() %> - <%=tp.getTrvSmallCtg() %></span>
@@ -322,7 +338,7 @@
     	</div>
     	<div id="error-message" style="margin-top: 3px;">
     	</div>
-    	<div id="travel-content-container" style="height: 250px;">
+    	<div id="travel-content-container" style="min-height: 250px;">
     		<%=tp.getTrvReview() %>
     	</div>
     </article>
@@ -360,12 +376,11 @@
 		<hr />
 		<!-- 세션아이디랑 코멘트작성자와 비교해서 맞거나 admin계정이면 hidden삭제 아니면 hidden속성추가해서 넣기  -->
 		<div id="comment-space">
-		<%if(tp.getCommentLists().size() > 0) {	//이 여행상품에 코멘트가있을시 값들을 로드한다.%>
+		<%if(tp.getCommentLists().size() > 0) {	//이 여행상품에 코멘트가없을시 값들을 로드한다.%>
 		<%for(int i=0; i<tp.getCommentLists().size(); i++) {%>
 			<div class="comment-container" style="min-height:110px;">
 				<div class='comment-profile'>
-					<%-- <img src="<%=request.getContextPath() %>/images/travel_detail_imgs/profile_default.gif" alt="" width="74px" height="84px" style="margin: 1px" /> --%>
-					<img src="<%=tp.getCommentLists().get(i).getMemberPictureUrl() %>" alt="" width="74px" height="84px" style="margin: 1px" />
+					<img src="<%=request.getContextPath() %>/images/myPage_imgs/<%=tp.getCommentLists().get(i).getMemberPictureUrl() %>" alt="" width="74px" height="84px" style="margin: 1px" />
 					<div class="comment-writer"><span><%=tp.getCommentLists().get(i).getMemberId() %></span></div>
 				</div>
 				<div class="comment-date">
@@ -386,7 +401,7 @@
 						</div>
 						<%if(id.equals("admin") || tp.getCommentLists().get(i).getMemberId().equals(id)) {%>
 						<div class="comment-btn" style="display:inline-block; width:17%; text-align: center;">
-							<button class='btn btn-primary' onclick="fn_comment_modify(<%=i %>, <%=tp.getCommentLists().get(i).getTrvEvaluation() %>)">수정</button> <button class='btn btn-light' onclick="fn_comment_delete_ajax(<%=tp.getCommentLists().get(i).getCommentNo() %>, <%=tp.getTrvNo() %>, <%=cPage %>)">삭제</button>
+							<button class='btn btn-primary' onclick="fn_comment_modify(<%=i %>, <%=tp.getCommentLists().get(i).getTrvEvaluation() %>)">수정</button> <button class='btn btn-light' onclick="fn_comment_modal_delete(<%=tp.getCommentLists().get(i).getCommentNo() %>, <%=tp.getTrvNo() %>, <%=cPage %>)">삭제</button>
 						</div>
 						<%}else {%>
 							<div class="comment-btn" style="display:inline-block; width:17%; text-align: center;">
@@ -436,6 +451,5 @@
 		</div>
     </article>
 </section>
-
 
 <%@ include file="/views/common/footer.jsp" %>

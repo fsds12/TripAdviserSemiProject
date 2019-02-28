@@ -1,6 +1,7 @@
 package tripAdviser.member.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,9 +41,9 @@ public class IdFindServlet extends HttpServlet {
 		m.setName(name);
 		m.setPhone(phone);
 		m.setEmail(email);
-		Member result=new MemberService().findId(m);
-		
-		request.setAttribute("Member", result);
+		List<Member> list=new MemberService().findId(m);
+		System.out.println(list.isEmpty());
+		request.setAttribute("idList", list);
 		
 		RequestDispatcher rd=request.getRequestDispatcher("/views/member/findId.jsp");
 		rd.forward(request, response);

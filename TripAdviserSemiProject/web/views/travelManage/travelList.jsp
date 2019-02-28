@@ -82,7 +82,7 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 				<div id="tblljb-pageBar">
 					<%=pageBar %>
 				</div>
-		<!-- </form>  -->
+
 			
 				
 			<div class="row aln-center">
@@ -92,10 +92,10 @@ TravelProduct tp=(TravelProduct)request.getAttribute("TravelProduct");
 				
 					
 				<form action="<%=request.getContextPath() %>/travel/travelAdminFind">
-					<input type="hidden" name="searchType" value="memberId"/>
-					<input type="hidden" name="cPage" value="<%=cPage %>"/>
-					<input type="hidden" name="numPerPage" value="<%=numPerPage %>"/>
-					<input type="text" id="item" class="form-control" name="searchKeyword" value='<%="memberId".equals(searchType)?searchKeyword:"" %>'
+					<!-- <input type="hidden" name="searchType" value="memberId"/> -->
+					<%-- <input type="hidden" name="cPage" value="<%=cPage %>"/> --%>
+					<%-- <input type="hidden" name="numPerPage" value="<%=numPerPage %>"/> --%>
+					<input type="text" id="item" class="form-control" name="searchKeyword" value='<%-- <%="memberId".equals(searchType)?searchKeyword:"" %> --%>'
 					placeholder="여행제목을 입력하세요"/>
 					
 					

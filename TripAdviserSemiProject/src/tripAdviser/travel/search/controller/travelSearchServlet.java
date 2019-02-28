@@ -39,14 +39,17 @@ public class travelSearchServlet extends HttpServlet {
 			String msg="";
 			String loc="";
 			String view ="/views/travelSearch/travelSearch.jsp";
+			
+			
 			if(toplist==null)
 			{
-				System.out.println("검색결과가 없습니다.");
+				System.out.println("검색결과가 없습니다!");
+				
 			}else
 			{
+				request.setAttribute("toplist", toplist);
 				request.setAttribute("msg",msg);
 				request.setAttribute("loc", loc);
-				request.setAttribute("toplist", toplist);
 				
 			}
 			
@@ -88,7 +91,6 @@ public class travelSearchServlet extends HttpServlet {
 			System.out.println("검색결과가 없습니다.");
 		}
 		else {
-			System.out.println("검색결과가 있습니다.");
 			request.setAttribute("msg", msg);
 			request.setAttribute("loc", loc);
 			request.setAttribute("eatList", eatList);

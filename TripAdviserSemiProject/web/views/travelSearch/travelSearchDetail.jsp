@@ -10,15 +10,29 @@
 	int numPerPage=(int)request.getAttribute("numPerPage");
 	String searchKey = (String)request.getAttribute("searchKey");
 %>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <style>
    #starRateScore{
       display: inline-block;
       font-size: 25px;
    }
   
-   section#search-after div.container div.card-group div.card {
+section#search-after div.container div.card-group div.card {
    max-width: 33%;
    }
+#searchkey{
+    width:400px;
+    height:30px;
+    margin-left: 10px;
+}
+#searchbtn1{
+    height:30px;
+    width:100px;
+	    
+}
 </style>
 
 
@@ -35,7 +49,7 @@
         
         
 <%-- &nbsp;&nbsp;&nbsp;<span style="font-size: 25px;">검색어 : </span>	<span><%=searchKey %></span>  --%>	
-&nbsp;&nbsp;&nbsp;<span style="font-size: 25px;">선택된 카테고리  : </span> <span><%=list.get(0).getTrvLargeCtg() %></span>
+&nbsp;&nbsp;&nbsp;<span style="font-size: 30px;">선택된 카테고리   </span>&nbsp;&nbsp; <span><%=list.get(0).getTrvLargeCtg()%></span>
 <hr id="hrf" >
 
 <div class="container" >	
@@ -45,10 +59,10 @@
 <%} %>
  	
       <div class="card">
-         <a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=list.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=list.get(i).getTrvRepresentPic() %>" style="height:300px"></a>
+         <a href="<%= request.getContextPath()%>/travel/travelProductDetail?trvNo=<%=list.get(i).getTrvNo()%>"><img class="card-img-top" src="<%=request.getContextPath() %>/images/travel_upload_imgs/<%=list.get(i).getTrvRepresentPic() %>" style="height:200px"></a>
          <div class="card-block">
             <h5 class="card-title">&nbsp;&nbsp;&nbsp;<%=list.get(i).getTrvTitle() %></h5>
-			<p class="card-text">&nbsp;&nbsp;&nbsp;<%=list.get(i).getTrvAddress() %></p>
+			<p class="card-text">&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i><%=list.get(i).getTrvProvince()+"&nbsp;"+list.get(i).getTrvCity()+"&nbsp;"+list.get(i).getTrvAddress() %>
             <p class="card-text">
               <div class="starRev">&nbsp;&nbsp;
 

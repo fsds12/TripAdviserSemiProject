@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import tripAdviser.member.model.vo.Member;
@@ -30,6 +32,7 @@ public class MemberDao {
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1,m.getMemberId());
+			pstmt.setString(2, m.getMemberPw());
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				result=new Member();
@@ -52,11 +55,12 @@ public class MemberDao {
 		}
 		return result;
 	}
-	public Member findId(Connection conn, Member m) {
+	public List<Member> findId(Connection conn, Member m) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=prop.getProperty("findId");
-		Member result=null;
+		List<Member> list=new ArrayList();
+		
 		
 		try {
 			pstmt=conn.prepareStatement("SELECT MEMBER_ID FROM MEMBER WHERE NAME=? AND PHONE=? AND EMAIL=?");
@@ -66,11 +70,19 @@ public class MemberDao {
 			System.out.println(m.getName() + ":" + m.getPhone() + ":" + m.getEmail());
 			rs=pstmt.executeQuery();
 			
-			if(rs.next()) {
-				System.out.println("찾음");
-				result=new Member();
+			while(rs.next()) {
+				Member result=new Member();
 				result.setMemberId(rs.getString("MEMBER_ID"));
-				
+				/*result.setMemberPw(rs.getString("MEMBER_PW"));
+				result.setMemberGrade(rs.getInt("MEMBER_GRADE"));
+				result.setEmail(rs.getString("EMAIL"));
+				result.setName(rs.getString("NAME"));
+				result.setMemberPictureUrl(rs.getString("MEMBER_PICTURE_URL"));
+				result.setPostalCode(rs.getInt("POSTAL_CODE"));
+				result.setAddress(rs.getString("ADDRESS"));
+				result.setAddressDetail(rs.getString("ADDRESS_DETAIL"));*/
+				list.add(result);
+
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -78,7 +90,7 @@ public class MemberDao {
 			close(rs);
 			close(pstmt);
 		}
-		return result;
+		return list;
 	}
 	public int enrollMember(Connection conn, Member m) {
 		PreparedStatement pstmt=null;
@@ -160,6 +172,36 @@ public class MemberDao {
 		
 		
 		
+		return result;
+	}
+	public Member selectId(Connection conn, Member m) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectId");
+		Member result=null;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1,m.getMemberId());
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=new Member();
+				result.setMemberId(rs.getString("MEMBER_ID"));
+				result.setMemberPw(rs.getString("MEMBER_PW"));
+				result.setMemberGrade(rs.getInt("MEMBER_GRADE"));
+				result.setEmail(rs.getString("EMAIL"));
+				result.setName(rs.getString("NAME"));
+				result.setMemberPictureUrl(rs.getString("MEMBER_PICTURE_URL"));
+				result.setPostalCode(rs.getInt("POSTAL_CODE"));
+				result.setAddress(rs.getString("ADDRESS"));
+				result.setAddressDetail(rs.getString("ADDRESS_DETAIL"));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
 		return result;
 	}
 	

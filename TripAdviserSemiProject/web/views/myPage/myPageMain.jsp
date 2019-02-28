@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+                        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    
 <%@page import="tripAdviser.member.model.vo.Member"%>
 <%
 	Member m = (Member)session.getAttribute("loginMember");
@@ -8,7 +10,7 @@
 		id = m.getMemberId();
 	}
 %>
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -19,6 +21,119 @@
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="<%=request.getContextPath() %>/js/jquery-3.3.1.min.js"></script>
 <script src="<%=request.getContextPath() %>/js/bootstrap.min.js"></script>
+<script>
+	$(function() {
+		$('#tab1').click(function() {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/myPage/myProfile?id=" + "<%=id %>" ,
+				type: "post",
+				dataType: "html",
+				success: function(data) {
+					$("#my-info").html(data);
+				},
+				error: function(request, status, error) {
+					
+				}
+			});
+		});
+		console.log("<%=img%>")
+		
+		$('#tab2').click(function() {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/myPage/myScrap?id=" + "<%=id %>",
+				type: "post",
+				dataType: "html",
+				success: function(data) {
+					$("#my-scraps").html(data);
+				},
+				error: function(request, status, error) {
+					
+				}
+			});
+		});
+		
+		$('#tab3').click(function() {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/myPage/myComment?id=" + "<%=id %>",
+				type: "post",
+				dataType: "html",
+				success: function(data) {
+					$("#my-comments").html(data);
+				},
+				error: function(request, status, error) {
+					
+				}
+			});
+		});
+		/*
+		$('#tab4').click(function() {
+			$.ajax({
+				url: "<%=request.getContextPath()%>/",
+				type: "post",
+				dataType: "html",
+				success: function(data) {
+					$("#my-follows").html(data);
+				},
+				error: function(request, status, error) {
+					
+				}
+			});
+		});
+		
+		<%if(id.equals("admin")) {%>
+			$('#tab5').click(function() {
+				$.ajax({
+					url: "<%=request.getContextPath()%>/",
+					type: "post",
+					dataType: "html",
+					success: function(data) {
+						$("#add-trip").html(data);
+					},
+					error: function(request, status, error) {
+						
+					}
+				});
+			});
+			
+			$('#tab6').click(function() {
+				$.ajax({
+					url: "<%=request.getContextPath()%>/",
+					type: "post",
+					dataType: "html",
+					success: function(data) {
+						$("#trips-list").html(data);
+					},
+					error: function(request, status, error) {
+						
+					}
+				});
+			});
+		<%}%>
+		*/
+	});
+</script>
+<style>
+div.mypage-header {
+align-content: center;
+}
+div.mypage-spacer {
+display: inline-block;
+}
+
+
+</style>
+</head>
+<body> --%>
+
+
+<%-- <div class="mypage-header">
+	<span class="mypage-spacer"> </span>
+	<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
+	<span>&nbsp;&nbsp;</span>
+	<a id="menu"  href="<%=request.getContextPath() %>/index.jsp">Local Traveler</a>
+</div> --%>
+<%@include file="/views/common/header.jsp" %>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/myPage.css">
 <script>
 	$(function() {
 		$('#tab1').click(function() {
@@ -109,14 +224,16 @@
 		*/
 	});
 </script>
-</head>
-<body>
-<div class="mypage-header">
-	<span class="mypage-spacer"> </span>
-	<img src="<%=request.getContextPath() %>/images/Symbol_logo_t.png" width="50px" height="50px" />
-	<span>&nbsp;&nbsp;</span>
-	<a id="menu"  href="<%=request.getContextPath() %>/index.jsp">TripAdvisor</a>
-</div>
+<style>
+div.mypage-header {
+align-content: center;
+}
+div.mypage-spacer {
+display: inline-block;
+}
+
+
+</style>
 <section id='mypage-main-section'>
 	<article id='main'>    
 		<input id="tab1" type="radio" name="tabs">

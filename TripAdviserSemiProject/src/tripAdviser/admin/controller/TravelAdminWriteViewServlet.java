@@ -62,7 +62,7 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		MultipartRequest mr=new MultipartRequest(request, dir,maxSize,"UTF-8",new DefaultFileRenamePolicy());
 		//DB로직 구성~!
 		
-		System.out.println(dir);
+		
 		
 		Enumeration e=mr.getFileNames();
 		List<String> fileNames=new ArrayList();
@@ -70,25 +70,16 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		{
 			fileNames.add(mr.getFilesystemName((String)e.nextElement()));
 		}
-		System.out.println(fileNames);
+		
 		
 		
 		String title=mr.getParameter("trvTitle");
-		
-					/*String ctg=mr.getParameter("trvCtg");*/ /*카테고리(대,소)2개??*/
 		String province=mr.getParameter("trvProvince");
 		String city=mr.getParameter("trvCity");
 		String addr=mr.getParameter("trvAddress");
 		String content=mr.getParameter("proContent");
-		
-		
-		
-		System.out.println(title);
-		System.out.println(province);
-		System.out.println(city);
-		System.out.println(addr);
-		System.out.println(content);
-		
+		String smallCtg = mr.getParameter("trvCtg");
+		String gps=mr.getParameter("trvGps");
 		
 		
 		TravelProduct tp=new TravelProduct();
@@ -99,17 +90,16 @@ public class TravelAdminWriteViewServlet extends HttpServlet {
 		tp.setTrvProvince(province);
 		tp.setTrvCity(city);
 		tp.setTrvAddress(addr);
+		tp.setTrvSmallCtg(smallCtg);
+		tp.setTrvGps(gps);
 		List<String> albumUrls = new ArrayList<String>();
 		for(int i=1; i<fileNames.size(); i++) {
 			albumUrls.add(fileNames.get(i));
 		}
 		tp.setAlbumUrls(albumUrls);
 		tp.setTrvReview(content);
-		 System.out.println(albumUrls);
 		
 		int result=new TravelAdminService().insertAdmin(tp);
-	
-		System.out.println(result);
 		
 		String msg="";
 		String loc="/travel/TravelAdminListView";   

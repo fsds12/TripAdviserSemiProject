@@ -65,7 +65,6 @@ public class travelSearchDao {
 			 
 			while (rs.next()) {
 				double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
-				//double aveStarRate = rs.getDouble("point");
 				TravelProduct tp=new TravelProduct();
 				tp.setTrvNo(rs.getInt("trv_No"));
 				tp.setTrvTitle(rs.getString("trv_Title"));
@@ -126,7 +125,6 @@ public class travelSearchDao {
 			rs=pstmt.executeQuery();
 			 
 			while (rs.next()) {
-				//double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
 				double aveStarRate = 0.0;
 				if(rs.getString("point")!=null)
 				{
@@ -139,13 +137,6 @@ public class travelSearchDao {
 				tp.setTrvProvince(rs.getString("trv_Province"));
 				tp.setTrvCity(rs.getString("trv_city"));
 				tp.setTrvAddress(rs.getString("trv_address"));
-				//tp.setTrvDateStart(rs.getDate("trv_date_start"));
-				//tp.setTrvDateEnd(rs.getDate("trv_date_end"));
-				//tp.setTrvReview(rs.getString("trv_review"));
-				//tp.setTrvSmallCtg(rs.getString("trv_small_ctg_code"));
-				//tp.setTrvGps(rs.getString("trv_gps"));
-				//tp.setTrvDate(rs.getDate("trv_write_date"));
-				//tp.setMemberId(rs.getString("member_id"));
 				tp.setAvgStarRate(aveStarRate);
 				list.add(tp);
 								
@@ -179,8 +170,7 @@ public class travelSearchDao {
 	         rs=pstmt.executeQuery();
 	         
 	          
-	         while (rs.next()) {
-	            //double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
+	         while (rs.next()) {	         
 	            TravelProduct top=new TravelProduct();
 	            top.setTrvNo(rs.getInt("trv_No"));
 	               top.setTrvTitle(rs.getString("trv_Title"));
@@ -195,10 +185,8 @@ public class travelSearchDao {
 	               top.setTrvGps(rs.getString("trv_gps"));
 	               top.setTrvDate(rs.getDate("trv_write_date"));
 	               top.setMemberId(rs.getString("member_id"));
-	               top.setAvgStarRate(rs.getDouble("rate"));
-	            toplist.add(top);
-	            //System.out.println(list);
-	                        
+	               top.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);
+	            toplist.add(top);	           
 	         }
 	      } catch (Exception e) {
 	         e.printStackTrace();
@@ -229,10 +217,9 @@ public class travelSearchDao {
 	            pstmt.setString(3, "%"+searchkey+"%");
 	            rs=pstmt.executeQuery();
 	         
-	         while (rs.next()) {
-	            //double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
+	         while (rs.next()) {	            
 	            TravelProduct sl=new TravelProduct();
-	            sl.setTrvNo(rs.getInt("trv_No"));
+	               sl.setTrvNo(rs.getInt("trv_No"));
 	               sl.setTrvTitle(rs.getString("trv_Title"));
 	               sl.setTrvRepresentPic(rs.getString("trv_Represent_Pic"));
 	               sl.setTrvProvince(rs.getString("trv_Province"));
@@ -245,9 +232,9 @@ public class travelSearchDao {
 	               sl.setTrvGps(rs.getString("trv_gps"));
 	               sl.setTrvDate(rs.getDate("trv_write_date"));
 	               sl.setMemberId(rs.getString("member_id"));
-	               sl.setAvgStarRate(rs.getDouble("rate"));
+	               sl.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);
 	            sleepList.add(sl);
-	            //System.out.println(sleepList);
+	            
 	         }
 	      }catch (Exception e) {
 	         e.printStackTrace();
@@ -278,8 +265,7 @@ public class travelSearchDao {
 	            pstmt.setString(3, "%"+searchkey+"%");
 	            rs=pstmt.executeQuery();
 	         
-	         while (rs.next()) {
-	         //double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
+	         while (rs.next()) {	        
 	         TravelProduct ac = new TravelProduct();
 	         ac.setTrvNo(rs.getInt("trv_No"));
 	            ac.setTrvTitle(rs.getString("trv_Title"));
@@ -294,7 +280,7 @@ public class travelSearchDao {
 	            ac.setTrvGps(rs.getString("trv_gps"));
 	            ac.setTrvDate(rs.getDate("trv_write_date"));
 	            ac.setMemberId(rs.getString("member_id"));
-	            ac.setAvgStarRate(rs.getDouble("rate"));
+	            ac.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);
 	         acList.add(ac);
 	         }
 	         
@@ -327,7 +313,6 @@ public class travelSearchDao {
 	            rs=pstmt.executeQuery();
 	         
 	         while (rs.next()) {
-	         //double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
 	         TravelProduct ea = new TravelProduct();
 	         ea.setTrvNo(rs.getInt("trv_No"));
 	            ea.setTrvTitle(rs.getString("trv_Title"));
@@ -342,7 +327,7 @@ public class travelSearchDao {
 	            ea.setTrvGps(rs.getString("trv_gps"));
 	            ea.setTrvDate(rs.getDate("trv_write_date"));
 	            ea.setMemberId(rs.getString("member_id"));     
-	            ea.setAvgStarRate(rs.getDouble("rate"));           
+	            ea.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);     
 	         eatList.add(ea);
 	         }
 	         
@@ -392,33 +377,19 @@ public class travelSearchDao {
 	      PreparedStatement pstmt = null;
 	      ResultSet rs = null;
 	      String sql = prop.getProperty("categoryAll");
-	      //sql = "SELECT * FROM (SELECT * FROM (SELECT * FROM TRAVEL_PRODUCT JOIN TRAVEL_CATEGORY_SMALL_TABLE ON TRV_SMALL_CTG_CODE=TRV_CTG_SMALL_CODE) JOIN TRAVEL_CATEGORY_LARGE_TABLE USING (TRV_CTG_LARGE_CODE)) JOIN(SELECT TRV_NO, AVG(TRV_EVALUATION) AS RATE FROM TRAVEL_PRODUCT JOIN COMMENT_TABLE USING(TRV_NO) GROUP BY TRV_NO) USING(TRV_NO) WHERE (TRV_CTG_LARGE_CODE LIKE ?) AND (TRV_TITLE LIKE ? OR TRV_PROVINCE LIKE ? OR TRV_ADDRESS LIKE ?) ORDER BY RATE DESC";
+	    
 	      try {
 	         pstmt = conn.prepareStatement(sql);
-	         
-	         /*if(category.equals("CL01")) {
-	            pstmt.setString(2, "%"+searchkey+"%");
-	            pstmt.setString(3, "%"+searchkey+"%");
-	            pstmt.setString(4, "%"+searchkey+"%");
-	         }else if(category.equals("CL02")) {
-	            pstmt.setString(2, "%"+searchkey+"%");
-	            pstmt.setString(3, "%"+searchkey+"%");
-	            pstmt.setString(4, "%"+searchkey+"%");
-	         }*/
 	         pstmt.setString(1, "%"+category+"%");
 	         pstmt.setString(2, "%"+searchkey+"%");
 	         pstmt.setString(3, "%"+searchkey+"%");
 	         pstmt.setString(4, "%"+searchkey+"%");
-	         //System.out.println("씨페이지"+cPage);
-	         //System.out.println("넘퍼페이지"+numPerPage);
 	         pstmt.setInt(5, (cPage-1)*numPerPage+1);
 	         pstmt.setInt(6, cPage*numPerPage);
-	         //System.out.println(category + ":" + searchkey);
 	         rs=pstmt.executeQuery();
 
 	                   
-	         while (rs.next()) {
-	            //double aveStarRate = new travelSearchService().getStarAve(rs.getInt("trv_No"));
+	         while (rs.next()) {	            
 	            TravelProduct cate=new TravelProduct();
 	            cate.setTrvNo(rs.getInt("trv_No"));
 	            cate.setTrvTitle(rs.getString("trv_Title"));
@@ -434,9 +405,9 @@ public class travelSearchDao {
 	            cate.setTrvGps(rs.getString("trv_gps"));
 	            cate.setTrvDate(rs.getDate("trv_write_date"));
 	            cate.setMemberId(rs.getString("member_id"));
-	            cate.setAvgStarRate(rs.getDouble("rate"));
+	            cate.setAvgStarRate(Math.floor(rs.getDouble("rate")*10)/10);
 	            list.add(cate);
-	            //System.out.println("나오냐?????????????????????"+cate);
+	            
 	            
 	                        
 	         }

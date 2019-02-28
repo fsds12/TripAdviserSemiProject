@@ -76,14 +76,16 @@ footer#footer-container {
 }
 
 div.mypage-header{
-font: 14px/1 'Open Sans', sans-serif;
+font: 20px 'Open Sans', sans-serif;
 color: #555;
-background: #eee;
+background: #FAFAFA;
 margin: 0 0 0 200px auto;
+align-content: center;
 }
 
 div.mypage-header span.mypage-spacer{
-	width : 200px;
+display: inline-block;
+	width : 260px;
 }
 
 
@@ -169,7 +171,7 @@ section#myProfile-view-container article#profile-update-container {
 
 section#myProfile-view-container input[type="text"], section#myProfile-view-container input[type="password"],
 	section#myProfile-view-container input[type="email"] {
-	width: 300px;
+	width: 250px;
 	height: 51px;
 	display: inline-block;
 }
@@ -184,10 +186,11 @@ section#myProfile-view-container input[type="text"], section#myProfile-view-cont
 
 
 article#profile-update-container .card-signin {
-  border: 0;
+  border: 1px solid lightgray;
   
-  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.2);
-  width: 400px;
+   /* box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.1); */ 
+  width: 411px;
+  
 }
 
 article#profile-update-container .card-signin .card-title {
@@ -198,6 +201,7 @@ article#profile-update-container .card-signin .card-title {
 
 article#profile-update-container .card-signin .card-body {
   padding: 2rem;
+
 }
 
 article#profile-update-container .form-signin {
@@ -205,10 +209,9 @@ article#profile-update-container .form-signin {
 }
 
 article#profile-update-container .form-signin .btn {
-  font-size: 80%;
+  font-size: 100%;
   letter-spacing: .1rem;
   font-weight: bold;
-  padding: 1rem;
   transition: all 0.2s;
 }
 
@@ -278,15 +281,41 @@ article#profile-update-container #profileupdate{
 	width: 100px;
 	display: inline-block;
 }
-article#profile-update-container .btn-container{
+article#profile-update-container div.btn-container{
 	
-	width: 150px;
+	width: 450px;
 	height: 30px;
 	display: inline-block;
 }
 
-#pwChange{
+section#myProfile-view-container #pwChange{
+	width:90px;
+	height:50px;
 	
 	position: relative;
 }
+
+section#myProfile-view-container #cknumbergo{	
+	width: 90px;
+	height: 50px;
+}
+
+section#myProfile-view-container div.form-label-group #email{
+		margin-bottom: 10px;
+}
+
+section#myProfile-view-container #cknumbere{
+	width: 90px;
+	height: 50px;
+}
+section#myProfile-view-container #postalbutton{
+	width: 90px;
+	height: 50px;
+}
+.btn-container button{
+	width: 100px;
+	height: 51px;
+}
+
+
 
