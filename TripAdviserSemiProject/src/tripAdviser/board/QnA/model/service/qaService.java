@@ -108,10 +108,9 @@ public class qaService {
 		return result;
 	}
 	
-	public List<BoardAnswer> selectComment(int boardNo){
-		
+	public List<BoardAnswer> selectComment(int boardNo, int cPage, int numPerPage){		
 		Connection conn=getConnection();
-		List<BoardAnswer> comment=dao.selectComment(conn, boardNo);
+		List<BoardAnswer> comment=dao.selectComment(conn, boardNo, cPage, numPerPage);
 		close(conn);
 		return comment;
 	}
@@ -123,6 +122,13 @@ public class qaService {
 		if(result>0) commit();
 		else rollback();
 		
+		return result;
+	}
+	
+	public int selectCommentCount(int boardNo) {		
+		Connection conn=getConnection();
+		int result=dao.selectCommentCount(conn, boardNo);
+		close(conn);
 		return result;
 	}
 	

@@ -70,7 +70,7 @@ public class qaDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, "%"+key+"%");
 			pstmt.setInt(2, (cPage-1)*numPerPage+1);
-			pstmt.setInt(3, cPage*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Board b=new Board();
@@ -281,14 +281,16 @@ public class qaDao {
 		return result;
 	}
 	
-	public List<BoardAnswer> selectComment(Connection conn, int boardNo){
+	public List<BoardAnswer> selectComment(Connection conn, int boardNo, int cPage, int numPerPage){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		String sql=prop.getProperty("selectComment");
 		List<BoardAnswer> comment=new ArrayList();
 		try {
-			pstmt=conn.prepareStatement(sql);
+			pstmt=conn.prepareStatement(sql);			
 			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				BoardAnswer ba=new BoardAnswer();
@@ -325,6 +327,28 @@ public class qaDao {
 		}finally {
 			close(pstmt);
 		}
+		return result;
+	}
+	
+	public int selectCommentCount(Connection conn, int boardNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		ResultSet rs=null;
+		String sql=prop.getProperty("selectCommentCount");
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt("cnt");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
 		return result;
 	}
 }

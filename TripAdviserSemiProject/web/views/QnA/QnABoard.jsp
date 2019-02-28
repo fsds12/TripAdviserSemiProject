@@ -110,7 +110,7 @@
             		<input type="hidden" name="type" value="title"/>
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
             		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>            	
-            		<input type="search" name="key" value='<%="title".equals(type)?key:"" %>' placeholder="title"/>
+            		<input type="search" name="key" value='<%="title".equals(type)?key:"" %>'/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>            
@@ -119,7 +119,7 @@
             		<input type="hidden" name="type" value="content"/>
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
             		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>            	
-            		<input type="search" name="key" value='<%="content".equals(type)?key:""%>' placeholder="content"/>
+            		<input type="search" name="key" value='<%="content".equals(type)?key:""%>'/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>

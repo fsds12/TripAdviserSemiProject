@@ -18,6 +18,9 @@
 		margin-left: 10px;
 		display: inline-block;
 	}
+	table#notice-tbl{
+		margin-top: 10px;
+	}
 	
 </style>
 <script>
@@ -46,12 +49,13 @@
 		</div>    	  	
         <table align="center" class="notice-tbl">                    
             <thead>
-            <tr>
-            	
-            	<td colspan="5">
-            		<input type="button" value="쓰기" class="write-btn" onclick="location.href='<%=request.getContextPath()%>/notice/noticeWrite'"/>
-            	</td>
-            </tr>                        
+            <%if(loginMember!=null&&"admin".equals(loginMember.getMemberId())){ %>
+            	<tr>            	
+            		<td colspan="5">
+            			<input type="button" value="쓰기" class="write-btn" onclick="location.href='<%=request.getContextPath()%>/notice/noticeWrite'"/>
+            		</td>
+            	</tr>
+            <%} %>                        
             <tr class="title">
                 <th>번호</th>
                 <th>작성자</th>
@@ -84,7 +88,7 @@
             		<input type="hidden" name="searchType" value="title"/>            		
             		<input type="hidden" name="cPage" value='<%=cPage%>'/>
             		<input type="hidden" name="numPerPage" value='<%=numPerPage%>'/>
-            		<input type="search" name="searchKey" value='<%="title".equals(searchType)?searchKey:""%>' placeholder="title"/>
+            		<input type="search" name="searchKey" value='<%="title".equals(searchType)?searchKey:""%>'/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>
@@ -94,7 +98,7 @@
             		<input type="hidden" name="searchType" value="content"/>            		
             		<input type="hidden" name="cPage" value="<%=cPage%>"/>
             		<input type="hidden" name="numPerPage" value="<%=numPerPage%>"/>
-            		<input type="search" name="searchKey" value='<%="content".equals(searchType)?searchKey:""%>' placeholder="content"/>
+            		<input type="search" name="searchKey" value='<%="content".equals(searchType)?searchKey:""%>'/>
             		<button type="submit" id="search-btn">검색</button>
             	</form>
             </div>                     

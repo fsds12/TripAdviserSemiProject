@@ -60,14 +60,14 @@ public class NoticeListServlet extends HttpServlet {
 		if(pageNo==1) {
 			pageBar+="<li class='page-item'><a class='page-link'> << </a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='" + request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"'><<</a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='" + request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'><<</a></li>";
 		}
 		
 		while(!(pageNo>pageEnd || pageNo>totalPage)) {
 			if(cPage==pageNo) {
 				pageBar+="<li class='page-item'><a class='page-link'>"+pageNo+"</a></li>";
 			}else {
-				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeList?cPage="+pageNo+"'>"+ pageNo + "</a></li>";
+				pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeList?cPage="+pageNo+"&numPerPage="+numPerPage+"'>"+ pageNo + "</a></li>";
 			}
 			pageNo++;
 		}
@@ -75,7 +75,7 @@ public class NoticeListServlet extends HttpServlet {
 		if(pageNo>totalPage) {
 			pageBar+="<li class='page-item'><a class='page-link'> >> </a></li>";
 		}else {
-			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"'> >> </a></li>";
+			pageBar+="<li class='page-item'><a class='page-link' href='"+request.getContextPath()+"/notice/noticeList?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'> >> </a></li>";
 		}
 		
 		System.out.println(list);
